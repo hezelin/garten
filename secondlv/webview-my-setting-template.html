@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>设置</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/feedback-page.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+
+	<body class="mui-fullscreen">
+		<!--页面主结构开始-->
+		<div id="app" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar">
+				</div>
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+		<!--页面主结构结束-->
+		<!--单页面开始-->
+		<div id="setting" class="mui-page">
+			<div class="header-control      mui-navbar-inner mui-bar mui-bar-nav">
+				<div class="header-control-left-btn  mui-action-back    ">
+					<span class="white-arrow-big-span header-control-left-btn-span    mui-pull-left"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">设置</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="help-about-span header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<!--新标题结束-->
+			<!--页面标题栏结束-->
+			<!--页面主内容区开始-->
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell mui-media">
+								<a href="#account">
+									<img class="mui-media-object mui-pull-left head-img" id="head-img" src="../img/user-img.png">
+									<div class="account-table">
+										<div class="mui-media-body">
+											Capitan
+											<p class='mui-ellipsis'>账号:13229788871</p>
+										</div>
+									</div>
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell">
+								<a href="#notifications">
+									<span class="my-setting-list-span">新消息通知</span>
+									<div class="my-setting-list-arrow-div">
+										<span class="black-arrow-span my-setting-list-arrow-span">
+										</span>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#general">
+									<span class="my-setting-list-span">账号安全</span>
+									<div class="my-setting-list-arrow-div">
+										<span class="black-arrow-span my-setting-list-arrow-span">
+										</span>
+									</div>
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell">
+								<a id="update">
+									<span class="my-setting-list-span">检查更新</span>
+									<div class="my-setting-list-arrow-div">
+										<span class="black-arrow-span my-setting-list-arrow-span">
+										</span>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="feedback-btn" href="#feedback">
+									<span class="my-setting-list-span">问题反馈</span>
+									<div class="my-setting-list-arrow-div">
+										<span class="black-arrow-span my-setting-list-arrow-span">
+										</span>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#about">
+									<span class="my-setting-list-span">关于我们</span>
+									<div class="my-setting-list-arrow-div">
+										<span class="black-arrow-span my-setting-list-arrow-span">
+										</span>
+									</div>
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell" style="text-align: center;">
+								<a>退出登录</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--页面主内容区结束-->
+		</div>
+		<!--单页面结束-->
+
+		<div id="account" class="mui-page">
+			<div class="header-control      mui-navbar-inner mui-bar mui-bar-nav">
+				<div class="header-control-left-btn  mui-action-back    ">
+					<span class="white-arrow-big-span header-control-left-btn-span    mui-pull-left"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">个人资料</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="help-about-span header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a id="head">头像
+								<span class="mui-pull-right head">
+									<img class="head-img mui-action-preview" id="head-img1" src="../img/user-img.png"/>
+								</span>
+							</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#editInfo">昵称<span class="mui-pull-right">Capitian</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a  href="#editInfo">手机号<span class="mui-pull-right">13229788871</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a  href="#editInfo">我的收货地址</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell" id="my-setting-tap">
+								<a>性别
+									<span class="mui-pull-right">
+										<select  id= "my-setting-select" style="padding: 0 0; margin: 0 0;">
+											<option value="男">
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;男
+											</option>
+											<option value="女">
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;女
+											</option>
+										</select>
+									</span>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="pickDateBtn">出生日期<span id="pickDateBtnShow" class="mui-pull-right">请选择</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a  href="#editInfo">邮箱地址<span class="mui-pull-right">farm@outlook.com</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="notifications" class="mui-page">
+			<div class="header-control      mui-navbar-inner mui-bar mui-bar-nav">
+				<div class="header-control-left-btn  mui-action-back    ">
+					<span class="white-arrow-big-span header-control-left-btn-span    mui-pull-left"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">新消息通知</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="help-about-span header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-content-padded">
+							<p class="my-setting-font-size">您可以设置接受消息时是否需要声音或者震动</p>
+						</div>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a>接收新消息通知<span class="mui-pull-right">已开启</span></a>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								声音
+								<div class="mui-switch mui-active mui-switch-mini">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</li>
+							<li class="mui-table-view-cell">
+								震动
+								<div class="mui-switch mui-active mui-switch-mini">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--小页面例子-->
+		<div id="notifications_disturb" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>新消息通知
+				</button>
+				<h1 class="mui-center mui-title">功能消息免打扰</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view mui-table-view-radio">
+							<li class="mui-table-view-cell">
+								<a>开启</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>只在夜间开启</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>关闭</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--小页面例子结束-->
+
+		<div id="privacy" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">隐私</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-divider">通讯录</li>
+							<li class="mui-table-view-cell">
+								加我为朋友时需要验证
+								<div class="mui-switch mui-active mui-switch-mini">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								向我推荐QQ好友
+								<div class="mui-switch mui-switch-mini">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</li>
+							<li class="mui-table-view-cell">
+								通过QQ号搜索到我
+								<div class="mui-switch mui-switch-mini">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								可通过手机号搜索到我
+								<div class="mui-switch mui-active mui-switch-mini">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</li>
+							<li class="mui-table-view-cell">
+								向我推荐通讯录朋友
+								<div class="mui-switch mui-switch-mini">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</li>
+							<li class="mui-table-view-divider">开启后，为你推荐已经开通HBuilder的手机联系人</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="general" class="mui-page">
+			<div class="header-control      mui-navbar-inner mui-bar mui-bar-nav">
+				<div class="header-control-left-btn  mui-action-back    ">
+					<span class="white-arrow-big-span header-control-left-btn-span    mui-pull-left"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">账号与安全</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="help-about-span header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								修改密码
+							</li>
+							<li class="mui-table-view-cell">
+								修改邮箱
+							</li>
+						</ul>
+
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								更换绑定手机号
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="about" class="mui-page">
+			<div class="header-control      mui-navbar-inner mui-bar mui-bar-nav">
+				<div class="header-control-left-btn  mui-action-back    ">
+					<span class="white-arrow-big-span header-control-left-btn-span    mui-pull-left"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">关于我们</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="help-about-span header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-plus-visible">
+								<a id="share">分享推荐</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="tel">客服电话<span class="mui-pull-right">020-86481132</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="feedback" class="mui-page feedback">
+			<div class="header-control      mui-navbar-inner mui-bar mui-bar-nav">
+				<div class="header-control-left-btn  mui-action-back    ">
+					<span class="white-arrow-big-span header-control-left-btn-span    mui-pull-left"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">问题反馈</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="help-about-span header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<p class="feedback-margin my-setting-font-size">问题和意见</p>
+				<div class="row mui-input-row">
+					<textarea id='question' class="mui-input-clear question my-setting-font-size" placeholder="请详细描述你的问题和意见..."></textarea>
+				</div>
+				<p class="feedback-margin my-setting-font-size">图片(选填,提供问题截图)</p>
+				<div id='image-list' class="row image-list">
+				</div>
+				<p class="feedback-margin my-setting-font-size ">QQ/邮箱</p>
+				<div class="mui-input-row">
+					<input id='contact' type="text" class="contact my-setting-font-size" placeholder="选填,方便我们联系你" />
+				</div>
+				<button id='submit' type="button" class="mui-btn mui-btn-green my-setting-font-size">提交</button>
+			</div>
+			<p>此示例基于环信 “WebIM SDK” + 环信 “移动客服” 实现，在环信 “移动客服面板” 能够查阅反馈信息。</p>
+		</div>
+
+		<div id="editInfo" class="mui-page">
+			<div class="header-control      mui-navbar-inner mui-bar mui-bar-nav">
+				<div class="header-control-left-btn  mui-action-back    ">
+					<span class="white-arrow-big-span header-control-left-btn-span    mui-pull-left"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">修改信息</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="help-about-span header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<p>个人中心模块需要重做</p>
+				<p>个人中心模块需要重做</p>
+				<p>个人中心模块需要重做</p>
+			</div>
+		</div>
+
+	</body>
+	<script src="../js/mui.min.js "></script>
+	<script src="../js/mui.view.js "></script>
+	<script src='../js/feedback.js'></script>
+	<script src="../js/feedback-page.js"></script>
+	<script>
+		mui.init();
+		//初始化单页view
+		var viewApi = mui('#app').view({
+			defaultPage: '#setting'
+		});
+		//初始化单页的区域滚动
+		mui('.mui-scroll-wrapper').scroll();
+		var view = viewApi.view;
+		(function($) {
+			//处理view的后退与webview后退
+			var oldBack = $.back;
+			$.back = function() {
+				if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+					viewApi.back();
+				} else { //执行webview后退
+					oldBack();
+				}
+			};
+			//监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+			//第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+			view.addEventListener('pageBeforeShow', function(e) {
+				//				console.log(e.detail.page.id + ' beforeShow');
+			});
+			view.addEventListener('pageShow', function(e) {
+				//				console.log(e.detail.page.id + ' show');
+			});
+			view.addEventListener('pageBeforeBack', function(e) {
+				//				console.log(e.detail.page.id + ' beforeBack');
+			});
+			view.addEventListener('pageBack', function(e) {
+				//				console.log(e.detail.page.id + ' back');
+			});
+		})(mui);
+		//选择日期
+		document.getElementById("pickDateBtn").addEventListener('tap', function() {
+			var info = document.getElementById("pickDateBtnShow");
+			var dDate = new Date();
+			dDate.setFullYear(1980, 0, 1);
+			var minDate = new Date();
+			//				minDate.setFullYear(2010, 0, 1);
+			//				var maxDate = new Date();
+			//				maxDate.setFullYear(2016, 11, 31);
+			plus.nativeUI.pickDate(function(e) {
+				var d = e.date;
+				info.innerText = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+			}, function(e) {
+				info.innerText = "您没有选择日期";
+			}, {
+				title: "请选择日期",
+				date: dDate
+					//					minDate: minDate,
+					//					maxDate: maxDate
+			});
+		})
+		mui(".mui-table-view-cell").on("tap", "#head", function(e) {
+			if (mui.os.plus) {
+				var a = [{
+					title: "拍照"
+				}, {
+					title: "从手机相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "修改头像",
+					cancel: "取消",
+					buttons: a
+				}, function(b) {
+					switch (b.index) {
+						case 0:
+							break;
+						case 1:
+							getImage();
+							break;
+						case 2:
+							galleryImg();
+							break;
+						default:
+							break
+					}
+				})
+			}
+		});
+
+		function getImage() {
+			var c = plus.camera.getCamera();
+			c.captureImage(function(e) {
+				plus.io.resolveLocalFileSystemURL(e, function(entry) {
+					var s = entry.toLocalURL() + "?version=" + new Date().getTime();
+					console.log(s);
+					document.getElementById("head-img").src = s;
+					document.getElementById("head-img1").src = s;
+					//变更大图预览的src
+					//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+					document.querySelector("#__mui-imageview__group .mui-slider-item img").src = s + "?version=" + new Date().getTime();;;
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(s) {
+				console.log("error" + s);
+			}, {
+				filename: "_doc/head.jpg"
+			})
+		}
+
+		function defaultImg() {
+			if (mui.os.plus) {
+				plus.io.resolveLocalFileSystemURL("_doc/head.jpg", function(entry) {
+					var s = entry.fullPath + "?version=" + new Date().getTime();;
+					document.getElementById("head-img").src = s;
+					document.getElementById("head-img1").src = s;
+				}, function(e) {
+					document.getElementById("head-img").src = '../img/user-img.png';
+					document.getElementById("head-img1").src = '../img/user-img.png';
+				})
+			} else {
+				document.getElementById("head-img").src = '../img/user-img.png';
+				document.getElementById("head-img1").src = '../img/user-img.png';
+			}
+		}
+
+		function galleryImg() {
+			plus.gallery.pick(function(a) {
+				plus.io.resolveLocalFileSystemURL(a, function(entry) {
+					plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
+						root.getFile("head.jpg", {}, function(file) {
+							//文件已存在
+							file.remove(function() {
+								console.log("file remove success");
+								entry.copyTo(root, 'head.jpg', function(e) {
+										var e = e.fullPath + "?version=" + new Date().getTime();
+										document.getElementById("head-img").src = e;
+										document.getElementById("head-img1").src = e;
+										//变更大图预览的src
+										//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+										document.querySelector("#__mui-imageview__group .mui-slider-item img").src = e + "?version=" + new Date().getTime();;
+									},
+									function(e) {
+										console.log('copy image fail:' + e.message);
+									});
+							}, function() {
+								console.log("delete image fail:" + e.message);
+							});
+						}, function() {
+							//文件不存在
+							entry.copyTo(root, 'head.jpg', function(e) {
+									var path = e.fullPath + "?version=" + new Date().getTime();
+									document.getElementById("head-img").src = path;
+									document.getElementById("head-img1").src = path;
+									//变更大图预览的src
+									//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+									document.querySelector("#__mui-imageview__group .mui-slider-item img").src = path;
+								},
+								function(e) {
+									console.log('copy image fail:' + e.message);
+								});
+						});
+					}, function(e) {
+						console.log("get _www folder fail");
+					})
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(a) {}, {
+				filter: "image"
+			})
+		};
+	</script>
+
+</html>

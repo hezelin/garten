@@ -1,0 +1,1664 @@
+/**
+     * ******** ******** ******** ********
+     * px转rem
+     * 设计稿元素尺寸/(设计稿宽度/10)*页面html.fontsize = 适应后的元素大小
+ */
+@mixin px2rem($property,$px-values,$baseline-px:75px,$support-for-ie:false){
+    //根据设计图大小设置baseline-px
+    //求出基础rem大小
+    $baseline-rem: $baseline-px / 1rem * 1;
+    //ie支持
+    @if $support-for-ie {
+        #{$property}: $px-values;
+    }
+    //如果第二个参数只有一个值，那就直接给属性赋值
+    //type-of函数用法
+    //  type-of(100px)  => number
+    //  type-of(asdf)   => string
+    //  type-of("asdf") => string
+    //  type-of(true)   => bool
+    //  type-of(#fff)   => color
+    //  type-of(blue)   => color
+    @if type-of($px-values) == "number"{
+        #{$property}: $px-values / $baseline-rem;
+    }
+    @else {
+        //创建一个空列表
+        $rem-values:();
+        @each $value in $px-values{
+            // 如果属性值为大于0px的像素值，那么用append把值加入列表里    append(list, var , separator);
+            @if $value != 0 or type-of($value) == "number"{
+                $rem-values: append($rem-values, $value / $baseline-rem);
+            }
+        }
+        //返回设置 
+        #{$property}: $rem-values;
+    }
+}
+
+/**
+     * ******** ******** ******** ********
+     * 转化字体大小，设计稿字体/设计稿dpr = fontsize
+ */
+@mixin font-dpr($font-size) {
+    font-size: $font-size;
+    [data-dpr="2"] & {
+        font-size: $font-size * 2;
+    }
+    [data-dpr="3"] & {
+        font-size: $font-size * 3;
+    }
+}
+
+/**
+     * ******** ******** ******** ********
+     * 雪碧图位置，大小
+ */
+@mixin spirtes-img {
+    background: url(../img/img.png);
+    @include px2rem(background-size,(2716px, 811px));
+}
+
+@mixin spirtes-img2 {
+    background: url(../img/img2.png);
+    @include px2rem(background-size,(1153px, 591px));
+}
+
+@mixin spirtes-img3 {
+    background: url(../img/img3.png);
+    @include px2rem(background-size,(505px, 87px));
+}
+
+/**
+     * ******** ******** ******** ********
+     *去除默认内外边距，去除line-height
+*/
+body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    font-family: "微软雅黑";
+}
+
+/**
+     * ******** ******** ******** ********
+     * 基础色包括页面背景；灰色块的颜色
+     * 基础绿色
+     * 基础边框样式
+ */
+$base-color: #efeff4;
+$green-color: #83C347;
+$base-border: 1px solid #dcdcdc;
+
+/**
+     * ******** ******** ******** ********
+     * index页
+ */
+//头部
+#head-bar {
+    @include px2rem(height,110px);
+}
+#head-holder {
+    @include px2rem(height, 110px);
+}
+//底部导航
+.mui-bar-tab{
+    background-color: #fff;
+    border: none;
+    @include px2rem(height, 99px);
+    a {
+        outline: none;
+        text-decoration: none;
+    }
+}
+//图标尺寸
+.icon-index {
+    @include px2rem(height,50px);
+    @include px2rem(width,50px);
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 20;
+    display: inline-block;
+}
+//导航图标
+.icon-index-home {
+    @include spirtes-img;
+    @include px2rem(background-position-x, -73px);//73
+    @include px2rem(background-position-y, -472px);
+}
+
+.icon-index-comu {
+    @include spirtes-img;
+    @include px2rem(background-position-x, -504px);//432
+    @include px2rem(background-position-y, -472px);
+}
+
+.icon-index-nav {
+    @include spirtes-img;
+    @include px2rem(background-position-x, -361px);//361
+    @include px2rem(background-position-y, -472px);
+}
+
+.icon-index-info {
+    @include spirtes-img;
+    @include px2rem(background-position-x, -144px);//216
+    @include px2rem(background-position-y, -472px);
+}
+//图标下面的字体区域
+.icon-label {
+    @include font-dpr(14px);
+    display: block;
+}
+
+/**
+     * ******** ******** ******** ********
+     * webview-home
+     * 首页
+ */
+//首页没有title，直接左右两边都设为50%
+#home-header-control {
+    background-color: $green-color;
+    .header-control-left-btn {
+        //28 + 60 + 10
+        @include px2rem(width, 98px);
+    }
+    .header-control-right-btn {
+        width: 50%;
+    }
+    //加粗三点与搜索
+    .mui-icon{
+        font-weight: bold;
+    }
+}
+.app-log-div {
+    @include px2rem(height, 60px);
+}
+//logo
+.app-log-span {
+    @include px2rem(width, 60px);
+    @include px2rem(height, 60px);
+    background: url(../img/logo.png);
+    background-size: cover;
+    display: inline-block;
+}
+//app名字,这里使用通用的居中方法是不行的,不知道为什么
+.header-control-app-name {
+    //覆盖默认的center属性
+    text-align: left !important;
+}
+//内容区域
+//轮播按钮大小
+.home-slider-text-size {
+    @include font-dpr(10px);
+}
+.mui-slider-indicator .mui-indicator {
+    @include px2rem(width, 20px);
+    @include px2rem(height, 20px);
+    background-color: rgba(0,0,0,0.3);
+}
+//五个按钮
+.home-nav-tab {
+    width: 100%;
+    @include px2rem(height, 190px);
+    @include px2rem(margin-top, 23px);
+    @include px2rem(margin-bottom, 23px);
+    @include px2rem(padding-left, 28px);
+    @include px2rem(padding-right, 28px);
+    background-color: white;
+    display: table;
+    font-size: 0;
+}
+//五个按钮各自的样式
+.home-nav-tab-item {
+    width: 20%;
+    @include px2rem(height, 190px);
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+//按钮图标
+.home-nav-tab-item-icon {
+    @include px2rem(width, 91px);
+    @include px2rem(height, 87px);
+    @include px2rem(margin-bottom, 7px);
+    display: inline-block;
+}
+//按钮图标
+.home-rent {
+    @include spirtes-img3;
+    @include px2rem(background-position-x, 0px);
+}
+.home-activity {
+    @include spirtes-img3;
+    @include px2rem(background-position-x, -103px);
+}
+.home-shop {
+    @include spirtes-img3;
+    @include px2rem(background-position-x, -206px);
+}
+.home-eat {
+    @include spirtes-img3;
+    @include px2rem(background-position-x, -309px);
+}
+.home-live {
+    @include spirtes-img3;
+    @include px2rem(background-position-x, -415px);
+}
+//按钮文字
+.home-nav-tab-item-title {
+    @include font-dpr(16px);
+    color: #000000;
+    display: inline-block;
+}
+//推荐内容
+//大容器
+.home-news-content {
+    @include px2rem(padding-top, 19px);
+    @include px2rem(padding-bottom, 19px);
+    @include px2rem(padding-left, 28px);
+    @include px2rem(padding-right, 28px);
+    background-color: white;
+}
+//内容列表 标题 +  图片区域
+.home-news-content-item {
+    @include px2rem(margin-bottom, 42px);
+}
+//标题格式
+.home-news-content-item-title-name {
+    @include font-dpr(16px);
+    color: #737373;
+}
+//横线
+.home-news-content-item-line {
+    height: 1px;
+    @include px2rem(margin-top, 12px);
+    @include px2rem(margin-bottom, 12px);
+    border-bottom: $base-border;
+}
+//图片列表
+.home-news-content-item-photo {
+    font-size: 0;
+}
+//每个图片
+.home-news-content-item-photo-list {
+    @include px2rem(width, 223px);
+    @include px2rem(height, 167px);
+    display: inline-block;
+    position: relative;
+}
+//每个图片的下方标题
+.home-news-content-item-photo-title {
+    @include px2rem(width, 223px);
+    @include px2rem(height, 38px);
+    @include font-dpr(12px);
+    @include px2rem(line-height, 38px);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+}
+//第二个图片有左右边距
+.home-news-content-item-photo-list:nth-child(2) {
+    @include px2rem(margin-left, 10px);
+    @include px2rem(margin-right, 10px);
+}
+/**
+     * ******** ******** ******** ********
+     * webview-header
+     * 非index页头部栏
+ */
+.header-control {
+    width: 100%;
+    @include px2rem(height,110px);
+    background-color: rgb(67,67,67);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: table;
+    div {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+}
+//左右两边按钮大小，图标样式。头部分左中右三部分，中间宽度自动
+.header-control-left-btn,.header-control-right-btn {
+    @include px2rem(width,130px);
+}
+.header-control-left-btn-span {
+    float: left;
+    @include px2rem(margin-left,28px);
+    display: inline-block;
+    @include font-dpr(18px);
+    color: #FFFFFF;
+}      
+.header-control-right-btn-span {                
+    float: right;
+    @include px2rem(margin-right,28px);
+    display: inline-block;
+    @include font-dpr(18px);
+    color: #FFFFFF;
+}     
+#webview-head-title {
+    display: inline-block;
+    @include font-dpr(21px);
+    color: #FFFFFF;
+}
+//三个tab导航
+.header-control-tab-fixed {
+    width: 100%;
+    @include px2rem(top, 110px);
+    position: fixed;
+    background-color: white;
+}
+.header-control-tab {
+    width: 100%;
+    @include px2rem(height, 100px);
+    display: table;
+}
+.header-control-tab-nav {
+    width: 33.3%;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    @include font-dpr(18px);
+}
+.header-control-tab-nav-active {
+    color: $green-color;
+}
+.header-control-tab-nav-lay {
+    color: #434343;
+}
+//底部滑动条
+.head-control-slider {
+    @include px2rem(height, 4px);
+    display: block;
+    background-color: $green-color;
+    transition-duration: 200ms;
+    -webkit-transition-duration: 200ms;
+}
+.head-control-slider-3 {
+    width: 33.3%;
+}
+.head-control-slider-4 {
+    width: 25%;
+}
+//加载提示
+.loadingPage {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: table;
+}
+.loadingPage-middle {
+    display:table-cell;
+    vertical-align: middle;
+}
+.loadingPage-text {
+    @include font-dpr(18px);
+    display: block;
+}
+//css3动画
+.spinner { 
+    margin: 0 auto;
+    width: 150px;
+    text-align: center;
+}
+.spinner > div {
+    width: 30px;
+    height: 30px;
+    background-color: #67CF22;
+    border-radius: 100%;
+    display: inline-block;
+    //将动画与div元素绑定bouncedelay 1.4s infinite
+    //动画低速开始低速结束ease-in-out
+    //设置对象状态为动画结束或开始的状态both
+    -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+    animation: bouncedelay 1.4s infinite ease-in-out;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+//跳过动画的前0.32秒
+.spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+//跳过动画的0.16秒
+.spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+@-webkit-keyframes bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0.0) }
+    40% { -webkit-transform: scale(1.0) }
+}
+@keyframes bouncedelay {
+    0%, 80%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+    } 
+    40% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    }
+}
+
+/**
+     * ******** ******** ******** ********
+     * webview-my个人中心页面
+     * 背景
+ */
+.user-bg {
+    @include px2rem(height,507px);
+    background-image: url(../img/user-info-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    position: relative;
+}
+.has-message {
+    @include px2rem(width,62px);
+    @include px2rem(height,70px);
+    position: absolute;
+    @include px2rem(top,22px);
+    @include px2rem(right,28px);
+    @include spirtes-img;
+     @include px2rem(background-position-y,-541px);
+ }
+ .no-message {
+     @include px2rem(width,62px);
+    @include px2rem(height,70px);
+    position: absolute;
+    @include px2rem(top,22px);
+    @include px2rem(right,28px);
+     @include spirtes-img;
+     @include px2rem(background-position-x, -79px);
+     @include px2rem(background-position-y,-541px);
+ }
+//用户头像
+.user-bg-img {
+    @include px2rem(width,150px);
+    @include px2rem(height,150px);
+    border-radius: 50%;
+    border-color: rgba(255,255,255,0.7);
+    @include px2rem(margin-top,107px);
+    @include px2rem(margin-bottom,9px);
+}
+//用户名
+.user-bg-name {
+    @include font-dpr(20px);
+    color: #fff;
+    @include px2rem(margin-bottom,18px);
+    display: inline-block;
+}
+//白右箭头位置
+.user-bg-details {
+    position: absolute;
+    @include px2rem(top,178px);
+    @include px2rem(right,28px);
+}
+//用户是否vip
+.user-bg-group-normal {
+    @include px2rem(width,43px);
+    @include px2rem(height,47px);
+    display: inline-block;
+}
+.user-bg-group-vip {
+    @include px2rem(width,42px);
+    @include px2rem(height,47px);
+    display: inline-block;
+    @include spirtes-img;
+    @include px2rem(background-position-x, -1px);
+    @include px2rem(background-position-y,-220px);
+}
+//用户手机
+.user-bg-phone {
+    @include font-dpr(14px);
+    color: #fff;
+    @include px2rem(margin-bottom,53px);
+}
+//钱包收藏购物车
+.user-bg-nav {
+    width: 100%;
+    @include px2rem(height,111px);
+    background-color: rgba(0,0,0,0.15);
+    position: absolute;
+    bottom: 0;
+    display: table;
+    a {
+        width: 30%;
+        @include font-dpr(15px);
+        color: #fff;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        text-decoration: none;
+        span {
+            display: inline-block;
+        }
+    }
+    //我的红包，我的收藏，购物车 之间的两根白线空间
+    .short-line {
+        width: 4%;
+    }
+}
+//我的红包，我的收藏，购物车 标签上数字的格式
+.user-bg-nav-counts {
+    @include font-dpr(18px);
+    color: #fff;
+    @include px2rem(padding-bottom,10px);
+ }
+//我的红包，我的收藏，购物车 之间的两根白线
+#l-border {
+    @include px2rem(width,2px);
+    @include px2rem(height,66px);
+    border-right: 1px solid #fff;
+}
+#r-border {
+    @include px2rem(width,2px);
+    @include px2rem(height,66px);
+    border-left: 1px solid #fff;;
+}
+//菜单区域
+.user-menu-group {
+    width: 100%;
+    @include px2rem(height,101px);
+    @include font-dpr(18px);
+    color: #000000;
+    background-color: #FFFFFF;
+    display: table;
+}
+//左边图标区域
+.user-menu-icon {
+    @include px2rem(width,131px);       
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    //去除子元素的inlineblock空隙
+    font-size: 0;
+    letter-spacing: -4px;
+    word-spacing: -4px;
+    span {
+         @include px2rem(width,73px);
+         @include px2rem(height,73px); 
+         display: inline-block;
+    }
+ }
+//菜单各个图标
+.my-orderform {
+     @include spirtes-img;
+     @include px2rem(background-position-x, -903px);
+}
+.my-farm {
+     @include spirtes-img;
+     @include px2rem(background-position-x, -990px);
+}
+.my-request {
+     @include spirtes-img;
+     @include px2rem(background-position-x, -1166px);
+}
+.my-setting {
+     @include spirtes-img;
+     @include px2rem(background-position-x, -1080px);
+}
+ //右边菜单名字和箭头
+ .user-menu-group-describle {
+     display: table-cell;
+     vertical-align: middle;
+     .black-arrow-span {
+         float: right;
+         @include px2rem(margin-right,28px);
+     }
+ }
+//第一第四个有上边距
+ .user-menu-group:nth-child(1), .user-menu-group:nth-child(4) {
+    @include px2rem(margin-top,23px);           
+ }
+
+ //第二个有上下边
+ .user-menu-group:nth-child(2) .user-menu-group-describle {
+     border-top: $base-border;
+     border-bottom: $base-border;
+ }
+
+
+/**
+     * ******** ******** ******** ********
+     * webview-my-userbag红包列表
+     * 内容区域
+ */
+//红包列表计数
+#user-bag-counts {
+    width: 100%;
+    text-align: center;
+    @include font-dpr(13px);
+    color: #737373;
+//  @include px2rem(margin-top,150px);
+    @include px2rem(margin-top,40px);
+    @include px2rem(margin-bottom,25px);
+    
+}
+//红包列表
+.user-bag-show {
+    width: 92%;
+    @include px2rem(height,154px);
+    margin: 0 auto;
+    @include px2rem(margin-bottom,15px);
+    background-color: #FFFFFF;
+    display: table;
+    div {
+        display: table-cell;
+        vertical-align: middle;        
+    }
+    //列表右边箭头
+    .black-arrow-span {
+        display: block;
+    }
+}
+//红包列表左边图片样式
+.user-bag-show-icon {
+    @include px2rem(width,218px);
+    @include font-dpr(30px);
+    color: #FFFFFF;
+    @include spirtes-img;
+    @include px2rem(background-position-x, -1551px);//73
+    @include px2rem(background-position-y, -377px);   
+    text-align: center;
+}
+//列表内的红包说明
+.user-bag-show-textleft {
+    text-align: left;
+    @include px2rem(padding-left,47px);
+}
+
+.user-bag-show-describable-bold {
+    @include font-dpr(18px);
+    @include px2rem(margin-bottom,6px);
+    display: block;
+    color: #000000;
+}
+.user-bag-show-describable-grey {
+    @include font-dpr(14px);
+    display: block;
+    color: #737373;
+}
+
+
+
+/**
+     * ******** ******** ******** ********
+     * webview-my-userbag-amply红包详情
+ */
+//红包背景区域
+.user-bag-amply {
+//  @include px2rem(width,750px);
+//  @include px2rem(height,276px);
+//  @include px2rem(margin-top,110px);
+//  @include spirtes-img;
+//  @include px2rem(background-position-x, -1966px);
+//  @include px2rem(background-position-y,0px);
+    width: 100%;
+    @include px2rem(height,276px);
+//  @include px2rem(margin-top,110px);
+    background-image: url(../img/user-bag-amply-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    display: table;
+}
+.user-bag-amply-middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+.user-bag-amply-money {
+    @include px2rem(margin-bottom,30px);
+    @include font-dpr(44px);
+    color: #FFFFFF;
+    display: block;
+}
+.user-bag-amply-date {
+    @include font-dpr(15px);
+    color: #FFFFFF;
+    display: block;
+}
+//说明区域
+.user-bag-amply-describable {
+    @include px2rem(margin-top,60px);
+    @include px2rem(margin-bottom,80px);
+    @include px2rem(margin-left,28px);
+}
+//限制说明
+.user-bag-amply-describable-forbid {
+    @include px2rem(margin-bottom,43px);
+    @include font-dpr(18px);
+    color: #737373;
+    display: block;
+}
+//说明列表
+.user-bag-amply-describable-list {
+    @include px2rem(margin-bottom,18px);
+    @include font-dpr(15px);
+    color: #000000;
+    display: block;
+}
+//尾部收入这一块
+.user-bag-amply-income {
+    width: 100%;
+    @include px2rem(height,117px);
+    @include px2rem(padding-left,28px);
+    @include px2rem(padding-right,28px);
+    display: table;
+    background-color: #F3F3F3;
+    position: relative;
+}
+.user-bag-amply-income-left {
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+.user-bag-amply-income-right {
+    text-align: right;
+    display: table-cell;
+    vertical-align: middle;
+}
+.user-bag-amply-income-top {
+    @include px2rem(margin-bottom,10px);
+    display: block;
+    @include font-dpr(18px);
+    color: #000000;
+}
+.user-bag-amply-income-bottom {
+    display: block;
+    @include font-dpr(12px);
+    color: #737373;
+}
+
+/**
+     * ******** ******** ******** ********
+     * webview-my-collect收藏页面
+     * webview-my-order页面
+     * 由于两个页面结构基本一致，所以大部分类是公用的
+ */
+//大容器
+.my-trader-item {
+    @include px2rem(margin-top,23px);
+    background-color: #FFFFFF;
+}
+//题目容器
+.my-trader-title {
+    width: 100%;
+    @include px2rem(height, 65px);
+    @include px2rem(padding-left,28px);
+    @include px2rem(padding-right,28px);
+    border-bottom: $base-border;
+    display: table;
+    //去除inline-block的空隙
+    .shop-span {
+        display: inline-block;
+        //与标题的间距
+        @include px2rem(margin-right, 17px);
+        vertical-align: top;
+        font-size: 0;
+        letter-spacing: -4px;
+        word-spacing: -4px;     
+        vertical-align: middle;
+    }
+    .shop-span-arrow {
+        display: inline-block;
+        //与标题的间距
+        @include px2rem(margin-left, 37px);
+    }
+}
+
+//内容容器
+.my-trader-content {
+    width: 100%;
+    @include px2rem(height, 206px);
+    @include px2rem(padding-left,28px);
+    @include px2rem(padding-right,28px);
+    display: table;
+}
+.my-trader-title-logo {
+    @include px2rem(width, 40px);
+    display: table-cell;
+    vertical-align: middle;
+}
+//店铺标题
+.my-trader-title-name {
+    @include font-dpr(18px);
+    color: #595959;
+    display: table-cell;
+    vertical-align: middle;
+}
+//收藏时间
+.my-trader-title-right {
+    width: 50%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+.my-collect-time {
+    @include font-dpr(13px);
+    color: #595959;
+}
+//图片区域
+.my-trader-content-img {
+    @include px2rem(width, 163px);
+    display: table-cell;
+    vertical-align: middle;
+}
+//图片
+.my-trader-content-img-hold {
+    @include px2rem(width, 163px);
+    @include px2rem(height, 163px);
+    display: inline-block;
+}
+//说明
+.my-trader-content-detail {
+    display: table-cell;
+    vertical-align: middle;
+}
+//说明列表
+.my-trader-content-detail-container {
+    @include px2rem(height, 163px);
+    @include px2rem(margin-left, 16px);
+    position: relative;
+    span {
+        display: block;
+    }
+}
+.collect-order-trader-name {
+    @include font-dpr(19px);
+    @include px2rem(margin-bottom, 12px);
+    color: #000000;
+}
+.collect-order-trader-detail {
+    @include font-dpr(15px);
+    color: #727272;
+}
+.collect-order-trader-money {
+    @include font-dpr(15px);
+    color: #ff2222;
+    position: absolute;
+    bottom: 0;
+    em {
+    color: #727272;
+    }
+}
+/**
+     * ******** ******** ******** ********
+     * 我的订单
+     * webview-my-order
+ */
+.my-order-title-status {
+    color: #000000;
+}
+//订单列表有下边距
+.my-order-content-bottom-border {
+    border-bottom: $base-border;
+}
+.my-order-total {
+    width: 100%;
+    @include px2rem(height, 80px);
+    @include px2rem(padding-left, 28px);
+    @include px2rem(padding-right, 28px);
+    display: table;
+}
+.my-order-total-btn {
+    @include px2rem(width, 120px);
+    display: table-cell;
+    vertical-align: middle;
+}
+#delete-my-order {
+    width: 100%;
+    @include px2rem(height, 48px);
+    @include font-dpr(12px);
+    padding: 0;
+    margin: 0;
+    line-height: normal;
+    color: #000000;
+    display: block;
+}
+.my-order-total-detail {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    span {
+        @include font-dpr(13px);
+        color: #000000;
+        em:nth-child(1) {
+            color: #FF2222;
+        }
+        em:nth-child(2) {
+            @include font-dpr(18px);
+        }
+    }
+}
+//我的订单x1计数
+.collect-order-trader-count {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.my-order-count {
+    @include font-dpr(15px);
+    color: #727272;
+}
+/**
+     * ******** ******** ******** ********
+     * 我的购物车
+     * webview-my-shopcar
+ */
+//题目右边垃圾桶图标
+.my-trader-title-right  .shop-span-delete {
+    display: inline-block;
+}
+.my-shop-car-check {
+    @include px2rem(width, 55px);
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+}
+.my-shopcar-count {
+    @include font-dpr(18px);
+}
+//页脚控制栏
+.foot-control-bar {
+    width: 100%;
+    @include px2rem(height, 108px);
+    background-color: white;
+    @include font-dpr(18px);
+    display: table;
+    position: fixed;
+    bottom: 0;
+    //全选框宽度
+    .my-shop-car-check {
+        width: 35%;
+        @include px2rem(padding-left, 28px);
+    }
+}
+//右边结算
+.my-shop-car-pay {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    em {
+        color: #FF2222;
+    }
+}
+.my-shop-car-pay-button {
+    @include px2rem(width, 170px);
+    @include px2rem(padding-right, 28px);
+    button {
+        width: 100%;
+        @include px2rem(height, 64px);
+        padding: 0;
+        color: white;
+        background-color: #FF2222;
+        @include font-dpr(18px);
+    }
+}
+
+/**
+     * ******** ******** ******** ********
+     * webview-comu社区
+ */
+#comu-header-control {
+    background-color: $green-color;
+    //右边三点加粗
+    .mui-icon {
+    font-weight: bold;
+    }
+}
+//第一个div，带上边距
+.comu-nav {
+    width: 100%;
+    @include px2rem(height, 235px);
+    @include px2rem(margin-top, 110px);
+    @include px2rem(margin-bottom, 23px);
+    background-color: white;
+    display: table;
+    label {
+        @include font-dpr(16px);
+        color: #737373;
+        display: block;
+    }
+}
+//农耕知识
+.comu-nav-knowledgeble {
+    width: 50%;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    border-right: $base-border;
+}
+.comu-nav-knowledgeble-bg {
+    @include px2rem(width, 110px);
+    @include px2rem(height, 110px);
+    @include spirtes-img2;
+    @include px2rem(background-position-x, -440px);
+    @include px2rem(background-position-y, -366px);
+    display: inline-block;
+}
+//农场介绍
+.comu-nav-describe {
+    width: 50%;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.comu-nav-describe-bg {
+    @include px2rem(width, 110px);
+    @include px2rem(height, 110px);
+    @include spirtes-img2;
+    @include px2rem(background-position-x, -569px);
+    @include px2rem(background-position-y, -366px);
+    display: inline-block;
+}
+//导航
+.comu-nav-tab-container {
+    @include px2rem(margin-bottom, 13px);
+    background-color: white;
+}
+.comu-nav-tab {
+    width: 100%;
+    @include px2rem(height, 83px);
+    font-size: 0;
+    display: table;
+}
+//每个div
+.comu-nav-tab-item{
+    width: 25%;
+    height: 100%;
+    @include font-dpr(18px);
+    color: #000000;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+//评论
+.comu-content {
+    width: 100%;
+    @include px2rem(height, 452px);
+    @include px2rem(padding-left, 17px);
+    @include px2rem(padding-right, 17px);
+    @include px2rem(margin-bottom, 23px);
+    font-size: 0;
+}
+.comu-content-main {
+    width: 100%;
+    @include px2rem(height, 378px);
+    @include px2rem(padding-top, 12px);
+    @include px2rem(padding-left, 33px);
+    border-bottom: $base-border;
+    background-color: white;
+}
+.comu-content-main-title {
+    display: table;
+}
+.comu-content-main-user {
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    span {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+//用户头像
+.comu-user-picture {
+    @include px2rem(width, 93px);
+    @include px2rem(height, 93px);
+    border-radius: 50% 50%;
+}
+//用户名
+.comu-user-name {
+    @include font-dpr(18px);
+    color: #282828;
+}
+//发布日期
+.comu-user-date {
+    @include font-dpr(14px);
+    color: #737373;
+}
+//文章
+.comu-content-main-article {
+    @include px2rem(margin-top, 21px);
+    @include px2rem(margin-bottom, 21px);
+    @include font-dpr(16px);
+    color: #282828;
+}
+//图片列表
+.comu-content-main-photo-list {
+    @include px2rem(width, 158px);
+    @include px2rem(height, 158px);
+    @include px2rem(margin-right, 6px);
+    display: inline-block;
+    img {
+        @include px2rem(width, 158px);
+        @include px2rem(height, 158px);
+    }
+}
+//评论点赞
+.comu-content-review {
+    width: 100%;
+    @include px2rem(height, 70px);
+    display: table;
+    background-color: white;
+//  border-left: 1px solid #efeff4;
+//  border-right: 1px solid #efeff4;
+//  border-bottom: 1px solid #efeff4;
+    font-size: 0;
+    div {
+        width: 50%;
+        @include px2rem(height, 70px);
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+}
+//评论
+.comu-content-review-count {
+    border-right: $base-border;
+}
+.comu-review-discuss {
+    @include px2rem(width,41px);
+    @include px2rem(height, 37px); 
+    @include spirtes-img2;
+    display: inline-block;
+    @include px2rem(background-position-y, -217px);
+}
+//点赞
+.comu-review-praise {
+    @include px2rem(width,41px);
+    @include px2rem(height,37px); 
+    @include spirtes-img2;
+    display: inline-block;
+    @include px2rem(background-position-x, -57px);
+    @include px2rem(background-position-y, -217px);
+}
+.comu-review-discuss-count, .comu-review-praise-count {
+    @include font-dpr(16px);
+    color: #737373;
+}
+/**
+     * ******** ******** ******** ********
+     * webview-my-setting设置页面
+ */
+//第一级页面
+//每一个选项栏容器
+.my-setting-item {
+    width: 100%;
+    @include px2rem(height, 100px);
+    @include px2rem(padding-left, 28px);
+    @include px2rem(padding-right, 28px);
+    background-color: white;
+    display: table;
+}
+.my-setting-item-margin-top {
+    @include px2rem(margin-top, 23px);
+}
+.my-setting-item-margin-bottom {
+    @include px2rem(margin-bottom, 23px);
+}
+//子容器
+.my-setting-left {
+    @include px2rem(width, 230px);
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+    @include font-dpr(19px);
+    color: #000000;
+}
+.my-setting-middle {
+    display: table-cell;
+    vertical-align: middle;
+    @include font-dpr(18px);
+    color: #737373;
+    .mui-switch {
+        display: inline-block;
+    }
+}
+//决定中间子容器内容位置
+.my-setting-middle-left {
+    text-align: left;
+}
+.my-setting-middle-right {
+    text-align: right;
+}
+//右侧容器，用来放小箭头
+.my-setting-right {
+    //箭头宽度20+左外边距27
+    @include px2rem(width, 47px);
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    .black-arrow-span {
+        display: inline-block;
+    }
+}
+//容器底边
+.my-setting-border {
+    border-bottom: $base-border;
+}
+#my-setting-loginout {
+    @include px2rem(height, 98px);
+    @include px2rem(padding-left, 28px);
+    @include px2rem(line-height, 98px);
+    display: block;
+    background-color: white;
+    @include font-dpr(19px);
+    color: #000000;
+}
+//资料页面
+//用户头像
+.my-setting-user-img {
+    @include px2rem(width, 70px);
+    @include px2rem(height, 70px);
+    border-radius: 50% 50%;
+    display: inline-block;
+}
+//修改昵称页面
+//保存按钮
+#saveNickName {
+    @include px2rem(padding, (2px,20px,2px,20px));
+    font-size: inherit;
+    color: white;
+    border: 1px solid rgb(136,197,70);
+    background-color: rgb(136,197,70);
+}
+//
+@media only screen and (max-device-width: 430px) {
+    .input-name-container {
+        @include px2rem(width, 640px);
+        @include px2rem(margin, (60px, 55px, 60px, 55px));  
+    }
+    #inputNickName {
+        @include px2rem(width, 570px);
+    }
+    #clearNickName {
+        @include px2rem(width, 50px);
+        color: rgb(201,201,201);
+    }
+}
+@media only screen and (min-device-width: 431px) {
+    .input-name-container {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        @include px2rem(margin-top, 60px);
+        @include px2rem(margin-bottom, 60px);
+    }
+    #inputNickName {
+        width: 90%;
+    }
+    #clearNickName {
+        width: 9%;
+        color: rgb(201,201,201);
+    }
+}
+
+.input-name-container {
+    @include px2rem(height, 90px);
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 3px;
+    background-color: #fff;
+    display: inline-block;
+}
+#inputNickName {
+    @include px2rem(height, 85px);
+    @include px2rem(padding, (15px, 25px, 15px, 25px));
+    border: none;
+    @include font-dpr(17px);
+}
+//修改手机号码页面
+#getVerifyNum {
+    @include px2rem(padding, (15px,30px,15px,30px));
+    @include font-dpr(11px);
+    color: #000000;
+    border: 1px solid rgb(224,224,224);
+    background-color: rgb(224,224,224);
+}
+.postEditPhoneContainer {
+    text-align: center;
+}
+#postEditPhone {
+    @include px2rem(width, 645px);
+    @include px2rem(height, 90px);
+    @include px2rem(margin-top, 75px);
+    display: inline-block;
+    @include font-dpr(18px);
+    color: #FFFFFF;
+    background-color: $green-color;
+}
+//带input的特殊容器
+.my-setting-left-input {
+    @include px2rem(width, 500px);
+}
+.editPhoneInput {
+    @include font-dpr(18px);
+    border: none !important; 
+    margin-bottom: 0 !important;
+    padding-left: 0 !important;
+}
+
+//修改性别
+#sexList-item {
+    width: 80%;
+    @include px2rem(height, 420px);
+    z-index: 1000;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+}
+
+//遮罩
+.mutual-shade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.3);
+    
+    z-index: 1;
+    opacity: 0;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+}
+.mutual-shade-active {
+    z-index: 998;
+    opacity: 1;
+}
+
+//底部位置的通用动画弹出模块
+.mutual-div {
+    //将div隐藏相对其正常位置自身8倍长度的地方
+    -webkit-transform: translate3d(0, 800%, 0);
+    transform: translate3d(0, 800%, 0);
+    -webkit-transition: -webkit-transform .2s, opacity .2s;
+    transition: transform .2s, opacity .2s; 
+    z-index: 999;
+    opacity: 1;
+}
+.mutual-div-bottom {
+    position: fixed;
+    bottom: 0;
+}
+.mutual-div-flex-middle {
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.mutual-div-active {
+    //把div放回正常位置
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+//照片预览容器
+.mui-fullscreen {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+//旧的
+.my-setting-list-span {
+    width: 90%; 
+    display: inline-block; 
+    text-align: left;
+}
+.my-setting-list-arrow-div {
+    width: 10%; 
+    display: inline-block; 
+    text-align: right;
+}
+.my-setting-list-arrow-span {
+    display: inline-block; 
+}
+.account-table {
+    @include px2rem(height,120px);
+    display: table;
+}
+.my-setting-font-size {
+    @include font-dpr(18px);
+}
+.feedback button { 
+    @include px2rem(height,80px);
+}
+
+//重写setting页面属性
+//页面结构头部
+.mui-navbar {
+    @include px2rem(height, 110px);
+    background-color: #434343;
+}
+.mui-pages {
+    @include px2rem(top, 110px);
+}
+.mui-table-view .mui-media-object {
+    line-height: none;
+    @include px2rem(max-width,120px);
+    @include px2rem(height,120px);
+}
+.head-img {
+    @include px2rem(width,118px);
+    @include px2rem(height,118px);
+}
+.mui-media-body {
+    @include font-dpr(18px);
+    display: table-cell;
+    vertical-align: middle;
+}
+.mui-ellipsis {
+    @include font-dpr(14px);
+}
+.mui-table-view-cell {
+    @include font-dpr(18px);
+}
+.mui-table-view-cell>a:not(.mui-btn) {
+    padding-right: 0px;
+    @include px2rem(padding-right, 28px);
+}
+.mui-table-view-chevron .mui-table-view-cell {
+    padding-right: 0px;
+//  @include px2rem(padding-right, 28px);
+}
+.mui-table-view-chevron .mui-table-view-cell>a:not(.mui-btn) {
+    margin-right: 0px
+}
+//重写上下before  after元素
+.mui-table-view:before {
+    top: 0px;
+}
+.mui-table-view:after {
+    bottom: 0px;
+    height: 1px;
+}
+.mui-table-view-cell:after {
+    //设置为2px，解决在某些手机下会发虚的问题
+    height: 2px;
+}
+//重写反馈页
+.feedback-margin {
+    margin-bottom: 10px;
+}
+.feedback textarea {
+    @include px2rem(height,200px);
+}
+input[type=color],input[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week],select {
+    @include px2rem(height, 80px);
+    line-height: normal;
+}
+select {
+    @include font-dpr(18px);
+    height: 100%;
+}
+
+input[type=color],input[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week],select{
+
+}
+//重写setting页面属性end (这里后面需要修改)
+//旧的
+
+/**
+     * ******** ******** ******** ********
+     * 以下为共有样式
+ */
+//图案资源
+//右白箭头 右黑箭头 左大白箭头 右小黑箭头 帮助图标
+//箭头-右白箭头
+.white-arrow-span {
+    @include px2rem(width,20px);
+    @include px2rem(height,35px);
+    @include spirtes-img;
+    @include px2rem(background-position-y,-47px);
+}
+
+//箭头-右黑箭头
+.black-arrow-span {
+    @include px2rem(width,20px);
+    @include px2rem(height,35px); 
+    @include spirtes-img;
+    @include px2rem(background-position-x, -31px);
+    @include px2rem(background-position-y,-47px);
+}
+
+//箭头-左大白箭头
+.white-arrow-big-span {
+    @include px2rem(width,26px);
+    @include px2rem(height,46px); 
+    @include spirtes-img;
+    @include px2rem(background-position-y,-104px);
+}
+
+//箭头-右小黑箭头
+.black-arrow-small-span {
+    @include px2rem(width,17px);
+    @include px2rem(height,28px); 
+    @include spirtes-img;
+    @include px2rem(background-position-x, -16px);
+}
+//帮助图标 
+.help-about-span {
+    @include px2rem(width,50px);
+    @include px2rem(height,50px);
+    @include spirtes-img;
+    @include px2rem(background-position-x,-127px);
+    @include px2rem(background-position-y,-334px);
+}
+//店铺图标
+.shop-span {
+    @include px2rem(width,39px);
+    @include px2rem(height,36px);
+    @include spirtes-img;
+    @include px2rem(background-position-x,0px);
+    @include px2rem(background-position-y,-279px);
+}
+//店铺右边箭头
+.shop-span-arrow {
+    @include px2rem(width,16px);
+    @include px2rem(height,28px);
+    @include spirtes-img;
+}
+//垃圾桶图标
+.shop-span-delete {
+    @include px2rem(width, 37px);
+    @include px2rem(height, 38px);
+    @include spirtes-img;
+    @include px2rem(background-position-x,0px);
+    @include px2rem(background-position-y,-168px);
+}
+
+/**
+     * ******** ******** ******** ********
+     * 以下为覆盖mui默认样式
+ */
+//重写点击底部按键active事件
+.mui-bar-tab .mui-tab-item.mui-active {
+    .icon-index-home {
+        @include spirtes-img;
+        @include px2rem(background-position-x, -1px);//73
+        @include px2rem(background-position-y, -472px);
+    }
+
+    .icon-index-comu {
+        @include spirtes-img;
+        @include px2rem(background-position-x, -433px);//432
+        @include px2rem(background-position-y, -472px);
+    }
+    
+    .icon-index-nav {
+        @include spirtes-img;
+        @include px2rem(background-position-x, -289px);//361
+        @include px2rem(background-position-y, -472px);
+    }
+    
+    .icon-index-info {
+        @include spirtes-img;
+        @include px2rem(background-position-x, -216px);//216
+        @include px2rem(background-position-y, -472px);
+    }
+    color: #83C347;
+}
+
+//重写底部高度
+.mui-bar-tab .mui-tab-item {
+    @include px2rem(height,110px);
+}
+
+//重写底部栏label颜色
+.mui-bar-tab .mui-tab-item {
+    color: #000000;
+}
+
+//重写多选按钮checkbox  mui框架
+.mui-checkbox input[type=checkbox], .mui-radio input[type=radio] {
+    position: static; 
+    //这两个元素决定了点击区域
+    @include px2rem(width,42px);
+    @include px2rem(height, 50px);
+}
+.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before {
+    color: #83C347;
+}
+.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before {
+    //这个元素决定按钮大小
+    @include font-dpr(24px);
+}
+//重写input的labei标签,默认的会占一行
+.mui-checkbox label,.mui-radio label {
+    display: inline;
+    padding: 0;
+}
+//重写数字输入框
+.mui-numbox {
+    @include px2rem(width, 180px);
+    @include px2rem(height, 65px);
+}
+.mui-numbox [class*=btn-numbox],.mui-numbox [class*=numbox-btn] {
+    width: 31%;
+}
+.mui-numbox {
+    padding: 0;
+}
+.mui-numbox .mui-input-numbox, .mui-numbox .mui-numbox-input {
+    width: 100% !important;
+    @include font-dpr(18px);
+}
+.mui-numbox [class*=btn-numbox],.mui-numbox [class*=numbox-btn] {
+    font-size: 18px;
+    @include font-dpr(18px);
+}
+//重写标题右侧那三点
+.mui-icon {
+    @include font-dpr(21px);
+}
+

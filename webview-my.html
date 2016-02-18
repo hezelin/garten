@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的 页面</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="user-bg">
+			<!--这里has-message/no-message-->
+			<span class="no-message"></span>
+			<img class="user-bg-img" src="img/user-img.png" />
+			</br>
+			<span class="user-bg-group-normal"></span>
+			<span class="user-bg-name">Capitan</span>
+			<span class="user-bg-group-vip"></span>
+			</br>
+			<!--去掉小右箭头-->
+			<!--<span class="user-bg-details white-arrow-span"></span>-->
+			<span class="user-bg-phone">13229788871</span>
+			<div class="user-bg-nav">
+				<a id="user-bag">
+					<span class="user-bg-nav-counts">7</span></br>
+					<span>我的红包</span>
+				</a>
+				<a class="short-line"><img id="r-border"></a>
+				<a id="user-collect">
+					<span class="user-bg-nav-counts">18</span></br>
+					<span>我的收藏</span>
+				</a>
+				<a class="short-line"><img id="l-border"></a>
+				<a id="user-shop-car">
+					<span class="user-bg-nav-counts">6</span></br>
+					<span>购物车</span>
+				</a>
+			</div>
+		</div>
+		<div class="user-menu">
+			<div class="user-menu-group" id="user-menu-group-orderform">
+				<div class="user-menu-icon">
+					<span class="my-orderform"></span>
+				</div>
+				<div class="user-menu-group-describle">
+					<span>我的订单</span>
+					<span class="black-arrow-span"></span>
+				</div>
+			</div>
+			<div class="user-menu-group" id="user-menu-group-myfarm">
+				<div class="user-menu-icon">
+					<span class="my-farm "></span>
+				</div>
+				<div class="user-menu-group-describle">
+					<span>我的农场</span>
+					<span class="black-arrow-span"></span>
+				</div>
+			</div>
+			<div class="user-menu-group" id="user-menu-group-myrequest">
+				<div class="user-menu-icon">
+					<span class="my-request"></span>
+				</div>
+				<div class="user-menu-group-describle">
+					<span>我的问答</span>
+					<span class="black-arrow-span"></span>
+				</div>
+			</div>
+			<div class="user-menu-group" id="user-menu-group-setting">
+				<div class="user-menu-icon">
+					<span class="my-setting"></span>
+				</div>
+				<div class="user-menu-group-describle">
+					<span>设置</span>
+					<span class="black-arrow-span"></span>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				//打开我的红包
+				document.getElementById("user-bag").addEventListener("tap", function(e) {
+					e.preventDefault();
+					fnLoadPage(this, "secondlv/webview-my-userbag.html", 108, 0, {
+						title: "我的红包"
+					});
+				});
+				//打开收藏
+				document.getElementById("user-collect").addEventListener("tap", function(e) {
+					fnLoadPage(this, "secondlv/webview-my-collect.html", 108, 0, {
+						title: "我的收藏"
+					});
+				});
+				//打开购物车
+				document.getElementById("user-shop-car").addEventListener("tap", function(e) {
+					fnLoadPage(this, "secondlv/webview-my-shopcar.html", 108, 0, {
+						title: "购物车",
+						rightBtn: "<span id='shopCarEdit'>编辑</span"
+					});
+				});
+				//打开我的订单
+				document.getElementById("user-menu-group-orderform").addEventListener("tap", function(e) {
+					//订单窗口有头部导航
+					fnLoadPage(this, "secondlv/webview-my-order.html", 215, 0, {
+						title: "我的订单",
+						hasControlTab: true
+					});
+				});
+				//打开我的农场
+				document.getElementById("user-menu-group-myfarm").addEventListener("tap", function(e) {});
+				//打开我的问答
+				document.getElementById("user-menu-group-myrequest").addEventListener("tap", function(e) {});
+				//打开设置
+				document.getElementById("user-menu-group-setting").addEventListener("tap", function(e) {
+//					var btn = this;
+//					if (btn.classList.contains("loading")) {
+//						return;
+//					}
+//					this.classList.add("loading");
+					
+					mui.openWindow({
+						url: "secondlv/webview-my-setting.html",
+						id: "secondlv/webview-my-setting.html",
+						styles: {
+							top: "0px", //新页面顶部位置
+							bottom: "0px", //新页面底部位置
+							width: "100%", //新页面宽度，默认为100%
+							height: "100%" //新页面高度，默认为100%
+						},
+						createNew: false, //是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+						waiting: {
+							autoShow: true, //自动显示等待框，默认为true
+							title: '正在加载...' //等待对话框上显示的提示内容
+						}
+					})
+					
+//					var webviewSpa = plus.webview.getWebviewById("webview-spa");
+//					var spaURL = webviewSpa.getURL();
+//					if (spaURL.indexOf("secondlv/webview-my-setting.html") == -1) {
+//						var nwaiting = plus.nativeUI.showWaiting();
+//						webviewSpa.loadURL("secondlv/webview-my-setting.html");
+//						webviewSpa.onloaded = function() {
+//							setTimeout(function() {
+//								webviewSpa.show("slide-in-right", "", function() {
+//									btn.classList.remove("loading");
+//									nwaiting.close();
+//								});
+//							}, 100);
+//						};
+//					} else {
+//						webviewSpa.show("slide-in-right");
+//						btn.classList.remove("loading");
+//					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

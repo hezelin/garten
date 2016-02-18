@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>农场首页</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control" id="home-header-control">
+			<div class="header-control-left-btn  mui-action-back app-log-div">
+				<span class="app-log-span header-control-left-btn-span"></span>
+			</div>
+			<div class="header-control-app-name">
+				<span id="webview-head-title">开心农场</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span">
+					<span class="mui-icon mui-icon-more"></span>
+				</span>
+				<span class="header-control-right-btn-span">
+					<span class="mui-icon mui-icon-search"></span>
+				</span>
+			</div>
+		</div>
+		<div id="head-holder"></div>
+		<!--轮播图尺寸规定为750*350-->
+		<div id="slider" class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+				<!-- (循环轮播：第一个节点是最后一张图片) 节点数量等于轮播图片+1-->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="img/test-slider3.png">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="img/test-slider.png">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="img/test-slider2.png">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="img/test-slider3.png">
+					</a>
+				</div>
+				<!-- 额外增加的一个节点(最后一个节点与第二图片相同) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<<img src="img/test-slider.png">
+					</a>
+				</div>
+			</div>
+			<div class="mui-slider-indicator mui-text-center">
+				<!--对应图片个数-->
+				<div class="mui-indicator mui-active home-slider-text-size"></div>
+				<div class="mui-indicator home-slider-text-size"></div>
+				<div class="mui-indicator home-slider-text-size"></div>
+			</div>
+		</div>
+		<div class="home-nav-tab">
+			<div class="home-nav-tab-item">
+				<span class="home-nav-tab-item-icon home-rent"></span>
+				<span class="home-nav-tab-item-title">认租</span>
+			</div>
+			<div class="home-nav-tab-item">
+				<span class="home-nav-tab-item-icon home-activity"></span>
+				<span class="home-nav-tab-item-title">活动</span>
+			</div>
+			<div class="home-nav-tab-item">
+				<span class="home-nav-tab-item-icon home-shop"></span>
+				<span class="home-nav-tab-item-title">商城</span>
+			</div>
+			<div class="home-nav-tab-item">
+				<span class="home-nav-tab-item-icon home-eat"></span>
+				<span class="home-nav-tab-item-title">农家乐</span>
+			</div>
+			<div class="home-nav-tab-item">
+				<span class="home-nav-tab-item-icon home-live"></span>
+				<span class="home-nav-tab-item-title">民宿</span>
+			</div>
+		</div>
+		<div class="home-news-content">
+			<div class="home-news-content-item">
+				<div class="home-news-content-item-title">
+					<label class="home-news-content-item-title-name">推荐话题</label>
+				</div>
+				<div class="home-news-content-item-line"></div>
+				<div class="home-news-content-item-photo">
+					<div class="home-news-content-item-photo-list" style="background: url(img/testhome1.png); background-size: cover;">
+						<div class="home-news-content-item-photo-title">亲子活动</div>
+					</div>
+					<div class="home-news-content-item-photo-list" style="background: url(img/testhome2.png); background-size: cover;">
+						<div class="home-news-content-item-photo-title">民宿</div>
+					</div>
+					<div class="home-news-content-item-photo-list" style="background: url(img/testhome3.png); background-size: cover;">
+						<div class="home-news-content-item-photo-title">农家乐休闲活动</div>
+					</div>
+				</div>
+			</div>
+			<div class="home-news-content-item">
+				<div class="home-news-content-item-title">
+					<label class="home-news-content-item-title-name">推荐话题</label>
+				</div>
+				<div class="home-news-content-item-line"></div>
+				<div class="home-news-content-item-photo">
+					<div class="home-news-content-item-photo-list" style="background: url(img/testhome1.png); background-size: cover;">
+						<div class="home-news-content-item-photo-title">亲子活动</div>
+					</div>
+					<div class="home-news-content-item-photo-list" style="background: url(img/testhome2.png); background-size: cover;">
+						<div class="home-news-content-item-photo-title">民宿</div>
+					</div>
+					<div class="home-news-content-item-photo-list" style="background: url(img/testhome3.png); background-size: cover;">
+						<div class="home-news-content-item-photo-title">农家乐休闲活动</div>
+					</div>
+				</div>
+			</div>
+			<div class="home-news-content-item">
+				<div class="home-news-content-item-title">
+					<label class="home-news-content-item-title-name">推荐话题</label>
+				</div>
+				<div class="home-news-content-item-line"></div>
+				<div class="home-news-content-item-photo">
+					<div class="home-news-content-item-photo-list" style="background: url(img/testhome1.png); background-size: cover;">
+						<div class="home-news-content-item-photo-title">亲子活动</div>
+					</div>
+					<div class="home-news-content-item-photo-list" style="background: url(img/testhome2.png); background-size: cover;">
+						<div class="home-news-content-item-photo-title">民宿</div>
+					</div>
+					<div class="home-news-content-item-photo-list" style="background: url(img/testhome3.png); background-size: cover;">
+						<div class="home-news-content-item-photo-title">农家乐休闲活动</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
+		<script>
+			mui.init();
+			//设置轮播图轮播周期
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+				interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0；
+			});
+		</script>
+	</body>
+
+</html>

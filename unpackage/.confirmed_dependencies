@@ -1,0 +1,160 @@
+{
+	"webview-comu.html": {
+		"resources": [
+			"img/photo3.png",
+			"js/flexible_css.debug.js",
+			"img/photo2.png",
+			"img/head1.jpg",
+			"img/photo1.png",
+			"img/img2.png",
+			"img/head2.jpeg",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"fonts/mui.ttf",
+			"js/flexible.debug.js",
+			"img/img.png"
+		]
+	},
+	"index.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"js/initPage.js",
+			"webview-home.html"
+		],
+		"refer": [
+			"webview-comu.html",
+			"webview-nav.html",
+			"webview-my.html",
+			"webview-home.html",
+			"webview-header.html",
+			"secondlv/webview-my-setting.html"
+		]
+	},
+	"webview-my.html": {
+		"resources": [
+			"img/user-img.png",
+			"img/user-info-bg.png",
+			"js/flexible_css.debug.js",
+			"js/md5.min.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js"
+		],
+		"refer": [
+			"secondlv/webview-my-setting.html",
+			"secondlv/webview-my-collect.html",
+			"secondlv/webview-my-order.html",
+			"secondlv/webview-my-shopcar.html",
+			"secondlv/webview-my-userbag.html"
+		]
+	},
+	"webview-home.html": {
+		"resources": [
+			"js/md5.min.js",
+			"img/testhome3.png",
+			"img/img3.png",
+			"img/test-slider2.png",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"img/testhome1.png",
+			"js/mui.min.js",
+			"img/test-slider3.png",
+			"img/testhome2.png",
+			"img/logo.png",
+			"img/test-slider.png",
+			"js/flexible_css.debug.js"
+		]
+	},
+	"webview-header.html": {
+		"resources": [
+			"js/flexible_css.debug.js",
+			"js/flexible.debug.js",
+			"js/public.js",
+			"secondlv/webview-my-order.html",
+			"img/img.png"
+		],
+		"refer": [
+			"secondlv/webview-my-collect.html",
+			"secondlv/webview-my-shopcar.html",
+			"secondlv/webview-my-userbag.html",
+			"secondlv/webview-my-order.html"
+		]
+	},
+	"secondlv/webview-my-setting.html": {
+		"resources": [
+			"js/exif.js",
+			"js/flexible_css.debug.js",
+			"js/feedback.js",
+			"css/feedback-page.css",
+			"js/feedback-page.js",
+			"js/mui.view.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js"
+		]
+	},
+	"webview-nav.html": {
+		"resources": [
+			"js/flexible_css.debug.js"
+		]
+	},
+	"secondlv/webview-my-collect.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"img/fruitTree.png",
+			"img/plowLand.png"
+		]
+	},
+	"secondlv/webview-my-order.html": {
+		"resources": [
+			"img/fruitTree.png",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"img/plowLand.png",
+			"js/flexible.debug.js",
+			"img/plowLand2.png",
+			"img/img.png",
+			"css/mui.min.css",
+			"css/style.css"
+		]
+	},
+	"secondlv/webview-my-shopcar.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/flexible.debug.js"
+		]
+	},
+	"secondlv/webview-my-userbag.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/flexible.debug.js"
+		]
+	}
+}

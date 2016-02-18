@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<title></title>
+		<style>
+			html,
+			body {
+				height: 100%;
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class="white-arrow-big-span header-control-left-btn-span"></span>
+			</div>
+			<div>
+				<span id="webview-head-title"></span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span"></span>
+				<!--<span class="header-control-right-btn-span">编辑</span>-->
+			</div>
+		</div>
+
+		<div class="header-control-tab-fixed">
+			<div class="header-control-tab">
+				<div class="header-control-tab-nav header-control-tab-nav-active" data-transform="none">
+					全部
+				</div>
+				<div class="header-control-tab-nav header-control-tab-nav-lay" data-transform="translateX(100%)">
+					进行中
+				</div>
+				<div class="header-control-tab-nav header-control-tab-nav-lay" data-transform="translateX(200%)">
+					已结束
+				</div>
+			</div>
+			<div class="head-control-slider head-control-slider-3" style="transform: none">
+			</div>
+		</div>
+
+		<div class="loadingPage">
+			<div class="loadingPage-middle">
+				<div class="spinner">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
+				<span class="loadingPage-text">努力加载中...</span>
+			</div>
+		</div>
+
+		
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
+		<script>
+			mui.init();
+			/**
+			 * @description 改变tab栏状态
+			 * @param {Object} thisBtn
+			 */
+			function fnChangeTabStatus(thisBtn) {
+				if (thisBtn.classList.contains("header-control-tab-nav-active")) {
+					return;
+				} else {
+					var navNode = document.getElementsByClassName("header-control-tab-nav")
+					for (var i = 0; i < 3; i++) {
+						if (navNode[i].classList.contains("header-control-tab-nav-active")) {
+							navNode[i].classList.remove("header-control-tab-nav-active");
+							navNode[i].classList.add("header-control-tab-nav-lay");
+						}
+					}
+					thisBtn.classList.add("header-control-tab-nav-active");
+					thisBtn.classList.remove("header-control-tab-nav-lay");
+				}
+			}
+			mui.plusReady(function() {
+				//监听改变模板的事件
+				window.addEventListener("changeTitle", function(event) {
+					var newTitle = event.detail.title;
+					var controlTab = event.detail.hasControlTab;
+					var rightBtn = event.detail.rightBtn;
+					var bottomBar = event.detail.hasBottomBar;
+					document.getElementById("webview-head-title").innerHTML = newTitle;
+					//添加和去除头部栏（订单
+					if (controlTab) {
+						document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "block";
+					} else {
+						document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "none";
+					}
+					//添加和去除按钮
+					if (rightBtn) {
+						//去除右侧按键的元素并填充
+						var headRight = document.getElementsByClassName("header-control-right-btn")[0];
+						if (headRight.firstChild) {
+							headRight.removeChild(headRight.firstChild);
+						}
+						headRight.innerHTML = "<span class='header-control-right-btn-span'>" + rightBtn + "</span>"
+					} else {
+						var headRight = document.getElementsByClassName("header-control-right-btn")[0];
+						if (headRight.firstChild) {
+							headRight.removeChild(headRight.firstChild);
+						}
+					}
+				});
+				mui(".header-control-tab").on("tap", ".header-control-tab-nav", function() {
+					var thisBtn = this;
+					var strValue = this.getAttribute("data-transform");
+					document.getElementsByClassName("head-control-slider")[0].style.transform = strValue;
+					document.getElementsByClassName("head-control-slider")[0].style.webkitTransform = strValue;
+					var webviewBodyURL = "secondlv/webview-my-order.html";
+					fnChangeTabStatus(thisBtn);
+					if (thisBtn.classList.contains("loading")) {
+						return;
+					}
+					thisBtn.classList.add("loading");
+					var webviewHead = plus.webview.getWebviewById("webview-header");
+					if (webviewHead.children().length > 0) {
+						webviewHead.children()[0].close();
+					}
+					var webviewBody = plus.webview.create(webviewBodyURL, webviewBodyURL, fnSetSubpageStyle(215, 0));
+					webviewBody.onloaded = function() {
+						thisBtn.classList.remove("loading");
+						setTimeout(function() {
+							webviewHead.append(webviewBody);
+						}, 100);
+					}
+				});
+				mui('.foot-control-bar').on('change', 'input', function() {
+					var webBody = plus.webview.getWebviewById("webview-body");
+					var value = this.checked ? "true" : "false";
+					mui.fire(webBody, "fnCheckAll", {
+						value: value
+					});
+				});
+				//处理返回键事件
+				var oldBack = mui.back;
+				mui.back = function() {
+					var webviewBody = plus.webview.currentWebview().children()[0];
+					webviewBody.canBack(function(e) {
+						var hasBack = e.canBack ? true : false;
+						if (hasBack) {
+							webviewBody.back();
+						} else {
+							oldBack();
+						}
+					});
+				};
+			});
+		</script>
+	</body>
+
+</html>

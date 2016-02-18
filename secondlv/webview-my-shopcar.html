@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的购物车</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="my-trader-item">
+			<div class="my-trader-title">
+				<div class="my-trader-title-logo">
+					<span class="shop-span">
+				</div>
+				<div class="my-trader-title-name"><span>嘉兰专卖</span><span class="shop-span-arrow"></span></div>
+				<div class="my-trader-title-right ">
+					<span class="shop-span-delete"></span>
+				</div>
+			</div>
+			<div class="my-trader-content my-order-content">
+				<div class="my-shop-car-check">
+					<div class="mui-input-row mui-checkbox ">
+						<input name="item1" type="checkbox" checked="checked">
+					</div>
+				</div>
+				<div class="my-trader-content-img ">
+					<img class="my-trader-content-img-hold " src="../img/plowLand.png ">
+				</div>
+				<div class="my-trader-content-detail ">
+					<div class="my-trader-content-detail-container ">
+						<span class="collect-order-trader-name ">耕作地</span>
+						<span class="collect-order-trader-detail ">认租一年，自主耕种</span>
+						<span class="collect-order-trader-money ">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
+						<span class="collect-order-trader-count my-shopcar-count">
+							<div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
+								<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+								<input id="test" class="mui-input-numbox" type="number" value="2" />
+								<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+							</div>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="my-trader-item ">
+			<div class="my-trader-title ">
+				<div class="my-trader-title-logo">
+					<span class="shop-span">
+				</div>
+				<div class="my-trader-title-name ">嘉兰专卖<span class="shop-span-arrow "></span></div>
+				<div class="my-trader-title-right ">
+					<span class="shop-span-delete "></span>
+				</div>
+			</div>
+			<div class="my-trader-content my-order-content ">
+				<div class="my-shop-car-check">
+					<div class="mui-input-row mui-checkbox ">
+						<input name="item1" type="checkbox">
+					</div>
+				</div>
+				<div class="my-trader-content-img ">
+					<img class="my-trader-content-img-hold " src="../img/fruitTree.png ">
+				</div>
+				<div class="my-trader-content-detail ">
+					<div class="my-trader-content-detail-container ">
+						<span class="collect-order-trader-name ">橘子树</span>
+						<span class="collect-order-trader-detail ">认租二年，委托给农户管理</span>
+						<span class="collect-order-trader-money ">&nbsp;&yen;&nbsp;200<em>/棵</em></span>
+						<span class="collect-order-trader-count my-shopcar-count">
+							<div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
+								<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+								<input id="test" class="mui-input-numbox" type="number" value="1" />
+								<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+							</div>
+						</span>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="foot-control-bar">
+			<div class="my-shop-car-check">
+				<div class="mui-input-row mui-checkbox ">
+					<input name="item1" type="checkbox" id="checkAll">&nbsp;
+					<label>全选</label>
+				</div>
+			</div>
+			<div class="my-shop-car-pay">
+				<span>
+					合计&nbsp;
+					<em>&yen;300</em>
+				</span>&nbsp;
+			</div>
+			<div class="my-shop-car-pay-button my-shop-car-pay">
+				<button>结算</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js "></script>
+		<script src="../js/md5.min.js "></script>
+		<script src="../js/public.js "></script>
+		<script>
+			mui.init();
+			window.addEventListener("fnCheckAll", function(event) {
+				console.log(77);
+				if (event.detail.value == "true") {
+					var inputList = document.getElementsByTagName("input");
+					for (var i = 0; i < inputList.length; i++) {
+						console.log(inputList[i].type);
+						if (inputList[i].type = "checkbox") {
+							inputList[i].checked = "true";
+						}
+					}
+				} else {
+					var inputList = document.getElementsByTagName("input");
+					for (var i = 0; i < inputList.length; i++) {
+						console.log(inputList[i].type);
+						if (inputList[i].type = "checkbox") {
+							inputList[i].checked = "false";
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>红包列表</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div id="user-bag-list" class="mui-control-content mui-active">
+				<div id="user-bag-counts">
+					共有7张可用代金券
+				</div>
+				<div class="user-bag-show">
+					<div class="user-bag-show-icon">
+						<span>
+							&nbsp;&yen;&nbsp;10
+						</span>
+					</div>
+					<div class="user-bag-show-textleft">
+						<span class="user-bag-show-describable-bold">
+							注册赠用券
+						</span>
+						<span class="user-bag-show-describable-grey">
+							本店满&nbsp;&yen;&nbsp;100可用
+						</span>
+					</div>
+					<div class="black-arrow-span-div">
+						<span class="black-arrow-span"></span>
+					</div>
+				</div>
+				<!--test-->
+				<div class="user-bag-show">
+					<div class="user-bag-show-icon">
+						<span>
+					&nbsp;&yen;&nbsp;10
+				</span>
+					</div>
+					<div class="user-bag-show-textleft">
+						<span class="user-bag-show-describable-bold">
+					注册赠用券
+				</span>
+						<span class="user-bag-show-describable-grey">
+					本店满&nbsp;&yen;&nbsp;100可用
+				</span>
+					</div>
+					<div class="black-arrow-span-div">
+						<span class="black-arrow-span"></span>
+					</div>
+				</div>
+				<div class="user-bag-show">
+					<div class="user-bag-show-icon">
+						<span>
+					&nbsp;&yen;&nbsp;10
+				</span>
+					</div>
+					<div class="user-bag-show-textleft">
+						<span class="user-bag-show-describable-bold">
+					注册赠用券
+				</span>
+						<span class="user-bag-show-describable-grey">
+					本店满&nbsp;&yen;&nbsp;100可用
+				</span>
+					</div>
+					<div class="black-arrow-span-div">
+						<span class="black-arrow-span"></span>
+					</div>
+				</div>
+				<div class="user-bag-show">
+					<div class="user-bag-show-icon">
+						<span>
+					&nbsp;&yen;&nbsp;10
+				</span>
+					</div>
+					<div class="user-bag-show-textleft">
+						<span class="user-bag-show-describable-bold">
+					注册赠用券
+				</span>
+						<span class="user-bag-show-describable-grey">
+					本店满&nbsp;&yen;&nbsp;100可用
+				</span>
+					</div>
+					<div class="black-arrow-span-div">
+						<span class="black-arrow-span"></span>
+					</div>
+				</div>
+				<div class="user-bag-show">
+					<div class="user-bag-show-icon">
+						<span>
+					&nbsp;&yen;&nbsp;10
+				</span>
+					</div>
+					<div class="user-bag-show-textleft">
+						<span class="user-bag-show-describable-bold">
+					注册赠用券
+				</span>
+						<span class="user-bag-show-describable-grey">
+					本店满&nbsp;&yen;&nbsp;100可用
+				</span>
+					</div>
+					<div class="black-arrow-span-div">
+						<span class="black-arrow-span"></span>
+					</div>
+				</div>
+				<div class="user-bag-show">
+					<div class="user-bag-show-icon">
+						<span>
+					&nbsp;&yen;&nbsp;10
+				</span>
+					</div>
+					<div class="user-bag-show-textleft">
+						<span class="user-bag-show-describable-bold">
+					注册赠用券
+				</span>
+						<span class="user-bag-show-describable-grey">
+					本店满&nbsp;&yen;&nbsp;100可用
+				</span>
+					</div>
+					<div class="black-arrow-span-div">
+						<span class="black-arrow-span"></span>
+					</div>
+				</div>
+				<div class="user-bag-show">
+					<div class="user-bag-show-icon">
+						<span>
+					&nbsp;&yen;&nbsp;10
+				</span>
+					</div>
+					<div class="user-bag-show-textleft">
+						<span class="user-bag-show-describable-bold">
+					注册赠用券
+				</span>
+						<span class="user-bag-show-describable-grey">
+					本店满&nbsp;&yen;&nbsp;100可用
+				</span>
+					</div>
+					<div class="black-arrow-span-div">
+						<span class="black-arrow-span"></span>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				mui("#user-bag-list").on("tap", ".user-bag-show", function(e) {
+					plus.webview.currentWebview().loadURL("../thirdlv/webview-my-userbag-amply.html");
+				});
+			});
+		</script>
+	</body>
+
+</html>

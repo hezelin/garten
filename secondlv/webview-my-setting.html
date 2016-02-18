@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>设置</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/feedback-page.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+
+	<body class="mui-fullscreen">
+		<!--页面主结构开始-->
+		<div id="app" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar">
+				</div>
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+		<!--页面主结构结束-->
+		<!--单页面开始-->
+		<div id="setting" class="mui-page">
+			<!--mui-navbar-inner mui-bar mui-bar-nav-->
+			<div class="header-control mui-navbar-inner">
+				<div class="header-control-left-btn mui-action-back">
+					<span class="white-arrow-big-span header-control-left-btn-span"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">设置</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<!--新标题结束-->
+			<!--页面标题栏结束-->
+
+			<!--页面主内容区开始-->
+			<div class="mui-page-content">
+				<!--区域滚动容器 mui-scroll-wrapper mui-scroll-->
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!--账号-->
+						<a class="my-setting-item my-setting-item-margin-top my-setting-item-margin-bottom" href="#account">
+							<!--左边内容区域-->
+							<div class="my-setting-left">
+								<label class="my-setting-left-text">账户</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle">
+								<label class="my-setting-middle-text"></label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<!--提示声音-->
+						<a class="my-setting-item">
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">提示声音</label>
+							</div>
+							<div class="my-setting-middle my-setting-middle-right my-setting-border">
+								<div class="mui-switch mui-active">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</div>
+						</a>
+						<!--意见反馈-->
+						<a class="my-setting-item" id="feedback-btn" href="#feedback">
+							<!--左边内容区域-->
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">意见反馈</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-border">
+								<label class="my-setting-middle-text"></label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right my-setting-border">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<!--关于我们-->
+						<a class="my-setting-item" href="#about">
+							<!--左边内容区域-->
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">关于我们</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-border">
+								<label class="my-setting-middle-text"></label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right my-setting-border">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<!--检查更新-->
+						<a class="my-setting-item" id="update">
+							<!--左边内容区域-->
+							<div class="my-setting-left">
+								<label class="my-setting-left-text">检查更新</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-middle-right">
+								<label class="my-setting-middle-text">当前版本1.0</label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<!--客服热线-->
+						<a class="my-setting-item my-setting-item-margin-top">
+							<!--左边内容区域-->
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">客服热线</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-middle-right my-setting-border">
+								<label class="my-setting-middle-text">020-86481132</label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right my-setting-border">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<a id="my-setting-loginout">
+							<label>退出登录</label>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--页面主内容区结束-->
+		</div>
+		<!--单页面结束-->
+
+		<!--子页面模板start-->
+		<div id="notifications" class="mui-page">
+			<div class="header-control mui-navbar-inner">
+				<div class="header-control-left-btn  mui-action-back">
+					<span class="white-arrow-big-span header-control-left-btn-span"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">窗口标题</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="help-about-span header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<a class="my-setting-item my-setting-item-margin-top my-setting-item-margin-bottom">
+							<!--左边内容区域-->
+							<div class="my-setting-left">
+								<label class="my-setting-left-text" </label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-middle-right">
+								<label class="my-setting-middle-text"></label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--子页面模板end-->
+
+		<!--资料-->
+		<div id="account" class="mui-page">
+			<div class="header-control mui-navbar-inner">
+				<div class="header-control-left-btn mui-action-back">
+					<span class="white-arrow-big-span header-control-left-btn-span"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">资料</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="header-control-right-btn-span">完成</span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!--修改头像-->
+						<a class="my-setting-item my-setting-item-margin-top" id="head">
+							<!--左边内容区域-->
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">修改头像</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-border my-setting-middle-right">
+								<img class="my-setting-user-img" id="settingUserIMG" src="" />
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right my-setting-border">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<!--昵称-->
+						<a class="my-setting-item" href="#nickname">
+							<!--左边内容区域-->
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">昵称</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-border my-setting-middle-right">
+								<label class="my-setting-middle-text">格子</label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right my-setting-border">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<!--手机号-->
+						<a class="my-setting-item" href="#editPhone">
+							<!--左边内容区域-->
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">手机号</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-border my-setting-middle-right">
+								<label class="my-setting-middle-text">13229788871</label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right my-setting-border">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<!--性别-->
+						<a class="my-setting-item" id="setSex">
+							<!--左边内容区域-->
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">性别</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-middle-right my-setting-border">
+								<label class="my-setting-middle-text">请选择</label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right my-setting-border">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<!--生日-->
+						<a class="my-setting-item" id="pickDateBtn">
+							<!--左边内容区域-->
+							<div class="my-setting-left">
+								<label class="my-setting-left-text">生日</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-middle-right">
+								<label class="my-setting-middle-text" id="pickDateBtnShow">请选择</label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<!--收件地址-->
+						<a class="my-setting-item my-setting-item-margin-top my-setting-item-margin-bottom" href="#editAddress">
+							<!--左边内容区域-->
+							<div class="my-setting-left">
+								<label class="my-setting-left-text">收件地址</label>
+							</div>
+							<!--中间内容区域-->
+							<div class="my-setting-middle my-setting-middle-right">
+								<label class="my-setting-middle-text">请填写地址</label>
+							</div>
+							<!--右边内容区域-->
+							<div class="my-setting-right">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--修改昵称-->
+		<div id="nickname" class="mui-page">
+			<div class="header-control mui-navbar-inner">
+				<div class="header-control-left-btn  mui-action-back">
+					<span class="white-arrow-big-span header-control-left-btn-span"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">修改昵称</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="header-control-right-btn-span">
+						<button id="saveNickName">保存</button>
+					</span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="input-name-container">
+							<input id="inputNickName" class="mui-input-clear" placeholder="格子" type="text" />
+							<span id="clearNickName" class="mui-icon-clear mui-icon"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--修改昵称end-->
+		<!--修改地址-->
+		<div id="editAddress" class="mui-page">
+			<div class="header-control mui-navbar-inner">
+				<div class="header-control-left-btn  mui-action-back">
+					<span class="white-arrow-big-span header-control-left-btn-span"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">地址管理</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="header-control-right-btn-span">
+						<button id="saveNickName">保存</button>
+					</span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<a class="my-setting-item my-setting-item-margin-top">
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">姓名</label>
+							</div>
+							<div class="my-setting-middle my-setting-border my-setting-middle-left">
+								<label class="my-setting-middle-text">格子</label>
+							</div>
+							<div class="my-setting-right my-setting-border">
+							</div>
+						</a>
+						<a class="my-setting-item">
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">手机</label>
+							</div>
+							<div class="my-setting-middle my-setting-border my-setting-middle-left">
+								<label class="my-setting-middle-text">13229788871</label>
+							</div>
+							<div class="my-setting-right my-setting-border">
+							</div>
+						</a>
+						<a class="my-setting-item">
+							<div class="my-setting-left my-setting-border">
+								<label class="my-setting-left-text">所在城市</label>
+							</div>
+							<div class="my-setting-middle my-setting-border my-setting-middle-left">
+								<label class="my-setting-middle-text">广州</label>
+							</div>
+							<div class="my-setting-right my-setting-border">
+								<span class="black-arrow-span"></span>
+							</div>
+						</a>
+						<a class="my-setting-item">
+							<div class="my-setting-left">
+								<label class="my-setting-left-text">收货地址</label>
+							</div>
+							<div class="my-setting-middle my-setting-middle-left">
+								<label class="my-setting-middle-text">请输入收货地址</label>
+							</div>
+							<div class="my-setting-right">
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--修改地址end-->
+		<!--修改手机号码-->
+		<div id="editPhone" class="mui-page">
+			<div class="header-control mui-navbar-inner">
+				<div class="header-control-left-btn  mui-action-back">
+					<span class="white-arrow-big-span header-control-left-btn-span"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">修改手机号码</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="header-control-right-btn-span">
+					</span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<a class="my-setting-item my-setting-item-margin-top">
+							<div class="my-setting-left my-setting-border my-setting-left-input">
+								<input class="editPhoneInput" placeholder="请输入新的手机号码" type="text" />
+							</div>
+							<div class="my-setting-right my-setting-border">
+							</div>
+						</a>
+						<a class="my-setting-item">
+							<div class="my-setting-left my-setting-border my-setting-left-input">
+								<input class="editPhoneInput" placeholder="请输入密码" type="text" />
+							</div>
+							<div class="my-setting-right my-setting-border">
+							</div>
+						</a>
+						<a class="my-setting-item">
+							<div class="my-setting-left my-setting-left-input">
+								<input class="editPhoneInput" placeholder="请输入认证码" type="text" />
+							</div>
+							<div class="my-setting-middle my-setting-middle-right">
+								<button id="getVerifyNum">获取认证码</button>
+							</div>
+						</a>
+						<div class="postEditPhoneContainer">
+							<button id="postEditPhone">
+								保存并更新手机号
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--修改地址end-->
+		<div id="about" class="mui-page">
+			<div class="header-control mui-navbar-inner">
+				<div class="header-control-left-btn mui-action-back">
+					<span class="white-arrow-big-span header-control-left-btn-span"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">关于我们</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="help-about-span header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="feedback" class="mui-page feedback">
+			<div class="header-control mui-navbar-inner">
+				<div class="header-control-left-btn mui-action-back">
+					<span class="white-arrow-big-span header-control-left-btn-span"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">问题反馈</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="help-about-span header-control-right-btn-span"></span>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<p class="feedback-margin my-setting-font-size">问题和意见</p>
+				<div class="row mui-input-row">
+					<textarea id='question' class="mui-input-clear question my-setting-font-size" placeholder="请详细描述你的问题和意见..."></textarea>
+				</div>
+				<p class="feedback-margin my-setting-font-size">图片(选填,提供问题截图)</p>
+				<div id='image-list' class="row image-list">
+				</div>
+				<p class="feedback-margin my-setting-font-size ">QQ/邮箱</p>
+				<div class="mui-input-row">
+					<input id='contact' type="text" class="contact my-setting-font-size" placeholder="选填,方便我们联系你" />
+				</div>
+				<button id='submit' type="button" class="mui-btn mui-btn-green my-setting-font-size">提交</button>
+			</div>
+			<p>此示例基于环信 “WebIM SDK” + 环信 “移动客服” 实现，在环信 “移动客服面板” 能够查阅反馈信息。</p>
+		</div>
+		<!--拍照-->
+		<!--<div class="mutual-div mutual-div-bottom" id="my-setting-picture">
+			<div id="my-setting-take-photo" class="left-right-top-radius">拍照</div>
+			<div id="my-setting-choose-photo" class="left-right-bottom-radius">从手机相册选择</div>
+			<div id="my-setting-cancel" class="left-right-top-radius left-right-bottom-radius">取消</div>
+		</div>-->
+		<!--拍照end-->
+		<!--选择性别-->
+		<div class="mutual-div-flex-middle" id="sexList">
+			<div id="sexList-item">
+				
+			</div>
+		</div>
+		<!--性别end-->
+	</body>
+	<script src="../js/mui.min.js "></script>
+	<script src="../js/mui.view.js "></script>
+	<script src='../js/feedback.js'></script>
+	<script src="../js/feedback-page.js"></script>
+	<script src="../js/public.js"></script>
+	<script>
+		mui.init();
+		//初始化单页view
+		var viewApi = mui('#app').view({
+			defaultPage: '#setting'
+		});
+		//初始化单页的区域滚动
+		mui('.mui-scroll-wrapper').scroll();
+		var view = viewApi.view;
+		(function($) {
+			//处理view的后退与webview后退
+			var oldBack = $.back;
+			$.back = function() {
+				//如果头像预览是打开状态，那么返回键关闭预览
+				var pictureView = document.querySelector("#__mui-imageview__");
+				if (pictureView && pictureView.style.display == "block") {
+					pictureView.style.display = "none";
+					return;
+				}
+				if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+					viewApi.back();
+				} else { //执行webview后退
+					oldBack();
+				}
+			};
+			//监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+			//第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+			view.addEventListener('pageBeforeShow', function(e) {
+				//				console.log(e.detail.page.id + ' beforeShow');
+			});
+			view.addEventListener('pageShow', function(e) {
+				//				console.log(e.detail.page.id + ' show');
+			});
+			view.addEventListener('pageBeforeBack', function(e) {
+				//				console.log(e.detail.page.id + ' beforeBack');
+			});
+			view.addEventListener('pageBack', function(e) {
+				//				console.log(e.detail.page.id + ' back');
+			});
+		})(mui);
+		//选择日期
+		document.getElementById("pickDateBtn").addEventListener('tap', function() {
+			var info = document.getElementById("pickDateBtnShow");
+			var dDate = new Date();
+			dDate.setFullYear(1990, 0, 1);
+			var minDate = new Date();
+			//				minDate.setFullYear(2010, 0, 1);
+			//				var maxDate = new Date();
+			//				maxDate.setFullYear(2016, 11, 31);
+			if (!mui.os.plus) {
+				return;
+			}
+			plus.nativeUI.pickDate(function(e) {
+				var d = e.date;
+				info.innerText = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+			}, function(e) {
+				info.innerText = "请选择";
+			}, {
+				title: "请选择日期",
+				date: dDate
+					//					minDate: minDate,
+					//					maxDate: maxDate
+			});
+		});
+		//检查更新
+		document.getElementById("update").addEventListener('tap', function() {
+			mui.toast('已是最新版本~');
+			return true;
+			var server = "http://www.dcloud.io/check/update"; //获取升级描述文件服务器地址
+			mui.getJSON(server, {
+				"appid": plus.runtime.appid,
+				"version": plus.runtime.version,
+				"imei": plus.device.imei
+			}, function(data) {
+				if (data.status) {
+					plus.ui.confirm(data.note, function(i) {
+						if (0 == i) {
+							plus.runtime.openURL(data.url);
+						}
+					}, data.title, ["立即更新", "取　　消"]);
+				} else {
+					mui.toast('已是最新版本~')
+				}
+			});
+		});
+		setTimeout(function() {
+			defaultImg();
+			setTimeout(function() {
+				initImgPreview();
+			}, 300);
+		}, 500);
+		//修改性别
+		document.querySelector("#setSex").addEventListener("tap", function() {
+			var _id = "#my-setting-picture";
+			fnOpenTargetDiv(_id);
+		});
+		//修改头像
+		document.getElementById("head").addEventListener("tap", function() {
+			if (mui.os.plus) {
+				var a = [{
+					title: "拍照"
+				}, {
+					title: "从手机相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "修改头像",
+					cancel: "取消",
+					buttons: a
+				}, function(b) {
+					switch (b.index) {
+						case 0:
+							break;
+						case 1:
+							getImage();
+							break;
+						case 2:
+							galleryImg();
+							break;
+						default:
+							break
+					}
+				})
+			}
+		});
+		//默认头像
+		function defaultImg() {
+			if (mui.os.plus) {
+				plus.io.resolveLocalFileSystemURL("_doc/head.jpg", function(entry) {
+					var s = entry.fullPath + "?version=" + new Date().getTime();;
+					document.getElementById("settingUserIMG").src = s;
+				}, function(e) {
+					document.getElementById("settingUserIMG").src = '../img/head.jpg';
+				})
+			} else {
+				document.getElementById("settingUserIMG").src = '../img/head.jpg';
+			}
+		}
+		//打开相机拍照
+		function getImage() {
+			//获取摄像头对象
+			var c = plus.camera.getCamera();
+			c.captureImage(function(e) {
+				plus.io.resolveLocalFileSystemURL(e, function(entry) {
+					var s = entry.toLocalURL() + "?version=" + new Date().getTime();
+					console.log(s);
+					document.getElementById("settingUserIMG").src = s;
+					//变更大图预览的src
+					//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+					document.querySelector("#__mui-imageview__group .mui-slider-item img").src = s + "?version=" + new Date().getTime();;;
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(s) {
+				console.log("error" + s);
+			}, {
+				//拍照文件保存路径
+				filename: "_doc/head.jpg"
+			})
+		}
+		//从相册提取
+		function galleryImg() {
+			plus.gallery.pick(function(a) {
+				plus.io.resolveLocalFileSystemURL(a, function(entry) {
+					plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
+						root.getFile("head.jpg", {}, function(file) {
+							//文件已存在
+							file.remove(function() {
+								console.log("file remove success");
+								entry.copyTo(root, 'head.jpg', function(e) {
+										var e = e.fullPath + "?version=" + new Date().getTime();
+										document.getElementById("settingUserIMG").src = e;
+										//变更大图预览的src
+										//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+										document.querySelector("#__mui-imageview__group .mui-slider-item img").src = e + "?version=" + new Date().getTime();;
+									},
+									function(e) {
+										console.log('copy image fail:' + e.message);
+									});
+							}, function() {
+								console.log("delete image fail:" + e.message);
+							});
+						}, function() {
+							//文件不存在
+							entry.copyTo(root, 'head.jpg', function(e) {
+									var path = e.fullPath + "?version=" + new Date().getTime();
+									document.getElementById("settingUserIMG").src = path;
+									//变更大图预览的src
+									//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+									document.querySelector("#__mui-imageview__group .mui-slider-item img").src = path;
+								},
+								function(e) {
+									console.log('copy image fail:' + e.message);
+								});
+						});
+					}, function(e) {
+						console.log("get _www folder fail");
+					})
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(a) {}, {
+				filter: "image"
+			})
+		};
+		document.getElementById("settingUserIMG").addEventListener("tap", function(e) {
+			e.stopPropagation();
+		});
+
+		function initImgPreview() {
+			var imgs = document.querySelectorAll("#settingUserIMG");
+			imgs = mui.slice.call(imgs);
+			if (imgs && imgs.length > 0) {
+				var slider = document.createElement("div");
+				slider.setAttribute("id", "__mui-imageview__");
+				slider.classList.add("mui-slider");
+				slider.classList.add("mui-fullscreen");
+				slider.style.display = "none";
+				slider.addEventListener("tap", function() {
+					slider.style.display = "none";
+				});
+				slider.addEventListener("touchmove", function(event) {
+					event.preventDefault();
+				})
+				var slider_group = document.createElement("div");
+				slider_group.setAttribute("id", "__mui-imageview__group");
+				slider_group.classList.add("mui-slider-group");
+				imgs.forEach(function(value, index, array) {
+					//给图片添加点击事件，触发预览显示；
+					value.addEventListener('tap', function() {
+						slider.style.display = "block";
+						_slider.refresh();
+						_slider.gotoItem(index, 0);
+					})
+					var item = document.createElement("div");
+					item.classList.add("mui-slider-item");
+					var a = document.createElement("a");
+					var img = document.createElement("img");
+					img.setAttribute("src", value.src);
+					a.appendChild(img)
+					item.appendChild(a);
+					slider_group.appendChild(item);
+				});
+				slider.appendChild(slider_group);
+				document.body.appendChild(slider);
+				var _slider = mui(slider).slider();
+			}
+		}
+	</script>
+
+</html>
