@@ -486,22 +486,34 @@
 			</div>
 			<p>此示例基于环信 “WebIM SDK” + 环信 “移动客服” 实现，在环信 “移动客服面板” 能够查阅反馈信息。</p>
 		</div>
-		<!--拍照-->
-		<!--<div class="mutual-div mutual-div-bottom" id="my-setting-picture">
-			<div id="my-setting-take-photo" class="left-right-top-radius">拍照</div>
-			<div id="my-setting-choose-photo" class="left-right-bottom-radius">从手机相册选择</div>
-			<div id="my-setting-cancel" class="left-right-top-radius left-right-bottom-radius">取消</div>
-		</div>-->
-		<!--拍照end-->
+
 		<!--选择性别-->
-		<div class="mutual-div-flex-middle" id="sexList">
-			<div id="sexList-item">
-				
+		<div id="sexList-item" class="mutual-div">
+			<div id="postSexChoose">性别</div>
+			<div class="sexList-item-group" id="setSexMan" data-tap="false">
+				<div class="sexList-item-content">
+					<span class="sex-man-span"></span>
+				</div>
+				<span class="sexList-item-content">男</span>
+				<div class="sexList-item-content">
+					<span class="radio-check-span"></span>
+				</div>
+			</div>
+			<div class="sexList-item-group" id="setSexFemale" data-tap="false">
+				<div class="sexList-item-content">
+					<span class="sex-female-span"></span>
+				</div>
+				<span class="sexList-item-content">女</span>
+				<div class="sexList-item-content">
+					<span class="radio-check-span"></span>
+				</div>
 			</div>
 		</div>
 		<!--性别end-->
+
 	</body>
 	<script src="../js/mui.min.js "></script>
+	<script src="../js/exif.js"></script>
 	<script src="../js/mui.view.js "></script>
 	<script src='../js/feedback.js'></script>
 	<script src="../js/feedback-page.js"></script>
@@ -515,6 +527,61 @@
 		//初始化单页的区域滚动
 		mui('.mui-scroll-wrapper').scroll();
 		var view = viewApi.view;
+		//修改性别
+		document.querySelector("#setSex").addEventListener("tap", function() {
+			//
+			var _id = "#sexList-item";
+			fnOpenTargetDiv(_id);
+		});
+
+		function test(_this) {}
+		document.querySelector("#setSexMan").addEventListener("tap", function() {
+			var thisBtn = this;
+			//防止重复点击
+			if (thisBtn.getAttribute("data-tap") == "true") {
+				return;
+			}
+			thisBtn.setAttribute("data-tap", "true");
+			var _id = "#sexList-item";
+			var _text = document.querySelector("#setSex .my-setting-middle-text");
+			//处理点击逻辑
+			var radioList = document.querySelectorAll(".radio-check-span");
+			if (!radioList[0].classList.contains("radio-check-active") && radioList[1].classList.contains("radio-check-active")) {
+				radioList[0].classList.add("radio-check-active");
+				radioList[1].classList.remove("radio-check-active");
+				_text.innerText = "男";
+			} else if (!radioList[0].classList.contains("radio-check-active") && !radioList[1].classList.contains("radio-check-active")) {
+				radioList[0].classList.add("radio-check-active");
+				_text.innerText = "男";
+			}
+			//防止重复点击
+			fnCloseShade(_id);
+			setTimeout(function() {
+				thisBtn.setAttribute("data-tap", "false");
+			}, 200);
+		});
+		document.querySelector("#setSexFemale").addEventListener("tap", function() {
+			var thisBtn = this;
+			if (thisBtn.getAttribute("data-tap") == "true") {
+				return;
+			}
+			thisBtn.setAttribute("data-tap", "true");
+			var _id = "#sexList-item";
+			var _text = document.querySelector("#setSex .my-setting-middle-text");
+			var radioList = document.querySelectorAll(".radio-check-span");
+			if (!radioList[1].classList.contains("radio-check-active") && radioList[0].classList.contains("radio-check-active")) {
+				radioList[1].classList.add("radio-check-active");
+				radioList[0].classList.remove("radio-check-active");
+				_text.innerText = "女";
+			} else if (!radioList[1].classList.contains("radio-check-active") && !radioList[0].classList.contains("radio-check-active")) {
+				radioList[1].classList.add("radio-check-active");
+				_text.innerText = "女";
+			}
+			fnCloseShade(_id);
+			setTimeout(function() {
+				thisBtn.setAttribute("data-tap", "false");
+			}, 200);
+		});
 		(function($) {
 			//处理view的后退与webview后退
 			var oldBack = $.back;
@@ -597,11 +664,6 @@
 				initImgPreview();
 			}, 300);
 		}, 500);
-		//修改性别
-		document.querySelector("#setSex").addEventListener("tap", function() {
-			var _id = "#my-setting-picture";
-			fnOpenTargetDiv(_id);
-		});
 		//修改头像
 		document.getElementById("head").addEventListener("tap", function() {
 			if (mui.os.plus) {
@@ -643,18 +705,97 @@
 				document.getElementById("settingUserIMG").src = '../img/head.jpg';
 			}
 		}
+
+		function fnCompletePhotoOperate(url) {
+			document.querySelector("#settingUserIMG").src = url + "?version=" + new Date().getTime();
+			document.querySelector("#__mui-imageview__group .mui-slider-item img").src = url + "?version=" + new Date().getTime();
+		}
+
+		function fnPhotoOperate(url, completeFun) {
+			if (document.querySelector("#loadContainer")) {
+				document.body.removeChild(document.querySelector("#loadContainer"));
+			}
+			var imgElem = document.createElement("img");
+			imgElem.style.display = "none";
+			imgElem.setAttribute("src", url + "?version=" + new Date().getTime());
+			imgElem.setAttribute("id", "loadContainer");
+			imgElem.onload = function() {
+				EXIF.getData(imgElem, function() {
+					var orientation = EXIF.getTag(this, 'Orientation');
+					if (!isNaN(orientation)) {
+						console.log(orientation);
+						switch (orientation) {
+							case 6:
+								plus.zip.compressImage({
+										src: url,
+										dst: url,
+										overwrite: true,
+										rotate: 90 // 旋转90度
+									},
+									function() {
+										fnCompletePhotoOperate(url);
+									},
+									function(error) {
+										console.log("Compress error!" + error.message);
+									});
+								break;
+							case 8:
+								plus.zip.compressImage({
+										src: url,
+										dst: url,
+										overwrite: true,
+										rotate: 270 // 旋转270度
+									},
+									function() {
+										fnCompletePhotoOperate(url);
+									},
+									function(error) {
+										console.log("Compress error!" + error.message);
+									});
+								break;
+							case 1:
+								plus.zip.compressImage({
+										src: url,
+										dst: url,
+										overwrite: true,
+										rotate: 0
+									},
+									function() {
+										fnCompletePhotoOperate(url);
+									},
+									function(error) {
+										console.log("Compress error!" + error.message);
+									});
+								break;
+							case 3: //180度
+								plus.zip.compressImage({
+										src: url,
+										dst: url,
+										overwrite: true,
+										rotate: 180
+									},
+									function() {
+										fnCompletePhotoOperate(url);
+									},
+									function(error) {
+										console.log("Compress error!" + error.message);
+									});
+								break;
+						}
+					} 
+					else {
+						fnCompletePhotoOperate(url);
+					}
+				});
+			};
+		}
 		//打开相机拍照
 		function getImage() {
 			//获取摄像头对象
 			var c = plus.camera.getCamera();
 			c.captureImage(function(e) {
 				plus.io.resolveLocalFileSystemURL(e, function(entry) {
-					var s = entry.toLocalURL() + "?version=" + new Date().getTime();
-					console.log(s);
-					document.getElementById("settingUserIMG").src = s;
-					//变更大图预览的src
-					//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
-					document.querySelector("#__mui-imageview__group .mui-slider-item img").src = s + "?version=" + new Date().getTime();;;
+					fnPhotoOperate(entry.toLocalURL(), fnCompletePhotoOperate);
 				}, function(e) {
 					console.log("读取拍照文件错误：" + e.message);
 				});
@@ -667,19 +808,18 @@
 		}
 		//从相册提取
 		function galleryImg() {
+			//选择一张图，图片路径为a
 			plus.gallery.pick(function(a) {
-				plus.io.resolveLocalFileSystemURL(a, function(entry) {
-					plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
-						root.getFile("head.jpg", {}, function(file) {
-							//文件已存在
+				plus.io.resolveLocalFileSystemURL(a, function(entry) { //获取a的文件操作对象entry
+					plus.io.resolveLocalFileSystemURL("_doc/", function(root) { //获取doc目录的文件操作对象root
+						root.getFile("head.jpg", {
+							create: false
+						}, function(file) { //在doc目录下打开文件head.jpg,create:false表示不重新创建
+							//删除文件
 							file.remove(function() {
 								console.log("file remove success");
-								entry.copyTo(root, 'head.jpg', function(e) {
-										var e = e.fullPath + "?version=" + new Date().getTime();
-										document.getElementById("settingUserIMG").src = e;
-										//变更大图预览的src
-										//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
-										document.querySelector("#__mui-imageview__group .mui-slider-item img").src = e + "?version=" + new Date().getTime();;
+								entry.copyTo(root, 'head.jpg', function(e) { //将选中a:enpry的文件拷贝到doc:root，并重新命名为head 
+										fnPhotoOperate(e.fullPath, fnCompletePhotoOperate);
 									},
 									function(e) {
 										console.log('copy image fail:' + e.message);
@@ -688,13 +828,9 @@
 								console.log("delete image fail:" + e.message);
 							});
 						}, function() {
-							//文件不存在
+							//打开失败，文件不存在，直接复制
 							entry.copyTo(root, 'head.jpg', function(e) {
-									var path = e.fullPath + "?version=" + new Date().getTime();
-									document.getElementById("settingUserIMG").src = path;
-									//变更大图预览的src
-									//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
-									document.querySelector("#__mui-imageview__group .mui-slider-item img").src = path;
+									fnPhotoOperate(e.fullPath, fnCompletePhotoOperate);
 								},
 								function(e) {
 									console.log('copy image fail:' + e.message);
@@ -704,7 +840,8 @@
 						console.log("get _www folder fail");
 					})
 				}, function(e) {
-					console.log("读取拍照文件错误：" + e.message);
+					//选择文件失败回调
+					console.log("读取图片文件错误：" + e.message);
 				});
 			}, function(a) {}, {
 				filter: "image"

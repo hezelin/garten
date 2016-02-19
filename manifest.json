@@ -511,7 +511,9 @@
 					"js/flexible.debug.js",
 					"img/head2.jpeg",
 					"js/public.js",
-					"js/exif.js"
+					"js/exif.js",
+					"img/head.jpg",
+					"img/comuDescribe.png"
 				],
 				"refer": [],
 				"priority": 0

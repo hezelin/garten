@@ -805,7 +805,7 @@ $base-border: 1px solid #dcdcdc;
         word-spacing: -4px;     
         vertical-align: middle;
     }
-    .shop-span-arrow {
+    .shop-arrow-span {
         display: inline-block;
         //与标题的间距
         @include px2rem(margin-left, 37px);
@@ -952,7 +952,7 @@ $base-border: 1px solid #dcdcdc;
      * webview-my-shopcar
  */
 //题目右边垃圾桶图标
-.my-trader-title-right  .shop-span-delete {
+.my-trader-title-right  .shop-delete-span {
     display: inline-block;
 }
 .my-shop-car-check {
@@ -1256,10 +1256,14 @@ $base-border: 1px solid #dcdcdc;
 }
 //资料页面
 //用户头像
+#head {
+    @include px2rem(height, 150px);
+}
 .my-setting-user-img {
-    @include px2rem(width, 70px);
-    @include px2rem(height, 70px);
-    border-radius: 50% 50%;
+    @include px2rem(width, 120px);
+    @include px2rem(height, 120px);
+    border-radius: 100%;
+    overflow: hidden;
     display: inline-block;
 }
 //修改昵称页面
@@ -1346,13 +1350,71 @@ $base-border: 1px solid #dcdcdc;
     padding-left: 0 !important;
 }
 
-//修改性别
+//修改性别选项内容
 #sexList-item {
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    @include px2rem(margin-top, -214px);
+    margin-left: -40%;
+    
     width: 80%;
-    @include px2rem(height, 420px);
-    z-index: 1000;
+    @include px2rem(height, 427px);
+    z-index: 999;
     background-color: rgb(255, 255, 255);
     border-radius: 8px;
+}
+.sexList-item-group {
+    width: 90%;
+    @include px2rem(height, 171px);
+    margin-left: 5%;
+    margin-right: 5%;
+    display: table;
+}
+.sexList-item-content {
+    height: 100%;
+    @include font-dpr(18px);
+    display: table-cell;
+    vertical-align: middle;
+}
+.sexList-item-content:nth-child(1) {
+    @include px2rem(width, 100px);
+    
+}
+.sexList-item-content:nth-child(3) {
+    width: 60%;
+    text-align: right;
+}
+#setSexMan {
+    border-bottom: $base-border;
+}
+#postSexChoose {
+    @include px2rem(height, 80px);
+    @include px2rem(line-height, 80px);
+    @include font-dpr(18px);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: #FFFFFF;
+    background-color: $green-color;
+    text-align: center;
+}
+//性别图标
+.sex-man-span {
+    @include px2rem(width, 75px);
+    @include px2rem(height, 73px);
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-x,-905px);
+    @include px2rem(background-position-y,-185px);
+}
+.sex-female-span {
+    @include px2rem(width, 60px);
+    @include px2rem(height, 90px);
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-x,-910px);
+    @include px2rem(background-position-y,-85px);    
 }
 
 //遮罩
@@ -1363,7 +1425,6 @@ $base-border: 1px solid #dcdcdc;
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,.3);
-    
     z-index: 1;
     opacity: 0;
     -webkit-transition: all .4s ease;
@@ -1374,38 +1435,28 @@ $base-border: 1px solid #dcdcdc;
     opacity: 1;
 }
 
-//底部位置的通用动画弹出模块
+//通用动画弹出模块
 .mutual-div {
     //将div隐藏相对其正常位置自身8倍长度的地方
-    -webkit-transform: translate3d(0, 800%, 0);
-    transform: translate3d(0, 800%, 0);
-    -webkit-transition: -webkit-transform .2s, opacity .2s;
-    transition: transform .2s, opacity .2s; 
-    z-index: 999;
-    opacity: 1;
+    -webkit-transform: translate3d(0, 300%, 0);
+    transform: translate3d(0, 300%, 0);
+    -webkit-transition: -webkit-transform .7s, opacity .7s;
+    transition: transform .7s, opacity .7s; 
+//  z-index: 999;
+    opacity: 0;
 }
 .mutual-div-bottom {
     position: fixed;
     bottom: 0;
 }
-.mutual-div-flex-middle {
-    display: -webkit-flex;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0);
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-}
 .mutual-div-active {
     //把div放回正常位置
+    opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
 //照片预览容器
-.mui-fullscreen {
+#__mui-imageview__group {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
@@ -1563,19 +1614,32 @@ input[type=color],input[type=date],input[type=datetime-local],input[type=datetim
     @include px2rem(background-position-y,-279px);
 }
 //店铺右边箭头
-.shop-span-arrow {
+.shop-arrow-span {
     @include px2rem(width,16px);
     @include px2rem(height,28px);
     @include spirtes-img;
 }
 //垃圾桶图标
-.shop-span-delete {
+.shop-delete-span {
     @include px2rem(width, 37px);
     @include px2rem(height, 38px);
     @include spirtes-img;
     @include px2rem(background-position-x,0px);
     @include px2rem(background-position-y,-168px);
 }
+//单选按钮默认不选中 
+.radio-check-span {
+    @include px2rem(width, 46px);
+    @include px2rem(height, 46px);
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-x,0px);
+    @include px2rem(background-position-y,-336px);
+}
+.radio-check-active {
+    @include px2rem(background-position-x,-64px);
+}
+
 
 /**
      * ******** ******** ******** ********

@@ -756,7 +756,7 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
     letter-spacing: -4px;
     word-spacing: -4px;
     vertical-align: middle; }
-  .my-trader-title .shop-span-arrow {
+  .my-trader-title .shop-arrow-span {
     display: inline-block;
     margin-left: 0.49333rem; }
 
@@ -921,7 +921,7 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
      * 我的购物车
      * webview-my-shopcar
  */
-.my-trader-title-right .shop-span-delete {
+.my-trader-title-right .shop-delete-span {
   display: inline-block; }
 
 .my-shop-car-check {
@@ -1236,10 +1236,14 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   [data-dpr="3"] #my-setting-loginout {
     font-size: 57px; }
 
+#head {
+  height: 2rem; }
+
 .my-setting-user-img {
-  width: 0.93333rem;
-  height: 0.93333rem;
-  border-radius: 50% 50%;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 100%;
+  overflow: hidden;
   display: inline-block; }
 
 #saveNickName {
@@ -1332,11 +1336,76 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
     font-size: 54px; }
 
 #sexList-item {
+  position: absolute;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  margin-top: -2.85333rem;
+  margin-left: -40%;
   width: 80%;
-  height: 5.6rem;
-  z-index: 1000;
+  height: 5.69333rem;
+  z-index: 999;
   background-color: white;
   border-radius: 8px; }
+
+.sexList-item-group {
+  width: 90%;
+  height: 2.28rem;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: table; }
+
+.sexList-item-content {
+  height: 100%;
+  font-size: 18px;
+  display: table-cell;
+  vertical-align: middle; }
+  [data-dpr="2"] .sexList-item-content {
+    font-size: 36px; }
+  [data-dpr="3"] .sexList-item-content {
+    font-size: 54px; }
+
+.sexList-item-content:nth-child(1) {
+  width: 1.33333rem; }
+
+.sexList-item-content:nth-child(3) {
+  width: 60%;
+  text-align: right; }
+
+#setSexMan {
+  border-bottom: 1px solid #dcdcdc; }
+
+#postSexChoose {
+  height: 1.06667rem;
+  line-height: 1.06667rem;
+  font-size: 18px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: #FFFFFF;
+  background-color: #83C347;
+  text-align: center; }
+  [data-dpr="2"] #postSexChoose {
+    font-size: 36px; }
+  [data-dpr="3"] #postSexChoose {
+    font-size: 54px; }
+
+.sex-man-span {
+  width: 1rem;
+  height: 0.97333rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: -12.06667rem;
+  background-position-y: -2.46667rem; }
+
+.sex-female-span {
+  width: 0.8rem;
+  height: 1.2rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: -12.13333rem;
+  background-position-y: -1.13333rem; }
 
 .mutual-shade {
   position: fixed;
@@ -1355,33 +1424,22 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   opacity: 1; }
 
 .mutual-div {
-  -webkit-transform: translate3d(0, 800%, 0);
-  transform: translate3d(0, 800%, 0);
-  -webkit-transition: -webkit-transform .2s, opacity .2s;
-  transition: transform .2s, opacity .2s;
-  z-index: 999;
-  opacity: 1; }
+  -webkit-transform: translate3d(0, 300%, 0);
+  transform: translate3d(0, 300%, 0);
+  -webkit-transition: -webkit-transform .7s, opacity .7s;
+  transition: transform .7s, opacity .7s;
+  opacity: 0; }
 
 .mutual-div-bottom {
   position: fixed;
   bottom: 0; }
 
-.mutual-div-flex-middle {
-  display: -webkit-flex;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center; }
-
 .mutual-div-active {
+  opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0); }
 
-.mui-fullscreen {
+#__mui-imageview__group {
   background-color: rgba(0, 0, 0, 0.9); }
 
 .my-setting-list-span {
@@ -1537,19 +1595,31 @@ select {
   background-position-x: 0rem;
   background-position-y: -3.72rem; }
 
-.shop-span-arrow {
+.shop-arrow-span {
   width: 0.21333rem;
   height: 0.37333rem;
   background: url(../img/img.png);
   background-size: 36.21333rem 10.81333rem; }
 
-.shop-span-delete {
+.shop-delete-span {
   width: 0.49333rem;
   height: 0.50667rem;
   background: url(../img/img.png);
   background-size: 36.21333rem 10.81333rem;
   background-position-x: 0rem;
   background-position-y: -2.24rem; }
+
+.radio-check-span {
+  width: 0.61333rem;
+  height: 0.61333rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: 0rem;
+  background-position-y: -4.48rem; }
+
+.radio-check-active {
+  background-position-x: -0.85333rem; }
 
 /**
      * ******** ******** ******** ********

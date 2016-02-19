@@ -100,7 +100,7 @@ function fnOpenShade() {
 	return _shade;
 }
 /**
- * @description 关闭蒙版与目标div动作
+ * @description 关闭遮罩及div
  */
 function fnCloseShade(_id) {
 	//点击遮罩，将遮罩关闭，然后延迟200ms关闭弹出div，后移除遮罩
@@ -122,15 +122,23 @@ function fnCloseShade(_id) {
 	}
 }
 /**
- * @description 处理要显示的div块
+ * @description 这个方法使用动画打开一个带遮罩的目标div块
+ * @param {String} _id 目标div块的id，目标div块还要有mutual-div类
  */
 function fnOpenTargetDiv(_id) {
 	var _shade = fnOpenShade();
 	fnToggleElemClass(document.querySelector(_id), "mutual-div-active");
+	//为遮罩注册关闭事件，遮罩是动态创建的，不存在重复注册事件的情况
 	_shade.addEventListener("tap", function() {
 		fnCloseShade(_id);
 	});
 }
+
+/**
+ * 
+ */
+
+
 
 if (window.plus) {
 	plusReady();

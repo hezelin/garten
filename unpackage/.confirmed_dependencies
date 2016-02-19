@@ -105,7 +105,10 @@
 			"js/public.js",
 			"css/mui.min.css",
 			"css/style.css",
-			"js/flexible.debug.js"
+			"js/flexible.debug.js",
+			"fonts/mui.ttf",
+			"img/head.jpg",
+			"img/comuDescribe.png"
 		]
 	},
 	"webview-nav.html": {
