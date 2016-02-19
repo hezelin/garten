@@ -706,6 +706,7 @@
 			}
 		}
 
+		//照片处理完毕后的动作，例如上传
 		function fnCompletePhotoOperate(url) {
 			document.querySelector("#settingUserIMG").src = url + "?version=" + new Date().getTime();
 			document.querySelector("#__mui-imageview__group .mui-slider-item img").src = url + "?version=" + new Date().getTime();
