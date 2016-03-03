@@ -524,17 +524,15 @@
 		var viewApi = mui('#app').view({
 			defaultPage: '#setting'
 		});
-		//初始化单页的区域滚动
+		// 初始化单页的区域滚动
 		mui('.mui-scroll-wrapper').scroll();
 		var view = viewApi.view;
-		//修改性别
+		
+		// 修改性别
 		document.querySelector("#setSex").addEventListener("tap", function() {
-			//
 			var _id = "#sexList-item";
 			fnOpenTargetDiv(_id);
 		});
-
-		function test(_this) {}
 		document.querySelector("#setSexMan").addEventListener("tap", function() {
 			var thisBtn = this;
 			//防止重复点击
@@ -583,13 +581,20 @@
 			}, 200);
 		});
 		(function($) {
-			//处理view的后退与webview后退
+			//重写back事件，处理view的后退与webview后退
 			var oldBack = $.back;
 			$.back = function() {
 				//如果头像预览是打开状态，那么返回键关闭预览
 				var pictureView = document.querySelector("#__mui-imageview__");
 				if (pictureView && pictureView.style.display == "block") {
 					pictureView.style.display = "none";
+					return;
+				}
+				//如果性别处于打开状态，返回键关闭性别选择窗口
+				var id = "#sexList-item";
+				var sexView = document.querySelector(id);
+				if (sexView.classList.contains("mutual-div-active")) {
+					fnCloseShade(id);
 					return;
 				}
 				if (viewApi.canBack()) { //如果view可以后退，则执行view的后退

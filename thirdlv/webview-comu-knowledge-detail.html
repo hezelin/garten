@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>详情</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: rgb(246, 246, 246);
+				/*background-color: #efeff4;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--轮播图尺寸规定为750*350-->
+		<div id="slider" class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+				<!-- (循环轮播：第一个节点是最后一张图片) 节点数量等于轮播图片+1-->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="../img/test-slider3.png">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../img/test-slider4.png">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../img/test-slider2.png">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../img/test-slider3.png">
+					</a>
+				</div>
+				<!-- 额外增加的一个节点(最后一个节点与第二图片相同) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<<img src="../img/test-slider4.png">
+					</a>
+				</div>
+			</div>
+			<div class="mui-slider-indicator mui-text-center">
+				<!--对应图片个数-->
+				<div class="mui-indicator mui-active home-slider-text-size"></div>
+				<div class="mui-indicator home-slider-text-size"></div>
+				<div class="mui-indicator home-slider-text-size"></div>
+			</div>
+		</div>
+
+		<div class="comu-knowledge-item">
+			<label class="comu-knowledge-title">生长环境</label>
+			<hr class="comu-knowledge-hr">
+			<p class="comu-knowledge-article">《植物生长与环境》分三篇十三章。第一篇讲述植物生长发育的物质基础，包括植物细胞、植物组织和器官、光合作用、呼吸作用、植物体内有机物的代谢与运输。第二篇讲述植物生长与环境调控，包括植物生长与土壤环境、水分、温度、养分、气候环境的关系，以及植物的环境胁迫生理。第三篇讲述植物的生长发育和繁殖，包括植物的生长发育，植物的生殖、衰老和脱落。
+			</p>
+		</div>
+
+		<div class="comu-knowledge-item">
+			<label class="comu-knowledge-title">营养价值</label>
+			<hr class="comu-knowledge-hr">
+			<p class="comu-knowledge-article">营养价值指在特定食品中的营养素及其质和量的关系。一般认为含有一定量的人体所需的营养素的食品，就具有一定的营养价值；含有较多营养素且质量较高的食品，则营养价值较高。
+			</p>
+		</div>
+
+		<div class="comu-knowledge-item">
+			<label class="comu-knowledge-title">生长环境</label>
+			<hr class="comu-knowledge-hr">
+			<p class="comu-knowledge-article">《植物生长与环境》分三篇十三章。第一篇讲述植物生长发育的物质基础，包括植物细胞、植物组织和器官、光合作用、呼吸作用、植物体内有机物的代谢与运输。第二篇讲述植物生长与环境调控，包括植物生长与土壤环境、水分、温度、养分、气候环境的关系，以及植物的环境胁迫生理。第三篇讲述植物的生长发育和繁殖，包括植物的生长发育，植物的生殖、衰老和脱落。
+			</p>
+		</div>
+		<!--弹出菜单按钮-->
+		<a href="#bottomPopover" class="fixed-btn fixed-list">
+		</a>
+		<!--弹出菜单-->
+		<div id="bottomPopover" class="mui-popover mui-popover-bottom">
+			<div class="mui-popover-arrow"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell"><a href="#" class="fixed-btn-item">蔬菜</a>
+				</li>
+				<li class="mui-table-view-cell"><a href="#" class="fixed-btn-item">施肥</a>
+				</li>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script>
+			mui.init();
+			//设置轮播图轮播周期
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+				interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0；
+			});
+		</script>
+	</body>
+
+</html>

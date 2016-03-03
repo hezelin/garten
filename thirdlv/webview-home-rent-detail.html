@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>商品</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: rgb(255, 255, 255);
+				/*background-color: #efeff4;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="showBarContainer">
+			<div id="showBar" data-left="0" style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms; transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);">
+				<div class="showBar-item">
+					<a class="showBar-a">
+						<img class="showBar-img" src="../img/tradeListbg1.png">
+					</a>
+				</div>
+				<div class="showBar-item">
+					<a class="showBar-a">
+						<img class="showBar-img" src="../img/tradeListbg1.png">
+					</a>
+				</div>
+				<div class="showBar-item">
+					<a class="showBar-a">
+						<img class="showBar-img" src="../img/tradeListbg1.png">
+					</a>
+				</div>
+				<div class="showBar-item">
+					<a class="showBar-a">
+						<img class="showBar-img" src="../img/tradeListbg1.png">
+					</a>
+				</div>
+				<div class="showBar-item">
+					<a class="showBar-a">
+						<img class="showBar-img" src="../img/tradeListbg1.png">
+					</a>
+				</div>
+			</div>
+			<div class="pageIndex">
+
+			</div>
+		</div>
+		<div id="testData1"></div>
+		<div id="testData2"></div>
+		<!--详细介绍-->
+		<span class="home-rent-detail-name">
+			认租玉米地 (xxxxxxx) xxxxx
+		</span>
+		<span class="home-rent-detail-money">
+			<em>&yen;&nbsp;<label class="home-rent-detail-money-num">250</label></em>/亩
+		</span>
+		<div class="home-rent-detail-suit">
+			<div class="home-rent-detail-suit-item">
+				<div class="home-rent-detail-suit-item-left">适合种植</div>
+				<div class="home-rent-detail-suit-item-right">玉米、花生</div>
+			</div>
+			<div class="home-rent-detail-suit-item">
+				<div class="home-rent-detail-suit-item-left">适合种植</div>
+				<div class="home-rent-detail-suit-item-right">玉米、花生</div>
+			</div>
+			<div class="home-rent-detail-suit-item">
+				<div class="home-rent-detail-suit-item-left">适合种植</div>
+				<div class="home-rent-detail-suit-item-right">玉米、花生</div>
+			</div>
+			<div class="home-rent-detail-suit-item">
+				<div class="home-rent-detail-suit-item-left">适合种植</div>
+				<div class="home-rent-detail-suit-item-right">玉米、花生</div>
+			</div>
+		</div>
+		<div class="home-rent-detail-shop">
+			<div class="home-rent-detail-shop-left">
+				<span class="home-rent-detail-shop-logo" style="background: url(../img/TradeLogo.png);     background-size: cover;">					
+				</span>
+			</div>
+			<div class="home-rent-detail-shop-middle">
+				<span class="home-rent-detail-shop-name">
+					某某商家
+				</span>
+			</div>
+			<div class="home-rent-detail-shop-right">
+				<span class="mui-icon mui-icon-forward">
+				</span>
+			</div>
+		</div>
+		<div class="home-rent-detail-shop-detail">
+			<div class="home-rent-detail-shop-detail-btn">
+				<div class="home-rent-detail-shop-detail-content">
+					<span class="home-rent-detail-shop-detail-content-num">38</span>
+					<div>
+						<span class="shop-wares-span"></span>
+						<span class="home-rent-detail-shop-detail-content-name">商品</span>
+					</div>
+				</div>
+			</div>
+			<div class="home-rent-detail-shop-detail-btn">
+				<div class="home-rent-detail-shop-detail-content">
+					<span class="home-rent-detail-shop-detail-content-num">6</span>
+					<div>
+						<span class="shop-wares-assess-span"></span>
+						<span class="home-rent-detail-shop-detail-content-name">评价</span>
+					</div>
+				</div>
+			</div>
+			<div class="home-rent-detail-shop-detail-btn">
+				<div class="home-rent-detail-shop-detail-content">
+					<span class="home-rent-detail-shop-detail-content-num">3</span>
+					<div>
+						<span class="shop-wares-share-span"></span>
+						<span class="home-rent-detail-shop-detail-content-name">分享</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script>
+			mui.init();
+			//展示图代码加载处理
+			//			var elements = document.querySelectorAll(".showBar-img");
+			//			var len = elements.length;
+			//			elements.forEach(loadImg);
+			//			function fnShowBar() {};
+			//			function loadImg(elem, index, array) {
+			//				elem.onload = function() {
+			//					len--;
+			//					if (len === 0) {
+			//						
+			//					}
+			//				}
+			//			}
+			
+
+			mui.plusReady(function() {
+				setTimeout(function() {
+//					fnShowBarOperate();
+				},1000);
+			});		
+			
+//			window.onload = function() {
+//				fnShowBarOperate();
+//			}
+			
+			function fnShowBarOperate() {
+				//获取屏幕视口宽度
+				var screenScale = plus.screen.scale;
+				var screenWidth = plus.screen.resolutionWidth * plus.screen.scale;
+
+//				var screenScale = document.getElementsByTagName("html")[0].getAttribute("data-dpr");
+//				var screenWidth = document.getElementsByTagName("body")[0].offsetWidth;
+//				console.log(screenWidth);
+//				console.log(screenScale);
+
+				//初始化页标
+				document.querySelector(".pageIndex").innerText = 1 + "/" + document.querySelectorAll(".showBar-img").length;
+				var nStartX = 0;
+				var startPosition = 0;
+				var container = document.querySelector("#showBarContainer");
+				var oBar = document.querySelector("#showBar");
+				container.addEventListener("touchstart", function(e) {	
+					e.preventDefault();
+					nStartX = parseInt(e.targetTouches[0].pageX);		
+					startPosition = oBar.getAttribute("data-left");
+				});
+				container.addEventListener("touchmove", function(e) {
+					e.preventDefault();
+					var touch = e.targetTouches[0];
+					var _left = parseInt(oBar.getAttribute("data-left"));
+					var _L = parseInt(_left + touch.pageX  - nStartX);
+					oBar.setAttribute("data-left", _L);
+					oBar.style.transform = "translate3d(" + _L + "px, 0px, 0px)";
+					oBar.style.WebkitTransform = "translate3d(" + _L + "px, 0px, 0px)";
+					nStartX = parseInt(touch.pageX);			
+				});
+				container.addEventListener("touchend", function(e) {
+					e.preventDefault();
+					//已移动距离
+					var Range = startPosition - oBar.getAttribute("data-left");
+					var Middle = screenWidth / 2;
+					var Count = document.querySelectorAll(".showBar-img").length - 1;
+					var _left = parseFloat(oBar.getAttribute("data-left"));
+
+					Range = Range * screenScale;
+					if (Range >= 0) {
+						//向左移
+						if (Range >= Middle) {
+							_left = _left - (screenWidth - Range);
+						}
+						else {
+							_left = _left + Range;
+						}
+					} else {
+						//向右移
+						Range = Math.abs(Range);
+						if (Range >= Middle) {
+							_left = _left + (screenWidth - Range);
+						}
+						else {
+							_left = _left - Range;
+						}
+					}
+					if (_left >= 0) {
+						//不能继续右移
+						_left = 0;
+					} else if (_left <= -screenWidth * Count) {
+						//不能继续左移
+						_left = -screenWidth * Count;
+					}
+					_left = _left / screenScale;
+					oBar.style.transform = "translate3d(" + _left + "px, 0px, 0px)";
+					oBar.style.WebkitTransform = "translate3d(" + _left + "px, 0px, 0px)";
+					oBar.style.transitionDuration = "500ms"; //500
+					oBar.style.webkitTransitionDuration = "500ms"; //500
+
+					fnTimeOut = setTimeout(function(){
+						oBar.style.transitionDuration = "0ms";
+						oBar.style.webkitTransitionDuration = "0ms";
+					},500);
+					
+//					console.log(fnTimeOut);
+
+
+					oBar.setAttribute("data-left", _left);
+					//更改图片索引
+					var currentIMG = parseInt(- _left / screenWidth) + 1;
+					document.querySelector(".pageIndex").innerText = currentIMG + "/" + (Count + 1);
+				});
+			}
+		</script>
+	</body>
+
+</html>

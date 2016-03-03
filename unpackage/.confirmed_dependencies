@@ -14,6 +14,9 @@
 			"fonts/mui.ttf",
 			"js/flexible.debug.js",
 			"img/img.png"
+		],
+		"refer": [
+			"secondlv/webview-comu-knowledge-list.html"
 		]
 	},
 	"index.html": {
@@ -35,7 +38,8 @@
 			"webview-my.html",
 			"webview-home.html",
 			"webview-header.html",
-			"secondlv/webview-my-setting.html"
+			"secondlv/webview-my-setting.html",
+			"webview-trade-header.html"
 		]
 	},
 	"webview-my.html": {
@@ -74,7 +78,14 @@
 			"img/testhome2.png",
 			"img/logo.png",
 			"img/test-slider.png",
-			"js/flexible_css.debug.js"
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"css/style.css",
+			"css/mui.min.css",
+			"img/img2.png"
+		],
+		"refer": [
+			"secondlv/webview-home-rent.html"
 		]
 	},
 	"webview-header.html": {
@@ -83,13 +94,16 @@
 			"js/flexible.debug.js",
 			"js/public.js",
 			"secondlv/webview-my-order.html",
-			"img/img.png"
+			"img/img.png",
+			"secondlv/webview-home-rent.html"
 		],
 		"refer": [
 			"secondlv/webview-my-collect.html",
 			"secondlv/webview-my-shopcar.html",
 			"secondlv/webview-my-userbag.html",
-			"secondlv/webview-my-order.html"
+			"secondlv/webview-my-order.html",
+			"secondlv/webview-comu-knowledge-list.html",
+			"secondlv/webview-home-rent.html"
 		]
 	},
 	"secondlv/webview-my-setting.html": {
@@ -108,12 +122,16 @@
 			"js/flexible.debug.js",
 			"fonts/mui.ttf",
 			"img/head.jpg",
-			"img/comuDescribe.png"
+			"img/comuDescribe.png",
+			"img/iconfont-tianjia.png"
 		]
 	},
 	"webview-nav.html": {
 		"resources": [
-			"js/flexible_css.debug.js"
+			"js/flexible_css.debug.js",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"js/flexible.debug.js"
 		]
 	},
 	"secondlv/webview-my-collect.html": {
@@ -124,7 +142,10 @@
 			"js/public.js",
 			"js/flexible.debug.js",
 			"img/fruitTree.png",
-			"img/plowLand.png"
+			"img/plowLand.png",
+			"img/img.png",
+			"css/mui.min.css",
+			"css/style.css"
 		]
 	},
 	"secondlv/webview-my-order.html": {
@@ -148,7 +169,13 @@
 			"js/flexible_css.debug.js",
 			"js/mui.min.js",
 			"js/public.js",
-			"js/flexible.debug.js"
+			"js/flexible.debug.js",
+			"img/fruitTree.png",
+			"img/img.png",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/plowLand.png"
 		]
 	},
 	"secondlv/webview-my-userbag.html": {
@@ -157,6 +184,98 @@
 			"js/flexible_css.debug.js",
 			"js/mui.min.js",
 			"js/public.js",
+			"js/flexible.debug.js",
+			"img/img.png",
+			"css/mui.min.css",
+			"css/style.css"
+		]
+	},
+	"secondlv/webview-comu-knowledge-list.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/test-knowledge5.png",
+			"js/mui.min.js",
+			"img/test-knowledge2.png",
+			"img/test-knowledge1.png",
+			"fonts/mui.ttf",
+			"img/test-knowledge4.png",
+			"js/public.js",
+			"img/test-knowledge3.png",
+			"js/flexible.debug.js"
+		]
+	},
+	"secondlv/webview-home-rent.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/tradeListbg2.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"img/TradeLogo.png",
+			"js/flexible.debug.js",
+			"img/tradeListbg1.png",
+			"css/mui.min.css",
+			"css/style.css"
+		],
+		"refer": [
+			"secondlv/webview-trade-header.html",
+			"webview-trade-header.html",
+			"thirdlv/webview-home-rent-detail.html"
+		]
+	},
+	"secondlv/webview-trade-header.html": {
+		"resources": [
+			"js/flexible_css.debug.js",
+			"fonts/mui.ttf",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/flexible.debug.js"
+		]
+	},
+	"webview-trade-header.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"img/img2.png",
+			"thirdlv/webview-home-rent-detail.html"
+		],
+		"refer": [
+			"thirdlv/webview-home-detail.html",
+			"thirdlv/webview-home-rent-detail.html"
+		]
+	},
+	"thirdlv/webview-home-detail.html": {
+		"resources": [
+			"img/tradeListbg1.png",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js"
+		]
+	},
+	"thirdlv/webview-home-rent-detail.html": {
+		"resources": [
+			"img/TradeLogo.png",
+			"img/tradeListbg1.png",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/img2.png",
 			"js/flexible.debug.js"
 		]
 	}

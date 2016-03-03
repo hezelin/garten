@@ -64,11 +64,6 @@
     @include px2rem(background-size,(1153px, 591px));
 }
 
-@mixin spirtes-img3 {
-    background: url(../img/img3.png);
-    @include px2rem(background-size,(505px, 87px));
-}
-
 /**
      * ******** ******** ******** ********
      *去除默认内外边距，去除line-height
@@ -89,6 +84,9 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
 $base-color: #efeff4;
 $green-color: #83C347;
 $base-border: 1px solid #dcdcdc;
+.bg-color-green {
+    background-color: $green-color !important;
+}
 
 /**
      * ******** ******** ******** ********
@@ -157,7 +155,6 @@ $base-border: 1px solid #dcdcdc;
  */
 //首页没有title，直接左右两边都设为50%
 #home-header-control {
-    background-color: $green-color;
     .header-control-left-btn {
         //28 + 60 + 10
         @include px2rem(width, 98px);
@@ -165,9 +162,12 @@ $base-border: 1px solid #dcdcdc;
     .header-control-right-btn {
         width: 50%;
     }
-    //加粗三点与搜索
+}
+.header-control-greenBold {
+    background-color: $green-color !important;
+    //加粗图标
     .mui-icon{
-        font-weight: bold;
+        font-weight: bold !important;
     }
 }
 .app-log-div {
@@ -211,7 +211,7 @@ $base-border: 1px solid #dcdcdc;
 //五个按钮各自的样式
 .home-nav-tab-item {
     width: 20%;
-    @include px2rem(height, 190px);
+//  @include px2rem(height, 190px);
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -219,36 +219,41 @@ $base-border: 1px solid #dcdcdc;
 //按钮图标
 .home-nav-tab-item-icon {
     @include px2rem(width, 91px);
-    @include px2rem(height, 87px);
+    @include px2rem(height, 93px);
     @include px2rem(margin-bottom, 7px);
     display: inline-block;
 }
 //按钮图标
 .home-rent {
-    @include spirtes-img3;
-    @include px2rem(background-position-x, 0px);
+    @include spirtes-img2;
+    @include px2rem(background-position-x, -600px);
+    @include px2rem(background-position-y, -483px);
 }
 .home-activity {
-    @include spirtes-img3;
-    @include px2rem(background-position-x, -103px);
+    @include spirtes-img2;
+    @include px2rem(background-position-x, -704px);
+    @include px2rem(background-position-y, -483px);
 }
 .home-shop {
-    @include spirtes-img3;
-    @include px2rem(background-position-x, -206px);
+    @include spirtes-img2;
+    @include px2rem(background-position-x, -808px);
+    @include px2rem(background-position-y, -483px);
 }
 .home-eat {
-    @include spirtes-img3;
-    @include px2rem(background-position-x, -309px);
+    @include spirtes-img2;
+    @include px2rem(background-position-x, -911px);
+    @include px2rem(background-position-y, -483px);
 }
 .home-live {
-    @include spirtes-img3;
-    @include px2rem(background-position-x, -415px);
+    @include spirtes-img2;
+    @include px2rem(background-position-x, -1017px);
+    @include px2rem(background-position-y, -483px);
 }
 //按钮文字
 .home-nav-tab-item-title {
     @include font-dpr(16px);
     color: #000000;
-    display: inline-block;
+    display: block;
 }
 //推荐内容
 //大容器
@@ -303,6 +308,270 @@ $base-border: 1px solid #dcdcdc;
     @include px2rem(margin-left, 10px);
     @include px2rem(margin-right, 10px);
 }
+/**
+     * ******** ******** ******** ********
+     * webview-home-rent
+     * 认租商城活动农家乐民宿列表
+ */
+.home-rent-item {
+    @include px2rem(height, 486px);
+}
+.home-rent-bg {
+    @include px2rem(height, 380px);
+    position: relative;
+}
+//金额背景
+.home-rent-money-bg {
+    @include px2rem(border-top-width, 35px);
+    border-top-color: rgba(0, 0, 0, 0.35);
+    @include px2rem(border-bottom-width, 35px);
+    border-bottom-color: rgba(0, 0, 0, 0.35);
+    @include px2rem(border-left-width, 165px);
+    border-left-color: rgba(0, 0, 0, 0.3);
+    @include px2rem(border-right-width, 20px);
+    border-right-color: transparent;
+    border-style: solid;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    @include px2rem(bottom, 67px);
+}
+//金额内容
+.home-rent-money-content {
+    @include px2rem(height, 70px);
+    @include px2rem(line-height, 70px);    
+    @include font-dpr(15px);
+    color: #FFFFFF;
+    display: inline-block;
+    position: absolute;
+    @include px2rem(left, 10px);
+    @include px2rem(bottom, 67px);
+    em {
+        @include font-dpr(20px);
+    }
+}
+//店铺名
+.home-rent-name {
+    @include px2rem(height, 70px);
+    @include px2rem(line-height, 70px);
+    @include px2rem(margin-right, 100px);
+    @include px2rem(margin-bottom, 6px);
+    @include font-dpr(16px);
+    color: #FFFFFF;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+//店铺logo
+.home-rent-logo {
+    @include px2rem(width, 70px);
+    @include px2rem(height, 70px);
+    @include px2rem(margin-right, 14px);
+    @include px2rem(margin-bottom, 8px);
+    border-radius: 50% 50%;
+    border: 2px solid #FFFFFF;
+    box-sizing: content-box;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.home-rent-context{
+    @include px2rem(margin-left, 27px);
+    @include px2rem(margin-top, 18px);
+    @include font-dpr(14px);
+    //文本不换行
+    word-break: keep-all;
+    white-space: nowrap;
+    //超出行内容
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+/**
+     * ******** ******** ******** ********
+     * webview-home-rent-detail
+     * webview-home-rent-introduce
+     * 商品详情
+ */
+//展示图模块区域
+#showBarContainer {
+    position: relative;
+    overflow: hidden;
+}
+#showBar {
+    font-size: 0;
+    position: relative;
+    white-space: nowrap;
+    transition: all 0s linear; 
+}
+.showBar-item {
+    width: 100%;
+    display: inline-block;
+    position: relative;    
+}
+.showBar-a {
+    display: block;
+    position: relative;
+}
+.showBar-img {
+    width: 100%;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+//展示图索引
+.pageIndex {
+    @include px2rem(width, 85px);
+    @include px2rem(height, 85px);
+    @include px2rem(line-height, 85px);
+    text-align: center;
+    border-radius: 50% 50%;
+    background-color: rgba(0, 0, 0, .3);
+    @include font-dpr(20px);
+    color: #FFFFFF;
+    position: absolute;
+    @include px2rem(right, 28px);
+    @include px2rem(bottom, 15px);
+}
+//展示图模块区域end
+//详细介绍
+//商品名
+.home-rent-detail-name {
+    @include px2rem(margin-top, 18px);
+    @include px2rem(margin-bottom, 21px);
+    @include px2rem(padding-left, 28px);
+    @inlcude px2rem(padding-right, 28px);
+    display: block;
+    @include font-dpr(20px);
+    color: #000000;
+}
+//商品价格
+.home-rent-detail-money {
+    @include px2rem(margin-bottom, 45px);
+    @include px2rem(padding-left, 28px);
+    @inlcude px2rem(padding-right, 28px);
+    display: block;
+    @include font-dpr(18px);
+    color: #848484;
+    em {
+        color: #f05363;
+    }
+}
+//适合耕种
+.home-rent-detail-suit {
+    background-color: rgb(245, 245, 245);
+}
+.home-rent-detail-suit-item {
+    @include px2rem(height, 96px);
+    @include px2rem(padding-left, 28px);
+    @include px2rem(padding-right, 28px);
+    @include font-dpr(16px);
+    border-bottom: $base-border;
+}
+.home-rent-detail-suit-item-left {
+    width: 44%;
+    height: 100%;
+    @include px2rem(line-height, 96px);
+    display: inline-block;
+    color: #848484;
+    text-align: left;
+}
+.home-rent-detail-suit-item-right {
+    @include px2rem(line-height, 96px);
+    height: 100%;
+    display: inline-block;
+    color: #000000;
+    text-align: left;
+}
+//商铺名字
+.home-rent-detail-shop {
+    width: 100%;
+    @include px2rem(height, 96px);
+    border-bottom: $base-border;
+    display: table;
+}
+.home-rent-detail-shop-left {
+    @include px2rem(width, 110px);
+    display: table-cell;
+    vertical-align: middle;
+}
+.home-rent-detail-shop-logo {
+    @include px2rem(width, 60px);
+    @include px2rem(height, 60px);
+    @include px2rem(margin-left, 28px);
+    display: inline-block;
+}
+.home-rent-detail-shop-middle {
+    @include font-dpr(15px);
+    color: #696969;
+    display: table-cell;
+    vertical-align: middle;
+}
+.home-rent-detail-shop-right {
+    @include px2rem(width, 90px);
+    color: rgb(166,166,166);
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+
+//店铺介绍入口
+.home-rent-detail-shop-detail {
+    width: 100%;
+    @include px2rem(height, 132px);
+    display: table;
+}
+.home-rent-detail-shop-detail-btn {
+    width: 33.3%;
+    display: table-cell;
+    vertical-align: middle;
+}
+.home-rent-detail-shop-detail-content {
+    border-right: $base-border;
+    text-align: center;
+}
+//数量
+.home-rent-detail-shop-detail-content-num {
+    @include font-dpr(21px);
+    color: #000000;
+}
+//标题
+.home-rent-detail-shop-detail-content-name {
+    @include font-dpr(15px);
+    color: #737373;
+    vertical-align: middle;
+}
+//商品详情页面底部的商品按钮
+.shop-wares-span {
+    @include px2rem(width,32px);
+    @include px2rem(height,33px); 
+    @include spirtes-img2;
+    display: inline-block;
+    vertical-align: middle;
+    @include px2rem(background-position-x, 1px);
+    @include px2rem(background-position-y, 0px);
+}
+//商品详情页面底部的评价按钮
+.shop-wares-assess-span {
+    @include px2rem(width,32px);
+    @include px2rem(height,33px); 
+    @include spirtes-img2;
+    display: inline-block;
+    vertical-align: middle;
+    @include px2rem(background-position-x, -46px);
+    @include px2rem(background-position-y, 0px);
+}
+//商品详情页面底部的分享按钮
+.shop-wares-share-span {
+    @include px2rem(width,32px);
+    @include px2rem(height,33px); 
+    @include spirtes-img2;
+    display: inline-block;
+    vertical-align: middle;
+    @include px2rem(background-position-x, -95px);
+    @include px2rem(background-position-y, 0px);
+}
+
 /**
      * ******** ******** ******** ********
      * webview-header
@@ -444,6 +713,175 @@ $base-border: 1px solid #dcdcdc;
     -webkit-transform: scale(1.0);
     }
 }
+/**
+     * ******** ******** ******** ********
+     * webview-trade-header
+     * 商品详情页模板
+ */
+.header-control-whiteBold {
+    background-color: white !important;
+    //加粗头部图标,并设置颜色
+    .mui-icon{
+        color: rgb(166,166,166) !important;
+        font-weight: bold !important;
+    }
+}
+.trade-header-container {
+    font-size: 0;
+}
+.trade-header-nav {
+    width: 25%;
+    @include px2rem(line-height, 96px);
+    border-bottom: 2px solid #FFFFFF;
+    display: inline-block;
+    @include font-dpr(18px);
+}
+.trade-header-nav-active {
+    color: $green-color;
+    border-bottom-color: $green-color;
+}
+//商品模板底部按钮
+.trade-foot-control {
+    width: 100%;
+    @include px2rem(height, 100px);
+    display: table;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    font-size: 0px;
+}
+.trade-foot-control-btn {
+    width: 50%;
+    height: 100%;
+    background-color: #9d9d9d;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0;
+}
+.trade-foot-control-logo {
+    width: 45%;
+    height: 100%;
+    display: inline-block;
+}
+.trade-foot-control-name {
+    display: inline-block;
+    @include font-dpr(15px);
+    color: #FFFFFF;
+    vertical-align: middle;
+    @include px2rem(margin-left, 15px);
+}
+//购物车图标
+.shop-car-span {
+    @include px2rem(width,56px);
+    @include px2rem(height,56px); 
+    @include spirtes-img2;
+    display: inline-block;
+    @include px2rem(background-position-x, 1px);
+    @include px2rem(background-position-y, -519px);
+    vertical-align: middle;
+}
+//购买图标
+.shop-buy-span {
+    @include px2rem(width,56px);
+    @include px2rem(height,56px); 
+    @include spirtes-img2;
+    display: inline-block;
+    vertical-align: middle;
+    @include px2rem(background-position-x, -71px);
+    @include px2rem(background-position-y, -519px);
+}
+//点击购买后的弹出框
+#buyDiv {
+    width: 100%;
+    @include px2rem(height, 549px);
+    background-color: rgb(255, 255, 255);
+    z-index: 999;
+    position: absolute;
+    bottom: 0;
+}
+//弹出框第一栏
+.buyDiv-title {
+    @include px2rem(height, 185px);
+    border-bottom: $base-border;
+    position: relative;
+    @include px2rem(line-height, 185px);
+}
+.buyDiv-title-img {
+    @include px2rem(width, 112px);
+    @include px2rem(height, 112px);
+    @include px2rem(margin-left, 28px);
+    @include px2rem(margin-right, 18px);
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 6px;
+}
+.buyDiv-title-context {
+    @include font-dpr(18px);
+    color: #000000;
+    display: inline-block;
+}
+#buyDivClose {
+    @include px2rem(width,57px);
+    @include px2rem(height,57px); 
+    @include spirtes-img2;
+    display: inline-block;
+    @include px2rem(background-position-x, -142px);
+    @include px2rem(background-position-y, -517px);
+    position: absolute;
+    @include px2rem(top, 40px);
+    @include px2rem(right, 31px);
+}
+//第二栏
+.buyDiv-count {
+    @include px2rem(height, 236px);
+    border-bottom: $base-border;
+    font-size: 0;
+    position: relative;
+}
+.buyDiv-count-left {
+    width: 70%;
+    position: absolute;
+    display: inline-block;
+}
+.buyDiv-count-title {    
+    @include px2rem(margin-left, 38px);
+    @include px2rem(margin-top, 50px);
+    display: inline-block;
+    @include font-dpr(18px);
+    color: #848484;
+}
+.buyDiv-count-right {
+    height: 100%;
+    position: absolute;
+    @include px2rem(right, 31px);
+    display: inline-block;
+    .mui-numbox {
+        @include px2rem(margin-top, 36px);
+        @include px2rem(margin-bottom, 47px);
+    }
+}
+//金额区域
+.buyDiv-money {
+    @include font-dpr(15px);
+    display: block;
+}
+//第三栏
+.buyDiv-btn {
+    @include px2rem(height, 127px);
+    text-align: center;
+}
+#btnPostBuy {
+    width: 90%;
+    height: 62%;
+    @include px2rem(margin-top, 28px);
+    padding: 0;
+    background-color: $green-color;
+    @include font-dpr(18px);
+    color: #FFFFFF;
+}
+
+
 
 /**
      * ******** ******** ******** ********
@@ -1005,13 +1443,6 @@ $base-border: 1px solid #dcdcdc;
      * ******** ******** ******** ********
      * webview-comu社区
  */
-#comu-header-control {
-    background-color: $green-color;
-    //右边三点加粗
-    .mui-icon {
-    font-weight: bold;
-    }
-}
 //第一个div，带上边距
 .comu-nav {
     width: 100%;
@@ -1149,9 +1580,6 @@ $base-border: 1px solid #dcdcdc;
     @include px2rem(height, 70px);
     display: table;
     background-color: white;
-//  border-left: 1px solid #efeff4;
-//  border-right: 1px solid #efeff4;
-//  border-bottom: 1px solid #efeff4;
     font-size: 0;
     div {
         width: 50%;
@@ -1185,6 +1613,102 @@ $base-border: 1px solid #dcdcdc;
     @include font-dpr(16px);
     color: #737373;
 }
+//漂浮按钮
+.fixed-btn {
+    @include px2rem(width,107px);
+    @include px2rem(height,107px); 
+    @include spirtes-img2;
+    display: inline-block;
+    position: fixed;
+    @include px2rem(right, 26px);
+}
+//列表样式
+.fixed-list {
+    @include px2rem(bottom, 140px);
+    @include px2rem(background-position-x, -567px);
+    @include px2rem(background-position-y, -237px);
+}
+//加号样式
+.fixed-add {
+    @include px2rem(bottom, 30px);
+    @include px2rem(background-position-x, -439px);
+    @include px2rem(background-position-y, -237px);
+}
+//弹出内容样式
+.fixed-btn-item {
+    @include px2rem(height, 70px);
+    @include px2rem(line-height, 70px);
+    text-align: center;
+    color: rgb(124,124,124) !important;
+    padding: 0 !important;
+}
+/**
+     * ******** ******** ******** ********
+     * webview-comu-knowledge百科详情页面
+ */
+.comu-knowledge-item {
+    @include px2rem(margin-top, 35px);
+    @include px2rem(margin-left, 25px);
+    @include px2rem(margin-right, 25px);
+    @include px2rem(padding-bottom, 30px);
+}
+.comu-knowledge-hr {
+    @include px2rem(margin-top, 16px);
+    @include px2rem(margin-bottom, 21px);
+}
+.comu-knowledge-title {
+    @include font-dpr(18px);
+    color: #282828;
+}
+.comu-knowledge-article {
+    @include font-dpr(16px);
+    color: #737373;
+    line-height: 1.2;
+}
+/**
+     * ******** ******** ******** ********
+     * webview-comu-knowledge-list 农耕知识列表
+ */
+.comu-knowledge-list-container {
+    font-size: 0px;
+}
+.comu-knowledge-list-item {
+    @include px2rem(width, 333px);
+    @include px2rem(height, 350px);
+    @include px2rem(margin-top, 31px);
+    display: inline-block;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative;
+}
+@media only screen and (min-width:1243px) {
+    .comu-knowledge-list-item {
+        @include px2rem(margin-left, 16px);
+    }
+}
+@media only screen and (max-width:1242px) {
+    .comu-knowledge-list-item {
+        @include px2rem(margin-left, 28px);
+    }
+}
+.comu-knowledge-list-item-title {
+    width: 100%;
+    @include px2rem(height, 61px);
+    @include px2rem(padding-left, 18px);
+    background-color: rgba(0,0,0,.4);
+    @include font-dpr(16px);
+    color: #FFFFFF;
+    @include px2rem(line-height, 61px);
+    position: absolute;
+    bottom: 0;
+    //文本不换行
+    word-break: keep-all;
+    white-space: nowrap;
+    //超出行内容
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 /**
      * ******** ******** ******** ********
      * webview-my-setting设置页面
@@ -1205,6 +1729,7 @@ $base-border: 1px solid #dcdcdc;
 .my-setting-item-margin-bottom {
     @include px2rem(margin-bottom, 23px);
 }
+
 //子容器
 .my-setting-left {
     @include px2rem(width, 230px);
@@ -1437,17 +1962,13 @@ $base-border: 1px solid #dcdcdc;
 
 //通用动画弹出模块
 .mutual-div {
-    //将div隐藏相对其正常位置自身8倍长度的地方
+    //将div隐藏相对其正常位置自身3倍长度的地方
     -webkit-transform: translate3d(0, 300%, 0);
     transform: translate3d(0, 300%, 0);
-    -webkit-transition: -webkit-transform .7s, opacity .7s;
-    transition: transform .7s, opacity .7s; 
+    -webkit-transition: -webkit-transform .8s, opacity .8s;
+    transition: transform .8s, opacity .8s; 
 //  z-index: 999;
     opacity: 0;
-}
-.mutual-div-bottom {
-    position: fixed;
-    bottom: 0;
 }
 .mutual-div-active {
     //把div放回正常位置
@@ -1721,8 +2242,8 @@ input[type=color],input[type=date],input[type=datetime-local],input[type=datetim
     font-size: 18px;
     @include font-dpr(18px);
 }
-//重写标题右侧那三点
+//统一字体图标的大小（页面头部控制栏）
 .mui-icon {
-    @include font-dpr(21px);
+    @include font-dpr(24px);
 }
 

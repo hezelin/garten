@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				background-color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control header-control-whiteBold">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class=" mui-icon mui-icon-arrowleft header-control-left-btn-span"></span>
+			</div>
+			<div class="trade-header-container">
+				<span class="trade-header-nav trade-header-nav-active" data-url="../thirdlv/webview-home-rent-detail.html">商品</span>
+				<span class="trade-header-nav">详情</span>
+				<span class="trade-header-nav">评论</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span mui-icon mui-icon-more"></span>
+			</div>
+		</div>
+		<div class="trade-foot-control">
+			<div class="trade-foot-control-btn">
+				<span class="shop-car-span"></span>
+				<span class="trade-foot-control-name">购物车</span>
+			</div>
+			<div class="trade-foot-control-btn bg-color-green">
+				<span class="shop-buy-span"></span>
+				<span class="trade-foot-control-name">立即购买</span>
+			</div>
+		</div>
+
+		<!--购买div，动画形式弹出-->
+		<div id="buyDiv">
+			<div class="buyDiv-title">
+				<span class="buyDiv-title-img" style="background: url(img/shop-detail.png); background-size: cover;"></span>
+				<span class="buyDiv-title-context">某某农家乐 xxxxxx</span>
+				<span id="buyDivClose"></span>
+			</div>
+			<div class="buyDiv-count">
+				<div class="buyDiv-count-left">
+					<label class="buyDiv-count-title">
+					购买数量
+					</label>
+				</div>
+				<div class="buyDiv-count-right">
+					<!--数字选择器-->
+					<div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
+						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+						<input id="test" class="mui-input-numbox" type="number" value="1" />
+						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					</div>
+					<span class="buyDiv-money">总价：&yen;&nbsp;<em>2000</em></span>
+				</div>
+			</div>
+			<div class="buyDiv-btn">
+				<button id="btnPostBuy">完成</button>
+			</div>
+		</div>
+		<!--end-->
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
+		<script>
+			mui.init();
+			mui(".trade-header-container").on("tap", ".trade-header-nav", function() {
+				if (!this.classList.contains("trade-header-nav-active")) {
+					document.querySelector(".trade-header-nav-active").classList.remove("trade-header-nav-active");
+					this.classList.add("trade-header-nav-active");
+				}
+			});
+			mui.plusReady(function() {
+				mui(".trade-header-container").on("tap", ".trade-header-nav", function() {
+					var btn = this;
+					if (btn.classList.contains("loading")) {
+						return;
+					}
+					btn.classList.add("Loading");
+					var nwaiting = plus.nativeUI.showWaiting();
+					//					var newWebview = plus.webview.create("")
+				});
+			});
+		</script>
+	</body>
+
+</html>

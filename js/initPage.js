@@ -31,6 +31,8 @@ function plusReady() {
 		}
 	};
 
+	//
+	//改成一个加载队列
 	var subpages = ['webview-home.html', 'webview-comu.html', 'webview-nav.html', 'webview-my.html'];
 	var aniShow = {};
 	var self = plus.webview.currentWebview();
@@ -45,22 +47,23 @@ function plusReady() {
 				styles: fnSetSubpageStyle(0,111)
 			});
 			sub.onloaded = function() {
-				var delayTime = mui.os.ios ? 100 : 600;
+				var delayTime = mui.os.ios ? 100 : 1000;
 				setTimeout(function() {
 					//四个基本标签和父模板加载完后，延时关闭app启动页
 					//接下来预加载头部webviewhead与webviewbody
 					plus.navigator.closeSplashscreen();
+					//预载公用父模板
 					var webHead = mui.preload({
 						url: "webview-header.html",
 						id: "webview-header",
 						styles: fnSetSubpageStyle(0, 0)
 					});
-					var webBody = mui.preload({
-						url: "",
-						id: "webview-body",
-						styles: fnSetSubpageStyle(110, 0)
+					//预载商品父模板
+					var trade = mui.preload({
+						url: "webview-trade-header.html",
+						id: "webview-trade-header",
+						styles: fnSetSubpageStyle(0, 0)
 					});
-					webHead.append(webBody);
 				}, delayTime);
 			}
 		} else {

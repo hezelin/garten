@@ -22,7 +22,7 @@
 	</head>
 
 	<body>
-		<div class="header-control" id="home-header-control">
+		<div class="header-control header-control-greenBold" id="home-header-control">
 			<div class="header-control-left-btn  mui-action-back app-log-div">
 				<span class="app-log-span header-control-left-btn-span"></span>
 			</div>
@@ -30,12 +30,8 @@
 				<span id="webview-head-title">开心农场</span>
 			</div>
 			<div class="header-control-right-btn">
-				<span class="header-control-right-btn-span">
-					<span class="mui-icon mui-icon-more"></span>
-				</span>
-				<span class="header-control-right-btn-span">
-					<span class="mui-icon mui-icon-search"></span>
-				</span>
+				<span class="header-control-right-btn-span mui-icon mui-icon-more"></span>
+				<span class="header-control-right-btn-span mui-icon mui-icon-search"></span>
 			</div>
 		</div>
 		<div id="head-holder"></div>
@@ -84,7 +80,7 @@
 			</div>
 			<div class="home-nav-tab-item">
 				<span class="home-nav-tab-item-icon home-activity"></span>
-				<span class="home-nav-tab-item-title">活动</span>
+				<span class="home-nav-tab-item-title">亲子</span>
 			</div>
 			<div class="home-nav-tab-item">
 				<span class="home-nav-tab-item-icon home-shop"></span>
@@ -162,6 +158,64 @@
 			var gallery = mui('.mui-slider');
 			gallery.slider({
 				interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0；
+			});
+			mui.plusReady(function() {
+				var navlist = document.getElementsByClassName("home-nav-tab-item");
+				navlist[0].addEventListener("tap", function(e) {
+					fnLoadPage(e.currentTarget, {
+						url: "secondlv/webview-home-rent.html",
+						top: 108,
+						bottom: 0
+					}, {
+						title: "认租",
+						rightBtn: '<span class="header-control-right-btn-span mui-icon mui-icon-search"></span>',
+						styleClass: "header-control-greenBold"
+					});
+				});
+				navlist[1].addEventListener("tap", function(e) {
+					fnLoadPage(e.currentTarget, {
+						url: "secondlv/webview-home-rent.html",
+						top: 108,
+						bottom: 0
+					}, {
+						title: "活动",
+						rightBtn: '<span class="header-control-right-btn-span mui-icon mui-icon-search"></span>',
+						styleClass: "header-control-greenBold"
+					});
+				});
+				navlist[2].addEventListener("tap", function(e) {
+					fnLoadPage(e.currentTarget, {
+						url: "secondlv/webview-home-rent.html",
+						top: 108,
+						bottom: 0
+					}, {
+						title: "商城",
+						rightBtn: '<span class="header-control-right-btn-span mui-icon mui-icon-search"></span>',
+						styleClass: "header-control-greenBold"
+					});
+				});
+				navlist[3].addEventListener("tap", function(e) {
+					fnLoadPage(e.currentTarget, {
+						url: "secondlv/webview-home-rent.html",
+						top: 108,
+						bottom: 0
+					}, {
+						title: "农家乐",
+						rightBtn: '<span class="header-control-right-btn-span mui-icon mui-icon-search"></span>',
+						styleClass: "header-control-greenBold"
+					});
+				});
+				navlist[4].addEventListener("tap", function(e) {
+					fnLoadPage(e.currentTarget, {
+						url: "secondlv/webview-home-rent.html",
+						top: 108,
+						bottom: 0
+					}, {
+						title: "民宿",
+						rightBtn: '<span class="header-control-right-btn-span mui-icon mui-icon-search"></span>',
+						styleClass: "header-control-greenBold"
+					});
+				});
 			});
 		</script>
 	</body>

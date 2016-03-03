@@ -28,6 +28,9 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
      * 基础绿色
      * 基础边框样式
  */
+.bg-color-green {
+  background-color: #83C347 !important; }
+
 /**
      * ******** ******** ******** ********
      * index页
@@ -91,14 +94,15 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
      * webview-home
      * 首页
  */
-#home-header-control {
-  background-color: #83C347; }
-  #home-header-control .header-control-left-btn {
-    width: 1.30667rem; }
-  #home-header-control .header-control-right-btn {
-    width: 50%; }
-  #home-header-control .mui-icon {
-    font-weight: bold; }
+#home-header-control .header-control-left-btn {
+  width: 1.30667rem; }
+#home-header-control .header-control-right-btn {
+  width: 50%; }
+
+.header-control-greenBold {
+  background-color: #83C347 !important; }
+  .header-control-greenBold .mui-icon {
+    font-weight: bold !important; }
 
 .app-log-div {
   height: 0.8rem; }
@@ -138,46 +142,50 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 
 .home-nav-tab-item {
   width: 20%;
-  height: 2.53333rem;
   display: table-cell;
   vertical-align: middle;
   text-align: center; }
 
 .home-nav-tab-item-icon {
   width: 1.21333rem;
-  height: 1.16rem;
+  height: 1.24rem;
   margin-bottom: 0.09333rem;
   display: inline-block; }
 
 .home-rent {
-  background: url(../img/img3.png);
-  background-size: 6.73333rem 1.16rem;
-  background-position-x: 0rem; }
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  background-position-x: -8rem;
+  background-position-y: -6.44rem; }
 
 .home-activity {
-  background: url(../img/img3.png);
-  background-size: 6.73333rem 1.16rem;
-  background-position-x: -1.37333rem; }
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  background-position-x: -9.38667rem;
+  background-position-y: -6.44rem; }
 
 .home-shop {
-  background: url(../img/img3.png);
-  background-size: 6.73333rem 1.16rem;
-  background-position-x: -2.74667rem; }
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  background-position-x: -10.77333rem;
+  background-position-y: -6.44rem; }
 
 .home-eat {
-  background: url(../img/img3.png);
-  background-size: 6.73333rem 1.16rem;
-  background-position-x: -4.12rem; }
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  background-position-x: -12.14667rem;
+  background-position-y: -6.44rem; }
 
 .home-live {
-  background: url(../img/img3.png);
-  background-size: 6.73333rem 1.16rem;
-  background-position-x: -5.53333rem; }
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  background-position-x: -13.56rem;
+  background-position-y: -6.44rem; }
 
 .home-nav-tab-item-title {
   font-size: 16px;
   color: #000000;
-  display: inline-block; }
+  display: block; }
   [data-dpr="2"] .home-nav-tab-item-title {
     font-size: 32px; }
   [data-dpr="3"] .home-nav-tab-item-title {
@@ -234,6 +242,293 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 .home-news-content-item-photo-list:nth-child(2) {
   margin-left: 0.13333rem;
   margin-right: 0.13333rem; }
+
+/**
+     * ******** ******** ******** ********
+     * webview-home-rent
+     * 认租商城活动农家乐民宿列表
+ */
+.home-rent-item {
+  height: 6.48rem; }
+
+.home-rent-bg {
+  height: 5.06667rem;
+  position: relative; }
+
+.home-rent-money-bg {
+  border-top-width: 0.46667rem;
+  border-top-color: rgba(0, 0, 0, 0.35);
+  border-bottom-width: 0.46667rem;
+  border-bottom-color: rgba(0, 0, 0, 0.35);
+  border-left-width: 2.2rem;
+  border-left-color: rgba(0, 0, 0, 0.3);
+  border-right-width: 0.26667rem;
+  border-right-color: transparent;
+  border-style: solid;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  bottom: 0.89333rem; }
+
+.home-rent-money-content {
+  height: 0.93333rem;
+  line-height: 0.93333rem;
+  font-size: 15px;
+  color: #FFFFFF;
+  display: inline-block;
+  position: absolute;
+  left: 0.13333rem;
+  bottom: 0.89333rem; }
+  [data-dpr="2"] .home-rent-money-content {
+    font-size: 30px; }
+  [data-dpr="3"] .home-rent-money-content {
+    font-size: 45px; }
+  .home-rent-money-content em {
+    font-size: 20px; }
+    [data-dpr="2"] .home-rent-money-content em {
+      font-size: 40px; }
+    [data-dpr="3"] .home-rent-money-content em {
+      font-size: 60px; }
+
+.home-rent-name {
+  height: 0.93333rem;
+  line-height: 0.93333rem;
+  margin-right: 1.33333rem;
+  margin-bottom: 0.08rem;
+  font-size: 16px;
+  color: #FFFFFF;
+  position: absolute;
+  right: 0;
+  bottom: 0; }
+  [data-dpr="2"] .home-rent-name {
+    font-size: 32px; }
+  [data-dpr="3"] .home-rent-name {
+    font-size: 48px; }
+
+.home-rent-logo {
+  width: 0.93333rem;
+  height: 0.93333rem;
+  margin-right: 0.18667rem;
+  margin-bottom: 0.10667rem;
+  border-radius: 50% 50%;
+  border: 2px solid #FFFFFF;
+  box-sizing: content-box;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  bottom: 0; }
+
+.home-rent-context {
+  margin-left: 0.36rem;
+  margin-top: 0.24rem;
+  font-size: 14px;
+  word-break: keep-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block; }
+  [data-dpr="2"] .home-rent-context {
+    font-size: 28px; }
+  [data-dpr="3"] .home-rent-context {
+    font-size: 42px; }
+
+/**
+     * ******** ******** ******** ********
+     * webview-home-rent-detail
+     * webview-home-rent-introduce
+     * 商品详情
+ */
+#showBarContainer {
+  position: relative;
+  overflow: hidden; }
+
+#showBar {
+  font-size: 0;
+  position: relative;
+  white-space: nowrap;
+  transition: all 0s linear; }
+
+.showBar-item {
+  width: 100%;
+  display: inline-block;
+  position: relative; }
+
+.showBar-a {
+  display: block;
+  position: relative; }
+
+.showBar-img {
+  width: 100%;
+  -webkit-user-select: none;
+  -ms-user-select: none; }
+
+.pageIndex {
+  width: 1.13333rem;
+  height: 1.13333rem;
+  line-height: 1.13333rem;
+  text-align: center;
+  border-radius: 50% 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 20px;
+  color: #FFFFFF;
+  position: absolute;
+  right: 0.37333rem;
+  bottom: 0.2rem; }
+  [data-dpr="2"] .pageIndex {
+    font-size: 40px; }
+  [data-dpr="3"] .pageIndex {
+    font-size: 60px; }
+
+.home-rent-detail-name {
+  margin-top: 0.24rem;
+  margin-bottom: 0.28rem;
+  padding-left: 0.37333rem;
+  @inlcude px2rem(padding-right, 28px);
+  display: block;
+  font-size: 20px;
+  color: #000000; }
+  [data-dpr="2"] .home-rent-detail-name {
+    font-size: 40px; }
+  [data-dpr="3"] .home-rent-detail-name {
+    font-size: 60px; }
+
+.home-rent-detail-money {
+  margin-bottom: 0.6rem;
+  padding-left: 0.37333rem;
+  @inlcude px2rem(padding-right, 28px);
+  display: block;
+  font-size: 18px;
+  color: #848484; }
+  [data-dpr="2"] .home-rent-detail-money {
+    font-size: 36px; }
+  [data-dpr="3"] .home-rent-detail-money {
+    font-size: 54px; }
+  .home-rent-detail-money em {
+    color: #f05363; }
+
+.home-rent-detail-suit {
+  background-color: whitesmoke; }
+
+.home-rent-detail-suit-item {
+  height: 1.28rem;
+  padding-left: 0.37333rem;
+  padding-right: 0.37333rem;
+  font-size: 16px;
+  border-bottom: 1px solid #dcdcdc; }
+  [data-dpr="2"] .home-rent-detail-suit-item {
+    font-size: 32px; }
+  [data-dpr="3"] .home-rent-detail-suit-item {
+    font-size: 48px; }
+
+.home-rent-detail-suit-item-left {
+  width: 44%;
+  height: 100%;
+  line-height: 1.28rem;
+  display: inline-block;
+  color: #848484;
+  text-align: left; }
+
+.home-rent-detail-suit-item-right {
+  line-height: 1.28rem;
+  height: 100%;
+  display: inline-block;
+  color: #000000;
+  text-align: left; }
+
+.home-rent-detail-shop {
+  width: 100%;
+  height: 1.28rem;
+  border-bottom: 1px solid #dcdcdc;
+  display: table; }
+
+.home-rent-detail-shop-left {
+  width: 1.46667rem;
+  display: table-cell;
+  vertical-align: middle; }
+
+.home-rent-detail-shop-logo {
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-left: 0.37333rem;
+  display: inline-block; }
+
+.home-rent-detail-shop-middle {
+  font-size: 15px;
+  color: #696969;
+  display: table-cell;
+  vertical-align: middle; }
+  [data-dpr="2"] .home-rent-detail-shop-middle {
+    font-size: 30px; }
+  [data-dpr="3"] .home-rent-detail-shop-middle {
+    font-size: 45px; }
+
+.home-rent-detail-shop-right {
+  width: 1.2rem;
+  color: #a6a6a6;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right; }
+
+.home-rent-detail-shop-detail {
+  width: 100%;
+  height: 1.76rem;
+  display: table; }
+
+.home-rent-detail-shop-detail-btn {
+  width: 33.3%;
+  display: table-cell;
+  vertical-align: middle; }
+
+.home-rent-detail-shop-detail-content {
+  border-right: 1px solid #dcdcdc;
+  text-align: center; }
+
+.home-rent-detail-shop-detail-content-num {
+  font-size: 21px;
+  color: #000000; }
+  [data-dpr="2"] .home-rent-detail-shop-detail-content-num {
+    font-size: 42px; }
+  [data-dpr="3"] .home-rent-detail-shop-detail-content-num {
+    font-size: 63px; }
+
+.home-rent-detail-shop-detail-content-name {
+  font-size: 15px;
+  color: #737373;
+  vertical-align: middle; }
+  [data-dpr="2"] .home-rent-detail-shop-detail-content-name {
+    font-size: 30px; }
+  [data-dpr="3"] .home-rent-detail-shop-detail-content-name {
+    font-size: 45px; }
+
+.shop-wares-span {
+  width: 0.42667rem;
+  height: 0.44rem;
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  display: inline-block;
+  vertical-align: middle;
+  background-position-x: 0.01333rem;
+  background-position-y: 0rem; }
+
+.shop-wares-assess-span {
+  width: 0.42667rem;
+  height: 0.44rem;
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  display: inline-block;
+  vertical-align: middle;
+  background-position-x: -0.61333rem;
+  background-position-y: 0rem; }
+
+.shop-wares-share-span {
+  width: 0.42667rem;
+  height: 0.44rem;
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  display: inline-block;
+  vertical-align: middle;
+  background-position-x: -1.26667rem;
+  background-position-y: 0rem; }
 
 /**
      * ******** ******** ******** ********
@@ -383,6 +678,189 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   40% {
     transform: scale(1);
     -webkit-transform: scale(1); } }
+/**
+     * ******** ******** ******** ********
+     * webview-trade-header
+     * 商品详情页模板
+ */
+.header-control-whiteBold {
+  background-color: white !important; }
+  .header-control-whiteBold .mui-icon {
+    color: #a6a6a6 !important;
+    font-weight: bold !important; }
+
+.trade-header-container {
+  font-size: 0; }
+
+.trade-header-nav {
+  width: 25%;
+  line-height: 1.28rem;
+  border-bottom: 2px solid #FFFFFF;
+  display: inline-block;
+  font-size: 18px; }
+  [data-dpr="2"] .trade-header-nav {
+    font-size: 36px; }
+  [data-dpr="3"] .trade-header-nav {
+    font-size: 54px; }
+
+.trade-header-nav-active {
+  color: #83C347;
+  border-bottom-color: #83C347; }
+
+.trade-foot-control {
+  width: 100%;
+  height: 1.33333rem;
+  display: table;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  font-size: 0px; }
+
+.trade-foot-control-btn {
+  width: 50%;
+  height: 100%;
+  background-color: #9d9d9d;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 0; }
+
+.trade-foot-control-logo {
+  width: 45%;
+  height: 100%;
+  display: inline-block; }
+
+.trade-foot-control-name {
+  display: inline-block;
+  font-size: 15px;
+  color: #FFFFFF;
+  vertical-align: middle;
+  margin-left: 0.2rem; }
+  [data-dpr="2"] .trade-foot-control-name {
+    font-size: 30px; }
+  [data-dpr="3"] .trade-foot-control-name {
+    font-size: 45px; }
+
+.shop-car-span {
+  width: 0.74667rem;
+  height: 0.74667rem;
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  display: inline-block;
+  background-position-x: 0.01333rem;
+  background-position-y: -6.92rem;
+  vertical-align: middle; }
+
+.shop-buy-span {
+  width: 0.74667rem;
+  height: 0.74667rem;
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  display: inline-block;
+  vertical-align: middle;
+  background-position-x: -0.94667rem;
+  background-position-y: -6.92rem; }
+
+#buyDiv {
+  width: 100%;
+  height: 7.32rem;
+  background-color: white;
+  z-index: 999;
+  position: absolute;
+  bottom: 0; }
+
+.buyDiv-title {
+  height: 2.46667rem;
+  border-bottom: 1px solid #dcdcdc;
+  position: relative;
+  line-height: 2.46667rem; }
+
+.buyDiv-title-img {
+  width: 1.49333rem;
+  height: 1.49333rem;
+  margin-left: 0.37333rem;
+  margin-right: 0.24rem;
+  vertical-align: middle;
+  display: inline-block;
+  border-radius: 6px; }
+
+.buyDiv-title-context {
+  font-size: 18px;
+  color: #000000;
+  display: inline-block; }
+  [data-dpr="2"] .buyDiv-title-context {
+    font-size: 36px; }
+  [data-dpr="3"] .buyDiv-title-context {
+    font-size: 54px; }
+
+#buyDivClose {
+  width: 0.76rem;
+  height: 0.76rem;
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  display: inline-block;
+  background-position-x: -1.89333rem;
+  background-position-y: -6.89333rem;
+  position: absolute;
+  top: 0.53333rem;
+  right: 0.41333rem; }
+
+.buyDiv-count {
+  height: 3.14667rem;
+  border-bottom: 1px solid #dcdcdc;
+  font-size: 0;
+  position: relative; }
+
+.buyDiv-count-left {
+  width: 70%;
+  position: absolute;
+  display: inline-block; }
+
+.buyDiv-count-title {
+  margin-left: 0.50667rem;
+  margin-top: 0.66667rem;
+  display: inline-block;
+  font-size: 18px;
+  color: #848484; }
+  [data-dpr="2"] .buyDiv-count-title {
+    font-size: 36px; }
+  [data-dpr="3"] .buyDiv-count-title {
+    font-size: 54px; }
+
+.buyDiv-count-right {
+  height: 100%;
+  position: absolute;
+  right: 0.41333rem;
+  display: inline-block; }
+  .buyDiv-count-right .mui-numbox {
+    margin-top: 0.48rem;
+    margin-bottom: 0.62667rem; }
+
+.buyDiv-money {
+  font-size: 15px;
+  display: block; }
+  [data-dpr="2"] .buyDiv-money {
+    font-size: 30px; }
+  [data-dpr="3"] .buyDiv-money {
+    font-size: 45px; }
+
+.buyDiv-btn {
+  height: 1.69333rem;
+  text-align: center; }
+
+#btnPostBuy {
+  width: 90%;
+  height: 62%;
+  margin-top: 0.37333rem;
+  padding: 0;
+  background-color: #83C347;
+  font-size: 18px;
+  color: #FFFFFF; }
+  [data-dpr="2"] #btnPostBuy {
+    font-size: 36px; }
+  [data-dpr="3"] #btnPostBuy {
+    font-size: 54px; }
+
 /**
      * ******** ******** ******** ********
      * webview-my个人中心页面
@@ -979,11 +1457,6 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
      * ******** ******** ******** ********
      * webview-comu社区
  */
-#comu-header-control {
-  background-color: #83C347; }
-  #comu-header-control .mui-icon {
-    font-weight: bold; }
-
 .comu-nav {
   width: 100%;
   height: 3.13333rem;
@@ -1162,6 +1635,104 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   [data-dpr="2"] .comu-review-discuss-count, [data-dpr="2"] .comu-review-praise-count {
     font-size: 32px; }
   [data-dpr="3"] .comu-review-discuss-count, [data-dpr="3"] .comu-review-praise-count {
+    font-size: 48px; }
+
+.fixed-btn {
+  width: 1.42667rem;
+  height: 1.42667rem;
+  background: url(../img/img2.png);
+  background-size: 15.37333rem 7.88rem;
+  display: inline-block;
+  position: fixed;
+  right: 0.34667rem; }
+
+.fixed-list {
+  bottom: 1.86667rem;
+  background-position-x: -7.56rem;
+  background-position-y: -3.16rem; }
+
+.fixed-add {
+  bottom: 0.4rem;
+  background-position-x: -5.85333rem;
+  background-position-y: -3.16rem; }
+
+.fixed-btn-item {
+  height: 0.93333rem;
+  line-height: 0.93333rem;
+  text-align: center;
+  color: #7c7c7c !important;
+  padding: 0 !important; }
+
+/**
+     * ******** ******** ******** ********
+     * webview-comu-knowledge百科详情页面
+ */
+.comu-knowledge-item {
+  margin-top: 0.46667rem;
+  margin-left: 0.33333rem;
+  margin-right: 0.33333rem;
+  padding-bottom: 0.4rem; }
+
+.comu-knowledge-hr {
+  margin-top: 0.21333rem;
+  margin-bottom: 0.28rem; }
+
+.comu-knowledge-title {
+  font-size: 18px;
+  color: #282828; }
+  [data-dpr="2"] .comu-knowledge-title {
+    font-size: 36px; }
+  [data-dpr="3"] .comu-knowledge-title {
+    font-size: 54px; }
+
+.comu-knowledge-article {
+  font-size: 16px;
+  color: #737373;
+  line-height: 1.2; }
+  [data-dpr="2"] .comu-knowledge-article {
+    font-size: 32px; }
+  [data-dpr="3"] .comu-knowledge-article {
+    font-size: 48px; }
+
+/**
+     * ******** ******** ******** ********
+     * webview-comu-knowledge-list 农耕知识列表
+ */
+.comu-knowledge-list-container {
+  font-size: 0px; }
+
+.comu-knowledge-list-item {
+  width: 4.44rem;
+  height: 4.66667rem;
+  margin-top: 0.41333rem;
+  display: inline-block;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: relative; }
+
+@media only screen and (min-width: 1243px) {
+  .comu-knowledge-list-item {
+    margin-left: 0.21333rem; } }
+@media only screen and (max-width: 1242px) {
+  .comu-knowledge-list-item {
+    margin-left: 0.37333rem; } }
+.comu-knowledge-list-item-title {
+  width: 100%;
+  height: 0.81333rem;
+  padding-left: 0.24rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 16px;
+  color: #FFFFFF;
+  line-height: 0.81333rem;
+  position: absolute;
+  bottom: 0;
+  word-break: keep-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+  [data-dpr="2"] .comu-knowledge-list-item-title {
+    font-size: 32px; }
+  [data-dpr="3"] .comu-knowledge-list-item-title {
     font-size: 48px; }
 
 /**
@@ -1426,13 +1997,9 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 .mutual-div {
   -webkit-transform: translate3d(0, 300%, 0);
   transform: translate3d(0, 300%, 0);
-  -webkit-transition: -webkit-transform .7s, opacity .7s;
-  transition: transform .7s, opacity .7s;
+  -webkit-transition: -webkit-transform .8s, opacity .8s;
+  transition: transform .8s, opacity .8s;
   opacity: 0; }
-
-.mutual-div-bottom {
-  position: fixed;
-  bottom: 0; }
 
 .mutual-div-active {
   opacity: 1;
@@ -1700,10 +2267,10 @@ select {
     font-size: 54px; }
 
 .mui-icon {
-  font-size: 21px; }
+  font-size: 24px; }
   [data-dpr="2"] .mui-icon {
-    font-size: 42px; }
+    font-size: 48px; }
   [data-dpr="3"] .mui-icon {
-    font-size: 63px; }
+    font-size: 72px; }
 
 /*# sourceMappingURL=style.css.map */

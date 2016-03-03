@@ -22,7 +22,7 @@
 	</head>
 
 	<body>
-		<div class="header-control" id="comu-header-control">
+		<div class="header-control header-control-greenBold">
 			<div class="header-control-left-btn  mui-action-back">
 				<span class="white-arrow-big-span header-control-left-btn-span"></span>
 			</div>
@@ -30,14 +30,11 @@
 				<span id="webview-head-title">社区</span>
 			</div>
 			<div class="header-control-right-btn">
-				<span class="header-control-right-btn-span">
-					<span class="mui-icon mui-icon-more"></span>
-				</span>
-				<!--<span class="header-control-right-btn-span">编辑</span>-->
+				<span class="header-control-right-btn-span mui-icon mui-icon-more"></span>
 			</div>
 		</div>
 		<div class="comu-nav">
-			<div class="comu-nav-knowledgeble">
+			<div class="comu-nav-knowledgeble" id="openKnowledgeList">
 				<span class="comu-nav-knowledgeble-bg"></span>
 				<label>农耕知识</label>
 			</div>
@@ -164,6 +161,16 @@
 				</div>
 			</div>
 		</div>
+		<a href="#bottomPopover" class="fixed-btn fixed-add">
+		</a>
+		<!--弹出菜单-->
+		<div id="bottomPopover" class="mui-popover mui-popover-bottom">
+			<div class="mui-popover-arrow"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell"><a href="#" class="fixed-btn-item">发表动态</a>
+				</li>
+			</ul>
+		</div>
 		<script src="js/mui.min.js"></script>
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
@@ -175,6 +182,17 @@
 				document.getElementsByClassName("head-control-slider")[0].style.webkitTransform = strValue;
 			});
 			mui.plusReady(function() {
+				document.querySelector("#openKnowledgeList").addEventListener("tap", function(e) {
+					fnLoadPage(e.currentTarget, {
+						url: "secondlv/webview-comu-knowledge.html",
+						top: 108,
+						bottom: 0
+					}, {
+						title: "农耕知识",
+						rightBtn: '<span class="header-control-right-btn-span mui-icon mui-icon-more"></span>',
+						styleClass: "header-control-greenBold"
+					});
+				});
 			});
 		</script>
 	</body>

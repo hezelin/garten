@@ -32,7 +32,6 @@
 			</div>
 			<div class="header-control-right-btn">
 				<span class="header-control-right-btn-span"></span>
-				<!--<span class="header-control-right-btn-span">编辑</span>-->
 			</div>
 		</div>
 
@@ -89,34 +88,46 @@
 				}
 			}
 			mui.plusReady(function() {
-				//监听改变模板的事件
-				window.addEventListener("changeTitle", function(event) {
+				//监听改变父模板页
+				window.addEventListener("initHeadPage", function(event) {
 					var newTitle = event.detail.title;
 					var controlTab = event.detail.hasControlTab;
 					var rightBtn = event.detail.rightBtn;
 					var bottomBar = event.detail.hasBottomBar;
+					var headStyle = event.detail.styleClass;
+					//将模板页设为初始状态
+					(function(){
+						document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "none";
+						var headRight = document.getElementsByClassName("header-control-right-btn")[0];
+						if (headRight.firstChild) {
+							headRight.removeChild(headRight.firstChild);
+						}
+						if(document.querySelector(".header-control").classList.contains("header-control-greenBold")) {
+							document.querySelector(".header-control").classList.remove("header-control-greenBold");
+						}
+					})();
+					//改变标题
 					document.getElementById("webview-head-title").innerHTML = newTitle;
-					//添加和去除头部栏（订单
+					//改变头部栏样式
+					if(headStyle) {
+						var head = document.querySelector(".header-control");
+						head.classList.add(headStyle);
+					}
+					//添加webview切换栏（订单
 					if (controlTab) {
 						document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "block";
-					} else {
-						document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "none";
 					}
-					//添加和去除按钮
+					//添加按钮
 					if (rightBtn) {
 						//去除右侧按键的元素并填充
 						var headRight = document.getElementsByClassName("header-control-right-btn")[0];
 						if (headRight.firstChild) {
 							headRight.removeChild(headRight.firstChild);
 						}
-						headRight.innerHTML = "<span class='header-control-right-btn-span'>" + rightBtn + "</span>"
-					} else {
-						var headRight = document.getElementsByClassName("header-control-right-btn")[0];
-						if (headRight.firstChild) {
-							headRight.removeChild(headRight.firstChild);
-						}
+						headRight.innerHTML = rightBtn;
 					}
 				});
+				//webview切换栏
 				mui(".header-control-tab").on("tap", ".header-control-tab-nav", function() {
 					var thisBtn = this;
 					var strValue = this.getAttribute("data-transform");

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>认租</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: rgb(245, 245, 245);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="home-rent-container">
+			<div class="home-rent-item">
+				<div class="home-rent-bg" style="background: url(../img/tradeListbg2.png); background-size: cover;">
+					<div class="home-rent-money-bg"></div>
+					<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
+					<div class="home-rent-name">
+						某某店铺
+					</div>
+					<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
+				</div>
+				<label class="home-rent-context">菜地认租 新年特惠</label>
+			</div>
+			<div class="home-rent-item">
+				<div class="home-rent-bg" style="background: url(../img/tradeListbg1.png); background-size: cover;">
+					<div class="home-rent-money-bg"></div>
+					<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
+					<div class="home-rent-name">
+						某某店铺
+					</div>
+					<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
+				</div>
+				<label class="home-rent-context">玉米地认租 新年特惠</label>
+			</div>
+			<div class="home-rent-item">
+				<div class="home-rent-bg" style="background: url(../img/tradeListbg2.png); background-size: cover;">
+					<div class="home-rent-money-bg"></div>
+					<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
+					<div class="home-rent-name">
+						某某店铺
+					</div>
+					<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
+				</div>
+				<label class="home-rent-context">菜地认租 新年特惠</label>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				mui(".home-rent-container").on("tap", ".home-rent-item", function(e) {
+					var thisbtn = this;
+					if (this.classList.contains("loading")) {
+						return;
+					}
+					this.classList.add("loading");
+					var webviewTradeHead = plus.webview.getWebviewById("webview-trade-header");
+					webviewTradeHead.show("slide-in-right", "", function() {
+						thisbtn.classList.remove("loading");
+					});
+					var newWebview = plus.webview.create("../thirdlv/webview-home-rent-detail.html", "webview-home-rent-detail",  fnSetSubpageStyle(109,99));
+					newWebview.onloaded = function() {
+						setTimeout(function() {
+							webviewTradeHead.append(newWebview);
+						}, 100);
+					};
+				});
+			});
+		</script>
+	</body>
+</html>

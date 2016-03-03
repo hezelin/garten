@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>农耕知识</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: rgb(246, 246, 246);
+				/*background-color: #efeff4;*/
+				font-size: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="comu-knowledge-list-container">
+			<div class="comu-knowledge-list-item" style="background: url(../img/test-knowledge1.png); background-size: cover;">
+				<div class="comu-knowledge-list-item-title">农耕文化融入生活农耕文化融入生活农耕文化融入生活</div>
+			</div>
+
+			<div class="comu-knowledge-list-item" style="background: url(../img/test-knowledge2.png); background-size: cover;">
+				<div class="comu-knowledge-list-item-title">农耕文化融入生活农耕文化融入生活农耕文化融入生活</div>
+			</div>
+
+			<div class="comu-knowledge-list-item" style="background: url(../img/test-knowledge3.png); background-size: cover;">
+				<div class="comu-knowledge-list-item-title">农耕文化融入生活农耕文化融入生活农耕文化融入生活</div>
+			</div>
+
+			<div class="comu-knowledge-list-item" style="background:url(../img/test-knowledge4.png); background-size: cover;">
+				<div class="comu-knowledge-list-item-title">农耕文化融入生活农耕文化融入生活农耕文化融入生活</div>
+			</div>
+
+			<div class="comu-knowledge-list-item" style="background: url(../img/test-knowledge5.png); background-size: cover;">
+				<div class="comu-knowledge-list-item-title">农耕文化融入生活农耕文化融入生活农耕文化融入生活</div>
+			</div>
+
+			<div class="comu-knowledge-list-item" style="background: url(../img/test-knowledge5.png); background-size: cover;">
+				<div class="comu-knowledge-list-item-title">农耕文化融入生活农耕文化融入生活农耕文化融入生活</div>
+			</div>
+
+			<div class="comu-knowledge-list-item" style="background: url(../img/test-knowledge5.png); background-size: cover;">
+				<div class="comu-knowledge-list-item-title">农耕文化融入生活农耕文化融入生活农耕文化融入生活</div>
+			</div>
+
+			<div class="comu-knowledge-list-item" style="background: url(../img/test-knowledge5.png); background-size: cover;">
+				<div class="comu-knowledge-list-item-title">农耕文化融入生活农耕文化融入生活农耕文化融入生活</div>
+			</div>
+		</div>
+
+		<!--弹出菜单按钮-->
+		<a href="#bottomPopover" class="fixed-btn fixed-list">
+		</a>
+		<!--弹出菜单-->
+		<div id="bottomPopover" class="mui-popover mui-popover-bottom">
+			<div class="mui-popover-arrow"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell"><a href="#" class="fixed-btn-item">蔬菜</a>
+				</li>
+				<li class="mui-table-view-cell"><a href="#" class="fixed-btn-item">施肥</a>
+				</li>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				mui("body").on("tap", ".comu-knowledge-list-item", function(e) {
+					plus.webview.currentWebview().loadURL("../thirdlv/webview-comu-knowledge-detail.html");
+				});
+			});
+		</script>
+	</body>
+</html>

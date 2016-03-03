@@ -3,8 +3,8 @@
  */
 
 /**
- * @param {Number} 设置顶部高度基数，默认是108
- * @param {Number} 设置底部高度基数,默认是108
+ * @param {Number}
+ * @param {Number} 
  */
 function fnSetSubpageStyle(Top, Bottom) {
 	return {
@@ -33,27 +33,27 @@ function fnGetDpr() {
 }
 
 /**
+ * @description 利用公用父模板加载子页面
  * @param {Object} 触发事件的按钮
- * @param {String} 目标窗口url
- * @param {Number} 设置窗口顶部高度,默认108
- * @param {Number} 设置窗口底部高度,默认108
- * @param {Object} 需要传递给模板的数据title/hasControlTab/rightBtn/hasBottomBar
+ * @param {Object} 必须url top bottom
+ * @param {Object} 必须title 非必须rightBtn hasControlTab
  */
-function fnLoadPage(tapBtn, webviewBodyURL, topPX, bottomPX, postToTemp) {
+function fnLoadPage(tapBtn, obj, objPost) {
 	if (tapBtn.classList.contains("loading")) {
 		return;
 	}
 	tapBtn.classList.add("loading");
 	var webviewHead = plus.webview.getWebviewById("webview-header");
-	if (webviewHead.children().length > 0) {
-		//执行目标窗口的事件
-		mui.fire(webviewHead, "changeTitle", postToTemp);
-		webviewHead.children()[0].close();
+	var oldview = webviewHead.children();
+	//执行窗口初始化
+	mui.fire(webviewHead, "initHeadPage", objPost);
+	for (var i = 0; i < oldview.length; i++) {
+		webviewHead.remove(oldview[i]);
 	}
 	webviewHead.show("slide-in-right", "", function() {
 		tapBtn.classList.remove("loading");
 	});
-	var webviewBody = plus.webview.create(webviewBodyURL, webviewBodyURL, fnSetSubpageStyle(topPX, bottomPX));
+	var webviewBody = plus.webview.create(obj.url, obj.url, fnSetSubpageStyle(obj.top, obj.bottom));
 	webviewBody.onloaded = function() {
 		setTimeout(function() {
 			webviewHead.append(webviewBody);
