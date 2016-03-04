@@ -82,7 +82,16 @@
 			"img/img.png",
 			"css/style.css",
 			"css/mui.min.css",
-			"img/img2.png"
+			"img/img2.png",
+			"img/testhome/testhome3.png",
+			"img/testhome/testhome1.png",
+			"img/testhome/testhome6.png",
+			"img/testhome/testhome2.png",
+			"img/testhome/testhome5.png",
+			"img/testhome/testhome4.png",
+			"img/testhome/testhome7.png",
+			"img/testhome/testhome8.png",
+			"img/testhome/testhome9.png"
 		],
 		"refer": [
 			"secondlv/webview-home-rent.html"
@@ -95,7 +104,11 @@
 			"js/public.js",
 			"secondlv/webview-my-order.html",
 			"img/img.png",
-			"secondlv/webview-home-rent.html"
+			"secondlv/webview-home-rent.html",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/style.css"
 		],
 		"refer": [
 			"secondlv/webview-my-collect.html",
@@ -245,11 +258,14 @@
 			"css/style.css",
 			"js/flexible.debug.js",
 			"img/img2.png",
-			"thirdlv/webview-home-rent-detail.html"
+			"thirdlv/webview-home-rent-detail.html",
+			"img/shop-detail.png"
 		],
 		"refer": [
 			"thirdlv/webview-home-detail.html",
-			"thirdlv/webview-home-rent-detail.html"
+			"thirdlv/webview-home-rent-detail.html",
+			"thirdlv/webview-home-rent-comment.html",
+			"thirdlv/webview-home-rent-introduce.html"
 		]
 	},
 	"thirdlv/webview-home-detail.html": {
@@ -276,7 +292,36 @@
 			"css/mui.min.css",
 			"css/style.css",
 			"img/img2.png",
-			"js/flexible.debug.js"
+			"js/flexible.debug.js",
+			"img/shop-detail.png"
+		]
+	},
+	"thirdlv/webview-home-rent-comment.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/shop-detail.png",
+			"img/img2.png",
+			"js/flexible.debug.js",
+			"img/head2.jpeg"
+		]
+	},
+	"thirdlv/webview-home-rent-introduce.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"img/tradeListbg1.png",
+			"img/shop-detail.png",
+			"img/img2.png"
 		]
 	}
 }

@@ -195,6 +195,7 @@ $base-border: 1px solid #dcdcdc;
     @include px2rem(width, 20px);
     @include px2rem(height, 20px);
     background-color: rgba(0,0,0,0.3);
+    border: 1px solid #FFFFFF;
 }
 //五个按钮
 .home-nav-tab {
@@ -224,17 +225,17 @@ $base-border: 1px solid #dcdcdc;
     display: inline-block;
 }
 //按钮图标
-.home-rent {
+.home-live {
     @include spirtes-img2;
     @include px2rem(background-position-x, -600px);
     @include px2rem(background-position-y, -483px);
 }
-.home-activity {
+.home-rent {
     @include spirtes-img2;
     @include px2rem(background-position-x, -704px);
     @include px2rem(background-position-y, -483px);
 }
-.home-shop {
+.home-activity {
     @include spirtes-img2;
     @include px2rem(background-position-x, -808px);
     @include px2rem(background-position-y, -483px);
@@ -244,7 +245,7 @@ $base-border: 1px solid #dcdcdc;
     @include px2rem(background-position-x, -911px);
     @include px2rem(background-position-y, -483px);
 }
-.home-live {
+.home-shop {
     @include spirtes-img2;
     @include px2rem(background-position-x, -1017px);
     @include px2rem(background-position-y, -483px);
@@ -257,6 +258,10 @@ $base-border: 1px solid #dcdcdc;
 }
 //推荐内容
 //大容器
+.container-globar {
+    width: 10rem;
+    margin: 0 auto;
+}
 .home-news-content {
     @include px2rem(padding-top, 19px);
     @include px2rem(padding-bottom, 19px);
@@ -267,34 +272,143 @@ $base-border: 1px solid #dcdcdc;
 //内容列表 标题 +  图片区域
 .home-news-content-item {
     @include px2rem(margin-bottom, 42px);
+    @include px2rem(padding-top, 30px);
+    clear: both;
+    font-size: 0px;
+    text-align: justify;
 }
 //标题格式
 .home-news-content-item-title-name {
     @include font-dpr(16px);
-    color: #737373;
+    color: rgb(70, 70, 70);
 }
-//横线
+// 横线
 .home-news-content-item-line {
     height: 1px;
     @include px2rem(margin-top, 12px);
     @include px2rem(margin-bottom, 12px);
     border-bottom: $base-border;
 }
-//图片列表
+// 最新推荐
+.home-news-content-item-left {
+    @include px2rem(width, 350px);
+    @include px2rem(height, 332px);
+    background-color: rgb(245, 245, 245);
+    float: left;
+    //使图片居中
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.home-news-content-item-left-img {
+    @include px2rem(width, 325px);
+    @include px2rem(height, 167px);
+    @include px2rem(margin-top, 10px);
+    display: inline-block;
+}
+.home-news-content-item-detail {
+   @include font-dpr(15px);
+    color: #585858;
+    @include px2rem(padding, (10px, 10px, 10px, 10px));
+    vertical-align: top;
+    display: inline-block;
+    overflow: hidden;
+}
+.home-news-content-item-detail-title {
+    @include px2rem(margin-bottom, 10px);
+    display: block;
+    text-align: left;
+}
+.home-news-content-item-detail-money {
+    @include px2rem(margin-bottom, 10px);
+    @include font-dpr(12px);
+    color: #737373;
+    display: block;
+    text-align: left;
+    em {
+        color: #f24949;
+    }
+}
+.home-news-content-item-detail-introduce {
+    @include px2rem(height, 40px);
+    @include font-dpr(12px);
+    color: #737373;
+    display: block;
+    text-align: left;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.home-news-content-item-right {
+    @include px2rem(width, 330px);
+    @include px2rem(height, 160px);
+    @include px2rem(margin-bottom, 12px);
+    background-color: rgb(245, 245, 245);
+    float: right;
+    position: relative;
+    display: inline-block;
+}
+.home-width-180 {
+    @include px2rem(width, 180px);
+    @include px2rem(height, 167px);
+}
+.home-width-320 {
+    @include px2rem(width, 320px);
+    @include px2rem(height, 150px);
+}
+.home-news-content-item-right-img {
+    @include px2rem(width, 103px);
+    @include px2rem(height, 135px);
+    @include px2rem(margin-left, 10px);
+    @include px2rem(margin-top, 10px);
+    display: inline-block;
+}
+.span-new {
+    width: 0;
+    height: 0;
+//  border: 16px;//朝下的三角形
+    @include px2rem(border-width, 28px);
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: #ff0000;
+    border-right-color: #ff0000;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.span-new-content {
+    @include font-dpr(10px);
+    color: #FFFFFF;
+    position: absolute;
+    @include px2rem(top, 1px);
+    @include px2rem(right, 1px);
+}
+
+
+// 图片列表
 .home-news-content-item-photo {
     font-size: 0;
 }
-//每个图片
+.home-news-content-item-photo:after{
+    // 打破justify限制，使第二行也能两端对齐
+    content: '';
+    display: inline-block;
+    width: 100%;
+}   
+// 每个图片
 .home-news-content-item-photo-list {
-    @include px2rem(width, 223px);
+    @include px2rem(width, 225px);
     @include px2rem(height, 167px);
+    @include px2rem(margin-bottom, 30px);
     display: inline-block;
     position: relative;
 }
 //每个图片的下方标题
 .home-news-content-item-photo-title {
-    @include px2rem(width, 223px);
-    @include px2rem(height, 38px);
+    @include px2rem(width, 225px);
+    @include px2rem(height, 36px);
     @include font-dpr(12px);
     @include px2rem(line-height, 38px);
     background-color: rgba(0, 0, 0, 0.5);
@@ -302,12 +416,13 @@ $base-border: 1px solid #dcdcdc;
     position: absolute;
     text-align: center;
     bottom: 0;
+    //不换行处理
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-//第二个图片有左右边距
-.home-news-content-item-photo-list:nth-child(2) {
-    @include px2rem(margin-left, 10px);
-    @include px2rem(margin-right, 10px);
-}
+
 /**
      * ******** ******** ******** ********
      * webview-home-rent
@@ -392,6 +507,7 @@ $base-border: 1px solid #dcdcdc;
      * ******** ******** ******** ********
      * webview-home-rent-detail
      * webview-home-rent-introduce
+     * webview-home-rent-comment
      * 商品详情
  */
 //展示图模块区域
@@ -519,6 +635,7 @@ $base-border: 1px solid #dcdcdc;
 .home-rent-detail-shop-detail {
     width: 100%;
     @include px2rem(height, 132px);
+    @include px2rem(margin-bottom, 110px);
     display: table;
 }
 .home-rent-detail-shop-detail-btn {
@@ -570,6 +687,61 @@ $base-border: 1px solid #dcdcdc;
     vertical-align: middle;
     @include px2rem(background-position-x, -95px);
     @include px2rem(background-position-y, 0px);
+}
+//容器
+.home-rent-comment-container, .home-rent-introduce-container {
+    @include px2rem(margin-bottom, 100px);
+}
+//商品评论页面
+.home-rent-comment-item {
+    @include px2rem(margin-left, 28px);
+    @include px2rem(margin-right, 28px);
+    border-bottom: $base-border;
+}
+// 用户信息，用户头像
+.home-rent-comment-user {
+    width: 100%;
+    @include px2rem(height, 90px);
+    display: table;
+}
+.home-rent-comment-user-info {
+    width: 50%;
+    display: table-cell;
+    vertical-align: middle;
+}
+.home-rent-comment-user-img {
+    @include px2rem(width, 60px);
+    @include px2rem(height, 60px);
+    border: 1px solid #FFFFFF;
+    border-radius: 50% 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.home-rent-comment-user-name {
+    @include px2rem(margin-left, 12px);
+    vertical-align: middle;
+    @include font-dpr(15px);
+    color: #000000;
+}
+.home-rent-comment-user-date {
+    @include font-dpr(12px);
+    color: #989898;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+//评论内容
+.home-rent-comment-content {
+    @include px2rem(margin-top, 15px);
+    @include px2rem(margin-bottom, 25px);
+    @include font-dpr(16px);
+    @include px2rem(line-height, 50px);
+    color: rgb(102, 102, 102);
+}
+.home-rent-comment-target {
+    @include px2rem(margin-bottom, 46px);
+    @include font-dpr(15px);
+    color: #737373;
 }
 
 /**
@@ -720,6 +892,7 @@ $base-border: 1px solid #dcdcdc;
  */
 .header-control-whiteBold {
     background-color: white !important;
+    border-bottom: $base-border;
     //加粗头部图标,并设置颜色
     .mui-icon{
         color: rgb(166,166,166) !important;
@@ -731,8 +904,11 @@ $base-border: 1px solid #dcdcdc;
 }
 .trade-header-nav {
     width: 25%;
-    @include px2rem(line-height, 96px);
-    border-bottom: 2px solid #FFFFFF;
+    @include px2rem(line-height, 107px);
+//  border-bottom: 2px solid #FFFFFF;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #FFFFFF;
     display: inline-block;
     @include font-dpr(18px);
 }
@@ -797,7 +973,7 @@ $base-border: 1px solid #dcdcdc;
     @include px2rem(height, 549px);
     background-color: rgb(255, 255, 255);
     z-index: 999;
-    position: absolute;
+    position: fixed;
     bottom: 0;
 }
 //弹出框第一栏
@@ -1965,8 +2141,8 @@ $base-border: 1px solid #dcdcdc;
     //将div隐藏相对其正常位置自身3倍长度的地方
     -webkit-transform: translate3d(0, 300%, 0);
     transform: translate3d(0, 300%, 0);
-    -webkit-transition: -webkit-transform .8s, opacity .8s;
-    transition: transform .8s, opacity .8s; 
+    -webkit-transition: -webkit-transform .4s, opacity .4s;
+    transition: transform .4s, opacity .4s; 
 //  z-index: 999;
     opacity: 0;
 }

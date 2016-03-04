@@ -44,7 +44,7 @@ function plusReady() {
 			sub = mui.preload({
 				url: subpages[i],
 				id: subpages[i],
-				styles: fnSetSubpageStyle(0,111)
+				styles: fnSetSubpageStyle(0,112)
 			});
 			sub.onloaded = function() {
 				var delayTime = mui.os.ios ? 100 : 1000;
@@ -70,7 +70,7 @@ function plusReady() {
 			sub = mui.preload({
 				url: subpages[i],
 				id: subpages[i],
-				styles: fnSetSubpageStyle(0,111)
+				styles: fnSetSubpageStyle(0,112)
 			});
 		}
 		if (i > 0) {

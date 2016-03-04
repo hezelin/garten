@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>商品</title>
+		<title>商品第一页</title>
 		<meta http-equiv="Access-Control-Allow-Origin" content="*">
 		<meta http-equiv="content-security-policy">
 		<meta content="yes" name="apple-mobile-web-app-capable">
@@ -127,11 +127,59 @@
 			</div>
 		</div>
 
+		<div class="trade-foot-control">
+			<div class="trade-foot-control-btn">
+				<span class="shop-car-span"></span>
+				<span class="trade-foot-control-name">购物车</span>
+			</div>
+			<div class="trade-foot-control-btn bg-color-green" id="buyNow">
+				<span class="shop-buy-span"></span>
+				<span class="trade-foot-control-name">立即购买</span>
+			</div>
+		</div>
+
+		<!--购买div，动画形式弹出-->
+		<div id="buyDiv" class="mutual-div">
+			<div class="buyDiv-title">
+				<span class="buyDiv-title-img" style="background: url(../img/shop-detail.png); background-size: cover;"></span>
+				<span class="buyDiv-title-context">某某农家乐 xxxxxx</span>
+				<span id="buyDivClose"></span>
+			</div>
+			<div class="buyDiv-count">
+				<div class="buyDiv-count-left">
+					<label class="buyDiv-count-title">
+						购买数量
+					</label>
+				</div>
+				<div class="buyDiv-count-right">
+					<!--数字选择器-->
+					<div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
+						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+						<input id="test" class="mui-input-numbox" type="number" value="1" />
+						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					</div>
+					<span class="buyDiv-money">总价：&yen;&nbsp;<em>2000</em></span>
+				</div>
+			</div>
+			<div class="buyDiv-btn">
+				<button id="btnPostBuy">完成</button>
+			</div>
+		</div>
+		<!--end-->
+
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
 		<script>
 			mui.init();
+			document.querySelector("#buyNow").addEventListener("tap", function() {
+				var id = "#buyDiv";
+				fnOpenTargetDiv(id);
+			});
+			document.querySelector("#buyDivClose").addEventListener("tap", function() {
+				var id = "#buyDiv";
+				fnCloseShade(id);
+			});
 			//展示图代码加载处理
 			//			var elements = document.querySelectorAll(".showBar-img");
 			//			var len = elements.length;
@@ -145,48 +193,42 @@
 			//					}
 			//				}
 			//			}
-			
-
 			mui.plusReady(function() {
 				setTimeout(function() {
-//					fnShowBarOperate();
-				},1000);
-			});		
-			
-//			window.onload = function() {
-//				fnShowBarOperate();
-//			}
-			
+					//					fnShowBarOperate();
+				}, 1000);
+			});
+			//			window.onload = function() {
+			//				fnShowBarOperate();
+			//			}
 			function fnShowBarOperate() {
 				//获取屏幕视口宽度
 				var screenScale = plus.screen.scale;
 				var screenWidth = plus.screen.resolutionWidth * plus.screen.scale;
-
-//				var screenScale = document.getElementsByTagName("html")[0].getAttribute("data-dpr");
-//				var screenWidth = document.getElementsByTagName("body")[0].offsetWidth;
-//				console.log(screenWidth);
-//				console.log(screenScale);
-
+				//				var screenScale = document.getElementsByTagName("html")[0].getAttribute("data-dpr");
+				//				var screenWidth = document.getElementsByTagName("body")[0].offsetWidth;
+				//				console.log(screenWidth);
+				//				console.log(screenScale);
 				//初始化页标
 				document.querySelector(".pageIndex").innerText = 1 + "/" + document.querySelectorAll(".showBar-img").length;
 				var nStartX = 0;
 				var startPosition = 0;
 				var container = document.querySelector("#showBarContainer");
 				var oBar = document.querySelector("#showBar");
-				container.addEventListener("touchstart", function(e) {	
+				container.addEventListener("touchstart", function(e) {
 					e.preventDefault();
-					nStartX = parseInt(e.targetTouches[0].pageX);		
+					nStartX = parseInt(e.targetTouches[0].pageX);
 					startPosition = oBar.getAttribute("data-left");
 				});
 				container.addEventListener("touchmove", function(e) {
 					e.preventDefault();
 					var touch = e.targetTouches[0];
 					var _left = parseInt(oBar.getAttribute("data-left"));
-					var _L = parseInt(_left + touch.pageX  - nStartX);
+					var _L = parseInt(_left + touch.pageX - nStartX);
 					oBar.setAttribute("data-left", _L);
 					oBar.style.transform = "translate3d(" + _L + "px, 0px, 0px)";
 					oBar.style.WebkitTransform = "translate3d(" + _L + "px, 0px, 0px)";
-					nStartX = parseInt(touch.pageX);			
+					nStartX = parseInt(touch.pageX);
 				});
 				container.addEventListener("touchend", function(e) {
 					e.preventDefault();
@@ -195,14 +237,12 @@
 					var Middle = screenWidth / 2;
 					var Count = document.querySelectorAll(".showBar-img").length - 1;
 					var _left = parseFloat(oBar.getAttribute("data-left"));
-
 					Range = Range * screenScale;
 					if (Range >= 0) {
 						//向左移
 						if (Range >= Middle) {
 							_left = _left - (screenWidth - Range);
-						}
-						else {
+						} else {
 							_left = _left + Range;
 						}
 					} else {
@@ -210,8 +250,7 @@
 						Range = Math.abs(Range);
 						if (Range >= Middle) {
 							_left = _left + (screenWidth - Range);
-						}
-						else {
+						} else {
 							_left = _left - Range;
 						}
 					}
@@ -227,18 +266,14 @@
 					oBar.style.WebkitTransform = "translate3d(" + _left + "px, 0px, 0px)";
 					oBar.style.transitionDuration = "500ms"; //500
 					oBar.style.webkitTransitionDuration = "500ms"; //500
-
-					fnTimeOut = setTimeout(function(){
+					fnTimeOut = setTimeout(function() {
 						oBar.style.transitionDuration = "0ms";
 						oBar.style.webkitTransitionDuration = "0ms";
-					},500);
-					
-//					console.log(fnTimeOut);
-
-
+					}, 500);
+					//					console.log(fnTimeOut);
 					oBar.setAttribute("data-left", _left);
 					//更改图片索引
-					var currentIMG = parseInt(- _left / screenWidth) + 1;
+					var currentIMG = parseInt(-_left / screenWidth) + 1;
 					document.querySelector(".pageIndex").innerText = currentIMG + "/" + (Count + 1);
 				});
 			}
