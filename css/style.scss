@@ -1,92 +1,4 @@
-/**
-     * ******** ******** ******** ********
-     * px转rem
-     * 设计稿元素尺寸/(设计稿宽度/10)*页面html.fontsize = 适应后的元素大小
- */
-@mixin px2rem($property,$px-values,$baseline-px:75px,$support-for-ie:false){
-    //根据设计图大小设置baseline-px
-    //求出基础rem大小
-    $baseline-rem: $baseline-px / 1rem * 1;
-    //ie支持
-    @if $support-for-ie {
-        #{$property}: $px-values;
-    }
-    //如果第二个参数只有一个值，那就直接给属性赋值
-    //type-of函数用法
-    //  type-of(100px)  => number
-    //  type-of(asdf)   => string
-    //  type-of("asdf") => string
-    //  type-of(true)   => bool
-    //  type-of(#fff)   => color
-    //  type-of(blue)   => color
-    @if type-of($px-values) == "number"{
-        #{$property}: $px-values / $baseline-rem;
-    }
-    @else {
-        //创建一个空列表
-        $rem-values:();
-        @each $value in $px-values{
-            // 如果属性值为大于0px的像素值，那么用append把值加入列表里    append(list, var , separator);
-            @if $value != 0 or type-of($value) == "number"{
-                $rem-values: append($rem-values, $value / $baseline-rem);
-            }
-        }
-        //返回设置 
-        #{$property}: $rem-values;
-    }
-}
-
-/**
-     * ******** ******** ******** ********
-     * 转化字体大小，设计稿字体/设计稿dpr = fontsize
- */
-@mixin font-dpr($font-size) {
-    font-size: $font-size;
-    [data-dpr="2"] & {
-        font-size: $font-size * 2;
-    }
-    [data-dpr="3"] & {
-        font-size: $font-size * 3;
-    }
-}
-
-/**
-     * ******** ******** ******** ********
-     * 雪碧图位置，大小
- */
-@mixin spirtes-img {
-    background: url(../img/img.png);
-    @include px2rem(background-size,(2716px, 811px));
-}
-
-@mixin spirtes-img2 {
-    background: url(../img/img2.png);
-    @include px2rem(background-size,(1153px, 591px));
-}
-
-/**
-     * ******** ******** ******** ********
-     *去除默认内外边距，去除line-height
-*/
-body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
-    margin: 0;
-    padding: 0;
-    line-height: normal;
-    font-family: "微软雅黑";
-}
-
-/**
-     * ******** ******** ******** ********
-     * 基础色包括页面背景；灰色块的颜色
-     * 基础绿色
-     * 基础边框样式
- */
-$base-color: #efeff4;
-$green-color: #83C347;
-$base-border: 1px solid #dcdcdc;
-.bg-color-green {
-    background-color: $green-color !important;
-}
+@import "public";
 
 /**
      * ******** ******** ******** ********
@@ -97,13 +9,14 @@ $base-border: 1px solid #dcdcdc;
     @include px2rem(height,110px);
 }
 #head-holder {
-    @include px2rem(height, 110px);
+    @include px2rem(height, 108px);
 }
 //底部导航
 .mui-bar-tab{
     background-color: #fff;
-    border: none;
     @include px2rem(height, 99px);
+    border: none;
+    border-top: $base-border;
     a {
         outline: none;
         text-decoration: none;
@@ -336,10 +249,7 @@ $base-border: 1px solid #dcdcdc;
     color: #737373;
     display: block;
     text-align: left;
-    white-space: nowrap;
-    word-break: keep-all;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @include Nowrap;
 }
 .home-news-content-item-right {
     @include px2rem(width, 330px);
@@ -416,11 +326,7 @@ $base-border: 1px solid #dcdcdc;
     position: absolute;
     text-align: center;
     bottom: 0;
-    //不换行处理
-    word-break: keep-all;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @include Nowrap;
 }
 
 /**
@@ -495,12 +401,7 @@ $base-border: 1px solid #dcdcdc;
     @include px2rem(margin-left, 27px);
     @include px2rem(margin-top, 18px);
     @include font-dpr(14px);
-    //文本不换行
-    word-break: keep-all;
-    white-space: nowrap;
-    //超出行内容
-    text-overflow: ellipsis;
-    overflow: hidden;
+    @include Nowrap;
     display: block;
 }
 /**
@@ -517,6 +418,8 @@ $base-border: 1px solid #dcdcdc;
 }
 #showBar {
     font-size: 0;
+    margin: 0;
+    padding: 0;
     position: relative;
     white-space: nowrap;
     transition: all 0s linear; 
@@ -525,6 +428,11 @@ $base-border: 1px solid #dcdcdc;
     width: 100%;
     display: inline-block;
     position: relative;    
+    white-space: normal;
+    vertical-align: top;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
 }
 .showBar-a {
     display: block;
@@ -812,7 +720,7 @@ $base-border: 1px solid #dcdcdc;
 .header-control-tab-nav-lay {
     color: #434343;
 }
-//底部滑动条
+//滑动条
 .head-control-slider {
     @include px2rem(height, 4px);
     display: block;
@@ -904,8 +812,7 @@ $base-border: 1px solid #dcdcdc;
 }
 .trade-header-nav {
     width: 25%;
-    @include px2rem(line-height, 107px);
-//  border-bottom: 2px solid #FFFFFF;
+    @include px2rem(line-height, 101px);
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: #FFFFFF;
@@ -1877,12 +1784,7 @@ $base-border: 1px solid #dcdcdc;
     @include px2rem(line-height, 61px);
     position: absolute;
     bottom: 0;
-    //文本不换行
-    word-break: keep-all;
-    white-space: nowrap;
-    //超出行内容
-    text-overflow: ellipsis;
-    overflow: hidden;
+    @include Nowrap;
 }
 
 /**

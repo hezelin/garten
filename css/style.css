@@ -1,35 +1,12 @@
 @charset "UTF-8";
-/**
-     * ******** ******** ******** ********
-     * px转rem
-     * 设计稿元素尺寸/(设计稿宽度/10)*页面html.fontsize = 适应后的元素大小
- */
-/**
-     * ******** ******** ******** ********
-     * 转化字体大小，设计稿字体/设计稿dpr = fontsize
- */
-/**
-     * ******** ******** ******** ********
-     * 雪碧图位置，大小
- */
-/**
-     * ******** ******** ******** ********
-     *去除默认内外边距，去除line-height
-*/
+.bg-color-green {
+  background-color: #83C347 !important; }
+
 body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   margin: 0;
   padding: 0;
   line-height: normal;
   font-family: "微软雅黑"; }
-
-/**
-     * ******** ******** ******** ********
-     * 基础色包括页面背景；灰色块的颜色
-     * 基础绿色
-     * 基础边框样式
- */
-.bg-color-green {
-  background-color: #83C347 !important; }
 
 /**
      * ******** ******** ******** ********
@@ -39,12 +16,13 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   height: 1.46667rem; }
 
 #head-holder {
-  height: 1.46667rem; }
+  height: 1.44rem; }
 
 .mui-bar-tab {
   background-color: #fff;
+  height: 1.32rem;
   border: none;
-  height: 1.32rem; }
+  border-top: 1px solid #dcdcdc; }
   .mui-bar-tab a {
     outline: none;
     text-decoration: none; }
@@ -276,10 +254,10 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   color: #737373;
   display: block;
   text-align: left;
-  white-space: nowrap;
   word-break: keep-all;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
   [data-dpr="2"] .home-news-content-item-detail-introduce {
     font-size: 24px; }
   [data-dpr="3"] .home-news-content-item-detail-introduce {
@@ -359,8 +337,8 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   bottom: 0;
   word-break: keep-all;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  overflow: hidden; }
   [data-dpr="2"] .home-news-content-item-photo-title {
     font-size: 24px; }
   [data-dpr="3"] .home-news-content-item-photo-title {
@@ -468,6 +446,8 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 
 #showBar {
   font-size: 0;
+  margin: 0;
+  padding: 0;
   position: relative;
   white-space: nowrap;
   transition: all 0s linear; }
@@ -475,7 +455,12 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 .showBar-item {
   width: 100%;
   display: inline-block;
-  position: relative; }
+  position: relative;
+  white-space: normal;
+  vertical-align: top;
+  font-size: 0;
+  margin: 0;
+  padding: 0; }
 
 .showBar-a {
   display: block;
@@ -887,7 +872,7 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 
 .trade-header-nav {
   width: 25%;
-  line-height: 1.42667rem;
+  line-height: 1.34667rem;
   border-bottom-width: 2px;
   border-bottom-style: solid;
   border-bottom-color: #FFFFFF;

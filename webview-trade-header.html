@@ -52,14 +52,18 @@
 		<script src="js/public.js"></script>
 		<script>
 			mui.init();
+			window.addEventListener("initTradeView", function() {
+				var tabNode = document.querySelectorAll(".trade-header-nav");
+				for (var i = 0; i < tabNode.length; i++) {
+					if (tabNode[i].classList.contains("trade-header-nav-active")) {
+						tabNode[i].classList.remove("trade-header-nav-active");
+					}
+				}
+				tabNode[0].classList.add("trade-header-nav-active");
+			});
 			mui.plusReady(function() {
 				mui(".trade-header-container").on("tap", ".trade-header-nav", function() {
 					var btn = this;
-					//					if (btn.classList.contains("loading")) {
-					//						console.log("退出");
-					//						return;
-					//					}
-					//					btn.classList.add("Loading");
 					var nwaiting = plus.nativeUI.showWaiting();
 					if (!this.classList.contains("trade-header-nav-active")) {
 						document.querySelector(".trade-header-nav-active").classList.remove("trade-header-nav-active");
@@ -72,7 +76,7 @@
 						oldview[i].close();
 					}
 					var loadURL = btn.getAttribute("data-url");
-					var webviewBody = plus.webview.create(loadURL, loadURL, fnSetSubpageStyle(110, 0));
+					var webviewBody = plus.webview.create(loadURL, loadURL, fnSetSubpageStyle(109, 0));
 					webviewBody.onloaded = function() {
 						setTimeout(function() {
 							nwaiting.close();

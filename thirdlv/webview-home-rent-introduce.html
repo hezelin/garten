@@ -116,80 +116,85 @@
 				var id = "#buyDiv";
 				fnCloseShade(id);
 			});
-			mui.plusReady = function() {}
-				//展示图代码加载处理
-				//			var elements = document.querySelectorAll(".showBar-img");
-				//			var len = elements.length;
-				//			elements.forEach(loadImg);
-				//			function fnShowBar() {};
-				//			function loadImg(elem, index, array) {
-				//				elem.onload = function() {
-				//					len--;
-				//					if (len === 0) {
-				//						
-				//					}
-				//				}
-				//			}
-				//			mui.plusReady(function() {
-				//				setTimeout(function() {
-				//					fnShowBarOperate();
-				//				},1000);
-				//			});		
-				//			window.onload = function() {
-				//				fnShowBarOperate();
-				//			}
+			//展示图预加载处理
+			//			var elements = document.querySelectorAll(".showBar-img");
+			//			var len = elements.length;
+			//			elements.forEach(loadImg);
+			//			function fnShowBar() {};
+			//			function loadImg(elem, index, array) {
+			//				elem.onload = function() {
+			//					len--;
+			//					if (len === 0) {
+			//						
+			//					}
+			//				}
+			//			}
+			//控制setTimeout事件顺序
+			//alam.setup(func)
+			var alam = {
+				remind: function(func) {
+					func();
+					this.timeoutID = undefined;
+				},
+				setup: function(myFunc) {
+					//清除上一个timeout
+					if (typeof this.timeoutID === "number") {
+						this.cancel();
+						this.timeoutID = window.setTimeout(function(Func) {
+							this.remind(Func);
+						}.bind(this), 500, myFunc);
+					} else {
+						this.timeoutID = window.setTimeout(function(Func) {
+							this.remind(Func);
+						}.bind(this), 500, myFunc);
+					}
+				},
+				cancel: function() {
+					window.clearTimeout(this.timeoutID);
+					this.timeoutID = undefined;
+				}
+			}
+			mui.plusReady(function() {
+				setTimeout(function() {
+					fnShowBarOperate();
+				}, 400);
+			});
+
 			function fnShowBarOperate() {
 				//获取屏幕视口宽度
+				var screenWidth = plus.screen.resolutionWidth;
 				var screenScale = plus.screen.scale;
-				var screenWidth = plus.screen.resolutionWidth * plus.screen.scale;
-				//				var screenScale = document.getElementsByTagName("html")[0].getAttribute("data-dpr");
-				//				var screenWidth = document.getElementsByTagName("body")[0].offsetWidth;
-				//				console.log(screenWidth);
-				//				console.log(screenScale);
 				//初始化页标
 				document.querySelector(".pageIndex").innerText = 1 + "/" + document.querySelectorAll(".showBar-img").length;
 				var nStartX = 0;
-				var startPosition = 0;
 				var container = document.querySelector("#showBarContainer");
 				var oBar = document.querySelector("#showBar");
 				container.addEventListener("touchstart", function(e) {
 					e.preventDefault();
-					nStartX = parseInt(e.targetTouches[0].pageX);
-					startPosition = oBar.getAttribute("data-left");
+					nStartX = e.targetTouches[0].pageX;
 				});
 				container.addEventListener("touchmove", function(e) {
 					e.preventDefault();
 					var touch = e.targetTouches[0];
-					var _left = parseInt(oBar.getAttribute("data-left"));
-					var _L = parseInt(_left + touch.pageX - nStartX);
+					var _left = parseFloat(oBar.getAttribute("data-left"));
+					var _L = _left + touch.pageX - nStartX;
 					oBar.setAttribute("data-left", _L);
 					oBar.style.transform = "translate3d(" + _L + "px, 0px, 0px)";
 					oBar.style.WebkitTransform = "translate3d(" + _L + "px, 0px, 0px)";
-					nStartX = parseInt(touch.pageX);
+					nStartX = touch.pageX;
 				});
 				container.addEventListener("touchend", function(e) {
 					e.preventDefault();
 					//已移动距离
-					var Range = startPosition - oBar.getAttribute("data-left");
+					var Range = parseFloat(oBar.getAttribute("data-left")) % screenWidth;
 					var Middle = screenWidth / 2;
 					var Count = document.querySelectorAll(".showBar-img").length - 1;
 					var _left = parseFloat(oBar.getAttribute("data-left"));
-					Range = Range * screenScale;
-					if (Range >= 0) {
-						//向左移
-						if (Range >= Middle) {
-							_left = _left - (screenWidth - Range);
-						} else {
-							_left = _left + Range;
-						}
+					Range = Math.abs(Range);
+					if (Range <= Middle) {
+						_left = _left + Range;
 					} else {
-						//向右移
-						Range = Math.abs(Range);
-						if (Range >= Middle) {
-							_left = _left + (screenWidth - Range);
-						} else {
-							_left = _left - Range;
-						}
+						_left = _left - (screenWidth - Range);
 					}
 					if (_left >= 0) {
 						//不能继续右移
@@ -198,16 +203,15 @@
 						//不能继续左移
 						_left = -screenWidth * Count;
 					}
-					_left = _left / screenScale;
 					oBar.style.transform = "translate3d(" + _left + "px, 0px, 0px)";
 					oBar.style.WebkitTransform = "translate3d(" + _left + "px, 0px, 0px)";
-					oBar.style.transitionDuration = "500ms"; //500
-					oBar.style.webkitTransitionDuration = "500ms"; //500
-					fnTimeOut = setTimeout(function() {
+					oBar.style.transitionDuration = "500ms";
+					oBar.style.webkitTransitionDuration = "500ms";
+					//使用timeout队列解决滑动冲突的问题
+					alam.setup(function() {
 						oBar.style.transitionDuration = "0ms";
 						oBar.style.webkitTransitionDuration = "0ms";
-					}, 500);
-					//					console.log(fnTimeOut);
+					});
 					oBar.setAttribute("data-left", _left);
 					//更改图片索引
 					var currentIMG = parseInt(-_left / screenWidth) + 1;

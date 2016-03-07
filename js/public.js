@@ -45,11 +45,13 @@ function fnLoadPage(tapBtn, obj, objPost) {
 	tapBtn.classList.add("loading");
 	var webviewHead = plus.webview.getWebviewById("webview-header");
 	var oldview = webviewHead.children();
-	//执行窗口初始化
-	mui.fire(webviewHead, "initHeadPage", objPost);
 	for (var i = 0; i < oldview.length; i++) {
+		mui.fire(webviewHead, "initHeadPage");
 		webviewHead.remove(oldview[i]);
+		oldview[i].close();		
 	}
+	//设置窗口按键
+	mui.fire(webviewHead, "setHeadPage", objPost);
 	webviewHead.show("slide-in-right", "", function() {
 		tapBtn.classList.remove("loading");
 	});
@@ -133,12 +135,6 @@ function fnOpenTargetDiv(_id) {
 		fnCloseShade(_id);
 	});
 }
-
-/**
- * 
- */
-
-
 
 if (window.plus) {
 	plusReady();

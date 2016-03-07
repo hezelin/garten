@@ -75,11 +75,12 @@
 						webviewTradeHead.remove(oldview[i]);
 						oldview[i].close();
 					}
+					mui.fire(webviewTradeHead, "initTradeView");
 					webviewTradeHead.show("slide-in-right", "", function() {
 						thisbtn.classList.remove("loading");
 					});
 					//打开商品父模板时加载第一页
-					var newWebview = plus.webview.create("../thirdlv/webview-home-rent-detail.html", "webview-home-rent-detail",  fnSetSubpageStyle(110, 0));
+					var newWebview = plus.webview.create("../thirdlv/webview-home-rent-detail.html", "webview-home-rent-detail",  fnSetSubpageStyle(109, 0));
 					newWebview.onloaded = function() {
 						setTimeout(function() {
 							nwaiting.close();

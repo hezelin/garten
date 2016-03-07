@@ -23,7 +23,7 @@
 	</head>
 
 	<body>
-		<div class="header-control">
+		<div class="header-control bg-color-green">
 			<div class="header-control-left-btn  mui-action-back">
 				<span class="white-arrow-big-span header-control-left-btn-span"></span>
 			</div>
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 
-		<div class="header-control-tab-fixed">
+		<div class="header-control-tab-fixed" style="display: none;">
 			<div class="header-control-tab">
 				<div class="header-control-tab-nav header-control-tab-nav-active" data-transform="none">
 					全部
@@ -62,12 +62,56 @@
 			</div>
 		</div>
 
-		
 		<script src="js/mui.min.js"></script>
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
 		<script>
 			mui.init();
+			// 将模板页设为初始状态
+			window.addEventListener("initHeadPage", function() {
+				//初始化状态栏
+				var navNode = document.getElementsByClassName("header-control-tab-nav");
+				for (var i = 0; i < navNode.length; i++) {
+					if (navNode[i].classList.contains("header-control-tab-nav-active")) {
+						navNode[i].classList.remove("header-control-tab-nav-active");
+						navNode[i].classList.add("header-control-tab-nav-lay");
+					}
+				}
+				navNode[0].classList.remove("header-control-tab-nav-lay");	
+				navNode[0].classList.add("header-control-tab-nav-active");
+				document.getElementsByClassName("head-control-slider")[0].style.transform = "none";
+				document.getElementsByClassName("head-control-slider")[0].style.transitionDuration = "0ms";
+				document.getElementsByClassName("head-control-slider")[0].style.webkitTransform = "none";
+				document.getElementsByClassName("head-control-slider")[0].style.webkitTransitionDuration = "0ms";
+					
+				
+				document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "none";
+				var headRight = document.getElementsByClassName("header-control-right-btn")[0];
+				if (headRight.firstChild) {
+					headRight.removeChild(headRight.firstChild);
+				}
+			});
+			// 改变父模板页按钮等样式
+			window.addEventListener("setHeadPage", function(event) {
+				var newTitle = event.detail.title;
+				var controlTab = event.detail.hasControlTab;
+				var rightBtn = event.detail.rightBtn;
+				//改变标题
+				document.getElementById("webview-head-title").innerHTML = newTitle;
+				//添加webview切换栏（订单
+				if (controlTab) {
+					document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "block";
+				}
+				//添加按钮
+				if (rightBtn) {
+					//去除右侧按键的元素并填充
+					var headRight = document.getElementsByClassName("header-control-right-btn")[0];
+					if (headRight.firstChild) {
+						headRight.removeChild(headRight.firstChild);
+					}
+					headRight.innerHTML = rightBtn;
+				}
+			});
 			/**
 			 * @description 改变tab栏状态
 			 * @param {Object} thisBtn
@@ -76,8 +120,8 @@
 				if (thisBtn.classList.contains("header-control-tab-nav-active")) {
 					return;
 				} else {
-					var navNode = document.getElementsByClassName("header-control-tab-nav")
-					for (var i = 0; i < 3; i++) {
+					var navNode = document.getElementsByClassName("header-control-tab-nav");
+					for (var i = 0; i < navNode.length; i++) {
 						if (navNode[i].classList.contains("header-control-tab-nav-active")) {
 							navNode[i].classList.remove("header-control-tab-nav-active");
 							navNode[i].classList.add("header-control-tab-nav-lay");
@@ -88,51 +132,14 @@
 				}
 			}
 			mui.plusReady(function() {
-				//监听改变父模板页
-				window.addEventListener("initHeadPage", function(event) {
-					var newTitle = event.detail.title;
-					var controlTab = event.detail.hasControlTab;
-					var rightBtn = event.detail.rightBtn;
-					var bottomBar = event.detail.hasBottomBar;
-					var headStyle = event.detail.styleClass;
-					//将模板页设为初始状态
-					(function(){
-						document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "none";
-						var headRight = document.getElementsByClassName("header-control-right-btn")[0];
-						if (headRight.firstChild) {
-							headRight.removeChild(headRight.firstChild);
-						}
-						if(document.querySelector(".header-control").classList.contains("header-control-greenBold")) {
-							document.querySelector(".header-control").classList.remove("header-control-greenBold");
-						}
-					})();
-					//改变标题
-					document.getElementById("webview-head-title").innerHTML = newTitle;
-					//改变头部栏样式
-					if(headStyle) {
-						var head = document.querySelector(".header-control");
-						head.classList.add(headStyle);
-					}
-					//添加webview切换栏（订单
-					if (controlTab) {
-						document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "block";
-					}
-					//添加按钮
-					if (rightBtn) {
-						//去除右侧按键的元素并填充
-						var headRight = document.getElementsByClassName("header-control-right-btn")[0];
-						if (headRight.firstChild) {
-							headRight.removeChild(headRight.firstChild);
-						}
-						headRight.innerHTML = rightBtn;
-					}
-				});
 				//webview切换栏
 				mui(".header-control-tab").on("tap", ".header-control-tab-nav", function() {
 					var thisBtn = this;
 					var strValue = this.getAttribute("data-transform");
 					document.getElementsByClassName("head-control-slider")[0].style.transform = strValue;
 					document.getElementsByClassName("head-control-slider")[0].style.webkitTransform = strValue;
+					document.getElementsByClassName("head-control-slider")[0].style.transitionDuration = "200ms";
+					document.getElementsByClassName("head-control-slider")[0].style.webkitTransitionDuration = "200ms";
 					var webviewBodyURL = "secondlv/webview-my-order.html";
 					fnChangeTabStatus(thisBtn);
 					if (thisBtn.classList.contains("loading")) {

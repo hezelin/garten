@@ -16,7 +16,9 @@
 			"img/img.png"
 		],
 		"refer": [
-			"secondlv/webview-comu-knowledge-list.html"
+			"secondlv/webview-comu-knowledge-list.html",
+			"thirdlv/webview-comu-knowledge-detail.html",
+			"secondlv/webview-comu-knowledge.html"
 		]
 	},
 	"index.html": {
@@ -108,7 +110,9 @@
 			"js/md5.min.js",
 			"js/mui.min.js",
 			"css/mui.min.css",
-			"css/style.css"
+			"css/style.css",
+			"fonts/mui.ttf",
+			"secondlv/webview-my-collect.html"
 		],
 		"refer": [
 			"secondlv/webview-my-collect.html",
@@ -116,7 +120,8 @@
 			"secondlv/webview-my-userbag.html",
 			"secondlv/webview-my-order.html",
 			"secondlv/webview-comu-knowledge-list.html",
-			"secondlv/webview-home-rent.html"
+			"secondlv/webview-home-rent.html",
+			"secondlv/webview-comu-knowledge.html"
 		]
 	},
 	"secondlv/webview-my-setting.html": {
@@ -265,7 +270,8 @@
 			"thirdlv/webview-home-detail.html",
 			"thirdlv/webview-home-rent-detail.html",
 			"thirdlv/webview-home-rent-comment.html",
-			"thirdlv/webview-home-rent-introduce.html"
+			"thirdlv/webview-home-rent-introduce.html",
+			"thirdlv/test.html"
 		]
 	},
 	"thirdlv/webview-home-detail.html": {
@@ -322,6 +328,42 @@
 			"img/tradeListbg1.png",
 			"img/shop-detail.png",
 			"img/img2.png"
+		]
+	},
+	"thirdlv/webview-comu-knowledge-detail.html": {
+		"resources": [
+			"img/test-slider4.png",
+			"img/test-slider2.png",
+			"img/test-slider3.png",
+			"secondlv/webview-comu-knowledge.html"
+		],
+		"refer": [
+			"secondlv/webview-comu-knowledge.html"
+		]
+	},
+	"secondlv/webview-comu-knowledge.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/test-knowledge5.png",
+			"js/mui.min.js",
+			"img/test-knowledge2.png",
+			"img/test-knowledge1.png",
+			"img/test-knowledge4.png",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/img2.png",
+			"img/test-knowledge3.png",
+			"js/flexible.debug.js"
+		]
+	},
+	"thirdlv/test.html": {
+		"resources": [
+			"thirdlv/style.css",
+			"thirdlv/jquery.js",
+			"thirdlv/5.jpg",
+			"thirdlv/4.jpg"
 		]
 	}
 }
