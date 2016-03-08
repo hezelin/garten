@@ -4,23 +4,23 @@
      * ******** ******** ******** ********
      * index页
  */
-//头部
-#head-bar {
-    @include px2rem(height,110px);
-}
-#head-holder {
-    @include px2rem(height, 108px);
-}
 //底部导航
-.mui-bar-tab{
-    background-color: #fff;
-    @include px2rem(height, 99px);
-    border: none;
+#index-bar-tab {
+    width: 100%;
+    @include px2rem(height, 110px);
+    background-color: #FFFFFF;
     border-top: $base-border;
-    a {
-        outline: none;
-        text-decoration: none;
-    }
+    display: table !important;
+    z-index: 10;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+.index-tab-item {
+    width: 25%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }
 //图标尺寸
 .icon-index {
@@ -31,7 +31,7 @@
     z-index: 20;
     display: inline-block;
 }
-//导航图标
+
 .icon-index-home {
     @include spirtes-img;
     @include px2rem(background-position-x, -73px);//73
@@ -59,6 +59,33 @@
 .icon-label {
     @include font-dpr(14px);
     display: block;
+}
+//重写点击底部按键active事件
+.index-tab-active {
+    .icon-index-home {
+        @include spirtes-img;
+        @include px2rem(background-position-x, -1px);//73
+        @include px2rem(background-position-y, -472px);
+    }
+
+    .icon-index-comu {
+        @include spirtes-img;
+        @include px2rem(background-position-x, -433px);//432
+        @include px2rem(background-position-y, -472px);
+    }
+    
+    .icon-index-nav {
+        @include spirtes-img;
+        @include px2rem(background-position-x, -289px);//361
+        @include px2rem(background-position-y, -472px);
+    }
+    
+    .icon-index-info {
+        @include spirtes-img;
+        @include px2rem(background-position-x, -216px);//216
+        @include px2rem(background-position-y, -472px);
+    }
+    color: $green-color;
 }
 
 /**
@@ -657,44 +684,6 @@
      * webview-header
      * 非index页头部栏
  */
-.header-control {
-    width: 100%;
-    @include px2rem(height,110px);
-    background-color: rgb(67,67,67);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 20;
-    display: table;
-    div {
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-    }
-}
-//左右两边按钮大小，图标样式。头部分左中右三部分，中间宽度自动
-.header-control-left-btn,.header-control-right-btn {
-    @include px2rem(width,130px);
-}
-.header-control-left-btn-span {
-    float: left;
-    @include px2rem(margin-left,28px);
-    display: inline-block;
-    @include font-dpr(18px);
-    color: #FFFFFF;
-}      
-.header-control-right-btn-span {                
-    float: right;
-    @include px2rem(margin-right,28px);
-    display: inline-block;
-    @include font-dpr(18px);
-    color: #FFFFFF;
-}     
-#webview-head-title {
-    display: inline-block;
-    @include font-dpr(21px);
-    color: #FFFFFF;
-}
 //三个tab导航
 .header-control-tab-fixed {
     width: 100%;
@@ -1878,35 +1867,20 @@
     border: 1px solid rgb(136,197,70);
     background-color: rgb(136,197,70);
 }
-//
-@media only screen and (max-device-width: 430px) {
-    .input-name-container {
-        @include px2rem(width, 640px);
-        @include px2rem(margin, (60px, 55px, 60px, 55px));  
-    }
-    #inputNickName {
-        @include px2rem(width, 570px);
-    }
-    #clearNickName {
-        @include px2rem(width, 50px);
-        color: rgb(201,201,201);
-    }
-}
-@media only screen and (min-device-width: 431px) {
-    .input-name-container {
+
+.input-name-container {
         width: 80%;
         margin-left: 10%;
         margin-right: 10%;
         @include px2rem(margin-top, 60px);
         @include px2rem(margin-bottom, 60px);
-    }
-    #inputNickName {
-        width: 90%;
-    }
-    #clearNickName {
-        width: 9%;
-        color: rgb(201,201,201);
-    }
+}
+#inputNickName {
+    width: 90%;
+}
+#clearNickName {
+    width: 9%;
+    color: rgb(201,201,201);
 }
 
 .input-name-container {
@@ -2158,129 +2132,14 @@ input[type=color],input[type=date],input[type=datetime-local],input[type=datetim
 //重写setting页面属性end (这里后面需要修改)
 //旧的
 
-/**
-     * ******** ******** ******** ********
-     * 以下为共有样式
- */
-//图案资源
-//右白箭头 右黑箭头 左大白箭头 右小黑箭头 帮助图标
-//箭头-右白箭头
-.white-arrow-span {
-    @include px2rem(width,20px);
-    @include px2rem(height,35px);
-    @include spirtes-img;
-    @include px2rem(background-position-y,-47px);
-}
 
-//箭头-右黑箭头
-.black-arrow-span {
-    @include px2rem(width,20px);
-    @include px2rem(height,35px); 
-    @include spirtes-img;
-    @include px2rem(background-position-x, -31px);
-    @include px2rem(background-position-y,-47px);
-}
-
-//箭头-左大白箭头
-.white-arrow-big-span {
-    @include px2rem(width,26px);
-    @include px2rem(height,46px); 
-    @include spirtes-img;
-    @include px2rem(background-position-y,-104px);
-}
-
-//箭头-右小黑箭头
-.black-arrow-small-span {
-    @include px2rem(width,17px);
-    @include px2rem(height,28px); 
-    @include spirtes-img;
-    @include px2rem(background-position-x, -16px);
-}
-//帮助图标 
-.help-about-span {
-    @include px2rem(width,50px);
-    @include px2rem(height,50px);
-    @include spirtes-img;
-    @include px2rem(background-position-x,-127px);
-    @include px2rem(background-position-y,-334px);
-}
-//店铺图标
-.shop-span {
-    @include px2rem(width,39px);
-    @include px2rem(height,36px);
-    @include spirtes-img;
-    @include px2rem(background-position-x,0px);
-    @include px2rem(background-position-y,-279px);
-}
-//店铺右边箭头
-.shop-arrow-span {
-    @include px2rem(width,16px);
-    @include px2rem(height,28px);
-    @include spirtes-img;
-}
-//垃圾桶图标
-.shop-delete-span {
-    @include px2rem(width, 37px);
-    @include px2rem(height, 38px);
-    @include spirtes-img;
-    @include px2rem(background-position-x,0px);
-    @include px2rem(background-position-y,-168px);
-}
-//单选按钮默认不选中 
-.radio-check-span {
-    @include px2rem(width, 46px);
-    @include px2rem(height, 46px);
-    @include spirtes-img;
-    display: inline-block;
-    @include px2rem(background-position-x,0px);
-    @include px2rem(background-position-y,-336px);
-}
-.radio-check-active {
-    @include px2rem(background-position-x,-64px);
-}
 
 
 /**
      * ******** ******** ******** ********
      * 以下为覆盖mui默认样式
  */
-//重写点击底部按键active事件
-.mui-bar-tab .mui-tab-item.mui-active {
-    .icon-index-home {
-        @include spirtes-img;
-        @include px2rem(background-position-x, -1px);//73
-        @include px2rem(background-position-y, -472px);
-    }
 
-    .icon-index-comu {
-        @include spirtes-img;
-        @include px2rem(background-position-x, -433px);//432
-        @include px2rem(background-position-y, -472px);
-    }
-    
-    .icon-index-nav {
-        @include spirtes-img;
-        @include px2rem(background-position-x, -289px);//361
-        @include px2rem(background-position-y, -472px);
-    }
-    
-    .icon-index-info {
-        @include spirtes-img;
-        @include px2rem(background-position-x, -216px);//216
-        @include px2rem(background-position-y, -472px);
-    }
-    color: #83C347;
-}
-
-//重写底部高度
-.mui-bar-tab .mui-tab-item {
-    @include px2rem(height,110px);
-}
-
-//重写底部栏label颜色
-.mui-bar-tab .mui-tab-item {
-    color: #000000;
-}
 
 //重写多选按钮checkbox  mui框架
 .mui-checkbox input[type=checkbox], .mui-radio input[type=radio] {

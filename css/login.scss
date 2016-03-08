@@ -1,1 +1,184 @@
 @import 'public';
+.input-group {
+    @include px2rem(margin-top, 20px);
+    text-align: center;
+}
+//登录页
+.login-container {
+    width: 100%;
+    height: 100%;
+    background: url(../img/login-bg-img.png);
+    background-size: cover;
+}
+.btn-left {
+    @include px2rem(width, 90px);
+    @include px2rem(height, 110px);
+    display: inline-block;
+}
+.btn-right {
+    @include px2rem(width, 130px);
+    @include px2rem(height, 110px);
+    display: inline-block;
+    text-align: center;
+    @include px2rem(line-height, 100px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    span {
+        @include font-dpr(19px);
+        color: #FFFFFF;
+    }
+}
+.white-arrow-big-span {
+    @include px2rem(top, 25px);
+    @include px2rem(left, 0px);
+    position: absolute;
+}
+input::-webkit-input-placeholder {
+    color: #ECECEC;
+}
+.login-input-span {
+    @include px2rem(height, 90px);
+    @include px2rem(margin-bottom, 15px);
+    display: inline-block;
+    @include px2rem(border-radius, 30px);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.login-input {
+    @include px2rem(width, 547px);
+    @include px2rem(height, 90px);
+    @include px2rem(padding-left, 100px);
+    @include font-dpr(18px);
+    color: #FFFFFF;
+    border: none;
+}
+#input-phone {
+    background: url(../img/input-phone.png);
+    background-repeat: no-repeat;
+    @include px2rem(background-size, (40px, 55px));
+    @include px2rem(background-position-x, 25px);
+    background-position-y: center;
+}
+#input-pwd {
+    background: url(../img/input-pwd.png);
+    background-repeat: no-repeat;
+    @include px2rem(background-size, (40px, 55px));
+    @include px2rem(background-position-x, 25px);
+    background-position-y: center;
+}
+.login-btn {
+    @include px2rem(width, 647px);
+    @include px2rem(height, 90px);
+    @include px2rem(margin-top, 40px);
+    @include font-dpr(18px);
+    color: #FFFFFF;
+    border: none;
+    @include px2rem(border-radius, 30px);
+    background-color: $green-color;
+}
+.forgetPWD-span {
+    @include px2rem(width, 647px);
+    @include px2rem(height, 90px);
+    @include px2rem(margin-bottom, 15px);
+    @include px2rem(padding-right, 40px);
+    text-align: right;
+    display: inline-block;
+}
+#forgetPWD {
+    @include px2rem(height, 90px);
+    @include px2rem(line-height, 90px);
+    @include font-dpr(14px);
+    display: inline-block;
+    color: #FFFFFF;
+}
+//注册页面共用部分
+.register-input {
+    @include px2rem(width, 631px);
+    @include px2rem(height, 106px);
+    @include px2rem(padding-left, 25px);
+    @include px2rem(padding-right, 25px);
+    @include px2rem(margin-bottom, 28px);
+    display: inline-block;
+    @include font-dpr(19px);
+    color: #9a9a9a;
+    background-color: rgb(255, 255, 255);
+    border: $base-border;
+    @include px2rem(border-radius, 10px);
+}
+.register-input:nth-child(1) {
+//  @include px2rem(margin-top, 80px);
+}
+.register-btn {
+    @include px2rem(width, 681px);
+    @include px2rem(height, 106px);
+    @include px2rem(line-height, 106px);
+    @include px2rem(margin-top, 20px);
+    @include px2rem(border-radius, 10px);
+    border: none;
+    background-color: $green-color;
+    @include font-dpr(21px);
+    color: #FFFFFF;
+    text-align: center;
+}
+//注册页面一
+.authCode-group {
+    @include px2rem(width, 631px);
+    @include px2rem(height, 106px);
+    @include px2rem(padding-left, 25px);
+    @include px2rem(padding-right, 25px);
+    display: inline-block;
+    border: $base-border;
+    border-radius: 7px;
+    overflow: hidden;
+    background-color: #FFFFFF;   
+}
+#authCode {
+    @include px2rem(width, 420px);
+    @include px2rem(height, 106px);
+    @include font-dpr(19px);
+    color: #9a9a9a;
+    border: none;
+    vertical-align: middle;
+}
+#getAuthCode {
+    @include px2rem(width, 180px);
+    @include px2rem(height, 70px);
+    @include font-dpr(12px);
+    background-color: rgb(224, 224, 224);
+    @include px2rem(border-radius, 10px);
+    border: none;
+    color: #6d6d6d;
+    vertical-align: middle;
+    
+}
+//注册页面二
+.span-agreement {
+    @include px2rem(margin-top, 10px);
+    @include px2rem(margin-bottom, 10px);
+    position: relative;
+    @include px2rem(left, 35px);
+    float: left;
+    display: inline-block;
+    span {
+        vertical-align: middle;
+    }
+    a {
+        color: steelblue;
+    }
+}
+//重置密码
+#resetPWD {
+    @include px2rem(width, 648px);
+    @include px2rem(height, 94px);
+    @include px2rem(border-radius, 30px);
+    @include font-dpr(18px);
+    color: #FFFFFF;
+    background-color: $green-color;
+    border: none;
+    
+}
+.reset-item {
+    @include px2rem(width, 648px);
+    @include px2rem(height, 94px);
+    display: inline-block;
+}

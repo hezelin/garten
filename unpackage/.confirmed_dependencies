@@ -13,7 +13,8 @@
 			"js/public.js",
 			"fonts/mui.ttf",
 			"js/flexible.debug.js",
-			"img/img.png"
+			"img/img.png",
+			"css/mui.min.css"
 		],
 		"refer": [
 			"secondlv/webview-comu-knowledge-list.html",
@@ -41,7 +42,8 @@
 			"webview-home.html",
 			"webview-header.html",
 			"secondlv/webview-my-setting.html",
-			"webview-trade-header.html"
+			"webview-trade-header.html",
+			"login/login.html"
 		]
 	},
 	"webview-my.html": {
@@ -112,7 +114,8 @@
 			"css/mui.min.css",
 			"css/style.css",
 			"fonts/mui.ttf",
-			"secondlv/webview-my-collect.html"
+			"secondlv/webview-my-collect.html",
+			"secondlv/webview-comu-knowledge.html"
 		],
 		"refer": [
 			"secondlv/webview-my-collect.html",
@@ -149,7 +152,8 @@
 			"js/flexible_css.debug.js",
 			"js/md5.min.js",
 			"js/mui.min.js",
-			"js/flexible.debug.js"
+			"js/flexible.debug.js",
+			"css/mui.min.css"
 		]
 	},
 	"secondlv/webview-my-collect.html": {
@@ -364,6 +368,37 @@
 			"thirdlv/jquery.js",
 			"thirdlv/5.jpg",
 			"thirdlv/4.jpg"
+		]
+	},
+	"login/login.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"css/login.css",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"img/login-bg-img.png",
+			"img/input-phone.png",
+			"img/input-pwd.png"
+		],
+		"refer": [
+			"login/register.html"
+		]
+	},
+	"login/register.html": {
+		"refer": [
+			"login/register2.html"
+		],
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"css/login.css",
+			"js/public.js",
+			"js/flexible.debug.js"
 		]
 	}
 }

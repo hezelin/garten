@@ -84,3 +84,137 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     line-height: normal;
     font-family: "微软雅黑";
 }
+
+//图标样式
+//箭头-右白箭头
+.white-arrow-span {
+    @include px2rem(width,20px);
+    @include px2rem(height,35px);
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-y,-47px);
+}
+
+//箭头-右黑箭头
+.black-arrow-span {
+    @include px2rem(width,20px);
+    @include px2rem(height,35px); 
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-x, -31px);
+    @include px2rem(background-position-y,-47px);
+}
+
+//箭头-左大白箭头
+.white-arrow-big-span {
+    @include px2rem(width,26px);
+    @include px2rem(height,46px); 
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-y,-104px);
+}
+
+//箭头-右小黑箭头
+.black-arrow-small-span {
+    @include px2rem(width,17px);
+    @include px2rem(height,28px); 
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-x, -16px);
+}
+//帮助图标 
+.help-about-span {
+    @include px2rem(width,50px);
+    @include px2rem(height,50px);
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-x,-127px);
+    @include px2rem(background-position-y,-334px);
+}
+//店铺图标
+.shop-span {
+    @include px2rem(width,39px);
+    @include px2rem(height,36px);
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-x,0px);
+    @include px2rem(background-position-y,-279px);
+}
+//店铺右边箭头
+.shop-arrow-span {
+    @include px2rem(width,16px);
+    @include px2rem(height,28px);
+    @include spirtes-img;
+    display: inline-block;
+}
+//垃圾桶图标
+.shop-delete-span {
+    @include px2rem(width, 37px);
+    @include px2rem(height, 38px);
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-x,0px);
+    @include px2rem(background-position-y,-168px);
+}
+//单选按钮默认不选中 
+.radio-check-span {
+    @include px2rem(width, 46px);
+    @include px2rem(height, 46px);
+    @include spirtes-img;
+    display: inline-block;
+    @include px2rem(background-position-x,0px);
+    @include px2rem(background-position-y,-336px);
+}
+//单选按钮选中
+.radio-check-active {
+    @include px2rem(background-position-x,-64px);
+}
+
+//头部占位
+#head-holder {
+    @include px2rem(height, 109px);
+}
+
+// 头部控制栏，公用部分 
+// 模板为webview-header
+.header-control {
+    width: 100%;
+    @include px2rem(height,110px);
+    background-color: $green-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: table;
+    div {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+}
+.header-control-color {
+    background-color: rgb(67, 67, 67) !important;
+}
+//左右两边按钮大小，图标样式。头部分左中右三部分，中间宽度自动
+.header-control-left-btn,.header-control-right-btn {
+    @include px2rem(width,130px);
+}
+.header-control-left-btn-span {
+    float: left;
+    @include px2rem(margin-left,28px);
+    display: inline-block;
+    @include font-dpr(18px);
+    color: #FFFFFF;
+}      
+.header-control-right-btn-span {                
+    float: right;
+    @include px2rem(margin-right,28px);
+    display: inline-block;
+    @include font-dpr(18px);
+    color: #FFFFFF;
+}     
+#webview-head-title {
+    display: inline-block;
+    @include font-dpr(21px);
+    color: #FFFFFF;
+}

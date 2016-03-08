@@ -136,12 +136,35 @@ function fnOpenTargetDiv(_id) {
 	});
 }
 
-if (window.plus) {
-	plusReady();
-} else {
-	document.addEventListener("plusready", plusReady, false);
+/**
+ * @description 检查用户登录状态,有效期七天
+ */
+function userLoginStatus() {
+	var result = false;
+	var tokenValue = plus.storage.getItem("tokenValue");
+	var tokenDate = plus.storage.getItem("tokenDate");
+	var newTime = new Date().getTime();
+	if (tokenValue == null || tokenDate == null) {
+		result = false;
+	} else {
+		//先做有效期判断		
+		if ((newTime - tokenDate) / 3600000 / 24 > 7) {
+			result = false;
+		} else {
+			result = true;
+		}
+	}
+	return result;
 }
 
-function plusReady() {
-	plus.screen.lockOrientation("portrait-primary");
-}
+
+
+//if (window.plus) {
+//	plusReady();
+//} else {
+//	document.addEventListener("plusready", plusReady, false);
+//}
+//
+//function plusReady() {
+//	plus.screen.lockOrientation("portrait-primary");
+//}

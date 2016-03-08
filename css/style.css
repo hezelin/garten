@@ -8,24 +8,159 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   line-height: normal;
   font-family: "微软雅黑"; }
 
+.white-arrow-span {
+  width: 0.26667rem;
+  height: 0.46667rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-y: -0.62667rem; }
+
+.black-arrow-span {
+  width: 0.26667rem;
+  height: 0.46667rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: -0.41333rem;
+  background-position-y: -0.62667rem; }
+
+.white-arrow-big-span {
+  width: 0.34667rem;
+  height: 0.61333rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-y: -1.38667rem; }
+
+.black-arrow-small-span {
+  width: 0.22667rem;
+  height: 0.37333rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: -0.21333rem; }
+
+.help-about-span {
+  width: 0.66667rem;
+  height: 0.66667rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: -1.69333rem;
+  background-position-y: -4.45333rem; }
+
+.shop-span {
+  width: 0.52rem;
+  height: 0.48rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: 0rem;
+  background-position-y: -3.72rem; }
+
+.shop-arrow-span {
+  width: 0.21333rem;
+  height: 0.37333rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block; }
+
+.shop-delete-span {
+  width: 0.49333rem;
+  height: 0.50667rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: 0rem;
+  background-position-y: -2.24rem; }
+
+.radio-check-span {
+  width: 0.61333rem;
+  height: 0.61333rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: 0rem;
+  background-position-y: -4.48rem; }
+
+.radio-check-active {
+  background-position-x: -0.85333rem; }
+
+#head-holder {
+  height: 1.45333rem; }
+
+.header-control {
+  width: 100%;
+  height: 1.46667rem;
+  background-color: #83C347;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: table; }
+  .header-control div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center; }
+
+.header-control-color {
+  background-color: #434343 !important; }
+
+.header-control-left-btn, .header-control-right-btn {
+  width: 1.73333rem; }
+
+.header-control-left-btn-span {
+  float: left;
+  margin-left: 0.37333rem;
+  display: inline-block;
+  font-size: 18px;
+  color: #FFFFFF; }
+  [data-dpr="2"] .header-control-left-btn-span {
+    font-size: 36px; }
+  [data-dpr="3"] .header-control-left-btn-span {
+    font-size: 54px; }
+
+.header-control-right-btn-span {
+  float: right;
+  margin-right: 0.37333rem;
+  display: inline-block;
+  font-size: 18px;
+  color: #FFFFFF; }
+  [data-dpr="2"] .header-control-right-btn-span {
+    font-size: 36px; }
+  [data-dpr="3"] .header-control-right-btn-span {
+    font-size: 54px; }
+
+#webview-head-title {
+  display: inline-block;
+  font-size: 21px;
+  color: #FFFFFF; }
+  [data-dpr="2"] #webview-head-title {
+    font-size: 42px; }
+  [data-dpr="3"] #webview-head-title {
+    font-size: 63px; }
+
 /**
      * ******** ******** ******** ********
      * index页
  */
-#head-bar {
-  height: 1.46667rem; }
+#index-bar-tab {
+  width: 100%;
+  height: 1.46667rem;
+  background-color: #FFFFFF;
+  border-top: 1px solid #dcdcdc;
+  display: table !important;
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  bottom: 0; }
 
-#head-holder {
-  height: 1.44rem; }
-
-.mui-bar-tab {
-  background-color: #fff;
-  height: 1.32rem;
-  border: none;
-  border-top: 1px solid #dcdcdc; }
-  .mui-bar-tab a {
-    outline: none;
-    text-decoration: none; }
+.index-tab-item {
+  width: 25%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center; }
 
 .icon-index {
   height: 0.66667rem;
@@ -66,6 +201,29 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
     font-size: 28px; }
   [data-dpr="3"] .icon-label {
     font-size: 42px; }
+
+.index-tab-active {
+  color: #83C347; }
+  .index-tab-active .icon-index-home {
+    background: url(../img/img.png);
+    background-size: 36.21333rem 10.81333rem;
+    background-position-x: -0.01333rem;
+    background-position-y: -6.29333rem; }
+  .index-tab-active .icon-index-comu {
+    background: url(../img/img.png);
+    background-size: 36.21333rem 10.81333rem;
+    background-position-x: -5.77333rem;
+    background-position-y: -6.29333rem; }
+  .index-tab-active .icon-index-nav {
+    background: url(../img/img.png);
+    background-size: 36.21333rem 10.81333rem;
+    background-position-x: -3.85333rem;
+    background-position-y: -6.29333rem; }
+  .index-tab-active .icon-index-info {
+    background: url(../img/img.png);
+    background-size: 36.21333rem 10.81333rem;
+    background-position-x: -2.88rem;
+    background-position-y: -6.29333rem; }
 
 /**
      * ******** ******** ******** ********
@@ -712,54 +870,6 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
      * webview-header
      * 非index页头部栏
  */
-.header-control {
-  width: 100%;
-  height: 1.46667rem;
-  background-color: #434343;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 20;
-  display: table; }
-  .header-control div {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center; }
-
-.header-control-left-btn, .header-control-right-btn {
-  width: 1.73333rem; }
-
-.header-control-left-btn-span {
-  float: left;
-  margin-left: 0.37333rem;
-  display: inline-block;
-  font-size: 18px;
-  color: #FFFFFF; }
-  [data-dpr="2"] .header-control-left-btn-span {
-    font-size: 36px; }
-  [data-dpr="3"] .header-control-left-btn-span {
-    font-size: 54px; }
-
-.header-control-right-btn-span {
-  float: right;
-  margin-right: 0.37333rem;
-  display: inline-block;
-  font-size: 18px;
-  color: #FFFFFF; }
-  [data-dpr="2"] .header-control-right-btn-span {
-    font-size: 36px; }
-  [data-dpr="3"] .header-control-right-btn-span {
-    font-size: 54px; }
-
-#webview-head-title {
-  display: inline-block;
-  font-size: 21px;
-  color: #FFFFFF; }
-  [data-dpr="2"] #webview-head-title {
-    font-size: 42px; }
-  [data-dpr="3"] #webview-head-title {
-    font-size: 63px; }
-
 .header-control-tab-fixed {
   width: 100%;
   top: 1.46667rem;
@@ -2004,31 +2114,20 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   border: 1px solid #88c546;
   background-color: #88c546; }
 
-@media only screen and (max-device-width: 430px) {
-  .input-name-container {
-    width: 8.53333rem;
-    margin: 0.8rem 0.73333rem 0.8rem 0.73333rem; }
+.input-name-container {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem; }
 
-  #inputNickName {
-    width: 7.6rem; }
+#inputNickName {
+  width: 90%; }
 
-  #clearNickName {
-    width: 0.66667rem;
-    color: #c9c9c9; } }
-@media only screen and (min-device-width: 431px) {
-  .input-name-container {
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 0.8rem;
-    margin-bottom: 0.8rem; }
+#clearNickName {
+  width: 9%;
+  color: #c9c9c9; }
 
-  #inputNickName {
-    width: 90%; }
-
-  #clearNickName {
-    width: 9%;
-    color: #c9c9c9; } }
 .input-name-container {
   height: 1.2rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -2295,112 +2394,8 @@ select {
 
 /**
      * ******** ******** ******** ********
-     * 以下为共有样式
- */
-.white-arrow-span {
-  width: 0.26667rem;
-  height: 0.46667rem;
-  background: url(../img/img.png);
-  background-size: 36.21333rem 10.81333rem;
-  background-position-y: -0.62667rem; }
-
-.black-arrow-span {
-  width: 0.26667rem;
-  height: 0.46667rem;
-  background: url(../img/img.png);
-  background-size: 36.21333rem 10.81333rem;
-  background-position-x: -0.41333rem;
-  background-position-y: -0.62667rem; }
-
-.white-arrow-big-span {
-  width: 0.34667rem;
-  height: 0.61333rem;
-  background: url(../img/img.png);
-  background-size: 36.21333rem 10.81333rem;
-  background-position-y: -1.38667rem; }
-
-.black-arrow-small-span {
-  width: 0.22667rem;
-  height: 0.37333rem;
-  background: url(../img/img.png);
-  background-size: 36.21333rem 10.81333rem;
-  background-position-x: -0.21333rem; }
-
-.help-about-span {
-  width: 0.66667rem;
-  height: 0.66667rem;
-  background: url(../img/img.png);
-  background-size: 36.21333rem 10.81333rem;
-  background-position-x: -1.69333rem;
-  background-position-y: -4.45333rem; }
-
-.shop-span {
-  width: 0.52rem;
-  height: 0.48rem;
-  background: url(../img/img.png);
-  background-size: 36.21333rem 10.81333rem;
-  background-position-x: 0rem;
-  background-position-y: -3.72rem; }
-
-.shop-arrow-span {
-  width: 0.21333rem;
-  height: 0.37333rem;
-  background: url(../img/img.png);
-  background-size: 36.21333rem 10.81333rem; }
-
-.shop-delete-span {
-  width: 0.49333rem;
-  height: 0.50667rem;
-  background: url(../img/img.png);
-  background-size: 36.21333rem 10.81333rem;
-  background-position-x: 0rem;
-  background-position-y: -2.24rem; }
-
-.radio-check-span {
-  width: 0.61333rem;
-  height: 0.61333rem;
-  background: url(../img/img.png);
-  background-size: 36.21333rem 10.81333rem;
-  display: inline-block;
-  background-position-x: 0rem;
-  background-position-y: -4.48rem; }
-
-.radio-check-active {
-  background-position-x: -0.85333rem; }
-
-/**
-     * ******** ******** ******** ********
      * 以下为覆盖mui默认样式
  */
-.mui-bar-tab .mui-tab-item.mui-active {
-  color: #83C347; }
-  .mui-bar-tab .mui-tab-item.mui-active .icon-index-home {
-    background: url(../img/img.png);
-    background-size: 36.21333rem 10.81333rem;
-    background-position-x: -0.01333rem;
-    background-position-y: -6.29333rem; }
-  .mui-bar-tab .mui-tab-item.mui-active .icon-index-comu {
-    background: url(../img/img.png);
-    background-size: 36.21333rem 10.81333rem;
-    background-position-x: -5.77333rem;
-    background-position-y: -6.29333rem; }
-  .mui-bar-tab .mui-tab-item.mui-active .icon-index-nav {
-    background: url(../img/img.png);
-    background-size: 36.21333rem 10.81333rem;
-    background-position-x: -3.85333rem;
-    background-position-y: -6.29333rem; }
-  .mui-bar-tab .mui-tab-item.mui-active .icon-index-info {
-    background: url(../img/img.png);
-    background-size: 36.21333rem 10.81333rem;
-    background-position-x: -2.88rem;
-    background-position-y: -6.29333rem; }
-
-.mui-bar-tab .mui-tab-item {
-  height: 1.46667rem; }
-
-.mui-bar-tab .mui-tab-item {
-  color: #000000; }
-
 .mui-checkbox input[type=checkbox], .mui-radio input[type=radio] {
   position: static;
   width: 0.56rem;

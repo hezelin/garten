@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<title>登录页</title>
@@ -10,24 +11,51 @@
 		<meta content="telephone=no,email=no" name="format-detection">
 		<script src="../js/flexible_css.debug.js"></script>
 		<script src="../js/flexible.debug.js"></script>
-		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/login.css" rel="stylesheet" />
 		<style>
 			html,
 			body {
 				background-color: rgb(246, 246, 246);
+				width: 100%;
+				height: 100%;
 				/*background-color: #efeff4;*/
 			}
 		</style>
 	</head>
 
 	<body>
+		<div class="login-container">
+			<div class="btn-left mui-action-back">
+				<span class="white-arrow-big-span"></span>
+			</div>
+			<div id="register" class="btn-right">
+				<span>注册</span>
+			</div>
+			<div class="input-group">
+				<span class="login-input-span">
+					<input id="input-phone"  class="login-input" type="text" placeholder="手机号"/>
+				</span><br>
+				<span class="login-input-span">								
+					<input id="input-pwd" class="login-input" type="password" placeholder="请输入密码"/>
+				</span><br>
+				<button class="login-btn">登录</button><br>
+				<span class="forgetPWD-span">
+					<a id="forgetPWD">忘记密码</a>
+				</span>
+			</div>
+		</div>
 
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
 		<script>
 			mui.init();
+			mui.plusReady(function() {
+				document.querySelector("#register").addEventListener("tap", function() {
+					plus.webview.open("register.html", "register.html", {}, "slide-in-right");
+				});
+			});
 		</script>
 	</body>
+
 </html>

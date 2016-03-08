@@ -8,4 +8,343 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   line-height: normal;
   font-family: "微软雅黑"; }
 
+.white-arrow-span {
+  width: 0.26667rem;
+  height: 0.46667rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-y: -0.62667rem; }
+
+.black-arrow-span {
+  width: 0.26667rem;
+  height: 0.46667rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: -0.41333rem;
+  background-position-y: -0.62667rem; }
+
+.white-arrow-big-span {
+  width: 0.34667rem;
+  height: 0.61333rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-y: -1.38667rem; }
+
+.black-arrow-small-span {
+  width: 0.22667rem;
+  height: 0.37333rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: -0.21333rem; }
+
+.help-about-span {
+  width: 0.66667rem;
+  height: 0.66667rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: -1.69333rem;
+  background-position-y: -4.45333rem; }
+
+.shop-span {
+  width: 0.52rem;
+  height: 0.48rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: 0rem;
+  background-position-y: -3.72rem; }
+
+.shop-arrow-span {
+  width: 0.21333rem;
+  height: 0.37333rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block; }
+
+.shop-delete-span {
+  width: 0.49333rem;
+  height: 0.50667rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: 0rem;
+  background-position-y: -2.24rem; }
+
+.radio-check-span {
+  width: 0.61333rem;
+  height: 0.61333rem;
+  background: url(../img/img.png);
+  background-size: 36.21333rem 10.81333rem;
+  display: inline-block;
+  background-position-x: 0rem;
+  background-position-y: -4.48rem; }
+
+.radio-check-active {
+  background-position-x: -0.85333rem; }
+
+#head-holder {
+  height: 1.45333rem; }
+
+.header-control {
+  width: 100%;
+  height: 1.46667rem;
+  background-color: #83C347;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: table; }
+  .header-control div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center; }
+
+.header-control-color {
+  background-color: #434343 !important; }
+
+.header-control-left-btn, .header-control-right-btn {
+  width: 1.73333rem; }
+
+.header-control-left-btn-span {
+  float: left;
+  margin-left: 0.37333rem;
+  display: inline-block;
+  font-size: 18px;
+  color: #FFFFFF; }
+  [data-dpr="2"] .header-control-left-btn-span {
+    font-size: 36px; }
+  [data-dpr="3"] .header-control-left-btn-span {
+    font-size: 54px; }
+
+.header-control-right-btn-span {
+  float: right;
+  margin-right: 0.37333rem;
+  display: inline-block;
+  font-size: 18px;
+  color: #FFFFFF; }
+  [data-dpr="2"] .header-control-right-btn-span {
+    font-size: 36px; }
+  [data-dpr="3"] .header-control-right-btn-span {
+    font-size: 54px; }
+
+#webview-head-title {
+  display: inline-block;
+  font-size: 21px;
+  color: #FFFFFF; }
+  [data-dpr="2"] #webview-head-title {
+    font-size: 42px; }
+  [data-dpr="3"] #webview-head-title {
+    font-size: 63px; }
+
+.input-group {
+  margin-top: 0.26667rem;
+  text-align: center; }
+
+.login-container {
+  width: 100%;
+  height: 100%;
+  background: url(../img/login-bg-img.png);
+  background-size: cover; }
+
+.btn-left {
+  width: 1.2rem;
+  height: 1.46667rem;
+  display: inline-block; }
+
+.btn-right {
+  width: 1.73333rem;
+  height: 1.46667rem;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.33333rem;
+  position: absolute;
+  top: 0;
+  right: 0; }
+  .btn-right span {
+    font-size: 19px;
+    color: #FFFFFF; }
+    [data-dpr="2"] .btn-right span {
+      font-size: 38px; }
+    [data-dpr="3"] .btn-right span {
+      font-size: 57px; }
+
+.white-arrow-big-span {
+  top: 0.33333rem;
+  left: 0rem;
+  position: absolute; }
+
+input::-webkit-input-placeholder {
+  color: #ECECEC; }
+
+.login-input-span {
+  height: 1.2rem;
+  margin-bottom: 0.2rem;
+  display: inline-block;
+  border-radius: 0.4rem;
+  background-color: rgba(0, 0, 0, 0.2); }
+
+.login-input {
+  width: 7.29333rem;
+  height: 1.2rem;
+  padding-left: 1.33333rem;
+  font-size: 18px;
+  color: #FFFFFF;
+  border: none; }
+  [data-dpr="2"] .login-input {
+    font-size: 36px; }
+  [data-dpr="3"] .login-input {
+    font-size: 54px; }
+
+#input-phone {
+  background: url(../img/input-phone.png);
+  background-repeat: no-repeat;
+  background-size: 0.53333rem 0.73333rem;
+  background-position-x: 0.33333rem;
+  background-position-y: center; }
+
+#input-pwd {
+  background: url(../img/input-pwd.png);
+  background-repeat: no-repeat;
+  background-size: 0.53333rem 0.73333rem;
+  background-position-x: 0.33333rem;
+  background-position-y: center; }
+
+.login-btn {
+  width: 8.62667rem;
+  height: 1.2rem;
+  margin-top: 0.53333rem;
+  font-size: 18px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 0.4rem;
+  background-color: #83C347; }
+  [data-dpr="2"] .login-btn {
+    font-size: 36px; }
+  [data-dpr="3"] .login-btn {
+    font-size: 54px; }
+
+.forgetPWD-span {
+  width: 8.62667rem;
+  height: 1.2rem;
+  margin-bottom: 0.2rem;
+  padding-right: 0.53333rem;
+  text-align: right;
+  display: inline-block; }
+
+#forgetPWD {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  font-size: 14px;
+  display: inline-block;
+  color: #FFFFFF; }
+  [data-dpr="2"] #forgetPWD {
+    font-size: 28px; }
+  [data-dpr="3"] #forgetPWD {
+    font-size: 42px; }
+
+.register-input {
+  width: 8.41333rem;
+  height: 1.41333rem;
+  padding-left: 0.33333rem;
+  padding-right: 0.33333rem;
+  margin-bottom: 0.37333rem;
+  display: inline-block;
+  font-size: 19px;
+  color: #9a9a9a;
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 0.13333rem; }
+  [data-dpr="2"] .register-input {
+    font-size: 38px; }
+  [data-dpr="3"] .register-input {
+    font-size: 57px; }
+
+.register-btn {
+  width: 9.08rem;
+  height: 1.41333rem;
+  line-height: 1.41333rem;
+  margin-top: 0.26667rem;
+  border-radius: 0.13333rem;
+  border: none;
+  background-color: #83C347;
+  font-size: 21px;
+  color: #FFFFFF;
+  text-align: center; }
+  [data-dpr="2"] .register-btn {
+    font-size: 42px; }
+  [data-dpr="3"] .register-btn {
+    font-size: 63px; }
+
+.authCode-group {
+  width: 8.41333rem;
+  height: 1.41333rem;
+  padding-left: 0.33333rem;
+  padding-right: 0.33333rem;
+  display: inline-block;
+  border: 1px solid #dcdcdc;
+  border-radius: 7px;
+  overflow: hidden;
+  background-color: #FFFFFF; }
+
+#authCode {
+  width: 5.6rem;
+  height: 1.41333rem;
+  font-size: 19px;
+  color: #9a9a9a;
+  border: none;
+  vertical-align: middle; }
+  [data-dpr="2"] #authCode {
+    font-size: 38px; }
+  [data-dpr="3"] #authCode {
+    font-size: 57px; }
+
+#getAuthCode {
+  width: 2.4rem;
+  height: 0.93333rem;
+  font-size: 12px;
+  background-color: #e0e0e0;
+  border-radius: 0.13333rem;
+  border: none;
+  color: #6d6d6d;
+  vertical-align: middle; }
+  [data-dpr="2"] #getAuthCode {
+    font-size: 24px; }
+  [data-dpr="3"] #getAuthCode {
+    font-size: 36px; }
+
+.span-agreement {
+  margin-top: 0.13333rem;
+  margin-bottom: 0.13333rem;
+  position: relative;
+  left: 0.46667rem;
+  float: left;
+  display: inline-block; }
+  .span-agreement span {
+    vertical-align: middle; }
+  .span-agreement a {
+    color: steelblue; }
+
+#resetPWD {
+  width: 8.64rem;
+  height: 1.25333rem;
+  border-radius: 0.4rem;
+  font-size: 18px;
+  color: #FFFFFF;
+  background-color: #83C347;
+  border: none; }
+  [data-dpr="2"] #resetPWD {
+    font-size: 36px; }
+  [data-dpr="3"] #resetPWD {
+    font-size: 54px; }
+
+.reset-item {
+  width: 8.64rem;
+  height: 1.25333rem;
+  display: inline-block; }
+
 /*# sourceMappingURL=login.css.map */
