@@ -48,7 +48,7 @@ function fnLoadPage(tapBtn, obj, objPost) {
 	for (var i = 0; i < oldview.length; i++) {
 		mui.fire(webviewHead, "initHeadPage");
 		webviewHead.remove(oldview[i]);
-		oldview[i].close();		
+		oldview[i].close();
 	}
 	//设置窗口按键
 	mui.fire(webviewHead, "setHeadPage", objPost);
@@ -143,7 +143,7 @@ function userLoginStatus() {
 	var result = false;
 	var tokenValue = plus.storage.getItem("tokenValue");
 	var tokenDate = plus.storage.getItem("tokenDate");
-	var newTime = new Date().getTime();
+	var newTime = new Date().getTime().toString();
 	if (tokenValue == null || tokenDate == null) {
 		result = false;
 	} else {
@@ -157,6 +157,31 @@ function userLoginStatus() {
 	return result;
 }
 
+/**
+ * @description 生成len位随机数
+ * @param {Object} len
+ */
+function randomStr(len) {
+	var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	var maxPos = chars.length;
+	var result = "";
+	for (var i = 0; i < len; i++) {
+	 	result += chars.charAt(Math.floor(Math.random() * maxPos));
+	}
+	return result;
+};
+
+/**
+ * @description 创建签名 
+ */
+function fnCreateSign() {
+	var time = (Date.parse(new Date())).toString().substring(0, 10); //不带后3位毫秒的时间戳,共10位
+	var salt = "5YM7r9f8zJVWqmsb";
+	var nonce = randomStr(Math.random() * 10 + 6);
+	var signature = md5(time + nonce + salt);
+	//生成6~16位的随机字符串，len  值为math.random()*10+6
+	return "signature=" + signature + "&nonce=" + nonce + "&timestamp=" + time;
+};
 
 
 //if (window.plus) {

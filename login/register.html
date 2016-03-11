@@ -37,21 +37,198 @@
 		</div>
 		<div id="head-holder"></div>
 		<div class="input-group">
-			<input type="text" class="register-input" placeholder="请输入手机号"/><br />
+			<input type="text" class="register-input" id="phone-register" placeholder="请输入手机号" />
+			<br />
 			<span class="authCode-group">
-				<input type="text" id="authCode" placeholder="请输入验证码"/>
+				<input type="text" id="authCode" placeholder="请输入短信验证码"/>
 				<button id="getAuthCode">获取验证码</button>
-			</span><br>			
-			<button id="nextRegister" class="register-btn">下一步</button>
+				<!--reSendAuthCode-->
+			</span>
+			<br />
+			<button id="nextRegister" class="register-btn btnUnable">下一步</button>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
 		<script>
 			mui.init();
+			var inputPhone = document.querySelector("#phone-register");
+			var inputAuthCode = document.querySelector("#authCode");
+			var btnAuthCode = document.querySelector("#getAuthCode");
+			var btnNext = document.querySelector("#nextRegister");
+			var btnAble = false;
+			var btnAble2 = false; //防止多次提交验证码获取
+			var reg = /^[0-9]*$/;
+			var lastInputAuthCode = "",
+				lastInputPhone = "";
+			// 验证码倒计时对象，所有有验证码获取的页面都可以用，页面启动时执行一次，成功申请验证码时执行一次
+			var timew = {
+					start: function() {
+						var startTime = plus.storage.getItem("authCodeTime");
+						var nowTime = new Date().getTime().toString();
+						//没有初始时间，退出
+						if (startTime == null) {
+							return;
+						}
+						//有初始时间，表示计时未结束，开始倒计时
+						if (!btnAuthCode.classList.contains("reSendAuthCode")) {
+							btnAuthCode.classList.add("reSendAuthCode");
+						}
+						var residueTime = parseInt((nowTime - startTime) / 1000);
+						if (residueTime > 60) {
+							this.end();
+						} else {
+							this.process(60 - residueTime);
+						}
+					},
+					process: function(residueTime) {
+						this.timeSet = window.setInterval(function(obj) {
+							if (residueTime <= 0) {
+								obj.end();
+							} else {
+								residueTime--;
+								btnAuthCode.innerHTML = "重新获取&nbsp;" + residueTime;
+							}
+						}, 1000, this);
+					},
+					end: function() {
+						//恢复按钮状态
+						if (btnAuthCode.classList.contains("reSendAuthCode")) {
+							btnAuthCode.classList.remove("reSendAuthCode");
+						}
+						btnAuthCode.innerHTML = "获取验证码";
+						//清除初始时间，清除计时
+						plus.storage.removeItem("authCodeTime");
+						if (typeof this.timeSet === "number") {
+							window.clearInterval(this.timeSet);
+						}
+					}
+				}
+				//改变下一步按钮状态
+			function checkInputStrict() {
+				// 要求是号段正确，11位的手机号码
+				// 6位数字验证码
+				var val = inputAuthCode.value;
+				var val2 = val.match(reg).toString();
+				if (checkPhoneInput() && val.length == 6 && val2.length == 6) {
+					if (btnNext.classList.contains("btnUnable")) {
+						btnNext.classList.remove("btnUnable");
+					}
+					btnAble = true;
+				} else {
+					btnNext.classList.add("btnUnable");
+					btnAble = false;
+				}
+			}
+			//验证手机号码是否为规范，规范才能发验证码、点击下一步
+			function checkPhoneInput() {
+				var val = inputPhone.value;
+				if (!/^(13|14|15|17|18)\d{9}$/.test(val)) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+			inputPhone.addEventListener("input", function() {
+				var val = this.value;
+				if (!val.match(reg)) {
+					this.value = lastInputPhone;
+				} else {
+					lastInputPhone = val.match(reg);
+				}
+				checkInputStrict();
+			});
+			inputAuthCode.addEventListener("input", function() {
+				var val = this.value;
+				if (!val.match(reg)) {
+					this.value = lastInputAuthCode;
+				} else {
+					lastInputAuthCode = val.match(reg);
+				}
+				checkInputStrict();
+			});
+			//申请验证码
+			btnAuthCode.addEventListener("tap", function() {
+				if (!checkPhoneInput()) {
+					plus.nativeUI.alert("请输入正确的手机号", function() {}, "提示", "返回");
+					return;
+				}
+				var nowTime = new Date().getTime().toString();
+				var startTime = plus.storage.getItem("authCodeTime");
+				if (startTime == null || (nowTime - startTime) / 1000 > 60) {
+					// 申请验证码
+					var URL = "http://farm.rrzuji.com/v1/code/create?" + fnCreateSign();
+					if (!btnAble2) {
+						btnAble2 = true;
+						var nwaiting = plus.nativeUI.showWaiting("正在发送");
+						mui.ajax(URL, {
+							type: "POST",
+							dataType: "JSON",
+							data: {
+								phone: inputPhone.value
+							},
+							success: function(res) {
+								res = JSON.parse(res);
+								nwaiting.close();
+								if (res.success) {
+									plus.storage.setItem("authCodeTime", new Date().getTime().toString());
+									plus.storage.setItem("authCodeToken", res.data.code_token);
+									plus.storage.setItem("resPhone", inputPhone.value);
+									timew.start();
+									mui.toast("验证码已发送至您的手机上");
+									btnAble2 = false;
+								} else {
+									mui.toast(res.data.message || res.data.error || "服务器错误");
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								nwaiting.close();
+								btnAble2 = false;
+								mui.toast("无法连接服务器");
+							}
+						});
+					}
+				}
+			});
+			window.addEventListener("countDown", function() {
+				//打开页面时，检查计时情况
+				timew.start();
+			});
 			mui.plusReady(function() {
-				document.querySelector("#nextRegister").addEventListener("tap", function() {
-					plus.webview.open("register2.html", "register2.html", {}, "slide-in-right");
+				btnNext.addEventListener("tap", function() {
+					if (!btnAble) {
+						return;
+					}
+					// 提交验证码,验证正确后打开下一个页面
+					var token = plus.storage.getItem("authCodeToken");
+					if (token != null) {
+						btnAble = false;
+						var nwaiting = plus.nativeUI.showWaiting("正在验证手机");
+						var URL = "http://farm.rrzuji.com/v1/code/check?" + fnCreateSign();
+						mui.ajax(URL, {
+							type: "POST",
+							dataType: "JSON",
+							data: {
+								code: inputAuthCode.value,
+								code_token: token
+							},
+							success: function(res) {
+								res = JSON.parse(res);
+								nwaiting.close();
+								if (res.success) {
+									plus.webview.open("register2.html", "register2.html", {}, "slide-in-right");
+								} else {
+									mui.toast(res.data.message || res.data.error || "服务器错误");
+								}
+								btnAble = true;
+							},
+							error: function(xhr, type, errorThrown) {
+								nwaiting.close();
+								btnAble = true;
+								mui.toast("无法连接服务器");
+							}
+						});
+					}
 				});
 			});
 		</script>

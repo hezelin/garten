@@ -2448,4 +2448,7 @@ select {
   [data-dpr="3"] .mui-icon {
     font-size: 72px; }
 
+.mui-popover {
+  width: 2.93333rem; }
+
 /*# sourceMappingURL=style.css.map */

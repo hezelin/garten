@@ -151,13 +151,11 @@
 						return;
 					}
 					this.classList.add("loading");
-					var nwaiting = plus.nativeUI.showWaiting();
 					var webviewSpa = plus.webview.create("secondlv/webview-my-setting.html", "secondlv/webview-my-setting.html");
 					webviewSpa.onloaded = function() {
 						setTimeout(function() {
 							webviewSpa.show("slide-in-right", "", function() {
 								btn.classList.remove("loading");
-								nwaiting.close();
 							});
 						}, 100);
 					};

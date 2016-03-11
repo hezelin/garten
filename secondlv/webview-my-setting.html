@@ -256,7 +256,7 @@
 							</div>
 							<!--中间内容区域-->
 							<div class="my-setting-middle my-setting-middle-right my-setting-border">
-								<label class="my-setting-middle-text">请选择</label>
+								<label class="my-setting-middle-text">保密</label>
 							</div>
 							<!--右边内容区域-->
 							<div class="my-setting-right my-setting-border">
@@ -527,7 +527,25 @@
 		// 初始化单页的区域滚动
 		mui('.mui-scroll-wrapper').scroll();
 		var view = viewApi.view;
-		
+		// 退出登录
+		document.querySelector("#my-setting-loginout").addEventListener("tap", function() {
+			if (mui.os.plus) {
+				plus.nativeUI.confirm("确定退出登录？", function(e) {
+					if (e.index == 0) {
+						plus.storage.removeItem("tokenValue");
+						plus.storage.removeItem("tokenDate");
+						plus.webview.getWebviewById("secondlv/webview-my-setting.html").close();
+						// 关闭个人中心页后默认切到首页
+						mui.fire(plus.webview.getWebviewById("HBuilder"), "changeTab", {
+							targetView: "home",
+							showView: "webview-home.html",
+							hideView: "webview-my.html"
+						});
+						mui.toast("已退出登录状态");
+					}
+				}, "退出", ["确定", "取消"])
+			}
+		});
 		// 修改性别
 		document.querySelector("#setSex").addEventListener("tap", function() {
 			var _id = "#sexList-item";
@@ -711,11 +729,22 @@
 			}
 		}
 
+		/**
+		 * 
+		 * @param {Object} url
+		 * @description 对照片操作完后将图片装入头像区域
+		 */
 		function fnCompletePhotoOperate(url) {
 			document.querySelector("#settingUserIMG").src = url + "?version=" + new Date().getTime();
 			document.querySelector("#__mui-imageview__group .mui-slider-item img").src = url + "?version=" + new Date().getTime();
 		}
 
+		/**
+		 * 
+		 * @param {Object} url
+		 * @param {Object} completeFun
+		 * @description 对照片进行操作，例如压缩、旋转，缩放
+		 */
 		function fnPhotoOperate(url, completeFun) {
 			if (document.querySelector("#loadContainer")) {
 				document.body.removeChild(document.querySelector("#loadContainer"));
@@ -787,8 +816,7 @@
 									});
 								break;
 						}
-					} 
-					else {
+					} else {
 						fnCompletePhotoOperate(url);
 					}
 				});

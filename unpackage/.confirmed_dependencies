@@ -57,7 +57,8 @@
 			"js/public.js",
 			"css/mui.min.css",
 			"css/style.css",
-			"js/flexible.debug.js"
+			"js/flexible.debug.js",
+			"secondlv/webview-my-setting.html"
 		],
 		"refer": [
 			"secondlv/webview-my-setting.html",
@@ -381,16 +382,44 @@
 			"js/flexible.debug.js",
 			"img/login-bg-img.png",
 			"img/input-phone.png",
-			"img/input-pwd.png"
+			"img/input-pwd.png",
+			"login/register.html"
 		],
 		"refer": [
-			"login/register.html"
+			"login/register.html",
+			"login/register2.html",
+			"login/forgetPassword.html"
 		]
 	},
 	"login/register.html": {
 		"refer": [
 			"login/register2.html"
 		],
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"css/login.css",
+			"js/public.js",
+			"js/flexible.debug.js"
+		]
+	},
+	"login/register2.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"css/login.css",
+			"js/public.js",
+			"js/flexible.debug.js"
+		],
+		"refer": [
+			"login/userRead.html"
+		]
+	},
+	"login/forgetPassword.html": {
 		"resources": [
 			"js/md5.min.js",
 			"js/flexible_css.debug.js",

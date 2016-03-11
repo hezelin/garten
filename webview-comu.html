@@ -176,6 +176,9 @@
 		<script src="js/public.js"></script>
 		<script>
 			mui.init();
+			mui(".mui-table-view").on("tap", ".mui-table-view-cell", function() {
+				mui('#bottomPopover').popover('toggle');
+			});
 			mui(".comu-nav-tab").on("tap", ".comu-nav-tab-item", function() {
 				var strValue = this.getAttribute("data-transform");
 				document.getElementsByClassName("head-control-slider")[0].style.transform = strValue;

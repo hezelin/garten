@@ -2183,4 +2183,7 @@ input[type=color],input[type=date],input[type=datetime-local],input[type=datetim
 .mui-icon {
     @include font-dpr(24px);
 }
-
+//重写弹出菜单宽度
+.mui-popover {
+    @include px2rem(width, 220px);
+}

@@ -258,7 +258,8 @@
 					"img/user-img.jpg",
 					"img/user-info-bg.png",
 					"css/style.css",
-					"img/user-img.png"
+					"img/user-img.png",
+					"secondlv/webview-my-setting.html"
 				],
 				"refer": [
 					"webview-comu.html",
@@ -270,7 +271,6 @@
 					"new_header.html",
 					"webview-body.html",
 					"webview-header.html",
-					"secondlv/webview-my-setting.html",
 					"thirdlv/webview-my-userbag-amply.html",
 					"secondlv/webview-my-order.html",
 					"secondlv/webview-my-shopcar.html"
@@ -298,7 +298,8 @@
 					"img/head1.jpg",
 					"img/img2.png",
 					"img/img.png",
-					"css/style.css"
+					"css/style.css",
+					null
 				],
 				"refer": [
 					"webview-nav.html",
@@ -758,10 +759,12 @@
 					"js/flexible.debug.js",
 					"img/login-bg-img.png",
 					"img/input-phone.png",
-					"img/input-pwd.png"
+					"img/input-pwd.png",
+					"login/register.html"
 				],
 				"refer": [
-					"login/register.html"
+					"login/register2.html",
+					"login/forgetPassword.html"
 				],
 				"priority": 0
 			},
@@ -778,6 +781,34 @@
 				"refer": [
 					"login/register2.html"
 				],
+				"priority": 0
+			},
+			"login/register2.html": {
+				"resources": [
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"img/img.png",
+					"js/mui.min.js",
+					"css/login.css",
+					"js/public.js",
+					"js/flexible.debug.js"
+				],
+				"refer": [
+					"login/userRead.html"
+				],
+				"priority": 0
+			},
+			"login/forgetPassword.html": {
+				"resources": [
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"img/img.png",
+					"js/mui.min.js",
+					"css/login.css",
+					"js/public.js",
+					"js/flexible.debug.js"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

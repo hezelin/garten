@@ -37,20 +37,97 @@
 		</div>
 		<div id="head-holder"></div>
 		<div class="input-group">
-			<input type="text" class="register-input" placeholder="请输入密码"/><br />
-			<input type="text" class="register-input" placeholder="请输入喜欢的昵称(选填)"/><br />
+			<input type="password" id="register-pwd" class="register-input" placeholder="请输入6至16位长度的密码" />
+			<br />
+			<input type="text" id="register-nickname" class="register-input" placeholder="请输入喜欢的昵称(选填)" />
+			<br />
 			<span class="span-agreement">
 				<span class="radio-check-span radio-check-active"></span>
-				<span>已阅读并同意<a>《用户协议》</a></span>
-			</span>	
-			<button id="nextRegister" class="register-btn">完成</button>
+			<span>已阅读并同意<a id="userRead">《用户协议》</a></span>
+			</span>
+			<br />
+			<button id="nextRegister" class="register-btn">完成注册</button>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
 		<script>
 			mui.init();
-			
+			var inputPWD = document.querySelector("#register-pwd");
+			var inputName = document.querySelector("#register-nickname");
+			var radioBtn = document.querySelector(".radio-check-span");
+			var completeBtn = document.querySelector("#nextRegister");
+			var btnAble = false;
+
+			function checkInput() {
+				var val = inputPWD.value;
+				var result = false;
+				switch (true) {
+					case val.length < 6 || 16 < val.length:
+						plus.nativeUI.alert("请输入6至16位长度密码", function() {}, "提示", "返回");
+						break;
+					case 50 < inputName.value.length:
+						plus.nativeUI.alert("昵称过长", function() {}, "提示", "返回");
+						break;
+					case !radioBtn.classList.contains("radio-check-active"):
+						plus.nativeUI.alert("请确认用户协议", function() {}, "提示", "返回");
+						break;
+					default:
+						result = true;
+				}
+				return result;
+			}
+			document.querySelector(".span-agreement").addEventListener("tap", function() {
+				if (radioBtn.classList.contains("radio-check-active")) {
+					radioBtn.classList.remove("radio-check-active");
+				} else {
+					radioBtn.classList.add("radio-check-active");
+				}
+			});
+			completeBtn.addEventListener("tap", function() {
+				//提交数据完成注册
+				var URL = "http://farm.rrzuji.com/v1/users?" + fnCreateSign();
+				var userPhone = plus.storage.getItem("resPhone");
+				var userName = inputName.value || randomStr(7);
+				if (!btnAble && checkInput() && userPhone != null) {
+					btnAble = true;
+					var nwaiting = plus.nativeUI.showWaiting("正在注册");
+					mui.ajax(URL, {
+						type: "POST",
+						dataType: "JSON",
+						data: {
+							name: userName,
+							phone: userPhone,
+							password: inputPWD.value
+						},
+						success: function(res) {
+							res = JSON.parse(res);
+							nwaiting.close();
+							if (res.success) {
+								btnAble = false;
+								mui.toast("注册成功!");
+								plus.webview.hide("register.html", "none");
+								plus.webview.hide("register2.html", "none");
+								plus.webview.close("register.html");
+								plus.webview.close("register2.html");
+							} else {
+								mui.toast(res.data.message || res.data.error || "服务器错误");
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							nwaiting.close();
+							btnAble = false;
+							mui.toast("无法连接服务器");
+						}
+					});
+				}
+			});
+			mui.plusReady(function() {
+				document.querySelector("#userRead").addEventListener("tap", function(e) {
+					e.stopPropagation();
+					plus.webview.open("userRead.html", "userRead.html");
+				});
+			});
 		</script>
 	</body>
 
