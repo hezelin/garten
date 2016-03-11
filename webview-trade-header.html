@@ -25,7 +25,7 @@
 	<body>
 		<div class="header-control header-control-whiteBold">
 			<div class="header-control-left-btn  mui-action-back">
-				<span class=" mui-icon mui-icon-arrowleft header-control-left-btn-span"></span>
+				<span class="black-arrow-big-span header-control-left-btn-span"></span>
 			</div>
 			<div class="trade-header-container">
 				<span class="trade-header-nav trade-header-nav-active" data-url="/thirdlv/webview-home-rent-detail.html">商品</span>
@@ -33,7 +33,7 @@
 				<span class="trade-header-nav" data-url="/thirdlv/webview-home-rent-comment.html">评论</span>
 			</div>
 			<div class="header-control-right-btn">
-				<span class="header-control-right-btn-span mui-icon mui-icon-more"></span>
+				<span class="header-control-right-btn-span black-three-point-span"></span>				
 			</div>
 		</div>
 
@@ -77,7 +77,8 @@
 						oldview[i].close();
 					}
 					var loadURL = btn.getAttribute("data-url");
-					var webviewBody = plus.webview.create(loadURL, loadURL, fnSetSubpageStyle(109, 0));
+					//商品页
+					var webviewBody = plus.webview.create(loadURL, loadURL, fnSetSubpageStyle(105, 0));
 					webviewBody.onloaded = function() {
 						setTimeout(function() {
 							nwaiting.close();

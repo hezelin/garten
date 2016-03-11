@@ -81,7 +81,7 @@
 					var temp = {};
 					var sub;
 					if (i == 3) {
-						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 112));
+						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));
 						sub.onloaded = function() {
 							var delayTime = mui.os.ios ? 100 : 1000;
 							setTimeout(function() {
@@ -103,7 +103,7 @@
 							}, delayTime);
 						}
 					} else {
-						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 112));
+						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));
 //						sub = mui.preload({
 //							url: subpages[i],
 //							id: subpages[i],

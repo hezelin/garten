@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>商铺模板页</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				background-color: rgb(245, 245, 245);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class="header-control-left-btn-span white-arrow-big-span"></span>
+			</div>
+			<div>
+				<div class="shop-search-container">
+				<div class="shop-search-div-left">
+					<input type="" name="" id="shopSearch" value="搜索店铺内商品"/>
+				</div>
+				<div class="shop-search-div-right">
+					<span class="search-span"></span>
+				</div>							
+			</div>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span white-three-point-span"></span>
+			</div>
+		</div>
+		<div id="head-holder"></div>
+		<!--商铺头部-->
+		<div></div>
+		
+		<!--商铺模板底部-->
+		<div class="shop-foot-container">
+			<div class="shop-foot-item">
+				<span class="shop-foot-content">店铺介绍</span>
+			</div>
+			<div class="shop-foot-item">
+				<span class="shop-foot-content shop-foot-content-border">商品分类</span>
+			</div>
+			<div class="shop-foot-item">
+				<span class="shop-foot-content">客服电话</span>
+			</div>
+		</div>
+
+		<div class="loadingPage">
+			<div class="loadingPage-middle">
+				<div class="spinner">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
+				<span class="loadingPage-text">努力加载中...</span>
+			</div>
+		</div>
+
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
+		<script>
+			mui.init();
+			
+			document.querySelector("#shopSearch").addEventListener("focus", function() {
+				if ( this.value == "搜索店铺内商品") {
+					this.value = "";
+				}
+			});
+			document.querySelector("#shopSearch").addEventListener("blur", function() {
+				if (this.value == "") {
+					this.value = "搜索店铺内商品";
+				}
+			})
+		</script>
+	</body>
+
+</html>

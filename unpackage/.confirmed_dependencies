@@ -14,7 +14,10 @@
 			"fonts/mui.ttf",
 			"js/flexible.debug.js",
 			"img/img.png",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"css/style.css",
+			"img/head-three-point-black.png",
+			"img/head-three-point.png"
 		],
 		"refer": [
 			"secondlv/webview-comu-knowledge-list.html",
@@ -96,7 +99,9 @@
 			"img/testhome/testhome4.png",
 			"img/testhome/testhome7.png",
 			"img/testhome/testhome8.png",
-			"img/testhome/testhome9.png"
+			"img/testhome/testhome9.png",
+			"img/head-three-point.png",
+			"img/head-search.png"
 		],
 		"refer": [
 			"secondlv/webview-home-rent.html"
@@ -116,7 +121,10 @@
 			"css/style.css",
 			"fonts/mui.ttf",
 			"secondlv/webview-my-collect.html",
-			"secondlv/webview-comu-knowledge.html"
+			"secondlv/webview-comu-knowledge.html",
+			"secondlv/webview-my-userbag.html",
+			"img/head-three-point.png",
+			"img/head-search.png"
 		],
 		"refer": [
 			"secondlv/webview-my-collect.html",
@@ -269,7 +277,11 @@
 			"js/flexible.debug.js",
 			"img/img2.png",
 			"thirdlv/webview-home-rent-detail.html",
-			"img/shop-detail.png"
+			"img/shop-detail.png",
+			"img/head-left-black.png",
+			"img/head-three-point.png",
+			"img/head-search.png",
+			"img/head-three-point-black.png"
 		],
 		"refer": [
 			"thirdlv/webview-home-detail.html",

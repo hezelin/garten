@@ -7,7 +7,7 @@
 //底部导航
 #index-bar-tab {
     width: 100%;
-    @include px2rem(height, 110px);
+    @include px2rem(height, 100px);
     background-color: #FFFFFF;
     border-top: $base-border;
     display: table !important;
@@ -105,10 +105,6 @@
 }
 .header-control-greenBold {
     background-color: $green-color !important;
-    //加粗图标
-    .mui-icon{
-        font-weight: bold !important;
-    }
 }
 .app-log-div {
     @include px2rem(height, 60px);
@@ -790,11 +786,6 @@
 .header-control-whiteBold {
     background-color: white !important;
     border-bottom: $base-border;
-    //加粗头部图标,并设置颜色
-    .mui-icon{
-        color: rgb(166,166,166) !important;
-        font-weight: bold !important;
-    }
 }
 .trade-header-container {
     font-size: 0;
@@ -952,9 +943,65 @@
     @include font-dpr(18px);
     color: #FFFFFF;
 }
-
-
-
+/**
+     * ******** ******** ******** ********
+     * webview-shop-header
+     * 商店页模板
+ */
+//搜索栏
+.shop-search-container {
+    @include px2rem(border-radius, 7px);
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: 0;
+}
+.shop-search-div-left {
+    width: 80%;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+#shopSearch {
+    @include px2rem(height, 60px);
+    @include px2rem(padding-left, 28px);
+    @include font-dpr(14px);
+    border: none;
+    color: #e8e7e7;
+    background-color: rgba(0, 0, 0, 0);
+}
+.shop-search-div-right {
+    width: 20%;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+//底部
+.shop-foot-container {
+    width: 100%;
+    @include px2rem(height, 100px);
+    border-top: $base-border;
+    display: table;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+//底部选项
+.shop-foot-item {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.shop-foot-content {
+    width: 100%;
+    @include px2rem(height, 60px);
+    @include px2rem(line-height, 60px);
+    @include font-dpr(16px);
+    color: #434343;
+    display: inline-block;
+}
+.shop-foot-content-border {
+    border-left: $base-border;
+    border-right: $base-border;
+}
 /**
      * ******** ******** ******** ********
      * webview-my个人中心页面
@@ -2179,11 +2226,7 @@ input[type=color],input[type=date],input[type=datetime-local],input[type=datetim
     font-size: 18px;
     @include font-dpr(18px);
 }
-//统一字体图标的大小（页面头部控制栏）
-.mui-icon {
-    @include font-dpr(24px);
-}
 //重写弹出菜单宽度
 .mui-popover {
-    @include px2rem(width, 220px);
+    @include px2rem(width, 250px);
 }

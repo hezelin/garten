@@ -33,6 +33,37 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   display: inline-block;
   background-position-y: -1.38667rem; }
 
+.black-arrow-big-span {
+  width: 0.33333rem;
+  height: 0.62667rem;
+  background: url(../img/head-left-black.png);
+  background-size: 0.33333rem 0.61333rem;
+  display: inline-block; }
+
+.white-three-point-span {
+  width: 0.62667rem;
+  height: 0.16rem;
+  background: url(../img/head-three-point.png);
+  background-size: 0.62667rem 0.14667rem;
+  display: inline-block;
+  vertical-align: middle; }
+
+.black-three-point-span {
+  width: 0.62667rem;
+  height: 0.16rem;
+  background: url(../img/head-three-point-black.png);
+  background-size: 0.62667rem 0.14667rem;
+  display: inline-block;
+  vertical-align: middle; }
+
+.search-span {
+  width: 0.66667rem;
+  height: 0.52rem;
+  background: url(../img/head-search.png);
+  background-size: 0.66667rem 0.50667rem;
+  display: inline-block;
+  vertical-align: middle; }
+
 .black-arrow-small-span {
   width: 0.22667rem;
   height: 0.37333rem;
@@ -88,30 +119,35 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   background-position-x: -0.85333rem; }
 
 #head-holder {
-  height: 1.45333rem; }
+  height: 1.30667rem; }
 
 .header-control {
   width: 100%;
-  height: 1.46667rem;
+  height: 1.33333rem;
   background-color: #83C347;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 20;
   display: table; }
-  .header-control div {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center; }
+
+.header-control > div {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center; }
 
 .header-control-color {
   background-color: #434343 !important; }
 
-.header-control-left-btn, .header-control-right-btn {
-  width: 1.73333rem; }
+.header-control-left-btn {
+  width: 1.73333rem;
+  text-align: left !important; }
+
+.header-control-right-btn {
+  width: 1.73333rem;
+  text-align: right !important; }
 
 .header-control-left-btn-span {
-  float: left;
   margin-left: 0.37333rem;
   display: inline-block;
   font-size: 18px;
@@ -122,7 +158,6 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
     font-size: 54px; }
 
 .header-control-right-btn-span {
-  float: right;
   margin-right: 0.37333rem;
   display: inline-block;
   font-size: 18px;

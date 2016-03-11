@@ -114,6 +114,44 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     @include px2rem(background-position-y,-104px);
 }
 
+//箭头-左大黑箭头  商品详情
+.black-arrow-big-span {
+    @include px2rem(width, 25px);
+    @include px2rem(height, 47px);
+    background: url(../img/head-left-black.png);    
+    @include px2rem(background-size, (25px, 46px));
+    display: inline-block; 
+}
+//头部右边三点
+.white-three-point-span {
+    @include px2rem(width, 47px);
+    @include px2rem(height, 12px);
+    background: url(../img/head-three-point.png);
+   @include px2rem(background-size, (47px, 11px));
+    display: inline-block; 
+    vertical-align: middle;
+}
+//黑色的三点
+.black-three-point-span {
+    @include px2rem(width, 47px);
+    @include px2rem(height, 12px);
+    background: url(../img/head-three-point-black.png);
+   @include px2rem(background-size, (47px, 11px));
+    display: inline-block; 
+    vertical-align: middle;
+}
+
+//头部搜索
+.search-span {
+    @include px2rem(width, 50px);
+    @include px2rem(height, 39px);
+    background: url(../img/head-search.png);
+    @include px2rem(background-size, (50px, 38px));
+    display: inline-block;
+    vertical-align: middle; 
+}
+
+
 //箭头-右小黑箭头
 .black-arrow-small-span {
     @include px2rem(width,17px);
@@ -172,42 +210,45 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
 
 //头部占位
 #head-holder {
-    @include px2rem(height, 109px);
+    @include px2rem(height, 98px);
 }
 
 // 头部控制栏，公用部分 
 // 模板为webview-header
 .header-control {
     width: 100%;
-    @include px2rem(height,110px);
+    @include px2rem(height,100px);
     background-color: $green-color;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 20;
     display: table;
-    div {
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-    }
+}
+.header-control > div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }
 .header-control-color {
     background-color: rgb(67, 67, 67) !important;
 }
 //左右两边按钮大小，图标样式。头部分左中右三部分，中间宽度自动
-.header-control-left-btn,.header-control-right-btn {
+.header-control-left-btn {
     @include px2rem(width,130px);
+    text-align: left !important; 
+}
+.header-control-right-btn {
+    @include px2rem(width,130px);
+    text-align: right !important;
 }
 .header-control-left-btn-span {
-    float: left;
     @include px2rem(margin-left,28px);
     display: inline-block;
     @include font-dpr(18px);
     color: #FFFFFF;
 }      
 .header-control-right-btn-span {                
-    float: right;
     @include px2rem(margin-right,28px);
     display: inline-block;
     @include font-dpr(18px);
