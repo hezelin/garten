@@ -17,7 +17,8 @@
 			"css/mui.min.css",
 			"css/style.css",
 			"img/head-three-point-black.png",
-			"img/head-three-point.png"
+			"img/head-three-point.png",
+			"img/img3.png"
 		],
 		"refer": [
 			"secondlv/webview-comu-knowledge-list.html",
@@ -36,7 +37,8 @@
 			"css/style.css",
 			"js/flexible.debug.js",
 			"js/initPage.js",
-			"webview-home.html"
+			"webview-home.html",
+			"img/img3.png"
 		],
 		"refer": [
 			"webview-comu.html",
@@ -46,7 +48,8 @@
 			"webview-header.html",
 			"secondlv/webview-my-setting.html",
 			"webview-trade-header.html",
-			"login/login.html"
+			"login/login.html",
+			"webview-shop-header.html"
 		]
 	},
 	"webview-my.html": {
@@ -61,14 +64,17 @@
 			"css/mui.min.css",
 			"css/style.css",
 			"js/flexible.debug.js",
-			"secondlv/webview-my-setting.html"
+			"secondlv/webview-my-setting.html",
+			"img/head.jpg"
 		],
 		"refer": [
 			"secondlv/webview-my-setting.html",
 			"secondlv/webview-my-collect.html",
 			"secondlv/webview-my-order.html",
 			"secondlv/webview-my-shopcar.html",
-			"secondlv/webview-my-userbag.html"
+			"secondlv/webview-my-userbag.html",
+			"login/login.html",
+			"thirdlv/webview-my-userbag-amply.html"
 		]
 	},
 	"webview-home.html": {
@@ -153,8 +159,10 @@
 			"fonts/mui.ttf",
 			"img/head.jpg",
 			"img/comuDescribe.png",
-			"img/iconfont-tianjia.png"
-		]
+			"img/iconfont-tianjia.png",
+			"img/img3.png"
+		],
+		"refer": []
 	},
 	"webview-nav.html": {
 		"resources": [
@@ -162,8 +170,10 @@
 			"js/md5.min.js",
 			"js/mui.min.js",
 			"js/flexible.debug.js",
-			"css/mui.min.css"
-		]
+			"css/mui.min.css",
+			"css/style.css"
+		],
+		"refer": []
 	},
 	"secondlv/webview-my-collect.html": {
 		"resources": [
@@ -177,7 +187,8 @@
 			"img/img.png",
 			"css/mui.min.css",
 			"css/style.css"
-		]
+		],
+		"refer": []
 	},
 	"secondlv/webview-my-order.html": {
 		"resources": [
@@ -192,7 +203,8 @@
 			"img/img.png",
 			"css/mui.min.css",
 			"css/style.css"
-		]
+		],
+		"refer": []
 	},
 	"secondlv/webview-my-shopcar.html": {
 		"resources": [
@@ -207,7 +219,8 @@
 			"css/mui.min.css",
 			"css/style.css",
 			"img/plowLand.png"
-		]
+		],
+		"refer": []
 	},
 	"secondlv/webview-my-userbag.html": {
 		"resources": [
@@ -219,7 +232,8 @@
 			"img/img.png",
 			"css/mui.min.css",
 			"css/style.css"
-		]
+		],
+		"refer": []
 	},
 	"secondlv/webview-comu-knowledge-list.html": {
 		"resources": [
@@ -234,7 +248,8 @@
 			"js/public.js",
 			"img/test-knowledge3.png",
 			"js/flexible.debug.js"
-		]
+		],
+		"refer": []
 	},
 	"secondlv/webview-home-rent.html": {
 		"resources": [
@@ -263,7 +278,8 @@
 			"js/mui.min.js",
 			"js/public.js",
 			"js/flexible.debug.js"
-		]
+		],
+		"refer": []
 	},
 	"webview-trade-header.html": {
 		"resources": [
@@ -301,7 +317,8 @@
 			"css/mui.min.css",
 			"css/style.css",
 			"js/flexible.debug.js"
-		]
+		],
+		"refer": []
 	},
 	"thirdlv/webview-home-rent-detail.html": {
 		"resources": [
@@ -317,7 +334,8 @@
 			"img/img2.png",
 			"js/flexible.debug.js",
 			"img/shop-detail.png"
-		]
+		],
+		"refer": []
 	},
 	"thirdlv/webview-home-rent-comment.html": {
 		"resources": [
@@ -331,7 +349,8 @@
 			"img/img2.png",
 			"js/flexible.debug.js",
 			"img/head2.jpeg"
-		]
+		],
+		"refer": []
 	},
 	"thirdlv/webview-home-rent-introduce.html": {
 		"resources": [
@@ -345,7 +364,8 @@
 			"img/tradeListbg1.png",
 			"img/shop-detail.png",
 			"img/img2.png"
-		]
+		],
+		"refer": []
 	},
 	"thirdlv/webview-comu-knowledge-detail.html": {
 		"resources": [
@@ -372,8 +392,10 @@
 			"css/style.css",
 			"img/img2.png",
 			"img/test-knowledge3.png",
-			"js/flexible.debug.js"
-		]
+			"js/flexible.debug.js",
+			"img/img3.png"
+		],
+		"refer": []
 	},
 	"thirdlv/test.html": {
 		"resources": [
@@ -381,7 +403,8 @@
 			"thirdlv/jquery.js",
 			"thirdlv/5.jpg",
 			"thirdlv/4.jpg"
-		]
+		],
+		"refer": []
 	},
 	"login/login.html": {
 		"resources": [
@@ -395,7 +418,8 @@
 			"img/login-bg-img.png",
 			"img/input-phone.png",
 			"img/input-pwd.png",
-			"login/register.html"
+			"login/register.html",
+			"img/img4.png"
 		],
 		"refer": [
 			"login/register.html",
@@ -440,6 +464,34 @@
 			"css/login.css",
 			"js/public.js",
 			"js/flexible.debug.js"
+		],
+		"refer": []
+	},
+	"webview-shop-header.html": {
+		"resources": [
+			"img/shop-introduce-navigation.png",
+			"img/shop-introduce-bg-test.png",
+			"js/flexible_css.debug.js",
+			"img/head-search.png",
+			"img/head-three-point.png",
+			"img/img.png",
+			"img/img2.png",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js"
+		],
+		"refer": []
+	},
+	"thirdlv/webview-my-userbag-amply.html": {
+		"resources": [
+			"img/user-bag-amply-bg.png",
+			"secondlv/webview-my-userbag.html"
+		],
+		"refer": [
+			"secondlv/webview-my-userbag.html"
 		]
 	}
 }

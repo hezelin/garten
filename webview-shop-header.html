@@ -29,13 +29,13 @@
 			</div>
 			<div>
 				<div class="shop-search-container">
-				<div class="shop-search-div-left">
-					<input type="" name="" id="shopSearch" value="搜索店铺内商品"/>
+					<div class="shop-search-div-left">
+						<input type="" name="" id="shopSearch" value="搜索店铺内商品" />
+					</div>
+					<div class="shop-search-div-right">
+						<span class="search-span"></span>
+					</div>
 				</div>
-				<div class="shop-search-div-right">
-					<span class="search-span"></span>
-				</div>							
-			</div>
 			</div>
 			<div class="header-control-right-btn">
 				<span class="header-control-right-btn-span white-three-point-span"></span>
@@ -43,22 +43,68 @@
 		</div>
 		<div id="head-holder"></div>
 		<!--商铺头部-->
-		<div></div>
-		
+		<div class="shop-head-detail" style="background: url(img/shop-introduce-bg-test.png); background-size: cover;">
+			<span class="shop-head-logo"></span><br />
+			<span class="shop-head-title">某某商家</span>
+			<span class="shop-map">
+				<span class="navigation-span"></span>
+			</span>
+		</div>
+		<div class="home-rent-detail-shop-detail white-bg">
+			<div class="home-rent-detail-shop-detail-btn">
+				<div class="home-rent-detail-shop-detail-content">
+					<span class="home-rent-detail-shop-detail-content-num">38</span>
+					<div>
+						<span class="shop-wares-span"></span>
+						<span class="home-rent-detail-shop-detail-content-name">商品</span>
+					</div>
+				</div>
+			</div>
+			<div class="home-rent-detail-shop-detail-btn">
+				<div class="home-rent-detail-shop-detail-content">
+					<span class="home-rent-detail-shop-detail-content-num">6</span>
+					<div>
+						<span class="shop-wares-assess-span"></span>
+						<span class="home-rent-detail-shop-detail-content-name">评价</span>
+					</div>
+				</div>
+			</div>
+			<div class="home-rent-detail-shop-detail-btn">
+				<div class="home-rent-detail-shop-detail-content">
+					<span class="home-rent-detail-shop-detail-content-num">3</span>
+					<div>
+						<span class="shop-wares-share-span"></span>
+						<span class="home-rent-detail-shop-detail-content-name">分享</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!--商铺模板底部-->
 		<div class="shop-foot-container">
 			<div class="shop-foot-item">
 				<span class="shop-foot-content">店铺介绍</span>
 			</div>
-			<div class="shop-foot-item">
+			<a class="shop-foot-item" href="#bottomPopover">
 				<span class="shop-foot-content shop-foot-content-border">商品分类</span>
-			</div>
+			</a>
 			<div class="shop-foot-item">
 				<span class="shop-foot-content">客服电话</span>
 			</div>
 		</div>
-
-		<div class="loadingPage">
+		<div id="bottomPopover" class="mui-popover mui-popover-bottom">
+			<div class="mui-popover-arrow"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#" class="fixed-btn-item">菜地</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#" class="fixed-btn-item">果树</a>
+				</li>
+			</ul>
+		</div>
+		
+		<!--<div class="loadingPage">
 			<div class="loadingPage-middle">
 				<div class="spinner">
 					<div class="bounce1"></div>
@@ -67,14 +113,20 @@
 				</div>
 				<span class="loadingPage-text">努力加载中...</span>
 			</div>
-		</div>
+		</div>-->
 
 		<script src="js/mui.min.js"></script>
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
 		<script>
 			mui.init();
-			
+			window.addEventListener("initPage", function() {
+				var shophead = plus.webview.getWebviewById("webview-shop-header");
+				
+			});
+			mui(".mui-table-view").on("tap", ".mui-table-view-cell", function() {
+				mui('#bottomPopover').popover('toggle');
+			});
 			document.querySelector("#shopSearch").addEventListener("focus", function() {
 				if ( this.value == "搜索店铺内商品") {
 					this.value = "";
@@ -85,6 +137,7 @@
 					this.value = "搜索店铺内商品";
 				}
 			})
+			
 		</script>
 	</body>
 

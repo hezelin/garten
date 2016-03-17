@@ -10,8 +10,10 @@ function fnSetSubpageStyle(Top, Bottom) {
 	return {
 		top: fnPx2Rem(Top, true),
 		bottom: fnPx2Rem(Bottom, true),
-		render: "always",
-		scrollIndicator: "none"
+//		render: "always",
+		scrollIndicator: "none",
+		hardwareAccelerated: true
+//		render: ""		
 	}
 };
 /**
@@ -24,14 +26,12 @@ function fnPx2Rem(pxNum, userDpr) {
 	var dpr = userDpr ? fnGetDpr() : 1;
 	return pxNum / dpr / 75 * baseFontSize + "px";
 }
-
 /**
  * @description 获取屏幕dpr值
  */
 function fnGetDpr() {
 	return parseInt(document.getElementsByTagName('html')[0].getAttribute("data-dpr"));
 }
-
 /**
  * @description 利用公用父模板加载子页面
  * @param {Object} 触发事件的按钮
@@ -62,7 +62,6 @@ function fnLoadPage(tapBtn, obj, objPost) {
 		}, 100);
 	}
 }
-
 /**
  * @description 切换元素display or none状态
  */
@@ -135,7 +134,6 @@ function fnOpenTargetDiv(_id) {
 		fnCloseShade(_id);
 	});
 }
-
 /**
  * @description 检查用户登录状态,有效期七天
  */
@@ -156,7 +154,6 @@ function userLoginStatus() {
 	}
 	return result;
 }
-
 /**
  * @description 生成len位随机数
  * @param {Object} len
@@ -166,11 +163,10 @@ function randomStr(len) {
 	var maxPos = chars.length;
 	var result = "";
 	for (var i = 0; i < len; i++) {
-	 	result += chars.charAt(Math.floor(Math.random() * maxPos));
+		result += chars.charAt(Math.floor(Math.random() * maxPos));
 	}
 	return result;
 };
-
 /**
  * @description 创建签名 
  */
@@ -182,14 +178,55 @@ function fnCreateSign() {
 	//生成6~16位的随机字符串，len  值为math.random()*10+6
 	return "signature=" + signature + "&nonce=" + nonce + "&timestamp=" + time;
 };
-
-
-//if (window.plus) {
-//	plusReady();
-//} else {
-//	document.addEventListener("plusready", plusReady, false);
-//}
-//
-//function plusReady() {
-//	plus.screen.lockOrientation("portrait-primary");
-//}
+/**
+ * @description 验证码倒计时，所有有验证码获取的页面都可以用，页面启动时执行一次timew.start()，成功申请验证码时执行一次。本地储存的两个字段也是公用的，防止恶意刷短信
+ */
+var timew = {
+	btn: function() {
+		return document.querySelector("#getAuthCode");
+	},
+	start: function() {
+		//验证码重复获取时间120秒
+		var overTime = 120;
+		var startTime = plus.storage.getItem("authCodeTime");
+		var nowTime = new Date().getTime().toString();
+		var residueTime = parseInt((nowTime - startTime) / 1000);
+		if (residueTime > overTime) {
+			this.end();
+		} else {
+			if (!this.btn().classList.contains("reSendAuthCode")) {
+				this.btn().classList.add("reSendAuthCode");
+			}
+			this.process(overTime - residueTime);
+		}
+	},
+	process: function(residueTime) {
+		this.timeSet = window.setInterval(function(obj) {
+			if (residueTime <= 0) {
+				obj.end();
+			} else {
+				residueTime--;
+				obj.btn().innerHTML = "重新获取&nbsp;" + residueTime;
+			}
+		}, 1000, this);
+	},
+	end: function() {
+		//恢复按钮状态
+		if (this.btn().classList.contains("reSendAuthCode")) {
+			this.btn().classList.remove("reSendAuthCode");
+		}
+		this.btn().innerHTML = "获取验证码";
+		if (typeof this.timeSet === "number") {
+			window.clearInterval(this.timeSet);
+		}
+	}
+};
+/**
+ * @description 打开登录页
+ */
+function openLogin() {
+	var loginView = plus.webview.create("login/login.html", "login.html", {});
+	loginView.onloaded = function() {
+		loginView.show("slide-in-right");
+	}
+}

@@ -19,15 +19,15 @@
 	<body>
 		<div id="index-bar-tab">
 			<div id="home" class="index-tab-item index-tab-active" data-href="webview-home.html">
-				<span class="icon-index icon-index-home"></span>
+				<span class="icon-index icon-index-home"></span>				
 				<span class="icon-label">首页</span>
 			</div>
 			<div id="comu" class="index-tab-item" data-href="webview-comu.html">
-				<span class="icon-index icon-index-comu"></span>
+				<span class="icon-index icon-index-comu"></span>				
 				<span class="icon-label">社区</span>
 			</div>
 			<div id="map" class="index-tab-item" data-href="webview-nav.html">
-				<span class="icon-index icon-index-nav"></span>
+				<span class="icon-index icon-index-nav"></span>				
 				<span class="icon-label">地图</span>
 			</div>
 			<div id="my" class="index-tab-item" data-href="webview-my.html">
@@ -45,19 +45,12 @@
 			var subpages = ['webview-home.html', 'webview-comu.html', 'webview-nav.html', 'webview-my.html'];
 			//默认激活标签
 			var activeTab = "webview-home.html";
-			window.addEventListener("changeTab", function(e) {
-				//更改激活标签
-				activeTab = e.detail.targetURL;
-				document.querySelector(".index-tab-active").classList.remove("index-tab-active");
-				document.querySelector("#" + e.detail.targetView) .classList.add("index-tab-active");
-				//操作窗口
-				plus.webview.getWebviewById(e.detail.showView).show();
-				plus.webview.getWebviewById(e.detail.hideView).hide();				
-			});
 			mui.plusReady(function() {
 				mui.init();
 				//仅支持竖屏显示
 				plus.screen.lockOrientation("portrait-primary");
+				//更改系统状态栏颜色
+				//				plus.navigator.setStatusBarBackground("#83C347");
 				//首页返回键处理
 				//处理逻辑：1秒内，连续两次按返回键，则退出应用；
 				var first = null;
@@ -80,35 +73,32 @@
 				for (var i = 0; i < subpages.length; i++) {
 					var temp = {};
 					var sub;
-					if (i == 3) {
-						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));
+					if (i == subpages.length - 1) {
+						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 100));
 						sub.onloaded = function() {
+//							plus.navigator.closeSplashscreen();
+							var webHead = mui.preload({
+								url: "webview-header.html",
+								id: "webview-header",
+								styles: fnSetSubpageStyle(0, 0)
+							});
+							var tradeHead = mui.preload({
+								url: "webview-trade-header.html",
+								id: "webview-trade-header",
+								styles: fnSetSubpageStyle(0, 0)
+							});
+							var shophead = mui.preload({
+								url: "webview-shop-header.html",
+								id: "webview-shop-header",
+								styles: fnSetSubpageStyle(0, 0)
+							});
 							var delayTime = mui.os.ios ? 100 : 1000;
 							setTimeout(function() {
-								//四个基本标签和父模板加载完后，延时关闭app启动页
-								//接下来预加载头部webviewhead与webviewbody
 								plus.navigator.closeSplashscreen();
-								//预载公用父模板
-								var webHead = mui.preload({
-									url: "webview-header.html",
-									id: "webview-header",
-									styles: fnSetSubpageStyle(0, 0)
-								});
-								//预载商品父模板
-								var trade = mui.preload({
-									url: "webview-trade-header.html",
-									id: "webview-trade-header",
-									styles: fnSetSubpageStyle(0, 0)
-								});
 							}, delayTime);
 						}
 					} else {
-						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));
-//						sub = mui.preload({
-//							url: subpages[i],
-//							id: subpages[i],
-//							styles: fnSetSubpageStyle(0, 112)
-//						});
+						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 100));
 					}
 					//显示第一个
 					if (i > 0) {
@@ -119,41 +109,26 @@
 					}
 					self.append(sub);
 				}
-
 				// 选项卡点击事件
 				mui("#index-bar-tab").on("tap", ".index-tab-item", function(e) {
 					var targetTab = this.getAttribute("data-href");
 					if (targetTab == activeTab) {
 						return;
 					}
-					//需要登录的操作先做登录检查
-					var isLogin = userLoginStatus();
-					if (targetTab == "webview-my.html" && !isLogin) {
-						// 未登录，则打开登录页
-						// 若登录成功，则需要跳转到my tab
-						// targetView通过额外值的形式传递给login，login登录成功后再传递给本页面触发changeTab事件
-						var loginView = plus.webview.create("login/login.html", "login.html", {}, {targetView: "my", showView: "webview-my.html", hideView: "webview-home.html", operateView: "HBuilder"});
-						loginView.onloaded = function() {
-							plus.webview.show(loginView, "slide-in-right");
-						}
+					if (mui.os.ios || aniShow[targetTab]) {
+						plus.webview.show(targetTab);
 					} else {
-						// 不需要登录
-						// 直接显示目标选项
-						document.querySelector(".index-tab-active").classList.remove("index-tab-active");
-						this.classList.add("index-tab-active");
-						if (mui.os.ios || aniShow[targetTab]) {
-							plus.webview.show(targetTab, "none", 300);
-						} else {
-							var temp = {};
-							temp[targetTab] = "true";
-							mui.extend(aniShow, temp);
-							plus.webview.show(targetTab, "none", 300);
-						}
-						//隐藏当前;
-						plus.webview.hide(activeTab, "none");
-						//更改当前活跃的选项卡
-						activeTab = targetTab;
+						var temp = {};
+						temp[targetTab] = "true";
+						mui.extend(aniShow, temp);
+						plus.webview.show(targetTab, "fade-in", 300);
 					}
+					document.querySelector(".index-tab-active").classList.remove("index-tab-active");
+					this.classList.add("index-tab-active");
+					//隐藏当前;
+					plus.webview.hide(activeTab, "none");
+					//更改当前活跃的选项卡
+					activeTab = targetTab;
 				});
 			});
 		</script>

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .bg-color-green {
-  background-color: #83C347 !important; }
+  background-color: #3d8f52 !important; }
 
 body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   margin: 0;
@@ -45,6 +45,7 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   height: 0.16rem;
   background: url(../img/head-three-point.png);
   background-size: 0.62667rem 0.14667rem;
+  background-repeat: no-repeat;
   display: inline-block;
   vertical-align: middle; }
 
@@ -53,14 +54,25 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   height: 0.16rem;
   background: url(../img/head-three-point-black.png);
   background-size: 0.62667rem 0.14667rem;
+  background-repeat: no-repeat;
   display: inline-block;
   vertical-align: middle; }
 
 .search-span {
-  width: 0.66667rem;
+  width: 0.69333rem;
   height: 0.52rem;
   background: url(../img/head-search.png);
-  background-size: 0.66667rem 0.50667rem;
+  background-size: 0.68rem 0.50667rem;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle; }
+
+.navigation-span {
+  width: 0.46667rem;
+  height: 0.54667rem;
+  background: url(../img/shop-introduce-navigation.png);
+  background-repeat: no-repeat;
+  background-size: contain;
   display: inline-block;
   vertical-align: middle; }
 
@@ -116,15 +128,21 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   background-position-y: -4.48rem; }
 
 .radio-check-active {
-  background-position-x: -0.85333rem; }
+  background: url(../img/img3.png);
+  background-size: 3.77333rem 3.78667rem;
+  background-position-x: -0.06667rem;
+  background-position-y: -1.33333rem; }
 
 #head-holder {
   height: 1.30667rem; }
 
+.white-bg {
+  background-color: #FFFFFF !important; }
+
 .header-control {
   width: 100%;
   height: 1.33333rem;
-  background-color: #83C347;
+  background-color: #3d8f52;
   position: fixed;
   top: 0;
   left: 0;
@@ -169,123 +187,195 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 
 #webview-head-title {
   display: inline-block;
-  font-size: 21px;
+  font-size: 20px;
   color: #FFFFFF; }
   [data-dpr="2"] #webview-head-title {
-    font-size: 42px; }
+    font-size: 40px; }
   [data-dpr="3"] #webview-head-title {
-    font-size: 63px; }
+    font-size: 60px; }
+
+#getAuthCode {
+  width: 2.4rem;
+  height: 1.06667rem;
+  font-size: 12px;
+  background-color: #3d8f52;
+  border-radius: 0.13333rem;
+  border: none;
+  color: #FFFFFF;
+  vertical-align: middle; }
+  [data-dpr="2"] #getAuthCode {
+    font-size: 24px; }
+  [data-dpr="3"] #getAuthCode {
+    font-size: 36px; }
+
+.reSendAuthCode {
+  background-color: #ebebeb !important;
+  color: #8e6068 !important; }
 
 .input-group {
-  margin-top: 0.26667rem;
+  margin-top: 0.58667rem;
+  margin-bottom: 4.66667rem;
   text-align: center; }
 
 .btnUnable {
-  background-color: rgba(230, 230, 230, 0.7) !important;
+  background-color: #D4D4D4 !important;
   color: #6e6e6e !important; }
 
 .login-container {
   width: 100%;
   height: 100%;
-  background: url(../img/login-bg-img.png);
-  background-size: cover; }
-
-.btn-left {
-  width: 1.2rem;
-  height: 1.46667rem;
-  display: inline-block; }
-
-.btn-right {
-  width: 1.73333rem;
-  height: 1.46667rem;
-  display: inline-block;
-  text-align: center;
-  line-height: 1.33333rem;
-  position: absolute;
-  top: 0;
-  right: 0; }
-  .btn-right span {
-    font-size: 19px;
-    color: #FFFFFF; }
-    [data-dpr="2"] .btn-right span {
-      font-size: 38px; }
-    [data-dpr="3"] .btn-right span {
-      font-size: 57px; }
-
-.left-28px {
-  top: 0.33333rem;
-  left: 0.37333rem;
-  position: absolute; }
+  background-color: #F7F7F7;
+  position: relative; }
 
 input::-webkit-input-placeholder {
   color: #ECECEC; }
 
-.login-input-span {
-  height: 1.2rem;
-  margin-bottom: 0.2rem;
-  display: inline-block;
-  border-radius: 0.4rem;
-  background-color: rgba(0, 0, 0, 0.2); }
-
 .login-input {
-  width: 7.29333rem;
+  width: 8.62667rem;
   height: 1.2rem;
-  padding-left: 1.33333rem;
-  font-size: 18px;
-  color: #FFFFFF;
-  border: none; }
+  padding-left: 0.37333rem;
+  padding-right: 0.37333rem;
+  font-size: 16px;
+  color: #787878;
+  border: none;
+  box-sizing: border-box; }
   [data-dpr="2"] .login-input {
-    font-size: 36px; }
+    font-size: 32px; }
   [data-dpr="3"] .login-input {
-    font-size: 54px; }
+    font-size: 48px; }
 
 #input-phone {
-  background: url(../img/input-phone.png);
-  background-repeat: no-repeat;
-  background-size: 0.53333rem 0.73333rem;
-  background-position-x: 0.33333rem;
-  background-position-y: center; }
+  border-left: 1px solid #D4D4D4;
+  border-right: 1px solid #D4D4D4;
+  border-top: 1px solid #D4D4D4;
+  border-top-left-radius: 0.08rem;
+  border-top-right-radius: 0.08rem; }
 
 #input-pwd {
-  background: url(../img/input-pwd.png);
-  background-repeat: no-repeat;
-  background-size: 0.53333rem 0.73333rem;
-  background-position-x: 0.33333rem;
-  background-position-y: center; }
+  border: 1px solid #D4D4D4;
+  border-bottom-left-radius: 0.08rem;
+  border-bottom-right-radius: 0.08rem; }
 
 .login-btn {
   width: 8.62667rem;
   height: 1.2rem;
   margin-top: 0.53333rem;
-  font-size: 18px;
-  color: #FFFFFF;
+  font-size: 19px;
   border: none;
-  border-radius: 0.4rem;
-  background-color: #83C347;
+  border-radius: 0.08rem;
+  background-color: #3d8f52;
+  color: #FFFFFF;
   transition: all .4s; }
   [data-dpr="2"] .login-btn {
-    font-size: 36px; }
+    font-size: 38px; }
   [data-dpr="3"] .login-btn {
-    font-size: 54px; }
+    font-size: 57px; }
 
 .forgetPWD-span {
   width: 8.62667rem;
   height: 1.2rem;
-  margin-bottom: 0.2rem;
-  padding-right: 0.53333rem;
-  text-align: right;
   display: inline-block; }
 
 #forgetPWD {
   height: 1.2rem;
   line-height: 1.2rem;
-  font-size: 14px;
-  display: inline-block;
-  color: #FFFFFF; }
+  font-size: 15px;
+  color: #787878;
+  display: inline-block; }
   [data-dpr="2"] #forgetPWD {
-    font-size: 28px; }
+    font-size: 30px; }
   [data-dpr="3"] #forgetPWD {
-    font-size: 42px; }
+    font-size: 45px; }
+
+.other-way {
+  height: 1.33333rem;
+  line-height: 1.33333rem;
+  padding-left: 0.37333rem;
+  padding-right: 0.37333rem;
+  position: relative;
+  text-align: center; }
+
+.other-way-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -36px;
+  margin-top: -8px;
+  font-size: 12px;
+  color: #D4D4D4;
+  background-color: #F7F7F7;
+  z-index: 10; }
+  [data-dpr="2"] .other-way-text {
+    margin-left: -72px; }
+  [data-dpr="3"] .other-way-text {
+    margin-left: -108px; }
+  [data-dpr="2"] .other-way-text {
+    margin-top: -16px; }
+  [data-dpr="3"] .other-way-text {
+    margin-top: -24px; }
+  [data-dpr="2"] .other-way-text {
+    font-size: 24px; }
+  [data-dpr="3"] .other-way-text {
+    font-size: 36px; }
+
+.other-btn {
+  margin: 0 auto;
+  display: table; }
+
+.other-btn-item {
+  width: 2.85333rem;
+  height: 1.38667rem;
+  background-color: #3d8f52;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 0.08rem; }
+
+.other-btn-holder {
+  width: 0.30667rem;
+  display: table-cell; }
+
+.other-btn-logo {
+  width: 0.8rem;
+  height: 0.72rem;
+  display: inline-block;
+  vertical-align: middle; }
+
+.logo-weixin {
+  background: url(../img/img4.png);
+  background-size: 7.72rem 3.90667rem;
+  background-position-x: -1.08rem;
+  background-position-y: -3.16rem; }
+
+.logo-qq {
+  background: url(../img/img4.png);
+  background-size: 7.72rem 3.90667rem;
+  background-position-x: -2.13333rem;
+  background-position-y: -3.16rem; }
+
+.logo-weibo {
+  background: url(../img/img4.png);
+  background-size: 7.72rem 3.90667rem;
+  background-position-x: 0rem;
+  background-position-y: -3.16rem; }
+
+.other-btn-title {
+  font-size: 16px;
+  color: #FFFFFF;
+  display: inline-block;
+  vertical-align: middle; }
+  [data-dpr="2"] .other-btn-title {
+    font-size: 32px; }
+  [data-dpr="3"] .other-btn-title {
+    font-size: 48px; }
+
+.other-way-line {
+  width: 90%;
+  height: 0.01333rem;
+  position: absolute;
+  left: 5%;
+  top: 0.66667rem;
+  background-color: #D4D4D4; }
 
 .register-input {
   width: 8.41333rem;
@@ -298,7 +388,7 @@ input::-webkit-input-placeholder {
   color: #9a9a9a;
   background-color: white;
   border: 1px solid #dcdcdc;
-  border-radius: 0.13333rem; }
+  border-radius: 0.08rem; }
   [data-dpr="2"] .register-input {
     font-size: 38px; }
   [data-dpr="3"] .register-input {
@@ -309,9 +399,9 @@ input::-webkit-input-placeholder {
   height: 1.41333rem;
   line-height: 1.41333rem;
   margin-top: 0.26667rem;
-  border-radius: 0.13333rem;
+  border-radius: 0.08rem;
   border: none;
-  background-color: #83C347;
+  background-color: #3d8f52;
   font-size: 21px;
   color: #FFFFFF;
   text-align: center; }
@@ -326,7 +416,7 @@ input::-webkit-input-placeholder {
   padding-left: 0.33333rem;
   display: inline-block;
   border: 1px solid #dcdcdc;
-  border-radius: 0.13333rem;
+  border-radius: 0.08rem;
   overflow: hidden;
   text-align: justify;
   background-color: #FFFFFF; }
@@ -343,24 +433,6 @@ input::-webkit-input-placeholder {
   [data-dpr="3"] #authCode {
     font-size: 57px; }
 
-#getAuthCode {
-  width: 2.4rem;
-  height: 1.06667rem;
-  font-size: 12px;
-  background-color: #83C347;
-  border-radius: 0.13333rem;
-  border: none;
-  color: #FFFFFF;
-  vertical-align: middle; }
-  [data-dpr="2"] #getAuthCode {
-    font-size: 24px; }
-  [data-dpr="3"] #getAuthCode {
-    font-size: 36px; }
-
-.reSendAuthCode {
-  background-color: #ebebeb !important;
-  color: #8e6068 !important; }
-
 .span-agreement {
   width: 9.06667rem;
   margin-top: 0.13333rem;
@@ -375,10 +447,10 @@ input::-webkit-input-placeholder {
 #resetPWD {
   width: 8.64rem;
   height: 1.25333rem;
-  border-radius: 0.4rem;
+  border-radius: 0.08rem;
   font-size: 18px;
   color: #FFFFFF;
-  background-color: #83C347;
+  background-color: #3d8f52;
   border: none; }
   [data-dpr="2"] #resetPWD {
     font-size: 36px; }
@@ -390,7 +462,7 @@ input::-webkit-input-placeholder {
   margin-bottom: 0.41333rem;
   display: inline-block;
   font-size: 15px;
-  color: #83C347; }
+  color: #3d8f52; }
   [data-dpr="2"] #back {
     font-size: 30px; }
   [data-dpr="3"] #back {

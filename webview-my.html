@@ -26,28 +26,27 @@
 		<div class="user-bg">
 			<!--这里has-message/no-message-->
 			<span class="no-message"></span>
-			<img class="user-bg-img" src="img/user-img.png" />
+			<img class="user-bg-img" src="img/head.jpg" />
 			</br>
-			<span class="user-bg-group-normal"></span>
-			<span class="user-bg-name">Capitan</span>
-			<span class="user-bg-group-vip"></span>
+			<span class="user-bg-name">登录/注册</span>
 			</br>
+			<span class="user-bg-phone"></span>
 			<!--去掉小右箭头-->
 			<!--<span class="user-bg-details white-arrow-span"></span>-->
-			<span class="user-bg-phone">13229788871</span>
+			
 			<div class="user-bg-nav">
 				<a id="user-bag">
-					<span class="user-bg-nav-counts">7</span></br>
+					<span class="user-bg-nav-counts">0</span></br>
 					<span>我的红包</span>
 				</a>
 				<a class="short-line"><img id="r-border"></a>
 				<a id="user-collect">
-					<span class="user-bg-nav-counts">18</span></br>
+					<span class="user-bg-nav-counts">0</span></br>
 					<span>我的收藏</span>
 				</a>
 				<a class="short-line"><img id="l-border"></a>
 				<a id="user-shop-car">
-					<span class="user-bg-nav-counts">6</span></br>
+					<span class="user-bg-nav-counts">0</span></br>
 					<span>购物车</span>
 				</a>
 			</div>
@@ -96,6 +95,10 @@
 		<script>
 			mui.init();
 			mui.plusReady(function() {
+				//打开登录页
+				document.querySelector(".user-bg-name").addEventListener("tap", function() {
+					openLogin();
+				});
 				//打开我的红包
 				document.getElementById("user-bag").addEventListener("tap", function(e) {
 					e.preventDefault();
@@ -133,7 +136,7 @@
 					//订单窗口有头部导航
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-my-order.html",
-						top: 205,
+						top: 213,
 						bottom: 0
 					}, {
 						title: "我的订单",
@@ -151,7 +154,7 @@
 						return;
 					}
 					this.classList.add("loading");
-					var webviewSpa = plus.webview.create("secondlv/webview-my-setting.html", "secondlv/webview-my-setting.html");
+					var webviewSpa = plus.webview.create("secondlv/webview-my-setting.html", "secondlv/webview-my-setting.html", {hardwareAccelerated: true});
 					webviewSpa.onloaded = function() {
 						setTimeout(function() {
 							webviewSpa.show("slide-in-right", "", function() {

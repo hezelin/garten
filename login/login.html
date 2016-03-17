@@ -15,36 +15,57 @@
 		<style>
 			html,
 			body {
-				background-color: rgb(246, 246, 246);
 				width: 100%;
 				height: 100%;
-				/*background-color: #efeff4;*/
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="login-container">
-			<div class="btn-left mui-action-back">
-				<span class="white-arrow-big-span left-28px"></span>
+			<div class="header-control header-control-greenBold">
+				<div class="header-control-left-btn  mui-action-back">
+					<span class="white-arrow-big-span header-control-left-btn-span"></span>
+				</div>
+				<div>
+					<span id="webview-head-title"></span>
+				</div>
+				<div class="header-control-right-btn" id="register">
+					<span class="header-control-right-btn-span">注册</span>
+				</div>
 			</div>
-			<div id="register" class="btn-right">
-				<span>注册</span>
-			</div>
+			<div id="head-holder"></div>
 			<div class="input-group">
-				<span class="login-input-span">
-					<input id="input-phone"  class="login-input" type="text" placeholder="手机号"/>
-				</span>
+				<input id="input-phone" class="login-input" type="text" placeholder="手机号" />
 				<br />
-				<span class="login-input-span">								
-					<input id="input-pwd" class="login-input" type="password" placeholder="请输入密码"/>
-				</span>
+				<input id="input-pwd" class="login-input" type="password" placeholder="请输入密码" />
+
 				<br />
 				<button id="login" class="login-btn btnUnable">登录</button>
 				<br />
 				<span class="forgetPWD-span">
 					<a id="forgetPWD">忘记密码</a>
 				</span>
+			</div>
+			<div class="other-way">
+				<span class="other-way-text">其他登录方式</span>
+				<span class="other-way-line"></span>
+			</div>
+			<div class="other-btn">
+				<div class="other-btn-item">
+					<span class="other-btn-logo logo-weixin"></span>
+					<span class="other-btn-title">微信</span>
+				</div>
+				<div class="other-btn-holder"></div>
+				<div class="other-btn-item">
+					<span class="other-btn-logo logo-qq"></span>
+					<span class="other-btn-title">QQ</span>
+				</div>
+				<div class="other-btn-holder"></div>
+				<div class="other-btn-item">
+					<span class="other-btn-logo logo-weibo"></span>
+					<span class="other-btn-title">微博</span>
+				</div>
 			</div>
 		</div>
 
@@ -53,9 +74,9 @@
 		<script src="../js/public.js"></script>
 		<script>
 			mui.init();
-			var phoneInput = document.querySelector("#input-phone");
-			var pwdInput = document.querySelector("#input-pwd");
-			var btnLogin = document.querySelector("#login");
+			var phoneInput = document.getElementById("input-phone");
+			var pwdInput = document.getElementById("input-pwd");
+			var btnLogin = document.getElementById("login");
 			var btnAble = false;
 			//校验输入
 			function checkLogin() {
@@ -66,7 +87,7 @@
 					password: pwdVal
 				};
 				if (phoneVal.length != 11) {
-					mui.toast("账户名不存在");
+					mui.toast("账户不存在");
 					return false;
 				}
 				if (pwdVal.length < 6 || 16 < pwdVal.length) {
@@ -119,25 +140,15 @@
 					timeout: 10000,
 					success: function(res) {
 						res = JSON.parse(res);
-						console.log(JSON.stringify(res));
 						nwaiting.close();
 						btnAble = true;
 						if (res.success) {
 							plus.storage.setItem("tokenValue", res.data.access_token);
 							plus.storage.setItem("tokenDate", new Date().getTime().toString());
-							plus.webview.close("login.html");
+							var w = plus.getWebviewById("login.html");
+							w.hide();
+							w.close();
 							mui.toast("登录成功");
-							//检查是否有额外值，有就跳转到目标
-							var w = plus.webview.getWebviewById("login.html");
-							if (typeof w.operateView === "string") {
-								//额外参数说明：
-								//operateView 操作目标view , hideView隐藏, showView显示，targetView该属性只用在index页
-								mui.fire(plus.webview.getWebviewById(w.operateView), "changeTab", {
-									targetView: w.targetView,
-									showView: w.showView,
-									hideView: w.hideView
-								});
-							}
 						} else {
 							mui.toast(res.data.message || res.data.error || "服务器错误");
 						}
@@ -145,18 +156,21 @@
 					error: function(xhr, type, errorThrown) {
 						nwaiting.close();
 						btnAble = true;
-						mui.toast("无法连接服务器");
+						var res = JSON.parse(xhr.response);
+						if (typeof res.data.message !== "undefined") {
+							mui.toast(res.data.message);
+						}
 					}
 				});
 			});
 			mui.plusReady(function() {
-				document.querySelector("#register").addEventListener("tap", function() {
+				document.getElementById("register").addEventListener("tap", function() {
 					var w = plus.webview.open("register.html", "register.html", {}, "slide-in-right");
 					w.onloaded = function() {
 						mui.fire(w, "countDown", {});
 					}
 				});
-				document.querySelector("#forgetPWD").addEventListener("tap", function(e) {
+				document.getElementById("forgetPWD").addEventListener("tap", function(e) {
 					var w = plus.webview.create("forgetPassword.html", "forgetPassword.html", {}, "slide-in-right");
 					w.onloaded = function() {
 						mui.fire(w, "countDown", {});

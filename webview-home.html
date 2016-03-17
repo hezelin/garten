@@ -24,11 +24,11 @@
 	<body>
 		<div class="container-globar">
 			<div class="header-control header-control-greenBold" id="home-header-control">
-				<div class="header-control-left-btn  mui-action-back app-log-div">
+				<div class="header-control-left-btn app-log-div">
 					<span class="app-log-span header-control-left-btn-span"></span>
 				</div>
 				<div class="header-control-app-name">
-					<span id="webview-head-title">开心农场</span>
+					<span id="webview-head-title">曦山农场</span>
 				</div>
 				<div class="header-control-right-btn">
 					<span class="header-control-right-btn-span search-span"></span>		
@@ -75,23 +75,23 @@
 				</div>
 			</div>
 			<div class="home-nav-tab">
-				<div class="home-nav-tab-item">
-					<span class="home-nav-tab-item-icon home-rent"></span>
-					<span class="home-nav-tab-item-title">认租</span>
-				</div>
-				<div class="home-nav-tab-item">
-					<span class="home-nav-tab-item-icon home-activity"></span>
-					<span class="home-nav-tab-item-title">活动</span>
-				</div>
-				<div class="home-nav-tab-item">
+				<div class="home-nav-tab-item" id="homeLive">
+					<span class="home-nav-tab-item-icon home-live"></span>
+					<span class="home-nav-tab-item-title">亲子</span>
+				</div>			
+				<div class="home-nav-tab-item" id="homeShop">
 					<span class="home-nav-tab-item-icon home-shop"></span>
 					<span class="home-nav-tab-item-title">商城</span>
 				</div>
-				<div class="home-nav-tab-item">
-					<span class="home-nav-tab-item-icon home-live"></span>
-					<span class="home-nav-tab-item-title">亲子</span>
+				<div class="home-nav-tab-item" id="homeRent">
+					<span class="home-nav-tab-item-icon home-rent"></span>
+					<span class="home-nav-tab-item-title">认租</span>
 				</div>
-				<div class="home-nav-tab-item">
+				<div class="home-nav-tab-item" id="homeActivity">
+					<span class="home-nav-tab-item-icon home-activity"></span>
+					<span class="home-nav-tab-item-title">农家乐</span>
+				</div>								
+				<div class="home-nav-tab-item" id="homeEat">
 					<span class="home-nav-tab-item-icon home-eat"></span>
 					<span class="home-nav-tab-item-title">民宿</span>
 				</div>
@@ -105,7 +105,7 @@
 					
 					<div class="home-news-content-item-left">
 						<span class="span-new"></span>
-						<span class="span-new-content">新!</span>
+						<span class="span-new-content">新</span>
 						<img class="home-news-content-item-left-img" src="img/testhome/testhome7.png"/>
 						<div class="home-news-content-item-detail home-width-320">
 							<span class="home-news-content-item-detail-title">亲子活动</span>
@@ -115,7 +115,7 @@
 					</div>
 					<div class="home-news-content-item-right">
 						<span class="span-new"></span>
-						<span class="span-new-content">新!</span>
+						<span class="span-new-content">新</span>
 						<img class="home-news-content-item-right-img" src="img/testhome/testhome8.png"/>
 						<div class="home-news-content-item-detail home-width-180">
 							<span class="home-news-content-item-detail-title">农家乐园</span>
@@ -125,7 +125,7 @@
 					</div>
 					<div class="home-news-content-item-right">
 						<span class="span-new"></span>
-						<span class="span-new-content">新!</span>
+						<span class="span-new-content">新</span>
 						<img class="home-news-content-item-right-img" src="img/testhome/testhome9.png"/>
 						<div class="home-news-content-item-detail home-width-180">
 							<span class="home-news-content-item-detail-title">某某民宿</span>
@@ -175,18 +175,17 @@
 				interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0；
 			});
 			mui.plusReady(function() {
-				var navlist = document.getElementsByClassName("home-nav-tab-item");
-				navlist[0].addEventListener("tap", function(e) {
+				document.querySelector("#homeLive").addEventListener("tap", function(e) {
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-home-rent.html",
 						top: 98,
 						bottom: 0
 					}, {
-						title: "认租",
+						title: "亲子",
 						rightBtn: '<span class="header-control-right-btn-span search-span"></span>'
 					});
 				});
-				navlist[1].addEventListener("tap", function(e) {
+				document.querySelector("#homeActivity").addEventListener("tap", function(e) {
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-home-rent.html",
 						top: 98,
@@ -196,7 +195,7 @@
 						rightBtn: '<span class="header-control-right-btn-span search-span"></span>'
 					});
 				});
-				navlist[2].addEventListener("tap", function(e) {
+				document.querySelector("#homeShop").addEventListener("tap", function(e) {
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-home-rent.html",
 						top: 98,
@@ -206,17 +205,17 @@
 						rightBtn: '<span class="header-control-right-btn-span search-span"></span>'
 					});
 				});
-				navlist[3].addEventListener("tap", function(e) {
+				document.querySelector("#homeRent").addEventListener("tap", function(e) {
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-home-rent.html",
 						top: 98,
 						bottom: 0
 					}, {
-						title: "农家乐",
+						title: "认租",
 						rightBtn: '<span class="header-control-right-btn-span search-span"></span>'
 					});
 				});
-				navlist[4].addEventListener("tap", function(e) {
+				document.querySelector("#homeEat").addEventListener("tap", function(e) {
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-home-rent.html",
 						top: 98,

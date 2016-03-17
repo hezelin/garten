@@ -20,40 +20,48 @@
 			}
 		</style>
 	</head>
+
 	<body>
-		<div class="home-rent-container">
-			<div class="home-rent-item">
-				<div class="home-rent-bg" style="background: url(../img/tradeListbg2.png); background-size: cover;">
-					<div class="home-rent-money-bg"></div>
-					<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
-					<div class="home-rent-name">
-						某某店铺
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-table-view-chevron">
+					<div class="home-rent-container">
+						<div class="home-rent-item">
+							<div class="home-rent-bg" style="background: url(../img/tradeListbg2.png); background-size: cover;">
+								<div class="home-rent-money-bg"></div>
+								<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
+								<div class="home-rent-name">
+									某某店铺
+								</div>
+								<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
+							</div>
+							<label class="home-rent-context">菜地认租 新年特惠</label>
+						</div>
+						<div class="home-rent-item">
+							<div class="home-rent-bg" style="background: url(../img/tradeListbg1.png); background-size: cover;">
+								<div class="home-rent-money-bg"></div>
+								<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
+								<div class="home-rent-name">
+									某某店铺
+								</div>
+								<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
+							</div>
+							<label class="home-rent-context">玉米地认租 新年特惠</label>
+						</div>
+						<div class="home-rent-item">
+							<div class="home-rent-bg" style="background: url(../img/tradeListbg2.png); background-size: cover;">
+								<div class="home-rent-money-bg"></div>
+								<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
+								<div class="home-rent-name">
+									某某店铺
+								</div>
+								<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
+							</div>
+							<label class="home-rent-context">菜地认租 新年特惠</label>
+						</div>
 					</div>
-					<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
-				</div>
-				<label class="home-rent-context">菜地认租 新年特惠</label>
-			</div>
-			<div class="home-rent-item">
-				<div class="home-rent-bg" style="background: url(../img/tradeListbg1.png); background-size: cover;">
-					<div class="home-rent-money-bg"></div>
-					<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
-					<div class="home-rent-name">
-						某某店铺
-					</div>
-					<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
-				</div>
-				<label class="home-rent-context">玉米地认租 新年特惠</label>
-			</div>
-			<div class="home-rent-item">
-				<div class="home-rent-bg" style="background: url(../img/tradeListbg2.png); background-size: cover;">
-					<div class="home-rent-money-bg"></div>
-					<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
-					<div class="home-rent-name">
-						某某店铺
-					</div>
-					<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
-				</div>
-				<label class="home-rent-context">菜地认租 新年特惠</label>
+					<!--//刷新容器-->
+				</ul>
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
@@ -61,6 +69,35 @@
 		<script src="../js/public.js"></script>
 		<script>
 			mui.init();
+			mui.init({
+				pullRefresh: {
+					container: "#refreshContainer",
+					down: {
+						contentdown: "下拉可以刷新",
+						contentover: "释放立即刷新",
+						contentrefresh: "正在刷新...",
+						callback: downCallBack
+					},
+					up: {
+						contentrefresh: "正在加载...",
+						contentnomore: '没有更多数据了',
+						callback: upCallback
+					}
+				}
+			});
+
+			function upCallback() {
+				window.setTimeout(function() {
+					mui('#refreshContainer').pullRefresh().endPullupToRefresh(false);
+					//					true
+				}, 700);
+			}
+
+			function downCallBack() {
+				window.setTimeout(function() {
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+				}, 700);
+			}
 			mui.plusReady(function() {
 				mui(".home-rent-container").on("tap", ".home-rent-item", function(e) {
 					var thisbtn = this;
@@ -81,7 +118,7 @@
 					});
 					//打开商品父模板时加载第一页
 					//商品页
-					var newWebview = plus.webview.create("../thirdlv/webview-home-rent-detail.html", "webview-home-rent-detail",  fnSetSubpageStyle(104, 0));
+					var newWebview = plus.webview.create("../thirdlv/webview-home-rent-detail.html", "webview-home-rent-detail", fnSetSubpageStyle(98, 0));
 					newWebview.onloaded = function() {
 						setTimeout(function() {
 							nwaiting.close();
@@ -92,4 +129,4 @@
 			});
 		</script>
 	</body>
-</html>
+	</ht

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 
 	<head>
@@ -271,7 +270,7 @@
 							</div>
 							<!--中间内容区域-->
 							<div class="my-setting-middle my-setting-middle-right">
-								<label class="my-setting-middle-text" id="pickDateBtnShow">请选择</label>
+								<label class="my-setting-middle-text" id="pickDateBtnShow">保密</label>
 							</div>
 							<!--右边内容区域-->
 							<div class="my-setting-right">
@@ -286,7 +285,7 @@
 							</div>
 							<!--中间内容区域-->
 							<div class="my-setting-middle my-setting-middle-right">
-								<label class="my-setting-middle-text">请填写地址</label>
+								<label class="my-setting-middle-text">设置</label>
 							</div>
 							<!--右边内容区域-->
 							<div class="my-setting-right">
@@ -347,7 +346,8 @@
 								<label class="my-setting-left-text">姓名</label>
 							</div>
 							<div class="my-setting-middle my-setting-border my-setting-middle-left">
-								<label class="my-setting-middle-text">格子</label>
+								<!--<label class="my-setting-middle-text">格子</label>-->
+								<input type="text" class="my-setting-middle-input" id="" placeholder="格子" value="格子" />
 							</div>
 							<div class="my-setting-right my-setting-border">
 							</div>
@@ -357,7 +357,7 @@
 								<label class="my-setting-left-text">手机</label>
 							</div>
 							<div class="my-setting-middle my-setting-border my-setting-middle-left">
-								<label class="my-setting-middle-text">13229788871</label>
+								<input type="text" class="my-setting-middle-input" id="" placeholder="请输入手机号" value="13202208227" />
 							</div>
 							<div class="my-setting-right my-setting-border">
 							</div>
@@ -378,7 +378,7 @@
 								<label class="my-setting-left-text">收货地址</label>
 							</div>
 							<div class="my-setting-middle my-setting-middle-left">
-								<label class="my-setting-middle-text">请输入收货地址</label>
+								<input type="text" class="my-setting-middle-input" id="" placeholder="请输入详细地址" value="" />
 							</div>
 							<div class="my-setting-right">
 							</div>
@@ -404,27 +404,20 @@
 			</div>
 			<div class="mui-page-content">
 				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
+					<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
 						<a class="my-setting-item my-setting-item-margin-top">
 							<div class="my-setting-left my-setting-border my-setting-left-input">
-								<input class="editPhoneInput" placeholder="请输入新的手机号码" type="text" />
-							</div>
-							<div class="my-setting-right my-setting-border">
-							</div>
-						</a>
-						<a class="my-setting-item">
-							<div class="my-setting-left my-setting-border my-setting-left-input">
-								<input class="editPhoneInput" placeholder="请输入密码" type="text" />
+								<input id="phoneInput" class="editPhoneInput" placeholder="请输入新的手机号码" type="text">
 							</div>
 							<div class="my-setting-right my-setting-border">
 							</div>
 						</a>
 						<a class="my-setting-item">
 							<div class="my-setting-left my-setting-left-input">
-								<input class="editPhoneInput" placeholder="请输入认证码" type="text" />
+								<input id="authCodeInput" class="editPhoneInput" placeholder="请输入认证码" type="text">
 							</div>
 							<div class="my-setting-middle my-setting-middle-right">
-								<button id="getVerifyNum">获取认证码</button>
+								<button id="getAuthCode">获取认证码</button>
 							</div>
 						</a>
 						<div class="postEditPhoneContainer">
@@ -432,7 +425,7 @@
 								保存并更新手机号
 							</button>
 						</div>
-					</div>
+					</div>					
 				</div>
 			</div>
 		</div>
@@ -524,80 +517,7 @@
 		var viewApi = mui('#app').view({
 			defaultPage: '#setting'
 		});
-		// 初始化单页的区域滚动
-		mui('.mui-scroll-wrapper').scroll();
 		var view = viewApi.view;
-		// 退出登录
-		document.querySelector("#my-setting-loginout").addEventListener("tap", function() {
-			if (mui.os.plus) {
-				plus.nativeUI.confirm("确定退出登录？", function(e) {
-					if (e.index == 0) {
-						plus.storage.removeItem("tokenValue");
-						plus.storage.removeItem("tokenDate");
-						plus.webview.getWebviewById("secondlv/webview-my-setting.html").close();
-						// 关闭个人中心页后默认切到首页
-						mui.fire(plus.webview.getWebviewById("HBuilder"), "changeTab", {
-							targetView: "home",
-							showView: "webview-home.html",
-							hideView: "webview-my.html"
-						});
-						mui.toast("已退出登录状态");
-					}
-				}, "退出", ["确定", "取消"])
-			}
-		});
-		// 修改性别
-		document.querySelector("#setSex").addEventListener("tap", function() {
-			var _id = "#sexList-item";
-			fnOpenTargetDiv(_id);
-		});
-		document.querySelector("#setSexMan").addEventListener("tap", function() {
-			var thisBtn = this;
-			//防止重复点击
-			if (thisBtn.getAttribute("data-tap") == "true") {
-				return;
-			}
-			thisBtn.setAttribute("data-tap", "true");
-			var _id = "#sexList-item";
-			var _text = document.querySelector("#setSex .my-setting-middle-text");
-			//处理点击逻辑
-			var radioList = document.querySelectorAll(".radio-check-span");
-			if (!radioList[0].classList.contains("radio-check-active") && radioList[1].classList.contains("radio-check-active")) {
-				radioList[0].classList.add("radio-check-active");
-				radioList[1].classList.remove("radio-check-active");
-				_text.innerText = "男";
-			} else if (!radioList[0].classList.contains("radio-check-active") && !radioList[1].classList.contains("radio-check-active")) {
-				radioList[0].classList.add("radio-check-active");
-				_text.innerText = "男";
-			}
-			//防止重复点击
-			fnCloseShade(_id);
-			setTimeout(function() {
-				thisBtn.setAttribute("data-tap", "false");
-			}, 200);
-		});
-		document.querySelector("#setSexFemale").addEventListener("tap", function() {
-			var thisBtn = this;
-			if (thisBtn.getAttribute("data-tap") == "true") {
-				return;
-			}
-			thisBtn.setAttribute("data-tap", "true");
-			var _id = "#sexList-item";
-			var _text = document.querySelector("#setSex .my-setting-middle-text");
-			var radioList = document.querySelectorAll(".radio-check-span");
-			if (!radioList[1].classList.contains("radio-check-active") && radioList[0].classList.contains("radio-check-active")) {
-				radioList[1].classList.add("radio-check-active");
-				radioList[0].classList.remove("radio-check-active");
-				_text.innerText = "女";
-			} else if (!radioList[1].classList.contains("radio-check-active") && !radioList[0].classList.contains("radio-check-active")) {
-				radioList[1].classList.add("radio-check-active");
-				_text.innerText = "女";
-			}
-			fnCloseShade(_id);
-			setTimeout(function() {
-				thisBtn.setAttribute("data-tap", "false");
-			}, 200);
-		});
 		(function($) {
 			//重写back事件，处理view的后退与webview后退
 			var oldBack = $.back;
@@ -651,15 +571,104 @@
 			plus.nativeUI.pickDate(function(e) {
 				var d = e.date;
 				info.innerText = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+				console.log("选择");
 			}, function(e) {
 				info.innerText = "请选择";
+				console.log("没选择");
 			}, {
-				title: "请选择日期",
 				date: dDate
-					//					minDate: minDate,
-					//					maxDate: maxDate
 			});
 		});
+		// 初始化单页的区域滚动
+		mui('.mui-scroll-wrapper').scroll();
+		//修改手机号码start
+		var btnAble = true;
+		var btnAble2 = true;
+		
+		document.querySelector("#getAuthCode").addEventListener("tap", function() {
+			//申请验证码
+		});
+		document.querySelector("#postEditPhone").addEventListener("tap", function() {
+			if (btnAble) {
+				mui.ajax(URL, {
+//					type
+				});
+			}
+		});
+		//修改手机号码end
+		// 退出登录start
+		document.querySelector("#my-setting-loginout").addEventListener("tap", function() {
+			if (mui.os.plus) {
+				plus.nativeUI.confirm("确定退出登录？", function(e) {
+					if (e.index == 0) {
+						plus.storage.removeItem("tokenValue");
+						plus.storage.removeItem("tokenDate");
+						plus.webview.getWebviewById("secondlv/webview-my-setting.html").close();
+						// 关闭个人中心页后默认切到首页
+						mui.fire(plus.webview.getWebviewById("HBuilder"), "changeTab", {
+							targetView: "home",
+							showView: "webview-home.html",
+							hideView: "webview-my.html"
+						});
+						mui.toast("已退出登录状态");
+					}
+				}, "退出", ["确定", "取消"])
+			}
+		});
+		//退出登录end
+		// 修改性别start
+		document.querySelector("#setSex").addEventListener("tap", function() {
+			var _id = "#sexList-item";
+			fnOpenTargetDiv(_id);
+		});
+		document.querySelector("#setSexMan").addEventListener("tap", function() {
+			var thisBtn = this;
+			//防止重复点击
+			if (thisBtn.getAttribute("data-tap") == "true") {
+				return;
+			}
+			thisBtn.setAttribute("data-tap", "true");
+			var _id = "#sexList-item";
+			var _text = document.querySelector("#setSex .my-setting-middle-text");
+			//处理点击逻辑
+			var radioList = document.querySelectorAll(".radio-check-span");
+			if (!radioList[0].classList.contains("radio-check-active") && radioList[1].classList.contains("radio-check-active")) {
+				radioList[0].classList.add("radio-check-active");
+				radioList[1].classList.remove("radio-check-active");
+				_text.innerText = "男";
+			} else if (!radioList[0].classList.contains("radio-check-active") && !radioList[1].classList.contains("radio-check-active")) {
+				radioList[0].classList.add("radio-check-active");
+				_text.innerText = "男";
+			}
+			//防止重复点击
+			fnCloseShade(_id);
+			setTimeout(function() {
+				thisBtn.setAttribute("data-tap", "false");
+			}, 200);
+		});
+		document.querySelector("#setSexFemale").addEventListener("tap", function() {
+			var thisBtn = this;
+			if (thisBtn.getAttribute("data-tap") == "true") {
+				return;
+			}
+			thisBtn.setAttribute("data-tap", "true");
+			var _id = "#sexList-item";
+			var _text = document.querySelector("#setSex .my-setting-middle-text");
+			var radioList = document.querySelectorAll(".radio-check-span");
+			if (!radioList[1].classList.contains("radio-check-active") && radioList[0].classList.contains("radio-check-active")) {
+				radioList[1].classList.add("radio-check-active");
+				radioList[0].classList.remove("radio-check-active");
+				_text.innerText = "女";
+			} else if (!radioList[1].classList.contains("radio-check-active") && !radioList[0].classList.contains("radio-check-active")) {
+				radioList[1].classList.add("radio-check-active");
+				_text.innerText = "女";
+			}
+			fnCloseShade(_id);
+			setTimeout(function() {
+				thisBtn.setAttribute("data-tap", "false");
+			}, 200);
+		});
+		//修改性别end
 		//检查更新
 		document.getElementById("update").addEventListener('tap', function() {
 			mui.toast('已是最新版本~');
@@ -681,6 +690,7 @@
 				}
 			});
 		});
+		//下面代码均为头像处理代码
 		setTimeout(function() {
 			defaultImg();
 			setTimeout(function() {
@@ -728,7 +738,6 @@
 				document.getElementById("settingUserIMG").src = '../img/head.jpg';
 			}
 		}
-
 		/**
 		 * 
 		 * @param {Object} url
@@ -738,7 +747,6 @@
 			document.querySelector("#settingUserIMG").src = url + "?version=" + new Date().getTime();
 			document.querySelector("#__mui-imageview__group .mui-slider-item img").src = url + "?version=" + new Date().getTime();
 		}
-
 		/**
 		 * 
 		 * @param {Object} url

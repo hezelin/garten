@@ -1,7 +1,7 @@
 {
 	"@platforms": ["android", "iPhone", "iPad"],
 	"id": "H5E72D2E4",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "Farmbeta1.0",/*应用名称，程序桌面图标名称*/
+	"name": "曦山农场",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "1.0.0",/*应用版本名称*/
 		"code": "83"
@@ -156,12 +156,12 @@
 			},
 			"splashscreen": {
 				"ios": {
-					"iphone": {
+					"iphone": {"default":"/Users/mac/Downloads/farm0/启动页尺寸/320x480.png","retina55":"/Users/mac/Downloads/farm0/启动页尺寸/1242x2280.png","retina47":"/Users/mac/Downloads/farm0/启动页尺寸/750x1334.png","retina40":"/Users/mac/Downloads/farm0/启动页尺寸/640x1136.png","retina35":"/Users/mac/Downloads/farm0/启动页尺寸/640x960.png"
 						 /*iPhone3启动图片选，分辨率：320x480*/
 						/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
 						
 					},
-					"ipad": {
+					"ipad": {"portrait":"/Users/mac/Downloads/farm0/启动页尺寸/768x1004.png","portrait7":"/Users/mac/Downloads/farm0/启动页尺寸/768x1024.png","portrait-retina":"/Users/mac/Downloads/farm0/启动页尺寸/1536x2008.png","portrait-retina7":"/Users/mac/Downloads/farm0/启动页尺寸/1536x2048.png"
 						 /*iPad竖屏启动图片，分辨率：768x1004*/
 						/*iPad高分屏竖屏图片，分辨率：1536x2008*/
 						 /*iPad横屏启动图片，分辨率：1024x748*/
@@ -172,7 +172,7 @@
 						
 					}
 				},
-				"android": {
+				"android": {"hdpi":"/Users/mac/Downloads/farm0/启动页尺寸/480x762.png","ldpi":"/Users/mac/Downloads/farm0/启动页尺寸/320x442.png","mdpi":"/Users/mac/Downloads/farm0/启动页尺寸/240x282.png","xhdpi":"/Users/mac/Downloads/farm0/启动页尺寸/720x1242.png","xxhdpi":"/Users/mac/Downloads/farm0/启动页尺寸/1080x1882.png"
 					 /*普通屏启动图片，分辨率：240x282*/
 					 /*大屏启动图片，分辨率：320x442*/
 					 /*高分屏启动图片，分辨率：480x762*/
@@ -208,7 +208,8 @@
 					"webview-nav.html",
 					"js/public.js",
 					"css/style.css",
-					"webview-comu.html"
+					"webview-comu.html",
+					"img/img3.png"
 				],
 				"refer": [
 					"index.html",
@@ -223,7 +224,8 @@
 					"secondlv/webview-my-setting.html",
 					"secondlv/webview-my-collect.html",
 					"webview-trade-header.html",
-					"login/login.html"
+					"login/login.html",
+					"webview-shop-header.html"
 				],
 				"priority": 0
 			},
@@ -259,7 +261,8 @@
 					"img/user-info-bg.png",
 					"css/style.css",
 					"img/user-img.png",
-					"secondlv/webview-my-setting.html"
+					"secondlv/webview-my-setting.html",
+					"img/head.jpg"
 				],
 				"refer": [
 					"webview-comu.html",
@@ -273,7 +276,8 @@
 					"webview-header.html",
 					"thirdlv/webview-my-userbag-amply.html",
 					"secondlv/webview-my-order.html",
-					"secondlv/webview-my-shopcar.html"
+					"secondlv/webview-my-shopcar.html",
+					"login/login.html"
 				],
 				"priority": 0
 			},
@@ -301,7 +305,8 @@
 					"css/style.css",
 					null,
 					"img/head-three-point-black.png",
-					"img/head-three-point.png"
+					"img/head-three-point.png",
+					"img/img3.png"
 				],
 				"refer": [
 					"webview-nav.html",
@@ -540,7 +545,8 @@
 					"js/public.js",
 					"js/exif.js",
 					"img/head.jpg",
-					"img/comuDescribe.png"
+					"img/comuDescribe.png",
+					"img/img3.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -743,7 +749,8 @@
 					"css/style.css",
 					"img/img2.png",
 					"img/test-knowledge3.png",
-					"js/flexible.debug.js"
+					"js/flexible.debug.js",
+					"img/img3.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -770,7 +777,8 @@
 					"img/login-bg-img.png",
 					"img/input-phone.png",
 					"img/input-pwd.png",
-					"login/register.html"
+					"login/register.html",
+					"img/img4.png"
 				],
 				"refer": [
 					"login/register2.html",
@@ -816,6 +824,25 @@
 					"js/mui.min.js",
 					"css/login.css",
 					"js/public.js",
+					"js/flexible.debug.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"webview-shop-header.html": {
+				"resources": [
+					"img/shop-introduce-navigation.png",
+					"img/shop-introduce-bg-test.png",
+					"js/flexible_css.debug.js",
+					"img/head-search.png",
+					"img/head-three-point.png",
+					"img/img.png",
+					"img/img2.png",
+					"js/md5.min.js",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/mui.min.css",
+					"css/style.css",
 					"js/flexible.debug.js"
 				],
 				"refer": [],

@@ -103,8 +103,8 @@
 						success: function(res) {
 							res = JSON.parse(res);
 							nwaiting.close();
-							if (res.success) {
-								btnAble = false;
+							btnAble = false;
+							if (res.success) {								
 								mui.toast("注册成功!");
 								plus.webview.hide("register.html", "none");
 								plus.webview.hide("register2.html", "none");
@@ -117,9 +117,13 @@
 						error: function(xhr, type, errorThrown) {
 							nwaiting.close();
 							btnAble = false;
-							mui.toast("无法连接服务器");
+							//xhr本来就是对象了，不用转换，需要转换的是response里的内容
+							var res = JSON.parse(xhr.response); 
+							if (typeof res.data.message !== "undefined") {
+								mui.toast(res.data.message);
+							}
 						}
-					});
+					});  
 				}
 			});
 			mui.plusReady(function() {

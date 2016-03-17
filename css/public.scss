@@ -56,6 +56,17 @@
     @include px2rem(background-size,(1153px, 591px));
 }
 
+@mixin spirtes-img3 {
+    background: url(../img/img3.png);
+    @include px2rem(background-size, (283px, 284px));
+}
+
+@mixin spirtes-img4 {
+    background: url(../img/img4.png);
+    @include px2rem(background-size, (579px, 293px));
+}
+
+
 //不换行处理
 @mixin Nowrap{
     //文本不换行
@@ -66,12 +77,21 @@
     overflow: hidden;
 }
 
+//去除两端对齐限制，用于容器的after上
+@mixin setJustify {
+    // 打破justify限制，使第二行也能两端对齐
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+
 // 基础色包括页面背景；灰色块的颜色
 // 基础绿色
 // 基础边框样式
 // 基础绿色背景
 $base-color: #efeff4;
-$green-color: #83C347;
+//$green-color: #83C347;
+$green-color: #3d8f52;
 $base-border: 1px solid #dcdcdc;
 .bg-color-green {
     background-color: $green-color !important;
@@ -122,12 +142,13 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     @include px2rem(background-size, (25px, 46px));
     display: inline-block; 
 }
-//头部右边三点
+//白色的三点
 .white-three-point-span {
     @include px2rem(width, 47px);
     @include px2rem(height, 12px);
     background: url(../img/head-three-point.png);
    @include px2rem(background-size, (47px, 11px));
+    background-repeat: no-repeat;
     display: inline-block; 
     vertical-align: middle;
 }
@@ -137,20 +158,33 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     @include px2rem(height, 12px);
     background: url(../img/head-three-point-black.png);
    @include px2rem(background-size, (47px, 11px));
+    background-repeat: no-repeat;
     display: inline-block; 
     vertical-align: middle;
 }
 
 //头部搜索
 .search-span {
-    @include px2rem(width, 50px);
+    @include px2rem(width, 52px);
     @include px2rem(height, 39px);
     background: url(../img/head-search.png);
-    @include px2rem(background-size, (50px, 38px));
+    @include px2rem(background-size, (51px, 38px));
+    background-repeat: no-repeat;
     display: inline-block;
     vertical-align: middle; 
 }
 
+//地图  导航
+.navigation-span {
+    @include px2rem(width, 35px);
+    @include px2rem(height, 41px);
+    background: url(../img/shop-introduce-navigation.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+//  @include px2rem(background-size, (38px, 42px));
+    display: inline-block;
+    vertical-align: middle;
+}
 
 //箭头-右小黑箭头
 .black-arrow-small-span {
@@ -205,12 +239,18 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
 }
 //单选按钮选中
 .radio-check-active {
-    @include px2rem(background-position-x,-64px);
+    @include spirtes-img3;
+    @include px2rem(background-position-x, -5px);
+    @include px2rem(background-position-y,-100px);
 }
 
 //头部占位
 #head-holder {
     @include px2rem(height, 98px);
+}
+
+.white-bg {
+    background-color: #FFFFFF !important;
 }
 
 // 头部控制栏，公用部分 
@@ -256,6 +296,22 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
 }     
 #webview-head-title {
     display: inline-block;
-    @include font-dpr(21px);
+    @include font-dpr(20px);
     color: #FFFFFF;
+}
+
+//验证码按钮
+#getAuthCode {
+    @include px2rem(width, 180px);
+    @include px2rem(height, 80px);
+    @include font-dpr(12px);
+    background-color: $green-color;
+    @include px2rem(border-radius, 10px);
+    border: none;
+    color: #FFFFFF;
+    vertical-align: middle;
+}
+.reSendAuthCode {
+    background-color: rgb(235, 235, 235) !important;
+    color: rgb(142, 96, 104) !important;
 }

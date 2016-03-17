@@ -1,101 +1,152 @@
 @import 'public';
 .input-group {
-    @include px2rem(margin-top, 20px);
+    @include px2rem(margin-top, 44px);
+    @include px2rem(margin-bottom, 350px);
     text-align: center;
 }
 //按钮灰暗
 .btnUnable {
-    background-color: rgba(230, 230, 230, 0.7) !important;
+    background-color: #D4D4D4 !important;
     color: rgb(110, 110, 110) !important;
 }
 //登录页
 .login-container {
     width: 100%;
     height: 100%;
-    background: url(../img/login-bg-img.png);
-    background-size: cover;
-}
-.btn-left {
-    @include px2rem(width, 90px);
-    @include px2rem(height, 110px);
-    display: inline-block;
-}
-.btn-right {
-    @include px2rem(width, 130px);
-    @include px2rem(height, 110px);
-    display: inline-block;
-    text-align: center;
-    @include px2rem(line-height, 100px);
-    position: absolute;
-    top: 0;
-    right: 0;
-    span {
-        @include font-dpr(19px);
-        color: #FFFFFF;
-    }
-}
-.left-28px {
-    @include px2rem(top, 25px);
-    @include px2rem(left, 28px);
-    position: absolute;
+    background-color: #F7F7F7;
+    position: relative;
 }
 input::-webkit-input-placeholder {
     color: #ECECEC;
 }
-.login-input-span {
-    @include px2rem(height, 90px);
-    @include px2rem(margin-bottom, 15px);
-    display: inline-block;
-    @include px2rem(border-radius, 30px);
-    background-color: rgba(0, 0, 0, 0.2);
-}
 .login-input {
-    @include px2rem(width, 547px);
+    @include px2rem(width, 647px);
     @include px2rem(height, 90px);
-    @include px2rem(padding-left, 100px);
-    @include font-dpr(18px);
-    color: #FFFFFF;
+    @include px2rem(padding-left, 28px);
+    @include px2rem(padding-right, 28px);
+    @include font-dpr(16px);
+    color: #787878;
     border: none;
+    box-sizing: border-box;
 }
 #input-phone {
-    background: url(../img/input-phone.png);
-    background-repeat: no-repeat;
-    @include px2rem(background-size, (40px, 55px));
-    @include px2rem(background-position-x, 25px);
-    background-position-y: center;
+    border-left: 1px solid #D4D4D4;
+    border-right: 1px solid #D4D4D4;
+    border-top: 1px solid #D4D4D4;
+    @include px2rem(border-top-left-radius, 6px);
+    @include px2rem(border-top-right-radius, 6px);
 }
 #input-pwd {
-    background: url(../img/input-pwd.png);
-    background-repeat: no-repeat;
-    @include px2rem(background-size, (40px, 55px));
-    @include px2rem(background-position-x, 25px);
-    background-position-y: center;
+    border: 1px solid #D4D4D4;
+    @include px2rem(border-bottom-left-radius, 6px);
+    @include px2rem(border-bottom-right-radius, 6px);
 }
 .login-btn {
     @include px2rem(width, 647px);
     @include px2rem(height, 90px);
     @include px2rem(margin-top, 40px);
-    @include font-dpr(18px);
-    color: #FFFFFF;
+    @include font-dpr(19px);
     border: none;
-    @include px2rem(border-radius, 30px);
+    @include px2rem(border-radius, 6px);
     background-color: $green-color;
+    color: #FFFFFF;
     transition: all .4s;
 }
 .forgetPWD-span {
     @include px2rem(width, 647px);
-    @include px2rem(height, 90px);
-    @include px2rem(margin-bottom, 15px);
-    @include px2rem(padding-right, 40px);
-    text-align: right;
+    @include px2rem(height, 90px);    
     display: inline-block;
 }
 #forgetPWD {
     @include px2rem(height, 90px);
     @include px2rem(line-height, 90px);
-    @include font-dpr(14px);
+    @include font-dpr(15px);
+    color: #787878;
     display: inline-block;
+}
+//登录页面底部
+.other-way {
+    @include px2rem(height, 100px);
+    @include px2rem(line-height, 100px);
+    @include px2rem(padding-left, 28px);
+    @include px2rem(padding-right, 28px);
+    position: relative;
+    text-align: center;
+}
+.other-way-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -36px;
+    [data-dpr="2"] & {
+        margin-left: -72px;
+    }
+    [data-dpr="3"] & {
+        margin-left: -108px;
+    }
+    margin-top: -8px;
+    [data-dpr="2"] & {
+        margin-top: -16px;
+    }
+    [data-dpr="3"] & {
+        margin-top: -24px;
+    }
+    @include font-dpr(12px);
+    color: #D4D4D4;
+    background-color: #F7F7F7;
+    z-index: 10;
+}
+.other-btn {
+    margin: 0 auto;
+    display: table;
+}
+.other-btn-item {
+    @include px2rem(width, 214px);
+    @include px2rem(height, 104px);
+    background-color: $green-color;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    @include px2rem(border-radius, 6px);
+}
+.other-btn-holder {
+    @include px2rem(width, 23px);
+    display: table-cell;
+}
+.other-btn-logo {
+    @include px2rem(width, 60px);
+    @include px2rem(height, 54px);
+    display: inline-block;
+    vertical-align: middle;
+}
+.logo-weixin {
+    @include spirtes-img4;
+    @include px2rem(background-position-x, -81px);//216
+    @include px2rem(background-position-y, -237px);
+}
+.logo-qq {
+    @include spirtes-img4;
+    @include px2rem(background-position-x, -160px);//216
+    @include px2rem(background-position-y, -237px);    
+}
+.logo-weibo {
+    @include spirtes-img4;
+    @include px2rem(background-position-x, 0px);//216
+    @include px2rem(background-position-y, -237px);    
+}
+.other-btn-title {
+    @include font-dpr(16px);
     color: #FFFFFF;
+    display: inline-block;    
+    vertical-align: middle;
+}
+.other-way-line {
+    width: 90%;
+    @include px2rem(height, 1px);
+    position: absolute;
+    left: 5%;
+    @include px2rem(top, 50px);
+    background-color: #D4D4D4;
 }
 //注册页面共用部分
 .register-input {
@@ -109,7 +160,7 @@ input::-webkit-input-placeholder {
     color: #9a9a9a;
     background-color: rgb(255, 255, 255);
     border: $base-border;
-    @include px2rem(border-radius, 10px);
+    @include px2rem(border-radius, 6px);
 }
 .register-input:nth-child(1) {
 //  @include px2rem(margin-top, 80px);
@@ -119,7 +170,7 @@ input::-webkit-input-placeholder {
     @include px2rem(height, 106px);
     @include px2rem(line-height, 106px);
     @include px2rem(margin-top, 20px);
-    @include px2rem(border-radius, 10px);
+    @include px2rem(border-radius, 6px);
     border: none;
     background-color: $green-color;
     @include font-dpr(21px);
@@ -133,7 +184,7 @@ input::-webkit-input-placeholder {
     @include px2rem(padding-left, 25px);
     display: inline-block;
     border: $base-border;
-    @include px2rem(border-radius, 10px);
+    @include px2rem(border-radius, 6px);
     overflow: hidden;
     text-align: justify;
     background-color: #FFFFFF;   
@@ -146,21 +197,6 @@ input::-webkit-input-placeholder {
     color: #9a9a9a;
     border: none;
     vertical-align: middle;
-}
-//验证码按钮
-#getAuthCode {
-    @include px2rem(width, 180px);
-    @include px2rem(height, 80px);
-    @include font-dpr(12px);
-    background-color: $green-color;
-    @include px2rem(border-radius, 10px);
-    border: none;
-    color: #FFFFFF;
-    vertical-align: middle;
-}
-.reSendAuthCode {
-    background-color: rgb(235, 235, 235) !important;
-    color: rgb(142, 96, 104) !important;
 }
 
 //注册页面二
@@ -181,7 +217,7 @@ input::-webkit-input-placeholder {
 #resetPWD {
     @include px2rem(width, 648px);
     @include px2rem(height, 94px);
-    @include px2rem(border-radius, 30px);
+    @include px2rem(border-radius, 6px);
     @include font-dpr(18px);
     color: #FFFFFF;
     background-color: $green-color;

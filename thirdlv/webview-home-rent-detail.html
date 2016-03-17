@@ -90,7 +90,7 @@
 		</div>
 		<div class="home-rent-detail-shop">
 			<div class="home-rent-detail-shop-left">
-				<span class="home-rent-detail-shop-logo" style="background: url(../img/TradeLogo.png);     background-size: cover;">					
+				<span class="home-rent-detail-shop-logo" style="background: url(../img/TradeLogo.png);     background-size: contain;">					
 				</span>
 			</div>
 			<div class="home-rent-detail-shop-middle">
@@ -200,7 +200,15 @@
 					document.querySelector(".pageIndex").innerHTML = count + "/" + nodeElem.length;
 				}, 600);
 			});
-			
+			mui.plusReady(function() {
+				//打开商家模板
+				document.querySelector(".home-rent-detail-shop").addEventListener("tap", function() {
+					var shopHead = plus.webview.getWebviewById("webview-shop-header");
+					shopHead.show();
+					//预载好的页面不用等待页面onloaded
+					mui.fire(shopHead, "initPage");			
+				});
+			});
 		</script>
 	</body>
 
