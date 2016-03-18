@@ -20,7 +20,7 @@ input::-webkit-input-placeholder {
     color: #ECECEC;
 }
 .login-input {
-    @include px2rem(width, 647px);
+    @include px2rem(width, 683px);
     @include px2rem(height, 90px);
     @include px2rem(padding-left, 28px);
     @include px2rem(padding-right, 28px);
@@ -42,7 +42,7 @@ input::-webkit-input-placeholder {
     @include px2rem(border-bottom-right-radius, 6px);
 }
 .login-btn {
-    @include px2rem(width, 647px);
+    @include px2rem(width, 683px);
     @include px2rem(height, 90px);
     @include px2rem(margin-top, 40px);
     @include font-dpr(19px);

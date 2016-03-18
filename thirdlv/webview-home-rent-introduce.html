@@ -169,6 +169,12 @@
 				var nStartX = 0;
 				var container = document.querySelector("#showBarContainer");
 				var oBar = document.querySelector("#showBar");
+				container.addEventListener("swipeleft", function(e) {
+					
+				});
+				container.addEventListener("swiperight", function(e) {
+					console.log("向右滑");
+				});
 				container.addEventListener("touchstart", function(e) {
 					e.preventDefault();
 					nStartX = e.targetTouches[0].pageX;

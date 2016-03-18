@@ -113,7 +113,7 @@
 						oldview[i].close();
 					}
 					mui.fire(webviewTradeHead, "initTradeView");
-					webviewTradeHead.show("slide-in-right", "", function() {
+					webviewTradeHead.show("pop-in", 300, function() {
 						thisbtn.classList.remove("loading");
 					});
 					//打开商品父模板时加载第一页

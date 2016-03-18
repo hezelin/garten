@@ -178,30 +178,31 @@
 }
 //按钮图标
 .home-live {
-    @include spirtes-img2;
-    @include px2rem(background-position-x, -600px);
-    @include px2rem(background-position-y, -483px);
-}
-.home-rent {
-    @include spirtes-img2;
-    @include px2rem(background-position-x, -704px);
-    @include px2rem(background-position-y, -483px);
-}
-.home-activity {
-    @include spirtes-img2;
-    @include px2rem(background-position-x, -808px);
-    @include px2rem(background-position-y, -483px);
-}
-.home-eat {
-    @include spirtes-img2;
-    @include px2rem(background-position-x, -911px);
-    @include px2rem(background-position-y, -483px);
+    @include spirtes-img4;
+    @include px2rem(background-position-x, -7px);
+    @include px2rem(background-position-y, -1px);
 }
 .home-shop {
-    @include spirtes-img2;
-    @include px2rem(background-position-x, -1017px);
-    @include px2rem(background-position-y, -483px);
+    @include spirtes-img4;
+    @include px2rem(background-position-x, -240px);
+    @include px2rem(background-position-y, 0px);
 }
+.home-rent {
+    @include spirtes-img4;
+    @include px2rem(background-position-x, -368px);
+    @include px2rem(background-position-y, 0px);
+}
+.home-activity {
+    @include spirtes-img4;
+    @include px2rem(background-position-x, -121px);
+    @include px2rem(background-position-y, 0px);
+}
+.home-eat {
+    @include spirtes-img4;
+    @include px2rem(background-position-x, -488px);
+    @include px2rem(background-position-y, 0px);
+}
+
 //按钮文字
 .home-nav-tab-item-title {
     @include font-dpr(16px);
@@ -1225,7 +1226,7 @@
 }
 //用户名
 .user-bg-name {
-    @include font-dpr(20px);
+    @include font-dpr(18px);
     color: #fff;
     @include px2rem(margin-top, 10px);
     @include px2rem(margin-bottom,10px);
@@ -1247,6 +1248,7 @@
 .user-bg-nav {
     width: 100%;
     @include px2rem(height,111px);
+    @include px2rem(padding-top, 5px);
     background-color: rgba(0,0,0,0.15);
     position: absolute;
     bottom: 0;
@@ -1332,10 +1334,12 @@
  .user-menu-group-describle {
      display: table-cell;
      vertical-align: middle;
-     .black-arrow-span {
-         float: right;
-         @include px2rem(margin-right,28px);
-     }
+ }
+ .user-menu-group-describle-right {
+     @include px2rem(padding-right, 28px);
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
  }
 //第一第四个有上边距
  .user-menu-group:nth-child(1), .user-menu-group:nth-child(4) {
@@ -1343,10 +1347,15 @@
  }
 
  //第二个有上下边
- .user-menu-group:nth-child(2) .user-menu-group-describle {
+ .user-menu-group:nth-child(2) > .user-menu-group-describle {
      border-top: $base-border;
      border-bottom: $base-border;
  }
+  .user-menu-group:nth-child(2) > .user-menu-group-describle-right {
+     border-top: $base-border;
+     border-bottom: $base-border;
+ }
+ 
 
 
 /**

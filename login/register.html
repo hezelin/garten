@@ -176,7 +176,10 @@
 								res = JSON.parse(res);
 								nwaiting.close();
 								if (res.success) {
-									plus.webview.open("register2.html", "register2.html", {}, "slide-in-right");
+									var w = plus.webview.create("register2.html", "register2.html");
+									w.onloaded = function() {
+										w.show("pop-in", 300);
+									}
 								} else {
 									mui.toast(res.data.message || res.data.error || "服务器错误");
 								}

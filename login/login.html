@@ -165,16 +165,17 @@
 			});
 			mui.plusReady(function() {
 				document.getElementById("register").addEventListener("tap", function() {
-					var w = plus.webview.open("register.html", "register.html", {}, "slide-in-right");
+					var w = plus.webview.create("register.html", "register.html");
 					w.onloaded = function() {
 						mui.fire(w, "countDown", {});
+						w.show("pop-in", 300);
 					}
 				});
 				document.getElementById("forgetPWD").addEventListener("tap", function(e) {
-					var w = plus.webview.create("forgetPassword.html", "forgetPassword.html", {}, "slide-in-right");
+					var w = plus.webview.create("forgetPassword.html", "forgetPassword.html");
 					w.onloaded = function() {
 						mui.fire(w, "countDown", {});
-						w.show();
+						w.show("pop-in", 300);
 					}
 				});
 			});

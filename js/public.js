@@ -1,8 +1,9 @@
 /**
- * @description 公用模块
+ * @description 全局公用模块
  */
 
 /**
+ * @description 窗口style设置，默认开启硬件加速，去除滑动条，关闭侧滑（ios
  * @param {Number}
  * @param {Number} 
  */
@@ -10,10 +11,10 @@ function fnSetSubpageStyle(Top, Bottom) {
 	return {
 		top: fnPx2Rem(Top, true),
 		bottom: fnPx2Rem(Bottom, true),
-//		render: "always",
-		scrollIndicator: "none",
-		hardwareAccelerated: true
-//		render: ""		
+		render: "always",
+		popGesture: "none",		
+		hardwareAccelerated: true,			
+		scrollIndicator: "none"
 	}
 };
 /**
@@ -44,15 +45,14 @@ function fnLoadPage(tapBtn, obj, objPost) {
 	}
 	tapBtn.classList.add("loading");
 	var webviewHead = plus.webview.getWebviewById("webview-header");
+	mui.fire(webviewHead, "setHeadPage", objPost);
 	var oldview = webviewHead.children();
-	for (var i = 0; i < oldview.length; i++) {
-		mui.fire(webviewHead, "initHeadPage");
+	for (var i = 0; i < oldview.length; i++) {		
 		webviewHead.remove(oldview[i]);
 		oldview[i].close();
 	}
-	//设置窗口按键
-	mui.fire(webviewHead, "setHeadPage", objPost);
-	webviewHead.show("slide-in-right", "", function() {
+	//设置窗口按键	
+	webviewHead.show("pop-in", 300, function() {		
 		tapBtn.classList.remove("loading");
 	});
 	var webviewBody = plus.webview.create(obj.url, obj.url, fnSetSubpageStyle(obj.top, obj.bottom));
@@ -223,10 +223,16 @@ var timew = {
 };
 /**
  * @description 打开登录页
+ * @param {Object} 按钮
  */
-function openLogin() {
-	var loginView = plus.webview.create("login/login.html", "login.html", {});
+function openLogin(btn) {
+	if (btn.getAttribute("data-able") != null) {
+		return;
+	}
+	btn.setAttribute("data-able", "unable");
+	var loginView = plus.webview.create("login/login.html", "login.html");
 	loginView.onloaded = function() {
-		loginView.show("slide-in-right");
+		loginView.show("pop-in", 300);
+		btn.removeAttribute("data-able");
 	}
 }

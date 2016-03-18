@@ -51,7 +51,7 @@
 			</div>
 		</div>
 
-		<div class="loadingPage">
+		<!--<div class="loadingPage">
 			<div class="loadingPage-middle">
 				<div class="spinner">
 					<div class="bounce1"></div>
@@ -60,16 +60,30 @@
 				</div>
 				<span class="loadingPage-text">努力加载中...</span>
 			</div>
-		</div>
+		</div>-->
 
 		<script src="js/mui.min.js"></script>
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
 		<script>
 			mui.init();
+//			var first = null;
+//			mui.back = function() {
+//				if (!first) {
+//					first = new Date().getTime();
+//					mui.toast('再按一次退出应用');
+//					setTimeout(function() {
+//						first = null;
+//					}, 2000);
+//				} else {
+//					if (new Date().getTime() - first < 2000) {
+//						plus.runtime.quit();
+//					}
+//				}
+//			};
 			// 将模板页设为初始状态
-			window.addEventListener("initHeadPage", function() {
-				//初始化状态栏
+			function initHeadPage() {
+				//初始化订单页面导航栏
 				var navNode = document.getElementsByClassName("header-control-tab-nav");
 				for (var i = 0; i < navNode.length; i++) {
 					if (navNode[i].classList.contains("header-control-tab-nav-active")) {
@@ -77,20 +91,22 @@
 						navNode[i].classList.add("header-control-tab-nav-lay");
 					}
 				}
-				navNode[0].classList.remove("header-control-tab-nav-lay");	
+				navNode[0].classList.remove("header-control-tab-nav-lay");
 				navNode[0].classList.add("header-control-tab-nav-active");
-				document.getElementsByClassName("head-control-slider")[0].style.transform = "none";
-				document.getElementsByClassName("head-control-slider")[0].style.transitionDuration = "0ms";
-				document.getElementsByClassName("head-control-slider")[0].style.webkitTransform = "none";
-				document.getElementsByClassName("head-control-slider")[0].style.webkitTransitionDuration = "0ms";
-					
-				
+				var sliderBtn = document.getElementsByClassName("head-control-slider")[0];
+				sliderBtn.style.transform = "none";
+				sliderBtn.style.transitionDuration = "0ms";
+				sliderBtn.style.webkitTransform = "none";
+				sliderBtn.style.webkitTransitionDuration = "0ms";
 				document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "none";
+				//去除头部栏右边按钮
 				var headRight = document.getElementsByClassName("header-control-right-btn")[0];
 				if (headRight.firstChild) {
 					headRight.removeChild(headRight.firstChild);
 				}
-			});
+				//去除页面标题
+				document.getElementById("webview-head-title").innerText = "";
+			};
 			// 改变父模板页按钮等样式
 			window.addEventListener("setHeadPage", function(event) {
 				var newTitle = event.detail.title;
@@ -135,11 +151,12 @@
 				//webview切换栏
 				mui(".header-control-tab").on("tap", ".header-control-tab-nav", function() {
 					var thisBtn = this;
+					var sliderBar = document.getElementsByClassName("head-control-slider")[0];
 					var strValue = this.getAttribute("data-transform");
-					document.getElementsByClassName("head-control-slider")[0].style.transform = strValue;
-					document.getElementsByClassName("head-control-slider")[0].style.webkitTransform = strValue;
-					document.getElementsByClassName("head-control-slider")[0].style.transitionDuration = "200ms";
-					document.getElementsByClassName("head-control-slider")[0].style.webkitTransitionDuration = "200ms";
+					sliderBar.style.transform = strValue;
+					sliderBar.style.webkitTransform = strValue;
+					sliderBar.style.transitionDuration = "200ms";
+					sliderBar.style.webkitTransitionDuration = "200ms";
 					var webviewBodyURL = "secondlv/webview-my-order.html";
 					fnChangeTabStatus(thisBtn);
 					if (thisBtn.classList.contains("loading")) {
@@ -169,11 +186,17 @@
 				var oldBack = mui.back;
 				mui.back = function() {
 					var webviewBody = plus.webview.currentWebview().children()[0];
+					if (!webviewBody) {
+						initHeadPage();
+						oldBack();
+						return;
+					}
 					webviewBody.canBack(function(e) {
 						var hasBack = e.canBack ? true : false;
 						if (hasBack) {
 							webviewBody.back();
 						} else {
+							initHeadPage();
 							oldBack();
 						}
 					});

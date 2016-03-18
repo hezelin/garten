@@ -33,7 +33,7 @@
 			<span class="user-bg-phone"></span>
 			<!--去掉小右箭头-->
 			<!--<span class="user-bg-details white-arrow-span"></span>-->
-			
+
 			<div class="user-bg-nav">
 				<a id="user-bag">
 					<span class="user-bg-nav-counts">0</span></br>
@@ -57,7 +57,9 @@
 					<span class="my-orderform"></span>
 				</div>
 				<div class="user-menu-group-describle">
-					<span>我的订单</span>
+					<span>我的订单</span>				
+				</div>
+				<div class="user-menu-group-describle-right">
 					<span class="black-arrow-span"></span>
 				</div>
 			</div>
@@ -67,6 +69,8 @@
 				</div>
 				<div class="user-menu-group-describle">
 					<span>我的农场</span>
+				</div>
+				<div class="user-menu-group-describle-right">
 					<span class="black-arrow-span"></span>
 				</div>
 			</div>
@@ -76,6 +80,8 @@
 				</div>
 				<div class="user-menu-group-describle">
 					<span>我的问答</span>
+				</div>
+				<div class="user-menu-group-describle-right">
 					<span class="black-arrow-span"></span>
 				</div>
 			</div>
@@ -85,6 +91,8 @@
 				</div>
 				<div class="user-menu-group-describle">
 					<span>设置</span>
+				</div>
+				<div class="user-menu-group-describle-right">
 					<span class="black-arrow-span"></span>
 				</div>
 			</div>
@@ -93,11 +101,30 @@
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
 		<script>
-			mui.init();
+			mui.init({
+				beforeback: function() {
+					return false;
+				}
+			});
+//			mui.init();
+//			var first = null;
+//			mui.back = function() {
+//				if (!first) {
+//					first = new Date().getTime();
+//					mui.toast('再按一次退出应用');
+//					setTimeout(function() {
+//						first = null;
+//					}, 2000);
+//				} else {
+//					if (new Date().getTime() - first < 2000) {
+//						plus.runtime.quit();
+//					}
+//				}
+//			};
 			mui.plusReady(function() {
 				//打开登录页
 				document.querySelector(".user-bg-name").addEventListener("tap", function() {
-					openLogin();
+					openLogin(this);
 				});
 				//打开我的红包
 				document.getElementById("user-bag").addEventListener("tap", function(e) {
@@ -154,13 +181,13 @@
 						return;
 					}
 					this.classList.add("loading");
-					var webviewSpa = plus.webview.create("secondlv/webview-my-setting.html", "secondlv/webview-my-setting.html", {hardwareAccelerated: true});
+					var webviewSpa = plus.webview.create("secondlv/webview-my-setting.html", "secondlv/webview-my-setting.html", {
+						hardwareAccelerated: true
+					});
 					webviewSpa.onloaded = function() {
-						setTimeout(function() {
-							webviewSpa.show("slide-in-right", "", function() {
-								btn.classList.remove("loading");
-							});
-						}, 100);
+						webviewSpa.show("pop-in", "300", function() {
+							btn.classList.remove("loading");
+						});
 					};
 				});
 			});

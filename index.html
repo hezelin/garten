@@ -3,12 +3,6 @@
 
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="Access-Control-Allow-Origin" content="*">
-		<meta http-equiv="content-security-policy">
-		<meta content="yes" name="apple-mobile-web-app-capable">
-		<meta content="yes" name="apple-touch-fullscreen">
-		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<meta content="telephone=no,email=no" name="format-detection">
 		<script src="js/flexible_css.debug.js"></script>
 		<script src="js/flexible.debug.js"></script>
 		<!--<link href="css/mui.min.css" rel="stylesheet" />-->
@@ -42,41 +36,40 @@
 		<script>
 			mui.init();
 			//初始化
+			
 			var subpages = ['webview-home.html', 'webview-comu.html', 'webview-nav.html', 'webview-my.html'];
 			//默认激活标签
 			var activeTab = "webview-home.html";
 			mui.plusReady(function() {
-				mui.init();
 				//仅支持竖屏显示
 				plus.screen.lockOrientation("portrait-primary");
 				//更改系统状态栏颜色
 				//				plus.navigator.setStatusBarBackground("#83C347");
 				//首页返回键处理
 				//处理逻辑：1秒内，连续两次按返回键，则退出应用；
-				var first = null;
-				mui.back = function() {
-					if (!first) {
-						first = new Date().getTime();
-						mui.toast('再按一次退出应用');
-						setTimeout(function() {
-							first = null;
-						}, 2000);
-					} else {
-						if (new Date().getTime() - first < 2000) {
-							plus.runtime.quit();
-						}
-					}
-				};
+//				var first = null;
+//				mui.back = function() {
+//					if (!first) {
+//						first = new Date().getTime();
+//						mui.toast('再按一次退出应用');
+//						setTimeout(function() {
+//							first = null;
+//						}, 2000);
+//					} else {
+//						if (new Date().getTime() - first < 2000) {
+//							plus.runtime.quit();
+//						}
+//					}
+//				};
 				//
 				var aniShow = {};
 				var self = plus.webview.currentWebview();
 				for (var i = 0; i < subpages.length; i++) {
-					var temp = {};
 					var sub;
 					if (i == subpages.length - 1) {
 						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 100));
 						sub.onloaded = function() {
-//							plus.navigator.closeSplashscreen();
+							plus.navigator.closeSplashscreen();
 							var webHead = mui.preload({
 								url: "webview-header.html",
 								id: "webview-header",
@@ -92,10 +85,11 @@
 								id: "webview-shop-header",
 								styles: fnSetSubpageStyle(0, 0)
 							});
+							
 							var delayTime = mui.os.ios ? 100 : 1000;
 							setTimeout(function() {
 								plus.navigator.closeSplashscreen();
-							}, delayTime);
+							}, delayTime);     
 						}
 					} else {
 						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 100));
@@ -104,30 +98,19 @@
 					if (i > 0) {
 						sub.hide();
 					} else {
-						temp[subpages[i]] = "true";
-						mui.extend(aniShow, temp);
+						sub.show();
 					}
-					self.append(sub);
 				}
 				// 选项卡点击事件
 				mui("#index-bar-tab").on("tap", ".index-tab-item", function(e) {
 					var targetTab = this.getAttribute("data-href");
 					if (targetTab == activeTab) {
 						return;
-					}
-					if (mui.os.ios || aniShow[targetTab]) {
-						plus.webview.show(targetTab);
-					} else {
-						var temp = {};
-						temp[targetTab] = "true";
-						mui.extend(aniShow, temp);
-						plus.webview.show(targetTab, "fade-in", 300);
-					}
-					document.querySelector(".index-tab-active").classList.remove("index-tab-active");
+					}					
+document.querySelector(".index-tab-active").classList.remove("index-tab-active");
 					this.classList.add("index-tab-active");
-					//隐藏当前;
 					plus.webview.hide(activeTab, "none");
-					//更改当前活跃的选项卡
+					plus.webview.show(targetTab, "none");
 					activeTab = targetTab;
 				});
 			});

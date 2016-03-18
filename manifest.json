@@ -58,9 +58,7 @@
         "Orientation": {
             "description": "访问方向感应器"
         },
-        "Proximity": {
-            "description": "访问距离感应器"
-        },
+        
         "Storage": {
             "description": "管理应用本地数据"
         },
@@ -98,7 +96,7 @@
 	"plus": {
 		"splashscreen": {
 			"autoclose": false,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
-			"waiting": true
+			"waiting": false
 		},
 		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
@@ -313,7 +311,8 @@
 					"webview-my.html",
 					"secondlv/webview-comu-knowledge-list.html",
 					"thirdlv/webview-comu-knowledge-detail.html",
-					"secondlv/webview-comu-knowledge.html"
+					"secondlv/webview-comu-knowledge.html",
+					"secondlv/webview-comu-farm-introduce.html"
 				],
 				"priority": 0
 			},
@@ -373,7 +372,8 @@
 					"img/testhome/testhome8.png",
 					"img/testhome/testhome9.png",
 					"img/head-three-point.png",
-					"img/head-search.png"
+					"img/head-search.png",
+					"img/img4.png"
 				],
 				"refer": [
 					"webview-nav.html",
@@ -508,7 +508,8 @@
 					"secondlv/webview-home-rent.html",
 					"secondlv/webview-comu-knowledge.html",
 					"img/head-three-point.png",
-					"img/head-search.png"
+					"img/head-search.png",
+					"secondlv/webview-comu-farm-introduce.html"
 				],
 				"refer": [
 					"secondlv/webview-comu-knowledge-list.html"
@@ -809,7 +810,8 @@
 					"js/mui.min.js",
 					"css/login.css",
 					"js/public.js",
-					"js/flexible.debug.js"
+					"js/flexible.debug.js",
+					"img/img3.png"
 				],
 				"refer": [
 					"login/userRead.html"
@@ -846,6 +848,21 @@
 					"js/flexible.debug.js"
 				],
 				"refer": [],
+				"priority": 0
+			},
+			"secondlv/webview-comu-farm-introduce.html": {
+				"resources": [
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/flexible.debug.js"
+				],
+				"refer": [
+					"secondlv/webview-comu-knowledge.html"
+				],
 				"priority": 0
 			}
 		},

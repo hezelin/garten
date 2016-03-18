@@ -23,7 +23,8 @@
 		"refer": [
 			"secondlv/webview-comu-knowledge-list.html",
 			"thirdlv/webview-comu-knowledge-detail.html",
-			"secondlv/webview-comu-knowledge.html"
+			"secondlv/webview-comu-knowledge.html",
+			"secondlv/webview-comu-farm-introduce.html"
 		]
 	},
 	"index.html": {
@@ -107,7 +108,8 @@
 			"img/testhome/testhome8.png",
 			"img/testhome/testhome9.png",
 			"img/head-three-point.png",
-			"img/head-search.png"
+			"img/head-search.png",
+			"img/img4.png"
 		],
 		"refer": [
 			"secondlv/webview-home-rent.html"
@@ -130,7 +132,8 @@
 			"secondlv/webview-comu-knowledge.html",
 			"secondlv/webview-my-userbag.html",
 			"img/head-three-point.png",
-			"img/head-search.png"
+			"img/head-search.png",
+			"secondlv/webview-my-shopcar.html"
 		],
 		"refer": [
 			"secondlv/webview-my-collect.html",
@@ -139,7 +142,8 @@
 			"secondlv/webview-my-order.html",
 			"secondlv/webview-comu-knowledge-list.html",
 			"secondlv/webview-home-rent.html",
-			"secondlv/webview-comu-knowledge.html"
+			"secondlv/webview-comu-knowledge.html",
+			"secondlv/webview-comu-farm-introduce.html"
 		]
 	},
 	"secondlv/webview-my-setting.html": {
@@ -449,7 +453,8 @@
 			"js/mui.min.js",
 			"css/login.css",
 			"js/public.js",
-			"js/flexible.debug.js"
+			"js/flexible.debug.js",
+			"img/img3.png"
 		],
 		"refer": [
 			"login/userRead.html"
@@ -492,6 +497,20 @@
 		],
 		"refer": [
 			"secondlv/webview-my-userbag.html"
+		]
+	},
+	"secondlv/webview-comu-farm-introduce.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js"
+		],
+		"refer": [
+			"secondlv/webview-comu-knowledge.html"
 		]
 	}
 }
