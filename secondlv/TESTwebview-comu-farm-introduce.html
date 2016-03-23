@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Webview Example</title>
+		<script type="text/javascript">
+			var ws = null,
+				wn = null;
+			var bitmap1 = null,
+				bitmap2 = null;
+			// H5 plus事件处理
+			function plusReady() {
+				ws = plus.webview.currentWebview();
+				// 截图
+				bitmap1 = new plus.nativeObj.Bitmap();
+				// 将webview内容绘制到Bitmap对象中
+				wc.draw(bitmap1, function() {
+					console.log('bitmap1绘制图片成功');
+				}, function(e) {
+					console.log('bitmap1绘制图片失败：' + JSON.stringify(e));
+				});
+				// 预创建新Webview窗口
+				wn = plus.webview.create("http://weibo.com/dhnetwork");
+				wn.addEventListener("loaded", function() {
+					bitmap2 = new plus.nativeObj.Bitmap();
+					wn.draw(bitmap2, function() {
+						console.log("bitmap2截图成功");
+					}, function(e) {
+						console.log("bitmap2截图失败：" + JSON.stringify(e));
+					});
+				}, false);
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			}
+			// 创建并显示Webview窗口
+			function showWebview() {
+				wn.show("pop-in", 300, function() {
+					// 动画完成，销毁截图
+					bitmap1.clear();
+					bitmap2.clear();
+				}, {
+					capture: bitmap2,
+					otherCapture: bitmap1
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		使用截图显示Webview窗口
+		<br/>
+		<button onclick="showWebview()">show</button>
+	</body>
+
+</html>

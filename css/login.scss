@@ -67,7 +67,6 @@ input::-webkit-input-placeholder {
 //登录页面底部
 .other-way {
     @include px2rem(height, 100px);
-    @include px2rem(line-height, 100px);
     @include px2rem(padding-left, 28px);
     @include px2rem(padding-right, 28px);
     position: relative;
@@ -84,17 +83,31 @@ input::-webkit-input-placeholder {
     [data-dpr="3"] & {
         margin-left: -108px;
     }
-    margin-top: -8px;
+    margin-top: -6px;
     [data-dpr="2"] & {
-        margin-top: -16px;
+        margin-top: -12px;
     }
     [data-dpr="3"] & {
-        margin-top: -24px;
+        margin-top: -18px;
     }
     @include font-dpr(12px);
     color: #D4D4D4;
     background-color: #F7F7F7;
     z-index: 10;
+}
+.other-btn-title {
+    @include font-dpr(16px);
+    color: #FFFFFF;
+    display: inline-block;    
+    vertical-align: middle;
+}
+.other-way-line {
+    width: 90%;
+    @include px2rem(height, 2px);
+    position: absolute;
+    left: 5%;
+    @include px2rem(top, 50px);
+    background-color: #D4D4D4;
 }
 .other-btn {
     margin: 0 auto;
@@ -102,7 +115,7 @@ input::-webkit-input-placeholder {
 }
 .other-btn-item {
     @include px2rem(width, 214px);
-    @include px2rem(height, 104px);
+    @include px2rem(height, 90px);
     background-color: $green-color;
     display: table-cell;
     vertical-align: middle;
@@ -134,24 +147,11 @@ input::-webkit-input-placeholder {
     @include px2rem(background-position-x, 0px);//216
     @include px2rem(background-position-y, -237px);    
 }
-.other-btn-title {
-    @include font-dpr(16px);
-    color: #FFFFFF;
-    display: inline-block;    
-    vertical-align: middle;
-}
-.other-way-line {
-    width: 90%;
-    @include px2rem(height, 1px);
-    position: absolute;
-    left: 5%;
-    @include px2rem(top, 50px);
-    background-color: #D4D4D4;
-}
+
 //注册页面共用部分
 .register-input {
     @include px2rem(width, 631px);
-    @include px2rem(height, 106px);
+    @include px2rem(height, 90px);
     @include px2rem(padding-left, 25px);
     @include px2rem(padding-right, 25px);
     @include px2rem(margin-bottom, 28px);
@@ -167,20 +167,20 @@ input::-webkit-input-placeholder {
 }
 .register-btn {
     @include px2rem(width, 681px);
-    @include px2rem(height, 106px);
-    @include px2rem(line-height, 106px);
+    @include px2rem(height, 90px);
+    @include px2rem(line-height, 90px);
     @include px2rem(margin-top, 20px);
     @include px2rem(border-radius, 6px);
     border: none;
     background-color: $green-color;
-    @include font-dpr(21px);
+    @include font-dpr(19px);
     color: #FFFFFF;
     text-align: center;
 }
 //注册页面一
 .authCode-group {
     @include px2rem(width, 656px);
-    @include px2rem(height, 106px);
+    @include px2rem(height, 90px);
     @include px2rem(padding-left, 25px);
     display: inline-block;
     border: $base-border;
@@ -192,7 +192,7 @@ input::-webkit-input-placeholder {
 //验证码输入
 #authCode {
     @include px2rem(width, 440px);
-    @include px2rem(height, 106px);
+    @include px2rem(height, 90px);
     @include font-dpr(19px);
     color: #9a9a9a;
     border: none;

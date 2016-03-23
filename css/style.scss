@@ -800,7 +800,6 @@
  */
 .header-control-whiteBold {
     background-color: white !important;
-    border-bottom: $base-border;
 }
 .trade-header-container {
     font-size: 0;
@@ -934,13 +933,12 @@
     position: absolute;
     @include px2rem(right, 31px);
     display: inline-block;
-    .mui-numbox {
-        @include px2rem(margin-top, 36px);
-        @include px2rem(margin-bottom, 47px);
-    }
+    @include px2rem(padding-top, 36px);
+    
 }
 //金额区域
 .buyDiv-money {
+    @include px2rem(margin-top, 47px);
     @include font-dpr(15px);
     display: block;
 }
@@ -1220,17 +1218,19 @@
     @include px2rem(width,150px);
     @include px2rem(height,150px);
     border-radius: 50%;
-    border-color: rgba(255,255,255,0.7);
+    border: 2px solid #FFFFFF !important;
     @include px2rem(margin-top,107px);
     @include px2rem(margin-bottom,9px);
 }
 //用户名
 .user-bg-name {
-    @include font-dpr(18px);
-    color: #fff;
+    @include px2rem(width, 360px);
     @include px2rem(margin-top, 10px);
     @include px2rem(margin-bottom,10px);
+    @include font-dpr(18px);
+    color: #fff;    
     display: inline-block;
+    @include Nowrap;
 }
 //白右箭头位置
 .user-bg-details {
@@ -1275,7 +1275,6 @@
 .user-bg-nav-counts {
     @include font-dpr(18px);
     color: #fff;
-    @include px2rem(padding-bottom,10px);
  }
 //我的红包，我的收藏，购物车 之间的两根白线
 #l-border {
@@ -1363,150 +1362,81 @@
      * webview-my-userbag红包列表
      * 内容区域
  */
-//红包列表计数
+#user-bag-list {
+    margin: 0 auto;
+}
 #user-bag-counts {
     width: 100%;
-    text-align: center;
-    @include font-dpr(13px);
-    color: #737373;
-//  @include px2rem(margin-top,150px);
-    @include px2rem(margin-top,30px);
-    @include px2rem(margin-bottom,20px);
-    
-}
-//红包列表
-.user-bag-show {
-    width: 92%;
-    @include px2rem(height,154px);
-    margin: 0 auto;
-    @include px2rem(margin-bottom,15px);
-    background-color: #FFFFFF;
-    display: table;
-    div {
-        display: table-cell;
-        vertical-align: middle;        
-    }
-    //列表右边箭头
-    .black-arrow-span {
-        display: block;
-    }
-}
-//红包列表左边图片样式
-.user-bag-show-icon {
-    @include px2rem(width,218px);
-    @include font-dpr(30px);
-    color: #FFFFFF;
-    @include spirtes-img;
-    @include px2rem(background-position-x, -1551px);//73
-    @include px2rem(background-position-y, -377px);   
-    text-align: center;
-}
-//列表内的红包说明
-.user-bag-show-textleft {
-    text-align: left;
-    @include px2rem(padding-left,47px);
-}
-
-.user-bag-show-describable-bold {
-    @include font-dpr(18px);
-    @include px2rem(margin-bottom,6px);
-    display: block;
-    color: #000000;
-}
-.user-bag-show-describable-grey {
+    @include px2rem(height, 80px);
     @include font-dpr(14px);
-    display: block;
+    @include px2rem(line-height, 80px);
     color: #737373;
-}
-
-
-
-/**
-     * ******** ******** ******** ********
-     * webview-my-userbag-amply红包详情
- */
-//红包背景区域
-.user-bag-amply {
-//  @include px2rem(width,750px);
-//  @include px2rem(height,276px);
-//  @include px2rem(margin-top,110px);
-//  @include spirtes-img;
-//  @include px2rem(background-position-x, -1966px);
-//  @include px2rem(background-position-y,0px);
-    width: 100%;
-    @include px2rem(height,276px);
-//  @include px2rem(margin-top,110px);
-    background-image: url(../img/user-bag-amply-bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
     text-align: center;
-    display: table;
 }
-.user-bag-amply-middle {
+.user-bag-item {
+    @include px2rem(width, 695px);
+    @include px2rem(height, 255px);
+    margin: 0 auto;
+    @include px2rem(margin-bottom, 40px);
+    @include px2rem(border-radius, 6px);
+    background: url(../img/red-bag-bg.png);
+    background-repeat-y: no-repeat;
+    
+    display: table;
+    background-color: #FFFFFF;
+}
+.user-bag-item-left {
+    @include px2rem(width, 190px);
+    color: #f8543d;
     display: table-cell;
     vertical-align: middle;
+    text-align: center;
 }
-.user-bag-amply-money {
-    @include px2rem(margin-bottom,30px);
-    @include font-dpr(44px);
-    color: #FFFFFF;
-    display: block;
+.user-bag-money {
+    @include font-dpr(36px);    
 }
-.user-bag-amply-date {
+.user-bag-money::before {
+    content: '￥';
     @include font-dpr(15px);
-    color: #FFFFFF;
+}
+.user-bag-money::after {
+    content: ' .0';
+    @include font-dpr(15px);
+}
+.user-bag-item-middle {
+    @include px2rem(width, 6px);
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.user-bag-item-line {   
+    width: 3px;
+    height: 85%;
+    display: inline-block;
+    background: url(../img/red-line.png);
+    background-repeat-x: no-repeat;
+    background-size: contain;
+}
+.user-bag-item-right {
+    @include px2rem(padding-top, 40px);
+    @include px2rem(padding-left, 40px);
+    display: table-cell;
+}
+.user-bag-item-content {
+    display: inline-block;
+}
+.user-bag-item-title {
+    @include px2rem(margin-bottom, 20px);
+    @include font-dpr(20px);
+    font-weight: bold;
+    color: #282828;
     display: block;
 }
-//说明区域
-.user-bag-amply-describable {
-    @include px2rem(margin-top,60px);
-    @include px2rem(margin-bottom,80px);
-    @include px2rem(margin-left,28px);
-}
-//限制说明
-.user-bag-amply-describable-forbid {
-    @include px2rem(margin-bottom,43px);
-    @include font-dpr(18px);
+.user-bag-item-list {
+    @include px2rem(margin-bottom, 13px);
+    @include font-dpr(14px);
     color: #737373;
     display: block;
-}
-//说明列表
-.user-bag-amply-describable-list {
-    @include px2rem(margin-bottom,18px);
-    @include font-dpr(15px);
-    color: #000000;
-    display: block;
-}
-//尾部收入这一块
-.user-bag-amply-income {
-    width: 100%;
-    @include px2rem(height,117px);
-    @include px2rem(padding-left,28px);
-    @include px2rem(padding-right,28px);
-    display: table;
-    background-color: #F3F3F3;
-    position: relative;
-}
-.user-bag-amply-income-left {
-    text-align: left;
-    display: table-cell;
-    vertical-align: middle;
-}
-.user-bag-amply-income-right {
-    text-align: right;
-    display: table-cell;
-    vertical-align: middle;
-}
-.user-bag-amply-income-top {
-    @include px2rem(margin-bottom,10px);
-    display: block;
-    @include font-dpr(18px);
-    color: #000000;
-}
-.user-bag-amply-income-bottom {
-    display: block;
-    @include font-dpr(12px);
-    color: #737373;
 }
 
 /**
@@ -1535,14 +1465,13 @@
         @include px2rem(margin-right, 17px);
         vertical-align: top;
         font-size: 0;
-        letter-spacing: -4px;
-        word-spacing: -4px;     
         vertical-align: middle;
     }
     .shop-arrow-span {
         display: inline-block;
         //与标题的间距
-        @include px2rem(margin-left, 37px);
+        @include px2rem(margin-left, 20px);
+//      vertical-align: middle;
     }
 }
 
@@ -1561,7 +1490,7 @@
 }
 //店铺标题
 .my-trader-title-name {
-    @include font-dpr(18px);
+    @include font-dpr(14px);
     color: #595959;
     display: table-cell;
     vertical-align: middle;
@@ -1599,26 +1528,28 @@
     @include px2rem(height, 163px);
     @include px2rem(margin-left, 16px);
     position: relative;
+    font-size: 0;
     span {
         display: block;
     }
 }
 .collect-order-trader-name {
     @include font-dpr(19px);
-    @include px2rem(margin-bottom, 12px);
     color: #000000;
 }
 .collect-order-trader-detail {
+    @include px2rem(width, 450px);
     @include font-dpr(15px);
     color: #727272;
+    @include Nowrap;
 }
 .collect-order-trader-money {
     @include font-dpr(15px);
-    color: #ff2222;
+    color: #727272;
     position: absolute;
     bottom: 0;
     em {
-    color: #727272;
+    color: #ff2222;
     }
 }
 /**
@@ -1670,12 +1601,6 @@
         }
     }
 }
-//我的订单x1计数
-.collect-order-trader-count {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
 .my-order-count {
     @include font-dpr(15px);
     color: #727272;
@@ -1695,9 +1620,7 @@
     vertical-align: middle;
     position: relative;
 }
-.my-shopcar-count {
-    @include font-dpr(18px);
-}
+
 //页脚控制栏
 .foot-control-bar {
     width: 100%;
@@ -1717,10 +1640,10 @@
 .my-shop-car-pay {
     display: table-cell;
     vertical-align: middle;
-    text-align: right;
-    em {
-        color: #FF2222;
-    }
+    text-align: right;    
+}
+.allCount {
+    color: #FF2222;
 }
 .my-shop-car-pay-button {
     @include px2rem(width, 170px);
@@ -1734,6 +1657,11 @@
         @include font-dpr(18px);
         border: none;
     }
+}
+.shop-car-num-choice {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 /**
@@ -2099,7 +2027,7 @@
 }
 //修改昵称页面
 //保存按钮
-#saveNickName {
+.my-setting-save {
     @include px2rem(padding, (2px,20px,2px,20px));
     font-size: inherit;
     color: white;

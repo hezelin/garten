@@ -164,7 +164,8 @@
 			"img/head.jpg",
 			"img/comuDescribe.png",
 			"img/iconfont-tianjia.png",
-			"img/img3.png"
+			"img/img3.png",
+			"js/md5.min.js"
 		],
 		"refer": []
 	},
@@ -235,7 +236,9 @@
 			"js/flexible.debug.js",
 			"img/img.png",
 			"css/mui.min.css",
-			"css/style.css"
+			"css/style.css",
+			"img/red-bag-bg.png",
+			"img/red-line.png"
 		],
 		"refer": []
 	},
@@ -376,7 +379,15 @@
 			"img/test-slider4.png",
 			"img/test-slider2.png",
 			"img/test-slider3.png",
-			"secondlv/webview-comu-knowledge.html"
+			"secondlv/webview-comu-knowledge.html",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img3.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js"
 		],
 		"refer": [
 			"secondlv/webview-comu-knowledge.html"
@@ -399,7 +410,9 @@
 			"js/flexible.debug.js",
 			"img/img3.png"
 		],
-		"refer": []
+		"refer": [
+			"thirdlv/webview-comu-knowledge-detail.html"
+		]
 	},
 	"thirdlv/test.html": {
 		"resources": [

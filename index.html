@@ -13,15 +13,15 @@
 	<body>
 		<div id="index-bar-tab">
 			<div id="home" class="index-tab-item index-tab-active" data-href="webview-home.html">
-				<span class="icon-index icon-index-home"></span>				
+				<span class="icon-index icon-index-home"></span>
 				<span class="icon-label">首页</span>
 			</div>
 			<div id="comu" class="index-tab-item" data-href="webview-comu.html">
-				<span class="icon-index icon-index-comu"></span>				
+				<span class="icon-index icon-index-comu"></span>
 				<span class="icon-label">社区</span>
 			</div>
 			<div id="map" class="index-tab-item" data-href="webview-nav.html">
-				<span class="icon-index icon-index-nav"></span>				
+				<span class="icon-index icon-index-nav"></span>
 				<span class="icon-label">地图</span>
 			</div>
 			<div id="my" class="index-tab-item" data-href="webview-my.html">
@@ -35,70 +35,80 @@
 		<script src="js/public.js"></script>
 		<script>
 			mui.init();
-			//初始化
-			
+			// 初始化
+			// webview-my页要放在最后
 			var subpages = ['webview-home.html', 'webview-comu.html', 'webview-nav.html', 'webview-my.html'];
-			//默认激活标签
+			// 默认激活标签
 			var activeTab = "webview-home.html";
 			mui.plusReady(function() {
-				//仅支持竖屏显示
+				// 仅支持竖屏显示
 				plus.screen.lockOrientation("portrait-primary");
-				//更改系统状态栏颜色
-				//				plus.navigator.setStatusBarBackground("#83C347");
-				//首页返回键处理
-				//处理逻辑：1秒内，连续两次按返回键，则退出应用；
-//				var first = null;
-//				mui.back = function() {
-//					if (!first) {
-//						first = new Date().getTime();
-//						mui.toast('再按一次退出应用');
-//						setTimeout(function() {
-//							first = null;
-//						}, 2000);
-//					} else {
-//						if (new Date().getTime() - first < 2000) {
-//							plus.runtime.quit();
-//						}
-//					}
-//				};
-				//
-				var aniShow = {};
-				var self = plus.webview.currentWebview();
-				for (var i = 0; i < subpages.length; i++) {
-					var sub;
-					if (i == subpages.length - 1) {
-						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 100));
-						sub.onloaded = function() {
-							plus.navigator.closeSplashscreen();
-							var webHead = mui.preload({
-								url: "webview-header.html",
-								id: "webview-header",
-								styles: fnSetSubpageStyle(0, 0)
-							});
-							var tradeHead = mui.preload({
-								url: "webview-trade-header.html",
-								id: "webview-trade-header",
-								styles: fnSetSubpageStyle(0, 0)
-							});
-							var shophead = mui.preload({
-								url: "webview-shop-header.html",
-								id: "webview-shop-header",
-								styles: fnSetSubpageStyle(0, 0)
-							});
-							
-							var delayTime = mui.os.ios ? 100 : 1000;
-							setTimeout(function() {
-								plus.navigator.closeSplashscreen();
-							}, delayTime);     
+				// 打开app时马上更新本地储存区
+				var token = plus.storage.getItem("tokenValue");
+				var userID = plus.storage.getItem("userID");
+				if (token && userID) {					
+					var URL = "http://farm.rrzuji.com/v1/users/" + userID + "?" + fnCreateSign() + "&access-token=" + token;
+					mui.ajax(URL, {
+						type: "GET",
+						dataType: "JSON",
+						success: function(res) {
+						 	res = JSON.parse(res);
+						 	if (res.success) {
+						 		console.log("打开app后刷新本地缓存" + JSON.stringify(res.data));
+						 		plus.storage.setItem("userID", res.data.id.toString());
+								plus.storage.setItem("userName", res.data.name);		
+								plus.storage.setItem("userPhone", res.data.phone);							
+								plus.storage.setItem("userAvatar", res.data.avatar);
+								if (res.data.gender) {
+									plus.storage.setItem("userGender", res.data.gender.toString());
+								}								
+						 	}
+						},
+						error: function(xhr, type, errorThrown) {
+							console.log(JSON.stringify(xhr));
+							console.log("打开app时刷新本地储存失败");
 						}
-					} else {
-						sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 100));
+					});
+				}
+				var aniShow = {};
+				var loadCount = subpages.length;
+				var self = plus.webview.currentWebview();
+
+				function fnCloseSplashScreen(loadCount) {
+					if (loadCount == 0) {
+						plus.navigator.closeSplashscreen();
+						var webHead = mui.preload({
+							url: "webview-header.html",
+							id: "webview-header",
+							styles: fnSetSubpageStyle(0, 0)
+						});
+						var tradeHead = mui.preload({
+							url: "webview-trade-header.html",
+							id: "webview-trade-header",
+							styles: fnSetSubpageStyle(0, 0)
+						});
+						var shophead = mui.preload({
+							url: "webview-shop-header.html",
+							id: "webview-shop-header",
+							styles: fnSetSubpageStyle(0, 0)
+						});
 					}
-					//显示第一个
-					if (i > 0) {
-						sub.hide();
+				}
+				for (var i = 0; i < subpages.length; i++) {
+					if (i == subpages.length - 1) {
+						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 101));
+						sub.onloaded = function() {
+							loadCount--;
+							fnCloseSplashScreen(loadCount);
+							plus.webview.show("webview-home.html", "none");
+							mui.toast("调试信息：" + (userLoginStatus() ? "已登录" : "未登录"));
+						};
 					} else {
-						sub.show();
+						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 101));
+						sub.onloaded = function() {
+							loadCount--;
+							fnCloseSplashScreen(loadCount);
+						};
 					}
 				}
 				// 选项卡点击事件
@@ -106,8 +116,11 @@
 					var targetTab = this.getAttribute("data-href");
 					if (targetTab == activeTab) {
 						return;
-					}					
-document.querySelector(".index-tab-active").classList.remove("index-tab-active");
+					}
+					if (targetTab == "webview-my.html") {
+						mui.fire(plus.webview.getWebviewById(targetTab), "setNum", {});
+					}
+					document.querySelector(".index-tab-active").classList.remove("index-tab-active");
 					this.classList.add("index-tab-active");
 					plus.webview.hide(activeTab, "none");
 					plus.webview.show(targetTab, "none");

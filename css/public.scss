@@ -225,23 +225,29 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     @include px2rem(height, 38px);
     @include spirtes-img;
     display: inline-block;
+    vertical-align: middle;
     @include px2rem(background-position-x,0px);
     @include px2rem(background-position-y,-168px);
 }
 //单选按钮默认不选中 
 .radio-check-span {
     @include px2rem(width, 46px);
-    @include px2rem(height, 46px);
+    @include px2rem(height, 47px);
     @include spirtes-img;
     display: inline-block;
     @include px2rem(background-position-x,0px);
-    @include px2rem(background-position-y,-336px);
+    @include px2rem(background-position-y,-337px);
 }
 //单选按钮选中
 .radio-check-active {
     @include spirtes-img3;
     @include px2rem(background-position-x, -5px);
     @include px2rem(background-position-y,-100px);
+}
+
+//使元素垂直居中
+.set-middle {
+    vertical-align: middle !important; 
 }
 
 //头部占位
@@ -315,3 +321,34 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     background-color: rgb(235, 235, 235) !important;
     color: rgb(142, 96, 104) !important;
 }
+
+//数字选择器
+.num-choice {
+    @include px2rem(width, 192px);
+    @include px2rem(height, 60px);
+    font-size: 0;    
+    background-color: #FFFFFF;
+}
+.num-choice-item {
+    width: 33.3%;
+    height: 100%;
+    @include font-dpr(18px);
+    @include px2rem(line-height, 60px);
+    display: inline-block !important;
+    text-align: center;
+}
+.num-choice-left {
+    background-color: rgb(230, 230, 230);
+    font-weight: bold;
+    color: rgb(190, 190, 190);
+}
+.num-choice-mid {
+    background-color: #FFFFFF;
+    color: rgb(100, 100, 100);
+}
+.num-choice-right {
+    background-color: rgb(230, 230, 230);
+    font-weight: bold;
+    color: rgb(190, 190, 190);
+}
+

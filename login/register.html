@@ -115,6 +115,9 @@
 						plus.nativeUI.alert("请输入正确的手机号", function() {}, "提示", "返回");
 						return;
 					}
+					if (NetWorkStatus()) {
+						return;
+					}
 					var nowTime = new Date().getTime().toString();
 					var startTime = plus.storage.getItem("authCodeTime");
 					if (startTime == null || (nowTime - startTime) / 1000 > 120) {
@@ -158,6 +161,9 @@
 				});
 				btnNext.addEventListener("tap", function() {
 					if (!btnAble) {
+						return;
+					}
+					if (NetWorkStatus()) {
 						return;
 					}
 					// 提交验证码,验证正确后打开下一个页面

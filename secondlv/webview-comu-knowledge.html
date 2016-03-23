@@ -82,7 +82,9 @@
 			
 			mui.plusReady(function() {
 				mui("body").on("tap", ".comu-knowledge-list-item", function(e) {
-					plus.webview.currentWebview().loadURL("../thirdlv/webview-comu-knowledge-detail.html");
+//					plus.webview.currentWebview().loadURL("../thirdlv/webview-comu-knowledge-detail.html");
+					var url = "../thirdlv/webview-comu-knowledge-detail.html";
+					showWebviewCOM(plus.webview.currentWebview(), url);
 				});
 			});
 		</script>

@@ -170,13 +170,12 @@
 					</label>
 				</div>
 				<div class="buyDiv-count-right">
-					<!--数字选择器-->
-					<div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
-						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-						<input id="test" class="mui-input-numbox" type="number" value="1" />
-						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					<div class="num-choice">
+						<span class="num-choice-left num-choice-item">-</span>
+						<span class="num-choice-mid num-choice-item">1</span>
+						<span class="num-choice-right num-choice-item">+</span>
 					</div>
-					<span class="buyDiv-money">总价：&yen;&nbsp;<em>2000</em></span>
+					<span class="buyDiv-money">总价：&yen;&nbsp;<em class="buyDiv-money-count" data-normal="250">250</em></span>
 				</div>
 			</div>
 			<div class="buyDiv-btn">
@@ -189,6 +188,7 @@
 		<script src="../js/public.js"></script>
 		<script>
 			mui.init();
+			//数字选择器
 			document.querySelector("#buyNow").addEventListener("tap", function() {
 				var id = "#buyDiv";
 				fnOpenTargetDiv(id);
@@ -197,6 +197,23 @@
 				var id = "#buyDiv";
 				fnCloseShade(id);
 			});
+			var chocieMID = document.querySelector(".num-choice-mid");
+			var choicePrice = document.querySelector(".buyDiv-money-count");
+			var basePrice = parseFloat(choicePrice.getAttribute("data-normal"));
+			document.querySelector(".num-choice-left").addEventListener("tap", function() {
+				var val = chocieMID.innerText;
+				if (val == "1") {
+					return;
+				}				
+				chocieMID.innerText = parseInt(val) - 1;
+				choicePrice.innerText = parseFloat(choicePrice.innerText) - basePrice;
+			});
+			document.querySelector(".num-choice-right").addEventListener("tap", function() {
+				chocieMID.innerText = parseInt(chocieMID.innerText) + 1;
+				choicePrice.innerText = parseFloat(choicePrice.innerText) + basePrice;
+			});
+			//数字选择器end
+			
 		</script>
 	</body>
 

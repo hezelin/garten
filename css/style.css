@@ -115,23 +115,27 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   background: url(../img/img.png);
   background-size: 36.21333rem 10.81333rem;
   display: inline-block;
+  vertical-align: middle;
   background-position-x: 0rem;
   background-position-y: -2.24rem; }
 
 .radio-check-span {
   width: 0.61333rem;
-  height: 0.61333rem;
+  height: 0.62667rem;
   background: url(../img/img.png);
   background-size: 36.21333rem 10.81333rem;
   display: inline-block;
   background-position-x: 0rem;
-  background-position-y: -4.48rem; }
+  background-position-y: -4.49333rem; }
 
 .radio-check-active {
   background: url(../img/img3.png);
   background-size: 3.77333rem 3.78667rem;
   background-position-x: -0.06667rem;
   background-position-y: -1.33333rem; }
+
+.set-middle {
+  vertical-align: middle !important; }
 
 #head-holder {
   height: 1.30667rem; }
@@ -211,6 +215,38 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 .reSendAuthCode {
   background-color: #ebebeb !important;
   color: #8e6068 !important; }
+
+.num-choice {
+  width: 2.56rem;
+  height: 0.8rem;
+  font-size: 0;
+  background-color: #FFFFFF; }
+
+.num-choice-item {
+  width: 33.3%;
+  height: 100%;
+  font-size: 18px;
+  line-height: 0.8rem;
+  display: inline-block !important;
+  text-align: center; }
+  [data-dpr="2"] .num-choice-item {
+    font-size: 36px; }
+  [data-dpr="3"] .num-choice-item {
+    font-size: 54px; }
+
+.num-choice-left {
+  background-color: #e6e6e6;
+  font-weight: bold;
+  color: #bebebe; }
+
+.num-choice-mid {
+  background-color: #FFFFFF;
+  color: #646464; }
+
+.num-choice-right {
+  background-color: #e6e6e6;
+  font-weight: bold;
+  color: #bebebe; }
 
 /**
      * ******** ******** ******** ********
@@ -1050,8 +1086,7 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
      * 商品详情页模板
  */
 .header-control-whiteBold {
-  background-color: white !important;
-  border-bottom: 1px solid #dcdcdc; }
+  background-color: white !important; }
 
 .trade-header-container {
   font-size: 0; }
@@ -1197,12 +1232,11 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   height: 100%;
   position: absolute;
   right: 0.41333rem;
-  display: inline-block; }
-  .buyDiv-count-right .mui-numbox {
-    margin-top: 0.48rem;
-    margin-bottom: 0.62667rem; }
+  display: inline-block;
+  padding-top: 0.48rem; }
 
 .buyDiv-money {
+  margin-top: 0.62667rem;
   font-size: 15px;
   display: block; }
   [data-dpr="2"] .buyDiv-money {
@@ -1528,16 +1562,21 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  border-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid #FFFFFF !important;
   margin-top: 1.42667rem;
   margin-bottom: 0.12rem; }
 
 .user-bg-name {
-  font-size: 18px;
-  color: #fff;
+  width: 4.8rem;
   margin-top: 0.13333rem;
   margin-bottom: 0.13333rem;
-  display: inline-block; }
+  font-size: 18px;
+  color: #fff;
+  display: inline-block;
+  word-break: keep-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
   [data-dpr="2"] .user-bg-name {
     font-size: 36px; }
   [data-dpr="3"] .user-bg-name {
@@ -1585,8 +1624,7 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 
 .user-bg-nav-counts {
   font-size: 18px;
-  color: #fff;
-  padding-bottom: 0.13333rem; }
+  color: #fff; }
   [data-dpr="2"] .user-bg-nav-counts {
     font-size: 36px; }
   [data-dpr="3"] .user-bg-nav-counts {
@@ -1673,166 +1711,104 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
      * webview-my-userbag红包列表
      * 内容区域
  */
+#user-bag-list {
+  margin: 0 auto; }
+
 #user-bag-counts {
   width: 100%;
-  text-align: center;
-  font-size: 13px;
-  color: #737373;
-  margin-top: 0.4rem;
-  margin-bottom: 0.26667rem; }
-  [data-dpr="2"] #user-bag-counts {
-    font-size: 26px; }
-  [data-dpr="3"] #user-bag-counts {
-    font-size: 39px; }
-
-.user-bag-show {
-  width: 92%;
-  height: 2.05333rem;
-  margin: 0 auto;
-  margin-bottom: 0.2rem;
-  background-color: #FFFFFF;
-  display: table; }
-  .user-bag-show div {
-    display: table-cell;
-    vertical-align: middle; }
-  .user-bag-show .black-arrow-span {
-    display: block; }
-
-.user-bag-show-icon {
-  width: 2.90667rem;
-  font-size: 30px;
-  color: #FFFFFF;
-  background: url(../img/img.png);
-  background-size: 36.21333rem 10.81333rem;
-  background-position-x: -20.68rem;
-  background-position-y: -5.02667rem;
-  text-align: center; }
-  [data-dpr="2"] .user-bag-show-icon {
-    font-size: 60px; }
-  [data-dpr="3"] .user-bag-show-icon {
-    font-size: 90px; }
-
-.user-bag-show-textleft {
-  text-align: left;
-  padding-left: 0.62667rem; }
-
-.user-bag-show-describable-bold {
-  font-size: 18px;
-  margin-bottom: 0.08rem;
-  display: block;
-  color: #000000; }
-  [data-dpr="2"] .user-bag-show-describable-bold {
-    font-size: 36px; }
-  [data-dpr="3"] .user-bag-show-describable-bold {
-    font-size: 54px; }
-
-.user-bag-show-describable-grey {
+  height: 1.06667rem;
   font-size: 14px;
-  display: block;
-  color: #737373; }
-  [data-dpr="2"] .user-bag-show-describable-grey {
+  line-height: 1.06667rem;
+  color: #737373;
+  text-align: center; }
+  [data-dpr="2"] #user-bag-counts {
     font-size: 28px; }
-  [data-dpr="3"] .user-bag-show-describable-grey {
+  [data-dpr="3"] #user-bag-counts {
     font-size: 42px; }
 
-/**
-     * ******** ******** ******** ********
-     * webview-my-userbag-amply红包详情
- */
-.user-bag-amply {
-  width: 100%;
-  height: 3.68rem;
-  background-image: url(../img/user-bag-amply-bg.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-align: center;
-  display: table; }
+.user-bag-item {
+  width: 9.26667rem;
+  height: 3.4rem;
+  margin: 0 auto;
+  margin-bottom: 0.53333rem;
+  border-radius: 0.08rem;
+  background: url(../img/red-bag-bg.png);
+  background-repeat-y: no-repeat;
+  display: table;
+  background-color: #FFFFFF; }
 
-.user-bag-amply-middle {
+.user-bag-item-left {
+  width: 2.53333rem;
+  color: #f8543d;
   display: table-cell;
-  vertical-align: middle; }
+  vertical-align: middle;
+  text-align: center; }
 
-.user-bag-amply-money {
-  margin-bottom: 0.4rem;
-  font-size: 44px;
-  color: #FFFFFF;
-  display: block; }
-  [data-dpr="2"] .user-bag-amply-money {
-    font-size: 88px; }
-  [data-dpr="3"] .user-bag-amply-money {
-    font-size: 132px; }
+.user-bag-money {
+  font-size: 36px; }
+  [data-dpr="2"] .user-bag-money {
+    font-size: 72px; }
+  [data-dpr="3"] .user-bag-money {
+    font-size: 108px; }
 
-.user-bag-amply-date {
-  font-size: 15px;
-  color: #FFFFFF;
-  display: block; }
-  [data-dpr="2"] .user-bag-amply-date {
+.user-bag-money::before {
+  content: '￥';
+  font-size: 15px; }
+  [data-dpr="2"] .user-bag-money::before {
     font-size: 30px; }
-  [data-dpr="3"] .user-bag-amply-date {
+  [data-dpr="3"] .user-bag-money::before {
     font-size: 45px; }
 
-.user-bag-amply-describable {
-  margin-top: 0.8rem;
-  margin-bottom: 1.06667rem;
-  margin-left: 0.37333rem; }
+.user-bag-money::after {
+  content: ' .0';
+  font-size: 15px; }
+  [data-dpr="2"] .user-bag-money::after {
+    font-size: 30px; }
+  [data-dpr="3"] .user-bag-money::after {
+    font-size: 45px; }
 
-.user-bag-amply-describable-forbid {
-  margin-bottom: 0.57333rem;
-  font-size: 18px;
+.user-bag-item-middle {
+  width: 0.08rem;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center; }
+
+.user-bag-item-line {
+  width: 3px;
+  height: 85%;
+  display: inline-block;
+  background: url(../img/red-line.png);
+  background-repeat-x: no-repeat;
+  background-size: contain; }
+
+.user-bag-item-right {
+  padding-top: 0.53333rem;
+  padding-left: 0.53333rem;
+  display: table-cell; }
+
+.user-bag-item-content {
+  display: inline-block; }
+
+.user-bag-item-title {
+  margin-bottom: 0.26667rem;
+  font-size: 20px;
+  font-weight: bold;
+  color: #282828;
+  display: block; }
+  [data-dpr="2"] .user-bag-item-title {
+    font-size: 40px; }
+  [data-dpr="3"] .user-bag-item-title {
+    font-size: 60px; }
+
+.user-bag-item-list {
+  margin-bottom: 0.17333rem;
+  font-size: 14px;
   color: #737373;
   display: block; }
-  [data-dpr="2"] .user-bag-amply-describable-forbid {
-    font-size: 36px; }
-  [data-dpr="3"] .user-bag-amply-describable-forbid {
-    font-size: 54px; }
-
-.user-bag-amply-describable-list {
-  margin-bottom: 0.24rem;
-  font-size: 15px;
-  color: #000000;
-  display: block; }
-  [data-dpr="2"] .user-bag-amply-describable-list {
-    font-size: 30px; }
-  [data-dpr="3"] .user-bag-amply-describable-list {
-    font-size: 45px; }
-
-.user-bag-amply-income {
-  width: 100%;
-  height: 1.56rem;
-  padding-left: 0.37333rem;
-  padding-right: 0.37333rem;
-  display: table;
-  background-color: #F3F3F3;
-  position: relative; }
-
-.user-bag-amply-income-left {
-  text-align: left;
-  display: table-cell;
-  vertical-align: middle; }
-
-.user-bag-amply-income-right {
-  text-align: right;
-  display: table-cell;
-  vertical-align: middle; }
-
-.user-bag-amply-income-top {
-  margin-bottom: 0.13333rem;
-  display: block;
-  font-size: 18px;
-  color: #000000; }
-  [data-dpr="2"] .user-bag-amply-income-top {
-    font-size: 36px; }
-  [data-dpr="3"] .user-bag-amply-income-top {
-    font-size: 54px; }
-
-.user-bag-amply-income-bottom {
-  display: block;
-  font-size: 12px;
-  color: #737373; }
-  [data-dpr="2"] .user-bag-amply-income-bottom {
-    font-size: 24px; }
-  [data-dpr="3"] .user-bag-amply-income-bottom {
-    font-size: 36px; }
+  [data-dpr="2"] .user-bag-item-list {
+    font-size: 28px; }
+  [data-dpr="3"] .user-bag-item-list {
+    font-size: 42px; }
 
 /**
      * ******** ******** ******** ********
@@ -1856,12 +1832,10 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
     margin-right: 0.22667rem;
     vertical-align: top;
     font-size: 0;
-    letter-spacing: -4px;
-    word-spacing: -4px;
     vertical-align: middle; }
   .my-trader-title .shop-arrow-span {
     display: inline-block;
-    margin-left: 0.49333rem; }
+    margin-left: 0.26667rem; }
 
 .my-trader-content {
   width: 100%;
@@ -1876,14 +1850,14 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   vertical-align: middle; }
 
 .my-trader-title-name {
-  font-size: 18px;
+  font-size: 14px;
   color: #595959;
   display: table-cell;
   vertical-align: middle; }
   [data-dpr="2"] .my-trader-title-name {
-    font-size: 36px; }
+    font-size: 28px; }
   [data-dpr="3"] .my-trader-title-name {
-    font-size: 54px; }
+    font-size: 42px; }
 
 .my-trader-title-right {
   width: 50%;
@@ -1916,13 +1890,13 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 .my-trader-content-detail-container {
   height: 2.17333rem;
   margin-left: 0.21333rem;
-  position: relative; }
+  position: relative;
+  font-size: 0; }
   .my-trader-content-detail-container span {
     display: block; }
 
 .collect-order-trader-name {
   font-size: 19px;
-  margin-bottom: 0.16rem;
   color: #000000; }
   [data-dpr="2"] .collect-order-trader-name {
     font-size: 38px; }
@@ -1930,8 +1904,13 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
     font-size: 57px; }
 
 .collect-order-trader-detail {
+  width: 6rem;
   font-size: 15px;
-  color: #727272; }
+  color: #727272;
+  word-break: keep-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
   [data-dpr="2"] .collect-order-trader-detail {
     font-size: 30px; }
   [data-dpr="3"] .collect-order-trader-detail {
@@ -1939,7 +1918,7 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 
 .collect-order-trader-money {
   font-size: 15px;
-  color: #ff2222;
+  color: #727272;
   position: absolute;
   bottom: 0; }
   [data-dpr="2"] .collect-order-trader-money {
@@ -1947,7 +1926,7 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   [data-dpr="3"] .collect-order-trader-money {
     font-size: 45px; }
   .collect-order-trader-money em {
-    color: #727272; }
+    color: #ff2222; }
 
 /**
      * ******** ******** ******** ********
@@ -2006,11 +1985,6 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
       [data-dpr="3"] .my-order-total-detail span em:nth-child(2) {
         font-size: 54px; }
 
-.collect-order-trader-count {
-  position: absolute;
-  bottom: 0;
-  right: 0; }
-
 .my-order-count {
   font-size: 15px;
   color: #727272; }
@@ -2033,13 +2007,6 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   vertical-align: middle;
   position: relative; }
 
-.my-shopcar-count {
-  font-size: 18px; }
-  [data-dpr="2"] .my-shopcar-count {
-    font-size: 36px; }
-  [data-dpr="3"] .my-shopcar-count {
-    font-size: 54px; }
-
 .foot-control-bar {
   width: 100%;
   height: 1.44rem;
@@ -2060,8 +2027,9 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   display: table-cell;
   vertical-align: middle;
   text-align: right; }
-  .my-shop-car-pay em {
-    color: #FF2222; }
+
+.allCount {
+  color: #FF2222; }
 
 .my-shop-car-pay-button {
   width: 2.26667rem;
@@ -2078,6 +2046,11 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
       font-size: 36px; }
     [data-dpr="3"] .my-shop-car-pay-button button {
       font-size: 54px; }
+
+.shop-car-num-choice {
+  position: absolute;
+  right: 0;
+  bottom: 0; }
 
 /**
      * ******** ******** ******** ********
@@ -2457,7 +2430,7 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   overflow: hidden;
   display: inline-block; }
 
-#saveNickName {
+.my-setting-save {
   padding: 0.02667rem 0.26667rem 0.02667rem 0.26667rem;
   font-size: inherit;
   color: white;

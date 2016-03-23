@@ -177,26 +177,21 @@
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
 		<script>
-			mui.init({
-				beforeback: function() {
-					return false;
+			mui.init();
+			var first = null;
+			mui.back = function() {
+				if (!first) {
+					first = new Date().getTime();
+					mui.toast('再按一次退出应用');
+					setTimeout(function() {
+						first = null;
+					}, 2000);
+				} else {
+					if (new Date().getTime() - first < 2000) {
+						plus.runtime.quit();
+					}
 				}
-			});
-//			mui.init();
-//			var first = null;
-//			mui.back = function() {
-//				if (!first) {
-//					first = new Date().getTime();
-//					mui.toast('再按一次退出应用');
-//					setTimeout(function() {
-//						first = null;
-//					}, 2000);
-//				} else {
-//					if (new Date().getTime() - first < 2000) {
-//						plus.runtime.quit();
-//					}
-//				}
-//			};
+			};
 			mui(".mui-table-view").on("tap", ".mui-table-view-cell", function() {
 				mui('#bottomPopover').popover('toggle');
 			});

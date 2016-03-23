@@ -27,16 +27,14 @@
 				<div class="my-trader-title-logo">
 					<span class="shop-span">
 				</div>
-				<div class="my-trader-title-name"><span>小铺</span><span class="shop-arrow-span"></span></div>
+				<div class="my-trader-title-name">小铺<span class="shop-arrow-span"></span></div>
 				<div class="my-trader-title-right ">
 					<span class="shop-delete-span"></span>
 				</div>
 			</div>
 			<div class="my-trader-content my-order-content">
 				<div class="my-shop-car-check">
-					<div class="mui-input-row mui-checkbox ">
-						<input name="item1" type="checkbox" checked="checked">
-					</div>
+					<span class="radio-check-span radio-check-item" data-normal="300"></span>
 				</div>
 				<div class="my-trader-content-img ">
 					<img class="my-trader-content-img-hold " src="../img/plowLand.png ">
@@ -45,14 +43,12 @@
 					<div class="my-trader-content-detail-container ">
 						<span class="collect-order-trader-name ">耕作地</span>
 						<span class="collect-order-trader-detail ">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money ">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-shopcar-count">
-							<div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
-								<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-								<input id="test" class="mui-input-numbox" type="number" value="2" />
-								<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
-							</div>
-						</span>
+						<span class="collect-order-trader-money ">&nbsp;&yen;&nbsp;<em>300</em>/亩</span>
+						<div class="num-choice shop-car-num-choice" data-normal="300">
+							<span class="num-choice-left num-choice-item">-</span>
+							<span class="num-choice-mid num-choice-item">1</span>
+							<span class="num-choice-right num-choice-item">+</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -70,9 +66,7 @@
 			</div>
 			<div class="my-trader-content my-order-content ">
 				<div class="my-shop-car-check">
-					<div class="mui-input-row mui-checkbox ">
-						<input name="item1" type="checkbox">
-					</div>
+					<span class="radio-check-span radio-check-item" data-normal="200"></span>
 				</div>
 				<div class="my-trader-content-img ">
 					<img class="my-trader-content-img-hold " src="../img/fruitTree.png ">
@@ -81,30 +75,27 @@
 					<div class="my-trader-content-detail-container ">
 						<span class="collect-order-trader-name ">橘子树</span>
 						<span class="collect-order-trader-detail ">认租二年，委托给农户管理</span>
-						<span class="collect-order-trader-money ">&nbsp;&yen;&nbsp;200<em>/棵</em></span>
-						<span class="collect-order-trader-count my-shopcar-count">
-							<div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
-								<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-								<input id="test" class="mui-input-numbox" type="number" value="1" />
-								<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
-							</div>
-						</span>
+						<span class="collect-order-trader-money ">&nbsp;&yen;&nbsp;<em>200</em>/棵</span>
+						<div class="num-choice shop-car-num-choice" data-normal="200">
+							<span class="num-choice-left num-choice-item">-</span>
+							<span class="num-choice-mid num-choice-item">1</span>
+							<span class="num-choice-right num-choice-item">+</span>
+						</div>
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 		<div class="foot-control-bar">
-			<div class="my-shop-car-check">
-				<div class="mui-input-row mui-checkbox ">
-					<input name="item1" type="checkbox" id="checkAll">&nbsp;
-					<label>全选</label>
-				</div>
+			<div class="my-shop-car-check" id="checkAll">
+				<span class="radio-check-span set-middle" id="checkAllCheck"></span>
+				<label class="set-middle">&nbsp;全选</label>
 			</div>
 			<div class="my-shop-car-pay">
 				<span>
 					合计&nbsp;
-					<em>&yen;300</em>
+					<em >&yen;</em>
+					<em class="allCount">0</em>
 				</span>&nbsp;
 			</div>
 			<div class="my-shop-car-pay-button my-shop-car-pay">
@@ -116,26 +107,66 @@
 		<script src="../js/public.js "></script>
 		<script>
 			mui.init();
-			window.addEventListener("fnCheckAll", function(event) {
-				console.log(77);
-				if (event.detail.value == "true") {
-					var inputList = document.getElementsByTagName("input");
-					for (var i = 0; i < inputList.length; i++) {
-						console.log(inputList[i].type);
-						if (inputList[i].type = "checkbox") {
-							inputList[i].checked = "true";
-						}
-					}
+			// 单选按钮控制
+			var checkGroup = document.getElementsByClassName("radio-check-item");		// 列表单选按钮
+			var checkAllCheck = document.getElementById("checkAllCheck");		// 全选单选按钮
+			// 选择所有单选
+			function fnCheckAll() {
+				for (var i = 0; i < checkGroup.length; i++) {
+					checkGroup[i].classList.add("radio-check-active");
+				}
+			}
+			// 取消选择所有单选
+			function fnCancelCheckAll() {
+				for (var i = 0; i < checkGroup.length; i++) {
+					checkGroup[i].classList.remove("radio-check-active");
+				}
+			}
+			document.getElementById("checkAll").addEventListener("tap", function() {
+				if (checkAllCheck.classList.contains("radio-check-active")) {
+					checkAllCheck.classList.remove("radio-check-active");
+					fnCancelCheckAll();
 				} else {
-					var inputList = document.getElementsByTagName("input");
-					for (var i = 0; i < inputList.length; i++) {
-						console.log(inputList[i].type);
-						if (inputList[i].type = "checkbox") {
-							inputList[i].checked = "false";
-						}
-					}
+					checkAllCheck.classList.add("radio-check-active");
+					fnCheckAll();
 				}
 			});
+			mui(".my-shop-car-check").on("tap", ".radio-check-item", function() {
+				// 切换本按钮状态
+				fnToggleElemClass(this, "radio-check-active");
+				var chk = document.getElementsByClassName("radio-check-item");
+				var chk2 = document.getElementsByClassName("radio-check-active");
+				var tamp = 0;
+				if (checkAllCheck.classList.contains("radio-check-active")) {
+					tamp = 1;
+				}
+				if (chk.length != chk2.length - tamp) {
+					checkAllCheck.classList.remove("radio-check-active");
+				} else {
+					checkAllCheck.classList.add("radio-check-active");
+				}
+			});			
+			// 单选按钮控制end
+			
+			// 数字选择器
+			var allCountPrice = document.querySelector(".allCount");
+			mui(".num-choice").on("tap", ".num-choice-left", function(e) {				
+				var chocieMID = e.currentTarget.querySelector(".num-choice-mid");
+				var basePrice = parseFloat(e.currentTarget.getAttribute("data-normal"));
+				var val = chocieMID.innerText;
+				if (val == "1") {
+					return;
+				}				
+				chocieMID.innerText = parseInt(val) - 1;
+				allCountPrice.innerText = parseFloat(allCountPrice.innerText) - basePrice;
+			});
+			mui(".num-choice").on("tap", ".num-choice-right", function(e) {
+				var chocieMID = e.currentTarget.querySelector(".num-choice-mid");
+				var basePrice = parseFloat(e.currentTarget.getAttribute("data-normal"));
+				chocieMID.innerText = parseInt(chocieMID.innerText) + 1;
+				allCountPrice.innerText = parseFloat(allCountPrice.innerText) + basePrice;
+			});
+			//数字选择器end
 		</script>
 	</body>
 

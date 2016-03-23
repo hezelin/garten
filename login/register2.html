@@ -85,6 +85,9 @@
 				}
 			});
 			completeBtn.addEventListener("tap", function() {
+				if (NetWorkStatus()) {
+					return;
+				}
 				//提交数据完成注册
 				var URL = "http://farm.rrzuji.com/v1/users?" + fnCreateSign();
 				var userPhone = plus.storage.getItem("resPhone");

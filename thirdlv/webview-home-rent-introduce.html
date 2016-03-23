@@ -89,13 +89,12 @@
 					</label>
 				</div>
 				<div class="buyDiv-count-right">
-					<!--数字选择器-->
-					<div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
-						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-						<input id="test" class="mui-input-numbox" type="number" value="1" />
-						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					<div class="num-choice">
+						<span class="num-choice-left num-choice-item">-</span>
+						<span class="num-choice-mid num-choice-item">1</span>
+						<span class="num-choice-right num-choice-item">+</span>
 					</div>
-					<span class="buyDiv-money">总价：&yen;&nbsp;<em>2000</em></span>
+					<span class="buyDiv-money">总价：&yen;&nbsp;<em class="buyDiv-money-count" data-normal="250">250</em></span>
 				</div>
 			</div>
 			<div class="buyDiv-btn">
@@ -116,21 +115,24 @@
 				var id = "#buyDiv";
 				fnCloseShade(id);
 			});
-			//展示图预加载处理
-			//			var elements = document.querySelectorAll(".showBar-img");
-			//			var len = elements.length;
-			//			elements.forEach(loadImg);
-			//			function fnShowBar() {};
-			//			function loadImg(elem, index, array) {
-			//				elem.onload = function() {
-			//					len--;
-			//					if (len === 0) {
-			//						
-			//					}
-			//				}
-			//			}
-			//控制setTimeout事件顺序
-			//alam.setup(func)
+			//数字选择器
+			var chocieMID = document.querySelector(".num-choice-mid");
+			var choicePrice = document.querySelector(".buyDiv-money-count");
+			var basePrice = parseFloat(choicePrice.getAttribute("data-normal"));
+			document.querySelector(".num-choice-left").addEventListener("tap", function() {
+				var val = chocieMID.innerText;
+				if (val == "1") {
+					return;
+				}				
+				chocieMID.innerText = parseInt(val) - 1;
+				choicePrice.innerText = parseFloat(choicePrice.innerText) - basePrice;
+			});
+			document.querySelector(".num-choice-right").addEventListener("tap", function() {
+				chocieMID.innerText = parseInt(chocieMID.innerText) + 1;
+				choicePrice.innerText = parseFloat(choicePrice.innerText) + basePrice;
+			});
+			//数字选择器end
+			
 			var alam = {
 				remind: function(func) {
 					func();
@@ -142,11 +144,11 @@
 						this.cancel();
 						this.timeoutID = window.setTimeout(function(Func) {
 							this.remind(Func);
-						}.bind(this), 500, myFunc);
+						}.bind(this), 300, myFunc);
 					} else {
 						this.timeoutID = window.setTimeout(function(Func) {
 							this.remind(Func);
-						}.bind(this), 500, myFunc);
+						}.bind(this), 300, myFunc);
 					}
 				},
 				cancel: function() {
@@ -159,6 +161,10 @@
 					fnShowBarOperate();
 				}, 400);
 			});
+			var Range;
+
+			function fnShowBarWipe(Range, Width) {
+			}
 
 			function fnShowBarOperate() {
 				//获取屏幕视口宽度
@@ -170,10 +176,12 @@
 				var container = document.querySelector("#showBarContainer");
 				var oBar = document.querySelector("#showBar");
 				container.addEventListener("swipeleft", function(e) {
-					
+					console.log("向左滑");
+					console.log(Range);
 				});
 				container.addEventListener("swiperight", function(e) {
 					console.log("向右滑");
+					console.log(Range);
 				});
 				container.addEventListener("touchstart", function(e) {
 					e.preventDefault();
@@ -190,9 +198,10 @@
 					nStartX = touch.pageX;
 				});
 				container.addEventListener("touchend", function(e) {
+					console.log("滑动end");
 					e.preventDefault();
 					//已移动距离
-					var Range = parseFloat(oBar.getAttribute("data-left")) % screenWidth;
+					Range = parseFloat(oBar.getAttribute("data-left")) % screenWidth;
 					var Middle = screenWidth / 2;
 					var Count = document.querySelectorAll(".showBar-img").length - 1;
 					var _left = parseFloat(oBar.getAttribute("data-left"));

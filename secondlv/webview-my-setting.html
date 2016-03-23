@@ -196,7 +196,7 @@
 					<span id="webview-head-title">资料</span>
 				</div>
 				<div class="header-control-right-btn">
-					<span class="header-control-right-btn-span">完成</span>
+					<span class="header-control-right-btn-span"></span>
 				</div>
 			</div>
 			<div class="mui-page-content">
@@ -225,7 +225,7 @@
 							</div>
 							<!--中间内容区域-->
 							<div class="my-setting-middle my-setting-border my-setting-middle-right">
-								<label class="my-setting-middle-text">格子</label>
+								<label class="my-setting-middle-text" id="nickNameText">格子</label>
 							</div>
 							<!--右边内容区域-->
 							<div class="my-setting-right my-setting-border">
@@ -240,7 +240,7 @@
 							</div>
 							<!--中间内容区域-->
 							<div class="my-setting-middle my-setting-border my-setting-middle-right">
-								<label class="my-setting-middle-text">13229788871</label>
+								<label class="my-setting-middle-text" id="phoneText"></label>
 							</div>
 							<!--右边内容区域-->
 							<div class="my-setting-right my-setting-border">
@@ -255,25 +255,10 @@
 							</div>
 							<!--中间内容区域-->
 							<div class="my-setting-middle my-setting-middle-right my-setting-border">
-								<label class="my-setting-middle-text">保密</label>
+								<label class="my-setting-middle-text" id="genderText">保密</label>
 							</div>
 							<!--右边内容区域-->
 							<div class="my-setting-right my-setting-border">
-								<span class="black-arrow-span"></span>
-							</div>
-						</a>
-						<!--生日-->
-						<a class="my-setting-item" id="pickDateBtn">
-							<!--左边内容区域-->
-							<div class="my-setting-left">
-								<label class="my-setting-left-text">生日</label>
-							</div>
-							<!--中间内容区域-->
-							<div class="my-setting-middle my-setting-middle-right">
-								<label class="my-setting-middle-text" id="pickDateBtnShow">保密</label>
-							</div>
-							<!--右边内容区域-->
-							<div class="my-setting-right">
 								<span class="black-arrow-span"></span>
 							</div>
 						</a>
@@ -307,7 +292,7 @@
 				</div>
 				<div class="header-control-right-btn">
 					<span class="header-control-right-btn-span">
-						<button id="saveNickName">保存</button>
+						<button id="saveNickName" class="my-setting-save">保存</button>
 					</span>
 				</div>
 			</div>
@@ -315,7 +300,7 @@
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<div class="input-name-container">
-							<input id="inputNickName" class="mui-input-clear" placeholder="格子" type="text" />
+							<input id="inputNickName" class="mui-input-clear" placeholder="输入昵称" type="text" />
 							<!--<span id="clearNickName" class="mui-icon-clear mui-icon"></span>-->
 						</div>
 					</div>
@@ -334,7 +319,7 @@
 				</div>
 				<div class="header-control-right-btn">
 					<span class="header-control-right-btn-span">
-						<button id="saveNickName">保存</button>
+						<button id="saveAddress" class="my-setting-save">保存</button>
 					</span>
 				</div>
 			</div>
@@ -343,11 +328,10 @@
 					<div class="mui-scroll">
 						<a class="my-setting-item my-setting-item-margin-top">
 							<div class="my-setting-left my-setting-border">
-								<label class="my-setting-left-text">姓名</label>
+								<label class="my-setting-left-text">收件人</label>
 							</div>
 							<div class="my-setting-middle my-setting-border my-setting-middle-left">
-								<!--<label class="my-setting-middle-text">格子</label>-->
-								<input type="text" class="my-setting-middle-input" id="" placeholder="格子" value="格子" />
+								<input type="text" class="my-setting-middle-input" placeholder="请输入姓名" value="" />
 							</div>
 							<div class="my-setting-right my-setting-border">
 							</div>
@@ -357,7 +341,7 @@
 								<label class="my-setting-left-text">手机</label>
 							</div>
 							<div class="my-setting-middle my-setting-border my-setting-middle-left">
-								<input type="text" class="my-setting-middle-input" id="" placeholder="请输入手机号" value="13202208227" />
+								<input type="text" class="my-setting-middle-input" placeholder="请输入手机号" value="" />
 							</div>
 							<div class="my-setting-right my-setting-border">
 							</div>
@@ -367,7 +351,7 @@
 								<label class="my-setting-left-text">所在城市</label>
 							</div>
 							<div class="my-setting-middle my-setting-border my-setting-middle-left">
-								<label class="my-setting-middle-text">广州</label>
+								<label class="my-setting-middle-text">请选择所在城市</label>
 							</div>
 							<div class="my-setting-right my-setting-border">
 								<span class="black-arrow-span"></span>
@@ -425,7 +409,7 @@
 								保存并更新手机号
 							</button>
 						</div>
-					</div>					
+					</div>
 				</div>
 			</div>
 		</div>
@@ -510,9 +494,24 @@
 	<script src="../js/mui.view.js "></script>
 	<script src='../js/feedback.js'></script>
 	<script src="../js/feedback-page.js"></script>
+	<script src="../js/md5.min.js"></script>
 	<script src="../js/public.js"></script>
 	<script>
 		mui.init();
+		mui.plusReady(function() {
+			document.getElementById("nickNameText").innerText = plus.storage.getItem("userName");
+			document.getElementById("phoneText").innerText = plus.storage.getItem("userPhone");
+			var val = plus.storage.getItem("userGender");
+			if (val) {
+				if (val == "1") {
+					document.getElementById("genderText").innerText = "男";
+					document.querySelector("#setSexMan .radio-check-span").classList.add("radio-check-active");
+				} else {
+					document.getElementById("genderText").innerText = "女";
+					document.querySelector("#setSexFemale .radio-check-span").classList.add("radio-check-active");
+				}
+			}
+		});
 		//初始化单页view
 		var viewApi = mui('#app').view({
 			defaultPage: '#setting'
@@ -556,42 +555,18 @@
 				//				console.log(e.detail.page.id + ' back');
 			});
 		})(mui);
-		//选择日期
-		document.getElementById("pickDateBtn").addEventListener('tap', function() {
-			var info = document.getElementById("pickDateBtnShow");
-			var dDate = new Date();
-			dDate.setFullYear(1990, 0, 1);
-			var minDate = new Date();
-			//				minDate.setFullYear(2010, 0, 1);
-			//				var maxDate = new Date();
-			//				maxDate.setFullYear(2016, 11, 31);
-			if (!mui.os.plus) {
-				return;
-			}
-			plus.nativeUI.pickDate(function(e) {
-				var d = e.date;
-				info.innerText = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-				console.log("选择");
-			}, function(e) {
-				info.innerText = "请选择";
-				console.log("没选择");
-			}, {
-				date: dDate
-			});
-		});
 		// 初始化单页的区域滚动
 		mui('.mui-scroll-wrapper').scroll();
 		//修改手机号码start
 		var btnAble = true;
 		var btnAble2 = true;
-		
 		document.querySelector("#getAuthCode").addEventListener("tap", function() {
 			//申请验证码
 		});
 		document.querySelector("#postEditPhone").addEventListener("tap", function() {
 			if (btnAble) {
 				mui.ajax(URL, {
-//					type
+					//					type
 				});
 			}
 		});
@@ -601,15 +576,11 @@
 			if (mui.os.plus) {
 				plus.nativeUI.confirm("确定退出登录？", function(e) {
 					if (e.index == 0) {
-						plus.storage.removeItem("tokenValue");
-						plus.storage.removeItem("tokenDate");
+						var imgURL = plus.storage.getItem("userAvatar");
+						plus.storage.clear();
+						plus.storage.setItem("userAvatar");
+						mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeInfo", {});
 						plus.webview.getWebviewById("secondlv/webview-my-setting.html").close();
-						// 关闭个人中心页后默认切到首页
-						mui.fire(plus.webview.getWebviewById("HBuilder"), "changeTab", {
-							targetView: "home",
-							showView: "webview-home.html",
-							hideView: "webview-my.html"
-						});
 						mui.toast("已退出登录状态");
 					}
 				}, "退出", ["确定", "取消"])
@@ -617,16 +588,55 @@
 		});
 		//退出登录end
 		// 修改性别start
+		function setGender(genderNum) {
+			if (NetWorkStatus()) {
+				return;
+			}
+			if (genderNum == "1" || genderNum == "2") {
+				var userID = plus.storage.getItem("userID");
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/users/" + userID + "?" + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "PUT",
+					dataType: "JSON",
+					data: {
+						"gender": genderNum
+					},
+					success: function(res) {
+						res = JSON.parse(res);
+						if (res.success) {
+							if (res.data.gender) {
+								plus.storage.setItem("userGender", res.data.gender.toString());
+							}
+						}
+					},
+					error: function(xhr, error, thrownError) {
+						try {
+							console.log(JSON.stringify(xhr));
+							var res = JSON.parse(xhr.response);
+							if (typeof res.data.message !== "undefined") {
+								mui.toast("更新性别信息失败" + res.data.message);
+							}
+						} catch (e) {
+							console.log("调试信息，更新信息失败，服务器错误");
+						}
+					}
+				});
+			}
+		}
+		// 打开动画
 		document.querySelector("#setSex").addEventListener("tap", function() {
 			var _id = "#sexList-item";
 			fnOpenTargetDiv(_id);
 		});
+		// 性别选项，男，点击
 		document.querySelector("#setSexMan").addEventListener("tap", function() {
 			var thisBtn = this;
 			//防止重复点击
 			if (thisBtn.getAttribute("data-tap") == "true") {
 				return;
 			}
+			setGender("1");
 			thisBtn.setAttribute("data-tap", "true");
 			var _id = "#sexList-item";
 			var _text = document.querySelector("#setSex .my-setting-middle-text");
@@ -646,11 +656,13 @@
 				thisBtn.setAttribute("data-tap", "false");
 			}, 200);
 		});
+		// 性别选项， 女， 点击
 		document.querySelector("#setSexFemale").addEventListener("tap", function() {
 			var thisBtn = this;
 			if (thisBtn.getAttribute("data-tap") == "true") {
 				return;
 			}
+			setGender("2");
 			thisBtn.setAttribute("data-tap", "true");
 			var _id = "#sexList-item";
 			var _text = document.querySelector("#setSex .my-setting-middle-text");
@@ -668,8 +680,56 @@
 				thisBtn.setAttribute("data-tap", "false");
 			}, 200);
 		});
-		//修改性别end
-		//检查更新
+		// 修改性别end
+		// 修改昵称start
+		document.getElementById("saveNickName").addEventListener("tap", function() {
+			var val = inputNickName.value;
+			if (val.length > 50) {
+				mui.toast("昵称过长，请重新输入");
+				return;
+			}
+			if (NetWorkStatus()) {
+				return;
+			}
+			var btn = this;
+			btn.disable = true;
+			var userID = plus.storage.getItem("userID");
+			var token = plus.storage.getItem("tokenValue");
+			var URL = "http://farm.rrzuji.com/v1/users/" + userID + "?" + fnCreateSign() + "&access-token=" + token;
+			mui.ajax(URL, {
+				type: "PUT",
+				dataType: "JSON",
+				data: {
+					"name": val
+				},
+				success: function(res) {
+					res = JSON.parse(res);
+					if (res.success) {
+						plus.storage.setItem("userName", res.data.name);
+						mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeNameOrPhone", {});
+						document.getElementById("nickNameText").innerText = res.data.name;
+						mui.back();
+					}
+					setTimeout(function() {
+						btn.disable = false;
+					}, 150);
+				},
+				error: function(xhr, error, thrownError) {
+					btn.disable = false;
+					try {
+						console.log(JSON.stringify(xhr));
+						var res = JSON.parse(xhr.response);
+						if (typeof res.data.message !== "undefined") {
+							mui.toast("更新信息" + res.data.message);
+						}
+					} catch (e) {
+						console.log("调试信息，更新信息失败，服务器错误");
+					}
+				}
+			});
+		});
+		// 修改昵称end
+		// 检查更新
 		document.getElementById("update").addEventListener('tap', function() {
 			mui.toast('已是最新版本~');
 			return true;

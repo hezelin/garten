@@ -12,11 +12,13 @@ function fnSetSubpageStyle(Top, Bottom) {
 		top: fnPx2Rem(Top, true),
 		bottom: fnPx2Rem(Bottom, true),
 		render: "always",
-		popGesture: "none",		
-		hardwareAccelerated: true,			
+		popGesture: "none",
+		hardwareAccelerated: true,
 		scrollIndicator: "none"
 	}
 };
+
+
 /**
  * 
  * @param {Number} pxNum
@@ -27,12 +29,16 @@ function fnPx2Rem(pxNum, userDpr) {
 	var dpr = userDpr ? fnGetDpr() : 1;
 	return pxNum / dpr / 75 * baseFontSize + "px";
 }
+
+
 /**
  * @description 获取屏幕dpr值
  */
 function fnGetDpr() {
 	return parseInt(document.getElementsByTagName('html')[0].getAttribute("data-dpr"));
 }
+
+
 /**
  * @description 利用公用父模板加载子页面
  * @param {Object} 触发事件的按钮
@@ -47,12 +53,12 @@ function fnLoadPage(tapBtn, obj, objPost) {
 	var webviewHead = plus.webview.getWebviewById("webview-header");
 	mui.fire(webviewHead, "setHeadPage", objPost);
 	var oldview = webviewHead.children();
-	for (var i = 0; i < oldview.length; i++) {		
+	for (var i = 0; i < oldview.length; i++) {
 		webviewHead.remove(oldview[i]);
 		oldview[i].close();
 	}
 	//设置窗口按键	
-	webviewHead.show("pop-in", 300, function() {		
+	webviewHead.show("pop-in", 300, function() {
 		tapBtn.classList.remove("loading");
 	});
 	var webviewBody = plus.webview.create(obj.url, obj.url, fnSetSubpageStyle(obj.top, obj.bottom));
@@ -62,6 +68,8 @@ function fnLoadPage(tapBtn, obj, objPost) {
 		}, 100);
 	}
 }
+
+
 /**
  * @description 切换元素display or none状态
  */
@@ -76,6 +84,8 @@ function fnToggleElemDisplay(elem) {
 		elem.classList.remove("mutual-shade-active");
 	}
 }
+
+
 /**
  * @description 添加删除元素的类
  */
@@ -89,6 +99,8 @@ function fnToggleElemClass(elem, elemClass) {
 		elem.classList.add(elemClass);
 	}
 }
+
+
 /**
  * @description 创建并打开遮罩蒙版，并返回遮罩节点
  */
@@ -100,6 +112,8 @@ function fnOpenShade() {
 	document.querySelector("body").appendChild(_shade);
 	return _shade;
 }
+
+
 /**
  * @description 关闭遮罩及div
  */
@@ -122,6 +136,8 @@ function fnCloseShade(_id) {
 		_targetDiv.delayClose = setTimeout(closeShade, 200);
 	}
 }
+
+
 /**
  * @description 这个方法使用动画打开一个带遮罩的目标div块
  * @param {String} _id 目标div块的id，目标div块还要有mutual-div类
@@ -134,6 +150,8 @@ function fnOpenTargetDiv(_id) {
 		fnCloseShade(_id);
 	});
 }
+
+
 /**
  * @description 检查用户登录状态,有效期七天
  */
@@ -154,6 +172,8 @@ function userLoginStatus() {
 	}
 	return result;
 }
+
+
 /**
  * @description 生成len位随机数
  * @param {Object} len
@@ -167,6 +187,8 @@ function randomStr(len) {
 	}
 	return result;
 };
+
+
 /**
  * @description 创建签名 
  */
@@ -178,6 +200,8 @@ function fnCreateSign() {
 	//生成6~16位的随机字符串，len  值为math.random()*10+6
 	return "signature=" + signature + "&nonce=" + nonce + "&timestamp=" + time;
 };
+
+
 /**
  * @description 验证码倒计时，所有有验证码获取的页面都可以用，页面启动时执行一次timew.start()，成功申请验证码时执行一次。本地储存的两个字段也是公用的，防止恶意刷短信
  */
@@ -221,6 +245,8 @@ var timew = {
 		}
 	}
 };
+
+
 /**
  * @description 打开登录页
  * @param {Object} 按钮
@@ -233,6 +259,67 @@ function openLogin(btn) {
 	var loginView = plus.webview.create("login/login.html", "login.html");
 	loginView.onloaded = function() {
 		loginView.show("pop-in", 300);
-		btn.removeAttribute("data-able");
+		setTimeout(function() {
+			btn.removeAttribute("data-able");
+		}, 300);
 	}
 }
+
+
+/**
+ * @description 打开webview，用截图显示来增加流畅度
+ * @param {Object} 当前窗口对象
+ * @param {String} 要打开的窗口地址
+ */
+function showWebviewCOM(currentView, newViewURL) {
+	var bitmap1 = null,
+		bitmap2 = null;
+	bitmap1 = new plus.nativeObj.Bitmap();
+	//将当前窗口内容绘制到bitmap对象中
+	currentView.draw(bitmap1, function() {
+		console.log("bitmap1绘制图片成功");
+	}, function(e) {
+		console.log("bitmap1绘制图片失败" + JSON.stringify(e));
+	});
+	var newView = plus.webview.create(newViewURL, newViewURL, {
+		hardwareAccelerated: true
+	});
+	newView.addEventListener("loaded", function() {
+		bitmap2 = new plus.nativeObj.Bitmap();
+		newView.draw(bitmap2, function() {
+			console.log("bitmap2截图成功");
+		}, function(e) {
+			console.log("bitmap1截图失败" + JSON.stringify(e));
+		});
+		newView.show("pop-in", 300, function() {
+			bitmap1.clear();
+			bitmap2.clear();
+		}, {
+			//执行图片
+			capture: bitmap2,
+			//关联图片
+			otherCapture: bitmap1
+		});
+	});
+}
+
+
+/**
+ * @description 检查网络状况
+ */
+function NetWorkStatus() {
+	var val = plus.networkinfo.getCurrentType();
+	// 0表示网络连接状态未知，1表示网络无连接
+	if (val == 0 || val == 1) {
+		mui.toast("请求发送失败,请检查您当前的网络环境");
+		return true;
+	}
+}
+
+
+
+
+
+
+
+

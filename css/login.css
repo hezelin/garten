@@ -115,23 +115,27 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   background: url(../img/img.png);
   background-size: 36.21333rem 10.81333rem;
   display: inline-block;
+  vertical-align: middle;
   background-position-x: 0rem;
   background-position-y: -2.24rem; }
 
 .radio-check-span {
   width: 0.61333rem;
-  height: 0.61333rem;
+  height: 0.62667rem;
   background: url(../img/img.png);
   background-size: 36.21333rem 10.81333rem;
   display: inline-block;
   background-position-x: 0rem;
-  background-position-y: -4.48rem; }
+  background-position-y: -4.49333rem; }
 
 .radio-check-active {
   background: url(../img/img3.png);
   background-size: 3.77333rem 3.78667rem;
   background-position-x: -0.06667rem;
   background-position-y: -1.33333rem; }
+
+.set-middle {
+  vertical-align: middle !important; }
 
 #head-holder {
   height: 1.30667rem; }
@@ -212,6 +216,38 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   background-color: #ebebeb !important;
   color: #8e6068 !important; }
 
+.num-choice {
+  width: 2.56rem;
+  height: 0.8rem;
+  font-size: 0;
+  background-color: #FFFFFF; }
+
+.num-choice-item {
+  width: 33.3%;
+  height: 100%;
+  font-size: 18px;
+  line-height: 0.8rem;
+  display: inline-block !important;
+  text-align: center; }
+  [data-dpr="2"] .num-choice-item {
+    font-size: 36px; }
+  [data-dpr="3"] .num-choice-item {
+    font-size: 54px; }
+
+.num-choice-left {
+  background-color: #e6e6e6;
+  font-weight: bold;
+  color: #bebebe; }
+
+.num-choice-mid {
+  background-color: #FFFFFF;
+  color: #646464; }
+
+.num-choice-right {
+  background-color: #e6e6e6;
+  font-weight: bold;
+  color: #bebebe; }
+
 .input-group {
   margin-top: 0.58667rem;
   margin-bottom: 4.66667rem;
@@ -289,7 +325,6 @@ input::-webkit-input-placeholder {
 
 .other-way {
   height: 1.33333rem;
-  line-height: 1.33333rem;
   padding-left: 0.37333rem;
   padding-right: 0.37333rem;
   position: relative;
@@ -300,7 +335,7 @@ input::-webkit-input-placeholder {
   top: 50%;
   left: 50%;
   margin-left: -36px;
-  margin-top: -8px;
+  margin-top: -6px;
   font-size: 12px;
   color: #D4D4D4;
   background-color: #F7F7F7;
@@ -310,13 +345,31 @@ input::-webkit-input-placeholder {
   [data-dpr="3"] .other-way-text {
     margin-left: -108px; }
   [data-dpr="2"] .other-way-text {
-    margin-top: -16px; }
+    margin-top: -12px; }
   [data-dpr="3"] .other-way-text {
-    margin-top: -24px; }
+    margin-top: -18px; }
   [data-dpr="2"] .other-way-text {
     font-size: 24px; }
   [data-dpr="3"] .other-way-text {
     font-size: 36px; }
+
+.other-btn-title {
+  font-size: 16px;
+  color: #FFFFFF;
+  display: inline-block;
+  vertical-align: middle; }
+  [data-dpr="2"] .other-btn-title {
+    font-size: 32px; }
+  [data-dpr="3"] .other-btn-title {
+    font-size: 48px; }
+
+.other-way-line {
+  width: 90%;
+  height: 0.02667rem;
+  position: absolute;
+  left: 5%;
+  top: 0.66667rem;
+  background-color: #D4D4D4; }
 
 .other-btn {
   margin: 0 auto;
@@ -324,7 +377,7 @@ input::-webkit-input-placeholder {
 
 .other-btn-item {
   width: 2.85333rem;
-  height: 1.38667rem;
+  height: 1.2rem;
   background-color: #3d8f52;
   display: table-cell;
   vertical-align: middle;
@@ -359,27 +412,9 @@ input::-webkit-input-placeholder {
   background-position-x: 0rem;
   background-position-y: -3.16rem; }
 
-.other-btn-title {
-  font-size: 16px;
-  color: #FFFFFF;
-  display: inline-block;
-  vertical-align: middle; }
-  [data-dpr="2"] .other-btn-title {
-    font-size: 32px; }
-  [data-dpr="3"] .other-btn-title {
-    font-size: 48px; }
-
-.other-way-line {
-  width: 90%;
-  height: 0.01333rem;
-  position: absolute;
-  left: 5%;
-  top: 0.66667rem;
-  background-color: #D4D4D4; }
-
 .register-input {
   width: 8.41333rem;
-  height: 1.41333rem;
+  height: 1.2rem;
   padding-left: 0.33333rem;
   padding-right: 0.33333rem;
   margin-bottom: 0.37333rem;
@@ -396,23 +431,23 @@ input::-webkit-input-placeholder {
 
 .register-btn {
   width: 9.08rem;
-  height: 1.41333rem;
-  line-height: 1.41333rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
   margin-top: 0.26667rem;
   border-radius: 0.08rem;
   border: none;
   background-color: #3d8f52;
-  font-size: 21px;
+  font-size: 19px;
   color: #FFFFFF;
   text-align: center; }
   [data-dpr="2"] .register-btn {
-    font-size: 42px; }
+    font-size: 38px; }
   [data-dpr="3"] .register-btn {
-    font-size: 63px; }
+    font-size: 57px; }
 
 .authCode-group {
   width: 8.74667rem;
-  height: 1.41333rem;
+  height: 1.2rem;
   padding-left: 0.33333rem;
   display: inline-block;
   border: 1px solid #dcdcdc;
@@ -423,7 +458,7 @@ input::-webkit-input-placeholder {
 
 #authCode {
   width: 5.86667rem;
-  height: 1.41333rem;
+  height: 1.2rem;
   font-size: 19px;
   color: #9a9a9a;
   border: none;

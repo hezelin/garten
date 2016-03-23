@@ -30,11 +30,21 @@
 		<script src="js/mui.min.js"></script>
 		<script src="js/md5.min.js"></script>
 		<script>
-			mui.init({
-				beforeback: function() {
-					return false;
+			mui.init();
+			var first = null;
+			mui.back = function() {
+				if (!first) {
+					first = new Date().getTime();
+					mui.toast('再按一次退出应用');
+					setTimeout(function() {
+						first = null;
+					}, 2000);
+				} else {
+					if (new Date().getTime() - first < 2000) {
+						plus.runtime.quit();
+					}
 				}
-			});
+			};
 		</script>
 	</body>
 

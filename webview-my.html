@@ -26,27 +26,27 @@
 		<div class="user-bg">
 			<!--这里has-message/no-message-->
 			<span class="no-message"></span>
-			<img class="user-bg-img" src="img/head.jpg" />
+			<img class="user-bg-img" id="userIMG" src="img/head.jpg" />
 			</br>
-			<span class="user-bg-name">登录/注册</span>
+			<span class="user-bg-name" id="userName">登录/注册</span>
 			</br>
-			<span class="user-bg-phone"></span>
+			<span class="user-bg-phone" id="userPhone"></span>
 			<!--去掉小右箭头-->
 			<!--<span class="user-bg-details white-arrow-span"></span>-->
 
 			<div class="user-bg-nav">
 				<a id="user-bag">
-					<span class="user-bg-nav-counts">0</span></br>
+					<span class="user-bg-nav-counts" id="myBag">...</span></br>
 					<span>我的红包</span>
 				</a>
 				<a class="short-line"><img id="r-border"></a>
 				<a id="user-collect">
-					<span class="user-bg-nav-counts">0</span></br>
+					<span class="user-bg-nav-counts" id="myCollect">...</span></br>
 					<span>我的收藏</span>
 				</a>
 				<a class="short-line"><img id="l-border"></a>
 				<a id="user-shop-car">
-					<span class="user-bg-nav-counts">0</span></br>
+					<span class="user-bg-nav-counts" id="myShopCar">...</span></br>
 					<span>购物车</span>
 				</a>
 			</div>
@@ -57,7 +57,7 @@
 					<span class="my-orderform"></span>
 				</div>
 				<div class="user-menu-group-describle">
-					<span>我的订单</span>				
+					<span>我的订单</span>
 				</div>
 				<div class="user-menu-group-describle-right">
 					<span class="black-arrow-span"></span>
@@ -79,7 +79,7 @@
 					<span class="my-request"></span>
 				</div>
 				<div class="user-menu-group-describle">
-					<span>我的问答</span>
+					<span>我的社区</span>
 				</div>
 				<div class="user-menu-group-describle-right">
 					<span class="black-arrow-span"></span>
@@ -101,34 +101,131 @@
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
 		<script>
-			mui.init({
-				beforeback: function() {
-					return false;
+			mui.init();
+			var first = null;
+			mui.back = function() {
+				if (!first) {
+					first = new Date().getTime();
+					mui.toast('再按一次退出应用');
+					setTimeout(function() {
+						first = null;
+					}, 2000);
+				} else {
+					if (new Date().getTime() - first < 2000) {
+						plus.runtime.quit();
+					}
 				}
+			};
+			//  获取红包、收藏、购物车数量，并更新面板
+			var myBag = document.getElementById("myBag");
+			var myCollect = document.getElementById("myCollect");
+			var myShopCar = document.getElementById("myShopCar");
+
+			function defaultImg() {
+				if (!userLoginStatus()) {
+					document.getElementById("userIMG").src = "../www/img/head.jpg";
+					return;
+				}
+				if (mui.os.plus) {
+					plus.io.resolveLocalFileSystemURL("_doc/head.jpg", function(entry) {
+						var s = entry.fullPath + "?version=" + new Date().getTime();;
+						document.getElementById("userIMG").src = s;
+					}, function(e) {
+						document.getElementById("userIMG").src = "../img/head.jpg";
+					})
+				} else {
+					document.getElementById("userIMG").src = "../img/head.jpg";
+				}
+			}
+
+			function setNum() {
+				var token = plus.storage.getItem("tokenValue");
+				if (!token) {
+					// 未登录
+					myBag.innerText = "...";
+					myCollect.innerText = "...";
+					myShopCar.innerText = "...";
+					return;
+				}
+				var URL = "http://farm.rrzuji.com/v1/user/num?" + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						res = JSON.parse(res);
+						if (res.success) {
+							myBag.innerText = res.data.hongbao_num;
+							myCollect.innerText = res.data.collect_num;
+							myShopCar.innerText = res.data.cart_num;
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						myBag.innerText = "...";
+						myCollect.innerText = "...";
+						myShopCar.innerText = "...";
+						console.log(JSON.stringify(xhr));
+						try {
+							var res = JSON.parse(xhr.response);
+							if (typeof res.data.message !== "undefined") {
+								console.log("调试信息，获取红包收藏购物车数量失败" + res.data.message);
+							}
+						} catch (e) {
+							console.log("调试信息，获取红包收藏购物车数量失败，服务器错误");
+						}
+					}
+				});
+			}
+			// 更新个人中心面板 ，节点id，节点id
+			function updateUserInfo(nameDomID, phoneDomID) {
+				var name = plus.storage.getItem("userName");
+				var phone = plus.storage.getItem("userPhone");
+				if (name != null && phone != null) {
+					document.getElementById(nameDomID).innerText = name;
+					document.getElementById(phoneDomID).innerText = phone;
+				} else {
+					document.getElementById(nameDomID).innerText = "登录/注册";
+					document.getElementById(phoneDomID).innerText = "";
+				}
+			}
+			// 获取通知
+			function getNoice() {
+				console.log("获取通知");
+			}
+			// 更新面板昵称、手机
+			window.addEventListener("changeNameOrPhone", function() {
+				updateUserInfo("userName", "userPhone");
 			});
-//			mui.init();
-//			var first = null;
-//			mui.back = function() {
-//				if (!first) {
-//					first = new Date().getTime();
-//					mui.toast('再按一次退出应用');
-//					setTimeout(function() {
-//						first = null;
-//					}, 2000);
-//				} else {
-//					if (new Date().getTime() - first < 2000) {
-//						plus.runtime.quit();
-//					}
-//				}
-//			};
+			// 更新面板 & 初始化面板
+			window.addEventListener("changeInfo", function() {
+				updateUserInfo("userName", "userPhone");
+				setNum();
+				defaultImg();
+				getNoice();
+			});
+			// 切换tab时
+			window.addEventListener("setNum", function() {
+				setNum();
+				getNoice();
+			});
 			mui.plusReady(function() {
-				//打开登录页
+				if (userLoginStatus()) {
+					//如果已登录，页面加载完成后设置面板，获取数量，设置头像
+					updateUserInfo("userName", "userPhone");
+					setNum();
+					defaultImg();
+					getNoice();
+				}
 				document.querySelector(".user-bg-name").addEventListener("tap", function() {
-					openLogin(this);
+					if (!userLoginStatus()) {
+						openLogin(this);
+					}
 				});
 				//打开我的红包
 				document.getElementById("user-bag").addEventListener("tap", function(e) {
-					e.preventDefault();
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-my-userbag.html",
 						top: 98,
@@ -139,6 +236,10 @@
 				});
 				//打开收藏
 				document.getElementById("user-collect").addEventListener("tap", function(e) {
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-my-collect.html",
 						top: 98,
@@ -149,6 +250,10 @@
 				});
 				//打开购物车
 				document.getElementById("user-shop-car").addEventListener("tap", function(e) {
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-my-shopcar.html",
 						top: 98,
@@ -160,6 +265,10 @@
 				});
 				//打开我的订单
 				document.getElementById("user-menu-group-orderform").addEventListener("tap", function(e) {
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
 					//订单窗口有头部导航
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-my-order.html",
@@ -176,6 +285,10 @@
 				document.getElementById("user-menu-group-myrequest").addEventListener("tap", function(e) {});
 				//打开设置
 				document.getElementById("user-menu-group-setting").addEventListener("tap", function(e) {
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
 					var btn = this;
 					if (btn.classList.contains("loading")) {
 						return;

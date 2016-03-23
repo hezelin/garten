@@ -17,6 +17,8 @@
 			body {
 				width: 100%;
 				height: 100%;
+				background-color: rgb(245, 245, 245);
+				/*background-color: #efeff4;*/
 			}
 		</style>
 	</head>
@@ -38,7 +40,7 @@
 			<div class="input-group">
 				<input id="input-phone" class="login-input" type="text" placeholder="手机号" />
 				<br />
-				<input id="input-pwd" class="login-input" type="password" placeholder="请输入密码" />
+				<input id="input-pwd" class="login-input" type="password" placeholder="请输入密码"/>
 
 				<br />
 				<button id="login" class="login-btn btnUnable">登录</button>
@@ -110,6 +112,13 @@
 					btnAble = false;
 				}
 			};
+			// 比较头像新旧url，不一致那就下载新的头像
+			function compareHeadIMG(newURL) {
+				var oldURL = plus.storage.getItem("userAvatar");
+				if (oldURL != newURL) {
+					
+				}
+			}
 			var lastval = "";
 			phoneInput.addEventListener("input", function() {
 				var val = this.value;
@@ -130,6 +139,9 @@
 				if (typeof dataPost !== "object") {
 					return;
 				}
+				if (NetWorkStatus()) {
+					return;
+				};
 				btnAble = false;
 				var nwaiting = plus.nativeUI.showWaiting("正在登录");
 				var URL = "http://farm.rrzuji.com/v1/users/login?" + fnCreateSign();
@@ -143,12 +155,23 @@
 						nwaiting.close();
 						btnAble = true;
 						if (res.success) {
+							console.log("登录成功后返回" + JSON.stringify(res.data));						
+							// 写入本地存储
+							plus.storage.setItem("userID", res.data.id.toString());
+							plus.storage.setItem("userName", res.data.name);		
+							plus.storage.setItem("userPhone", res.data.phone);							
+							plus.storage.setItem("userAvatar", res.data.avatar);
+							if (res.data.gender) {
+								plus.storage.setItem("userGender", res.data.gender.toString());
+							}							
 							plus.storage.setItem("tokenValue", res.data.access_token);
 							plus.storage.setItem("tokenDate", new Date().getTime().toString());
-							var w = plus.getWebviewById("login.html");
+							// 读取本地存储信息更新目标页面面板资料
+							mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeInfo", {});
+							var w = plus.webview.getWebviewById("login.html");
 							w.hide();
 							w.close();
-							mui.toast("登录成功");
+							
 						} else {
 							mui.toast(res.data.message || res.data.error || "服务器错误");
 						}
