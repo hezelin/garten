@@ -312,7 +312,8 @@
 					"secondlv/webview-comu-knowledge-list.html",
 					"thirdlv/webview-comu-knowledge-detail.html",
 					"secondlv/webview-comu-knowledge.html",
-					"secondlv/webview-comu-farm-introduce.html"
+					"secondlv/webview-comu-farm-introduce.html",
+					"crop.html"
 				],
 				"priority": 0
 			},
@@ -378,7 +379,8 @@
 				"refer": [
 					"webview-nav.html",
 					"webview-my.html",
-					"secondlv/webview-home-rent.html"
+					"secondlv/webview-home-rent.html",
+					"crop.html"
 				],
 				"priority": 0
 			},
@@ -511,7 +513,10 @@
 					"secondlv/webview-comu-knowledge.html",
 					"img/head-three-point.png",
 					"img/head-search.png",
-					"secondlv/webview-comu-farm-introduce.html"
+					"secondlv/webview-comu-farm-introduce.html",
+					"crop.html",
+					"crop/crop.html",
+					"thirdlv/choiceAddress.html"
 				],
 				"refer": [
 					"secondlv/webview-comu-knowledge-list.html"
@@ -552,7 +557,10 @@
 					"img/img3.png",
 					"js/md5.min.js"
 				],
-				"refer": [],
+				"refer": [
+					"crop/crop.html",
+					"thirdlv/choiceAddress.html"
+				],
 				"priority": 0
 			},
 			"secondlv/webview-my-order.html": {
@@ -876,6 +884,49 @@
 				"refer": [
 					"secondlv/webview-comu-knowledge.html"
 				],
+				"priority": 0
+			},
+			"crop.html": {
+				"resources": [
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/style.css",
+					"js/flexible.debug.js",
+					"css/mui.min.css",
+					"img/head2.jpeg",
+					"js/mui.zoom.js",
+					"img/crop.jpg",
+					"img/head1.jpg",
+					"crop/bg.png",
+					"crop/crop.css",
+					"crop/crop.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"crop/crop.html": {
+				"resources": [
+					"crop/crop.css",
+					"js/md5.min.js",
+					"crop/bg.png",
+					"js/mui.min.js",
+					"js/public.js",
+					"crop/crop.js",
+					"js/exif.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"thirdlv/choiceAddress.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"data/city.js"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

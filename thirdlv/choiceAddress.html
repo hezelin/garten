@@ -3,81 +3,98 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>选择地区</title>
+		<title>Hello MUI</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 		<!--标准mui.css-->
 		<link rel="stylesheet" href="../css/mui.min.css">
-		<!--App自定义的css-->
-		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
+		<style>
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 100%;
+			}
+			.mui-col-xs-3,
+			.mui-control-content {
+				overflow-y: auto;
+				height: 100%;
+			}
+			.mui-segmented-control .mui-control-item {
+				line-height: 50px;
+				width: 100%;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				background-color: #fff;
+			}
+		</style>
 	</head>
+
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">二级列表</h1>
+			<h1 class="mui-title" id="result">未选择</h1>
 		</header>
-		
-		<div class="mui-content">
-			<div class="mui-card">
-				<ul class="mui-table-view mui-table-view-chevron">
-					<li class="mui-table-view-cell">card（圆角列表）
-						<div id="M_Toggle" class="mui-switch mui-active">
-							<div class="mui-switch-handle"></div>
-						</div>
-					</li>
-					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">产品</a>
-						<ul class="mui-table-view mui-table-view-chevron">
-							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">iOS</a>
-							</li>
-							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">Android</a>
-							</li>
-							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">HTML5</a>
-							</li>
-						</ul>
-					</li>
-					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">方案</a>
-						<ul class="mui-table-view mui-table-view-chevron">
-							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">PC方案</a>
-							</li>
-							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">手机方案</a>
-							</li>
-							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">TV方案</a>
-							</li>
-						</ul>
-					</li>
-					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">新闻</a>
-						<ul class="mui-table-view mui-table-view-chevron">
-							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">公司新闻</a>
-							</li>
-							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">行业新闻</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
+		<div class="mui-content mui-row mui-fullscreen">
+			<div class="mui-col-xs-3">
+				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+				</div>
+			</div>
+			<div id="segmentedControlContents" class="mui-col-xs-9" style="border-left: 1px solid #c8c7cc;">
+				<div id="item1" class="mui-control-content mui-active">
+				</div>
+				<div id="item2" class="mui-control-content">
+				</div>
+				<div id="item3" class="mui-control-content">
+				</div>
 			</div>
 		</div>
-	</body>
-	<script src="../js/mui.min.js"></script>
-	<script>
-		mui.init({
-			swipeBack:true //启用右滑关闭功能
-		});
-		window.addEventListener('toggle', function(event) {
-			if (event.target.id === 'M_Toggle') {
-				var isActive = event.detail.isActive;
-				var table = document.querySelector('.mui-table-view');
-				var card = document.querySelector('.mui-card');
-				if (isActive) {
-					card.appendChild(table);
-					card.style.display = '';
-				} else {
-					var content = document.querySelector('.mui-content');
-					content.insertBefore(table, card);
-					card.style.display = 'none';
-				}
+		<script type="text/javascript" src="../data/city.js" ></script>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init({
+//				swipeBack: true //启用右滑关闭功能
+			});
+			var controls = document.getElementById("segmentedControls");
+			var contents = document.getElementById("segmentedControlContents");
+			var html = [];
+			var i = 1, j = 1;
+			var cityNum = 0;
+			var cityName = "";
+				
+			for (var key in province) {
+				html.push('<a class="mui-control-item" href="#content' + key + '">' + province[key] + '</a>');
+				i++;
 			}
-		});
-	</script>
+			controls.innerHTML = html.join('');
+			
+			html = [];
+			for (var key2 in city) {
+				html.push('<div id="content' + key2 + '" class="mui-control-content"><ul class="mui-table-view">');
+				for (var key3 in city[key2]) {
+					html.push('<li class="mui-table-view-cell" data-num='+ key3 +'  onclick="getNum(this);">' + city[key2][key3] + '</li>');
+				}
+				html.push('</ul></div>');
+			}
+
+			contents.innerHTML = html.join('');
+			 //默认选中第一个
+			controls.querySelector('.mui-control-item').classList.add('mui-active');
+			contents.querySelector('.mui-control-content').classList.add('mui-active');
+			
+			
+			function getNum(obj) {				
+				document.getElementById("result").innerText = "已选择 :    " + obj.innerText;
+				cityNum = obj.getAttribute("data-num");
+				cityName = obj.innerText;
+			}
+			
+			window.addEventListener("saveCity", function() {
+				plus.storage.setItem("cityNum", cityNum);
+				plus.storage.setItem("cityName", cityName);
+				mui.fire(plus.webview.getWebviewById("secondlv/webview-my-setting.html"), "changeAddress", {});
+				plus.webview.getWebviewById("webview-header").hide();
+			});
+		</script>
+
+	</body>
+
 </html>

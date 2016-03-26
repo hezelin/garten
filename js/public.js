@@ -44,12 +44,17 @@ function fnGetDpr() {
  * @param {Object} 触发事件的按钮
  * @param {Object} 必须url top bottom
  * @param {Object} 必须title 非必须rightBtn hasControlTab
+ * @param {Object} 额外参数,extra.func：字符串,触发子窗口函数的函数名;extra.detail：对象，保存额外值传递给子窗口的目标函数()
  */
-function fnLoadPage(tapBtn, obj, objPost) {
-	if (tapBtn.classList.contains("loading")) {
+function fnLoadPage(tapBtn, obj, objPost, extra) {
+	var targetBtn = true;
+	if (tapBtn == "none") {
+		targetBtn = false;
+	}
+	if (targetBtn && tapBtn.classList.contains("loading")) {
 		return;
 	}
-	tapBtn.classList.add("loading");
+	targetBtn && tapBtn.classList.add("loading");
 	var webviewHead = plus.webview.getWebviewById("webview-header");
 	mui.fire(webviewHead, "setHeadPage", objPost);
 	var oldview = webviewHead.children();
@@ -59,10 +64,13 @@ function fnLoadPage(tapBtn, obj, objPost) {
 	}
 	//设置窗口按键	
 	webviewHead.show("pop-in", 300, function() {
-		tapBtn.classList.remove("loading");
+		targetBtn && tapBtn.classList.remove("loading");
 	});
 	var webviewBody = plus.webview.create(obj.url, obj.url, fnSetSubpageStyle(obj.top, obj.bottom));
 	webviewBody.onloaded = function() {
+		if (typeof extra !== "undefined") {
+			mui.fire(this, extra.func, extra.detail);
+		}
 		setTimeout(function() {
 			webviewHead.append(webviewBody);
 		}, 100);
@@ -159,7 +167,8 @@ function userLoginStatus() {
 	var result = false;
 	var tokenValue = plus.storage.getItem("tokenValue");
 	var tokenDate = plus.storage.getItem("tokenDate");
-	var newTime = new Date().getTime().toString();
+	var newTime = new Date().getTime().toString().substring(0, 10);
+
 	if (tokenValue == null || tokenDate == null) {
 		result = false;
 	} else {
@@ -316,10 +325,56 @@ function NetWorkStatus() {
 	}
 }
 
+/**
+ * @description 改头像
+ */
+function defaultImg(elemID, URL) {
+	if (!userLoginStatus()) {
+		document.getElementById(elemID).src = URL;
+		console.log("11");
+		return;
+	}
+	if (mui.os.plus) {
+		plus.io.resolveLocalFileSystemURL("_doc/head.jpg", function(entry) {
+			var s = entry.fullPath + "?version=" + new Date().getTime();;
+			document.getElementById(elemID).src = s;
+		}, function(e) {
+			document.getElementById(elemID).src = URL;
+		})
+	} else {
+		document.getElementById(elemID).src = URL;
+	}
+}
+function deleteIMG() {
+	plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
+		root.getFile("head.jpg", {
+			create: false
+		}, function(file) {
+			file.remove(function() {
+				console.log("头像文件删除成功");
+			}, function() {
+				console.log("delete image fail:" + e.message);
+			});
+		}, function() {
+			console.log("没有，头像文件，退出");
+		});
+	}, function(e) {
+		console.log("get _www folder fail");
+	})
+}
 
-
-
-
-
-
-
+/**
+ * 
+ * @param {Object} xhr 
+ */
+function ajaxError(xhr) {
+	try {
+		console.log(JSON.stringify(xhr));
+		var res = JSON.parse(xhr.response);
+		if (typeof res.data.message !== "undefined") {
+			mui.toast("出错：" + res.data.message);
+		}
+	} catch (e) {
+		console.log("调试信息，更新信息失败，服务器错误");
+	}
+}

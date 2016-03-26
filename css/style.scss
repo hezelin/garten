@@ -1218,7 +1218,7 @@
     @include px2rem(width,150px);
     @include px2rem(height,150px);
     border-radius: 50%;
-    border: 2px solid #FFFFFF !important;
+//  border: 2px solid #FFFFFF !important;
     @include px2rem(margin-top,107px);
     @include px2rem(margin-bottom,9px);
 }
@@ -1604,6 +1604,7 @@
 .my-order-count {
     @include font-dpr(15px);
     color: #727272;
+    text-align: right;
 }
 /**
      * ******** ******** ******** ********

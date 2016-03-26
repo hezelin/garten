@@ -46,12 +46,13 @@
 				// 打开app时马上更新本地储存区
 				var token = plus.storage.getItem("tokenValue");
 				var userID = plus.storage.getItem("userID");
-				if (token && userID) {					
+				if (userLoginStatus() && token && userID) {					
 					var URL = "http://farm.rrzuji.com/v1/users/" + userID + "?" + fnCreateSign() + "&access-token=" + token;
 					mui.ajax(URL, {
 						type: "GET",
 						dataType: "JSON",
 						success: function(res) {
+							console.log(res);
 						 	res = JSON.parse(res);
 						 	if (res.success) {
 						 		console.log("打开app后刷新本地缓存" + JSON.stringify(res.data));
@@ -62,6 +63,8 @@
 								if (res.data.gender) {
 									plus.storage.setItem("userGender", res.data.gender.toString());
 								}								
+						 	} else {
+						 		plus.storage.clear();
 						 	}
 						},
 						error: function(xhr, type, errorThrown) {
@@ -117,11 +120,12 @@
 					if (targetTab == activeTab) {
 						return;
 					}
-					if (targetTab == "webview-my.html") {
-						mui.fire(plus.webview.getWebviewById(targetTab), "setNum", {});
-					}
 					document.querySelector(".index-tab-active").classList.remove("index-tab-active");
 					this.classList.add("index-tab-active");
+					if (targetTab == "webview-my.html" && userLoginStatus()) {
+						mui.fire(plus.webview.getWebviewById(targetTab), "setNum", {});
+					}
+					
 					plus.webview.hide(activeTab, "none");
 					plus.webview.show(targetTab, "none");
 					activeTab = targetTab;

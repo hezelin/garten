@@ -166,6 +166,7 @@
 					if (NetWorkStatus()) {
 						return;
 					}
+					
 					// 提交验证码,验证正确后打开下一个页面
 					var token = plus.storage.getItem("authCodeToken");
 					if (token != null) {
@@ -200,6 +201,8 @@
 								}
 							}
 						});
+					} else {
+						mui.toast("验证码无效");
 					}
 				});
 			});

@@ -112,13 +112,6 @@
 					btnAble = false;
 				}
 			};
-			// 比较头像新旧url，不一致那就下载新的头像
-			function compareHeadIMG(newURL) {
-				var oldURL = plus.storage.getItem("userAvatar");
-				if (oldURL != newURL) {
-					
-				}
-			}
 			var lastval = "";
 			phoneInput.addEventListener("input", function() {
 				var val = this.value;
@@ -165,13 +158,11 @@
 								plus.storage.setItem("userGender", res.data.gender.toString());
 							}							
 							plus.storage.setItem("tokenValue", res.data.access_token);
-							plus.storage.setItem("tokenDate", new Date().getTime().toString());
+							plus.storage.setItem("tokenDate", res.data.access_token.substring(40, 50));
 							// 读取本地存储信息更新目标页面面板资料
-							mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeInfo", {});
-							var w = plus.webview.getWebviewById("login.html");
-							w.hide();
-							w.close();
-							
+							mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeInfoLogin", {});
+							var w = plus.webview.currentWebview();
+							w.hide();														
 						} else {
 							mui.toast(res.data.message || res.data.error || "服务器错误");
 						}

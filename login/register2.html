@@ -107,12 +107,27 @@
 							res = JSON.parse(res);
 							nwaiting.close();
 							btnAble = false;
-							if (res.success) {								
+							if (res.success) {
 								mui.toast("注册成功!");
+								// 写入本地存储
+								plus.storage.setItem("userID", res.data.id.toString());
+								plus.storage.setItem("userName", res.data.name);
+								plus.storage.setItem("userPhone", res.data.phone);
+								plus.storage.setItem("userAvatar", res.data.avatar);
+								if (res.data.gender) {
+									plus.storage.setItem("userGender", res.data.gender.toString());
+								}
+								plus.storage.setItem("tokenValue", res.data.access_token);
+								plus.storage.setItem("tokenDate", res.data.access_token.substring(40, 50));
+								// 读取本地存储信息更新目标页面面板资料
+								mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeInfo", {});
+								
 								plus.webview.hide("register.html", "none");
 								plus.webview.hide("register2.html", "none");
+								plus.webview.hide("login.html", "none");
 								plus.webview.close("register.html");
 								plus.webview.close("register2.html");
+								plus.webview.close("login.html");
 							} else {
 								mui.toast(res.data.message || res.data.error || "服务器错误");
 							}
@@ -121,12 +136,14 @@
 							nwaiting.close();
 							btnAble = false;
 							//xhr本来就是对象了，不用转换，需要转换的是response里的内容
-							var res = JSON.parse(xhr.response); 
+							var res = JSON.parse(xhr.response);
 							if (typeof res.data.message !== "undefined") {
 								mui.toast(res.data.message);
 							}
 						}
-					});  
+					});
+				} else {
+					plus.nativeUI.alert("调试信息,注册");
 				}
 			});
 			mui.plusReady(function() {

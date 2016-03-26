@@ -94,7 +94,7 @@
 			<div class="home-news-content">
 				<div class="home-news-content-item">
 					<div class="home-news-content-item-title">
-						<label class="home-news-content-item-title-name">最新推荐</label>
+						<label class="home-news-content-item-title-name">最新活动</label>
 					</div>
 					<div class="home-news-content-item-line"></div>
 					
@@ -184,6 +184,9 @@
 				interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0；
 			});
 			mui.plusReady(function() {
+				document.querySelector(".search-span").addEventListener("tap", function() {
+					mui.openWindow("crop.html", "crop.html");
+				});
 				document.querySelector("#homeLive").addEventListener("tap", function(e) {
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-home-rent.html",

@@ -121,23 +121,6 @@
 			var myCollect = document.getElementById("myCollect");
 			var myShopCar = document.getElementById("myShopCar");
 
-			function defaultImg() {
-				if (!userLoginStatus()) {
-					document.getElementById("userIMG").src = "../www/img/head.jpg";
-					return;
-				}
-				if (mui.os.plus) {
-					plus.io.resolveLocalFileSystemURL("_doc/head.jpg", function(entry) {
-						var s = entry.fullPath + "?version=" + new Date().getTime();;
-						document.getElementById("userIMG").src = s;
-					}, function(e) {
-						document.getElementById("userIMG").src = "../img/head.jpg";
-					})
-				} else {
-					document.getElementById("userIMG").src = "../img/head.jpg";
-				}
-			}
-
 			function setNum() {
 				var token = plus.storage.getItem("tokenValue");
 				if (!token) {
@@ -180,26 +163,62 @@
 				var name = plus.storage.getItem("userName");
 				var phone = plus.storage.getItem("userPhone");
 				if (name != null && phone != null) {
+					console.log("设置");
 					document.getElementById(nameDomID).innerText = name;
 					document.getElementById(phoneDomID).innerText = phone;
 				} else {
+					console.log("初始化");
 					document.getElementById(nameDomID).innerText = "登录/注册";
 					document.getElementById(phoneDomID).innerText = "";
 				}
 			}
+			// 更新个人头像
+			function updateAvatar() {
+				if (NetWorkStatus()) {
+					return;
+				}
+				var URL = plus.storage.getItem("userAvatar");
+				if (URL == null) {
+					return;
+				}
+				var dtask = plus.downloader.createDownload(URL, {filename: "_doc/head.jpg"}, function(d, status) {
+					// 下载完成
+					if (status == 200) {
+						console.log("头像下载成功: " + d.filename);
+						defaultImg("userIMG", "../www/img/head.jpg");
+					} else {
+						console.log("头像下载失败: " + status);
+					}
+				});
+				//dtask.addEventListener( "statechanged", onStateChanged, false );				
+				dtask.start();
+				
+			}
 			// 获取通知
 			function getNoice() {
-				console.log("获取通知");
+				console.log("获取通知，未开发");
 			}
 			// 更新面板昵称、手机
 			window.addEventListener("changeNameOrPhone", function() {
 				updateUserInfo("userName", "userPhone");
 			});
+			// 设置头像截图成功后
+			// 更新面板头像
+			window.addEventListener("changeAvatar", function() {
+				defaultImg("userIMG", "../www/img/head.jpg");
+			});
 			// 更新面板 & 初始化面板
 			window.addEventListener("changeInfo", function() {
 				updateUserInfo("userName", "userPhone");
+				defaultImg("userIMG", "../www/img/head.jpg");
 				setNum();
-				defaultImg();
+				getNoice();
+			});
+			// 登录后的操作
+			window.addEventListener("changeInfoLogin", function() {
+				updateUserInfo("userName", "userPhone");
+				updateAvatar();
+				setNum();
 				getNoice();
 			});
 			// 切换tab时
@@ -208,11 +227,12 @@
 				getNoice();
 			});
 			mui.plusReady(function() {
+				// app打开后
 				if (userLoginStatus()) {
 					//如果已登录，页面加载完成后设置面板，获取数量，设置头像
 					updateUserInfo("userName", "userPhone");
+					defaultImg("userIMG", "../www/img/head.jpg");
 					setNum();
-					defaultImg();
 					getNoice();
 				}
 				document.querySelector(".user-bg-name").addEventListener("tap", function() {

@@ -1562,7 +1562,6 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  border: 2px solid #FFFFFF !important;
   margin-top: 1.42667rem;
   margin-bottom: 0.12rem; }
 
@@ -1987,7 +1986,8 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
 
 .my-order-count {
   font-size: 15px;
-  color: #727272; }
+  color: #727272;
+  text-align: right; }
   [data-dpr="2"] .my-order-count {
     font-size: 30px; }
   [data-dpr="3"] .my-order-count {
