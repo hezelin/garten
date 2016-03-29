@@ -2351,3 +2351,29 @@ input[type=color],input[type=date],input[type=datetime-local],input[type=datetim
 .mui-popover {
     @include px2rem(width, 250px);
 }
+// 上拉加载样式设置
+.mui-table-view {
+    background-color: inherit !important;
+}
+// 底部加载栏容器
+.mui-pull-bottom-pocket {
+    @include px2rem(height, 50px);
+}
+.mui-pull {    
+    @include px2rem(height, 50px);
+    @include px2rem(line-height, 50px);
+//  @include px2rem(top, 10px);
+    position: static;
+}
+.mui-pull-caption {
+    font-size: inherit;
+}
+// 图标大小
+.mui-spinner {
+    @include px2rem(width, 40px);
+    @include px2rem(height, 40px);
+}
+// 文字样式
+.mui-pull-caption, .mui-pull-caption-refresh {
+    @include font-dpr(14px);
+}

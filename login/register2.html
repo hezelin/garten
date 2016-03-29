@@ -48,6 +48,9 @@
 			<br />
 			<button id="nextRegister" class="register-btn">完成注册</button>
 		</div>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
@@ -142,9 +145,7 @@
 							}
 						}
 					});
-				} else {
-					plus.nativeUI.alert("调试信息,注册");
-				}
+				} 
 			});
 			mui.plusReady(function() {
 				document.querySelector("#userRead").addEventListener("tap", function(e) {

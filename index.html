@@ -5,12 +5,58 @@
 		<meta charset="utf-8">
 		<script src="js/flexible_css.debug.js"></script>
 		<script src="js/flexible.debug.js"></script>
-		<!--<link href="css/mui.min.css" rel="stylesheet" />-->
+		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
 		<title></title>
+		<style>
+			.head-tab-active {
+				display: table;
+			}
+			
+			.head-tab-hide {
+				display: none;
+			}
+		</style>
 	</head>
 
 	<body>
+		<div class="header-control header-control-greenBold head-tab-active" id="home-header-control">
+			<div class="header-control-left-btn app-log-div">
+				<span class="app-log-span header-control-left-btn-span"></span>
+			</div>
+			<div class="header-control-app-name">
+				<span id="webview-head-title">曦山农场</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span search-span"></span>
+				<span class="header-control-right-btn-span white-three-point-span"></span>
+			</div>
+		</div>
+		<div class="header-control header-control-greenBold head-tab-hide">
+			<div class="header-control-left-btn">
+				<span class="app-log-span header-control-left-btn-span"></span>
+				<!--<span class="white-arrow-big-span header-control-left-btn-span"></span>-->
+			</div>
+			<div>
+				<span id="webview-head-title">社区</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span white-three-point-span"></span>
+			</div>
+		</div>
+		<div class="header-control header-control-greenBold head-tab-hide">
+			<div class="header-control-left-btn">
+				<span class="app-log-span header-control-left-btn-span"></span>
+				<!--<span class="white-arrow-big-span header-control-left-btn-span"></span>-->
+			</div>
+			<div>
+				<span id="webview-head-title">地图</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span white-three-point-span"></span>
+			</div>
+		</div>
+		<!--底部nav栏-->
 		<div id="index-bar-tab">
 			<div id="home" class="index-tab-item index-tab-active" data-href="webview-home.html">
 				<span class="icon-index icon-index-home"></span>
@@ -46,26 +92,25 @@
 				// 打开app时马上更新本地储存区
 				var token = plus.storage.getItem("tokenValue");
 				var userID = plus.storage.getItem("userID");
-				if (userLoginStatus() && token && userID) {					
+				if (userLoginStatus() && token && userID) {
 					var URL = "http://farm.rrzuji.com/v1/users/" + userID + "?" + fnCreateSign() + "&access-token=" + token;
 					mui.ajax(URL, {
 						type: "GET",
 						dataType: "JSON",
 						success: function(res) {
-							console.log(res);
-						 	res = JSON.parse(res);
-						 	if (res.success) {
-						 		console.log("打开app后刷新本地缓存" + JSON.stringify(res.data));
-						 		plus.storage.setItem("userID", res.data.id.toString());
-								plus.storage.setItem("userName", res.data.name);		
-								plus.storage.setItem("userPhone", res.data.phone);							
+							console.log("打开app后刷新本地缓存" + res);
+							res = JSON.parse(res);
+							if (res.success) {
+								plus.storage.setItem("userID", res.data.id.toString());
+								plus.storage.setItem("userName", res.data.name);
+								plus.storage.setItem("userPhone", res.data.phone);
 								plus.storage.setItem("userAvatar", res.data.avatar);
 								if (res.data.gender) {
 									plus.storage.setItem("userGender", res.data.gender.toString());
-								}								
-						 	} else {
-						 		plus.storage.clear();
-						 	}
+								}
+							} else {
+								plus.storage.clear();
+							}
 						},
 						error: function(xhr, type, errorThrown) {
 							console.log(JSON.stringify(xhr));
@@ -104,10 +149,10 @@
 							loadCount--;
 							fnCloseSplashScreen(loadCount);
 							plus.webview.show("webview-home.html", "none");
-							mui.toast("调试信息：" + (userLoginStatus() ? "已登录" : "未登录"));
+							console.log("调试信息：" + (userLoginStatus() ? "已登录" : "未登录"));
 						};
 					} else {
-						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 101));
+						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(98, 101));
 						sub.onloaded = function() {
 							loadCount--;
 							fnCloseSplashScreen(loadCount);
@@ -115,19 +160,42 @@
 					}
 				}
 				// 选项卡点击事件
+				var headElem = document.getElementsByClassName("header-control");
 				mui("#index-bar-tab").on("tap", ".index-tab-item", function(e) {
 					var targetTab = this.getAttribute("data-href");
 					if (targetTab == activeTab) {
 						return;
 					}
+					// 更换颜色
 					document.querySelector(".index-tab-active").classList.remove("index-tab-active");
 					this.classList.add("index-tab-active");
+					// 更换标题
 					if (targetTab == "webview-my.html" && userLoginStatus()) {
 						mui.fire(plus.webview.getWebviewById(targetTab), "setNum", {});
 					}
-					
-					plus.webview.hide(activeTab, "none");
-					plus.webview.show(targetTab, "none");
+					if (targetTab == "webview-home.html") {						
+						var oldElem = document.getElementsByClassName("head-tab-active")[0].classList;
+						oldElem.remove("head-tab-active");
+						oldElem.add("head-tab-hide");			
+						headElem[0].classList.add("head-tab-active");
+						headElem[0].classList.remove("head-tab-hide");		
+					}
+					if (targetTab == "webview-comu.html") {						
+						var oldElem = document.getElementsByClassName("head-tab-active")[0].classList;
+						oldElem.remove("head-tab-active");
+						oldElem.add("head-tab-hide");			
+						headElem[1].classList.add("head-tab-active");
+						headElem[1].classList.remove("head-tab-hide");		
+					}
+					if (targetTab == "webview-nav.html") {												
+						var oldElem = document.getElementsByClassName("head-tab-active")[0].classList;
+						oldElem.remove("head-tab-active");
+						oldElem.add("head-tab-hide");			
+						headElem[2].classList.add("head-tab-active");
+						headElem[2].classList.remove("head-tab-hide");						
+					}					
+					plus.webview.hide(activeTab);
+					plus.webview.show(targetTab);
 					activeTab = targetTab;
 				});
 			});

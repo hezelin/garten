@@ -207,7 +207,10 @@
 					"js/public.js",
 					"css/style.css",
 					"webview-comu.html",
-					"img/img3.png"
+					"img/img3.png",
+					"img/head-three-point.png",
+					"img/head-search.png",
+					"img/logo.png"
 				],
 				"refer": [
 					"index.html",
@@ -374,7 +377,9 @@
 					"img/testhome/testhome9.png",
 					"img/head-three-point.png",
 					"img/head-search.png",
-					"img/img4.png"
+					"img/img4.png",
+					"css/mui.css",
+					"img/imgDefault.png"
 				],
 				"refer": [
 					"webview-nav.html",
@@ -626,7 +631,8 @@
 					"js/flexible.debug.js",
 					"img/tradeListbg1.png",
 					"css/mui.min.css",
-					"css/style.css"
+					"css/style.css",
+					"fonts/mui.ttf"
 				],
 				"refer": [
 					"secondlv/webview-trade-header.html",
@@ -935,7 +941,6 @@
 				"css/FlexStyle.scss",
 				"js/mui.js",
 				"css/FlexStyle.css.map",
-				"css/mui.css",
 				"templete.html"
 			]
 		}

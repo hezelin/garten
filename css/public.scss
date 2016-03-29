@@ -351,4 +351,68 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     font-weight: bold;
     color: rgb(190, 190, 190);
 }
+// 数字选择器end
 
+// toast
+.my-toast {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    transform: translateY(200%);
+    -webkit-transform: translateY(200%);
+    opacity: 0;
+    z-index: 999;
+    text-align: center;    
+}
+.my-toast-transform {
+    animation:moo 2s ease-out normal;
+    -webkit-animation:moo 2s ease-out normal;
+}
+@-webkit-keyframes moo {
+    10% {
+        -webkit-transform: translateY(-115%);
+        opacity: 0.9;
+    }
+    15% {
+        -webkit-transform: translateY(-100%);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+@keyframes moo {
+    10% {
+        transform: translateY(-115%);
+        opacity: 0.9;
+    }
+    15% {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+.my-toast-content {
+    @include font-dpr(14px);
+    @include px2rem(height, 80px);
+    @include px2rem(padding-left, 25px);
+    @include px2rem(padding-right, 25px);
+    @include px2rem(line-height, 80px);
+    display: inline-block;
+    @include px2rem(border-radius, (40px, 40px));
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.6);
+}

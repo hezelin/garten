@@ -1,8 +1,4 @@
 /**
- * @description 全局公用模块
- */
-
-/**
  * @description 窗口style设置，默认开启硬件加速，去除滑动条，关闭侧滑（ios
  * @param {Number}
  * @param {Number} 
@@ -56,13 +52,15 @@ function fnLoadPage(tapBtn, obj, objPost, extra) {
 	}
 	targetBtn && tapBtn.classList.add("loading");
 	var webviewHead = plus.webview.getWebviewById("webview-header");
+	if (!!obj.refresh) {
+		mui.fire(webviewHead, "reloadTemplate", {});
+	}
 	mui.fire(webviewHead, "setHeadPage", objPost);
 	var oldview = webviewHead.children();
 	for (var i = 0; i < oldview.length; i++) {
 		webviewHead.remove(oldview[i]);
 		oldview[i].close();
 	}
-	//设置窗口按键	
 	webviewHead.show("pop-in", 300, function() {
 		targetBtn && tapBtn.classList.remove("loading");
 	});
@@ -76,6 +74,7 @@ function fnLoadPage(tapBtn, obj, objPost, extra) {
 		}, 100);
 	}
 }
+
 
 
 /**
@@ -331,7 +330,6 @@ function NetWorkStatus() {
 function defaultImg(elemID, URL) {
 	if (!userLoginStatus()) {
 		document.getElementById(elemID).src = URL;
-		console.log("11");
 		return;
 	}
 	if (mui.os.plus) {
@@ -345,6 +343,7 @@ function defaultImg(elemID, URL) {
 		document.getElementById(elemID).src = URL;
 	}
 }
+
 function deleteIMG() {
 	plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
 		root.getFile("head.jpg", {
@@ -364,7 +363,7 @@ function deleteIMG() {
 }
 
 /**
- * 
+ * @description ajax错误处理
  * @param {Object} xhr 
  */
 function ajaxError(xhr) {
@@ -378,3 +377,55 @@ function ajaxError(xhr) {
 		console.log("调试信息，更新信息失败，服务器错误");
 	}
 }
+
+/**
+ * @description 重写mui.toast事件，这里用动态生成节点的方法做在部分手机上无效，所以文档中需要有固定节点
+ * @param {String} message
+ */
+mui.toast = function(message) {
+	var c = document.getElementById("myToast");
+	if (!c) {
+		return;
+	}
+	c.classList.add("my-toast-transform");
+	c.getElementsByClassName("my-toast-content")[0].innerText = message;
+	setTimeout(function() {
+		c.classList.remove("my-toast-transform");
+	}, 2000)
+}
+
+/**
+ * @description 下拉刷新 
+ * @param {function} ajaxFunc
+ * @param {function} successCallBack
+ * @param {function} errorCallBack
+ */
+function fnPullRefresh() {
+
+}
+
+//function fnPullRefresh(ajaxFunc, successCallBack, errorCallBack) {
+//	init: PullRefresh: function() {
+//		var ws = plus.webview.currentWebview();
+//		ws.setPullToRefresh({
+//			support: true,
+//			height: "50px",
+//			range: "80px",
+//			contentdown: {
+//				caption: "下拉刷新"
+//			},
+//			contentover: {
+//				caption: "松开刷新"
+//			},
+//			contentrefresh: {
+//				caption: "刷新中..."
+//			}
+//		}, function() {
+//			setTimeout(function() {
+//				console.log('正在请求');
+//				ws.endPullToRefresh();
+//			}, 1000);
+//		});
+//	},
+//	
+//}

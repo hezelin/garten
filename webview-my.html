@@ -97,6 +97,10 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
 		<script src="js/mui.min.js"></script>
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
@@ -163,11 +167,9 @@
 				var name = plus.storage.getItem("userName");
 				var phone = plus.storage.getItem("userPhone");
 				if (name != null && phone != null) {
-					console.log("设置");
 					document.getElementById(nameDomID).innerText = name;
 					document.getElementById(phoneDomID).innerText = phone;
 				} else {
-					console.log("初始化");
 					document.getElementById(nameDomID).innerText = "登录/注册";
 					document.getElementById(phoneDomID).innerText = "";
 				}
@@ -188,6 +190,7 @@
 						defaultImg("userIMG", "../www/img/head.jpg");
 					} else {
 						console.log("头像下载失败: " + status);
+						defaultImg("userIMG", "../www/img/head.jpg");
 					}
 				});
 				//dtask.addEventListener( "statechanged", onStateChanged, false );				
@@ -196,7 +199,7 @@
 			}
 			// 获取通知
 			function getNoice() {
-				console.log("获取通知，未开发");
+//				console.log("获取通知，未开发");
 			}
 			// 更新面板昵称、手机
 			window.addEventListener("changeNameOrPhone", function() {

@@ -248,4 +248,59 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   font-weight: bold;
   color: #bebebe; }
 
+.my-toast {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  transform: translateY(200%);
+  -webkit-transform: translateY(200%);
+  opacity: 0;
+  z-index: 999;
+  text-align: center; }
+
+.my-toast-transform {
+  animation: moo 2s ease-out normal;
+  -webkit-animation: moo 2s ease-out normal; }
+
+@-webkit-keyframes moo {
+  10% {
+    -webkit-transform: translateY(-115%);
+    opacity: 0.9; }
+  15% {
+    -webkit-transform: translateY(-100%);
+    opacity: 1; }
+  80% {
+    transform: translateY(-100%);
+    opacity: 1; }
+  100% {
+    -webkit-transform: translateY(-100%);
+    opacity: 0; } }
+@keyframes moo {
+  10% {
+    transform: translateY(-115%);
+    opacity: 0.9; }
+  15% {
+    transform: translateY(-100%);
+    opacity: 1; }
+  80% {
+    transform: translateY(-100%);
+    opacity: 1; }
+  80% {
+    transform: translateY(-100%);
+    opacity: 0; } }
+.my-toast-content {
+  font-size: 14px;
+  height: 1.06667rem;
+  padding-left: 0.33333rem;
+  padding-right: 0.33333rem;
+  line-height: 1.06667rem;
+  display: inline-block;
+  border-radius: 0.53333rem 0.53333rem;
+  color: #FFFFFF;
+  background-color: rgba(0, 0, 0, 0.6); }
+  [data-dpr="2"] .my-toast-content {
+    font-size: 28px; }
+  [data-dpr="3"] .my-toast-content {
+    font-size: 42px; }
+
 /*# sourceMappingURL=public.css.map */

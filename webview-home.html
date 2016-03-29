@@ -17,20 +17,20 @@
 	</head>
 
 	<body>
-		<div class="container-globar">
-			<div class="header-control header-control-greenBold" id="home-header-control">
-				<div class="header-control-left-btn app-log-div">
-					<span class="app-log-span header-control-left-btn-span"></span>
-				</div>
-				<div class="header-control-app-name">
-					<span id="webview-head-title">曦山农场</span>
-				</div>
-				<div class="header-control-right-btn">
-					<span class="header-control-right-btn-span search-span"></span>		
-					<span class="header-control-right-btn-span white-three-point-span"></span>
-				</div>
+		<!--<div class="header-control header-control-greenBold" id="home-header-control">
+			<div class="header-control-left-btn app-log-div">
+				<span class="app-log-span header-control-left-btn-span"></span>
 			</div>
-			<div id="head-holder"></div>
+			<div class="header-control-app-name">
+				<span id="webview-head-title">曦山农场</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span search-span"></span>
+				<span class="header-control-right-btn-span white-three-point-span"></span>
+			</div>
+		</div>
+		<div id="head-holder"></div>-->
+		<div class="container-globar">
 			<!--轮播图尺寸规定为750*350-->
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-group mui-slider-loop">
@@ -55,7 +55,7 @@
 							<img src="img/test-slider3.png">
 						</a>
 					</div>
-					 <!--额外增加的一个节点(最后一个节点与“原”第一张图片相同)--> 
+					<!--额外增加的一个节点(最后一个节点与“原”第一张图片相同)-->
 					<div class="mui-slider-item mui-slider-item-duplicate">
 						<a href="#">
 							<<img src="img/test-slider.png">
@@ -73,7 +73,7 @@
 				<div class="home-nav-tab-item" id="homeLive">
 					<span class="home-nav-tab-item-icon home-live"></span>
 					<span class="home-nav-tab-item-title">亲子</span>
-				</div>			
+				</div>
 				<div class="home-nav-tab-item" id="homeShop">
 					<span class="home-nav-tab-item-icon home-shop"></span>
 					<span class="home-nav-tab-item-title">商城</span>
@@ -85,7 +85,7 @@
 				<div class="home-nav-tab-item" id="homeActivity">
 					<span class="home-nav-tab-item-icon home-activity"></span>
 					<span class="home-nav-tab-item-title">农家乐</span>
-				</div>								
+				</div>
 				<div class="home-nav-tab-item" id="homeEat">
 					<span class="home-nav-tab-item-icon home-eat"></span>
 					<span class="home-nav-tab-item-title">民宿</span>
@@ -97,11 +97,11 @@
 						<label class="home-news-content-item-title-name">最新活动</label>
 					</div>
 					<div class="home-news-content-item-line"></div>
-					
+
 					<div class="home-news-content-item-left">
 						<span class="span-new"></span>
 						<span class="span-new-content">新</span>
-						<img class="home-news-content-item-left-img" src="img/testhome/testhome7.png"/>
+						<img class="home-news-content-item-left-img" src="img/testhome/testhome7.png" />
 						<div class="home-news-content-item-detail home-width-320">
 							<span class="home-news-content-item-detail-title">亲子活动</span>
 							<span class="home-news-content-item-detail-money">家长:<em>&yen;100&nbsp;</em>学生:<em>&yen;80</em></span>
@@ -111,7 +111,7 @@
 					<div class="home-news-content-item-right">
 						<span class="span-new"></span>
 						<span class="span-new-content">新</span>
-						<img class="home-news-content-item-right-img" src="img/testhome/testhome8.png"/>
+						<img class="home-news-content-item-right-img" src="img/testhome/testhome8.png" />
 						<div class="home-news-content-item-detail home-width-180">
 							<span class="home-news-content-item-detail-title">农家乐园</span>
 							<span class="home-news-content-item-detail-money"><em>&yen;&nbsp;30</em>/人</span>
@@ -121,7 +121,7 @@
 					<div class="home-news-content-item-right">
 						<span class="span-new"></span>
 						<span class="span-new-content">新</span>
-						<img class="home-news-content-item-right-img" src="img/testhome/testhome9.png"/>
+						<img class="home-news-content-item-right-img" src="img/testhome/testhome9.png" />
 						<div class="home-news-content-item-detail home-width-180">
 							<span class="home-news-content-item-detail-title">某某民宿</span>
 							<span class="home-news-content-item-detail-money"><em>&yen;&nbsp;100</em>/天</span>
@@ -158,11 +158,27 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
 		<script src="js/mui.min.js"></script>
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
 		<script>
+			//			mui.init({
+			//				pullRefresh: {
+			//					container: "#refreshContainer",
+			//					up: {
+			//						callback: upCallback
+			//					}
+			//				}
+			//			});
+			//
+			//			function upCallback() {
+			//				window.setTimeout(function() {
+			//					mui('#refreshContainer').pullRefresh().endPullupToRefresh();
+			//				}, 1111700);
+			//			}
 			mui.init();
 			var first = null;
 			mui.back = function() {
@@ -181,12 +197,9 @@
 			//设置轮播图轮播周期
 			var gallery = mui('.mui-slider');
 			gallery.slider({
-				interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0；
+				interval: 5000 //轮播图周期，若为0则不自动播放，默认为0；
 			});
-			mui.plusReady(function() {
-				document.querySelector(".search-span").addEventListener("tap", function() {
-					mui.openWindow("crop.html", "crop.html");
-				});
+			mui.plusReady(function() {			
 				document.querySelector("#homeLive").addEventListener("tap", function(e) {
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-home-rent.html",
