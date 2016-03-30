@@ -147,7 +147,6 @@ body, div, p, a, em, span, h1, h2, h3, h4, h5, h6, article {
   width: 100%;
   height: 1.33333rem;
   background-color: #3d8f52;
-  position: fixed;
   top: 0;
   left: 0;
   z-index: 20;

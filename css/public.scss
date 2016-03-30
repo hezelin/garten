@@ -265,7 +265,7 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     width: 100%;
     @include px2rem(height,100px);
     background-color: $green-color;
-    position: fixed;
+//  position: fixed;
     top: 0;
     left: 0;
     z-index: 20;

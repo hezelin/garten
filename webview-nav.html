@@ -38,17 +38,7 @@
 			mui.init();
 			var first = null;
 			mui.back = function() {
-				if (!first) {
-					first = new Date().getTime();
-					mui.toast('再按一次退出应用');
-					setTimeout(function() {
-						first = null;
-					}, 2000);
-				} else {
-					if (new Date().getTime() - first < 2000) {
-						plus.runtime.quit();
-					}
-				}
+				quitApp(first);
 			};
 		</script>
 	</body>

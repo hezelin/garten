@@ -165,41 +165,34 @@
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
 		<script>
-			//			mui.init({
-			//				pullRefresh: {
-			//					container: "#refreshContainer",
-			//					up: {
-			//						callback: upCallback
-			//					}
-			//				}
-			//			});
-			//
-			//			function upCallback() {
-			//				window.setTimeout(function() {
-			//					mui('#refreshContainer').pullRefresh().endPullupToRefresh();
-			//				}, 1111700);
-			//			}
 			mui.init();
 			var first = null;
 			mui.back = function() {
-				if (!first) {
-					first = new Date().getTime();
-					mui.toast('再按一次退出应用');
-					setTimeout(function() {
-						first = null;
-					}, 2000);
-				} else {
-					if (new Date().getTime() - first < 2000) {
-						plus.runtime.quit();
-					}
-				}
+				quitApp(first);
 			};
 			//设置轮播图轮播周期
 			var gallery = mui('.mui-slider');
 			gallery.slider({
 				interval: 5000 //轮播图周期，若为0则不自动播放，默认为0；
 			});
-			mui.plusReady(function() {			
+
+			function onRefresh() {
+				ws=plus.webview.currentWebview();
+				wo=ws.opener();
+
+				setTimeout(function() {
+//					if (list) {
+//						var item = document.createElement("li");
+//						item.innerHTML = "<span>New Item " + (new Date()) + "</span>";
+//						list.insertBefore(item, list.firstChild);
+//					}
+					ws.resetBounce();
+					setTimeout(function() {
+						wo.evalJS("pullReset()");
+					}, 200);
+				}, 1000);
+			}
+			mui.plusReady(function() {
 				document.querySelector("#homeLive").addEventListener("tap", function(e) {
 					fnLoadPage(e.currentTarget, {
 						url: "secondlv/webview-home-rent.html",

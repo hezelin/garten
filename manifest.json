@@ -210,7 +210,11 @@
 					"img/img3.png",
 					"img/head-three-point.png",
 					"img/head-search.png",
-					"img/logo.png"
+					"img/logo.png",
+					"img/pull_arrow.png",
+					"/img/pull_fresh.png",
+					"/img/pull_arrow.png",
+					"img/pull_fresh.png"
 				],
 				"refer": [
 					"index.html",
@@ -756,7 +760,9 @@
 					"js/public.js",
 					"css/mui.min.css",
 					"css/style.css",
-					"js/flexible.debug.js"
+					"js/flexible.debug.js",
+					"img/head-three-point.png",
+					"img/logo.png"
 				],
 				"refer": [],
 				"priority": 0

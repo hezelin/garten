@@ -108,17 +108,7 @@
 			mui.init();
 			var first = null;
 			mui.back = function() {
-				if (!first) {
-					first = new Date().getTime();
-					mui.toast('再按一次退出应用');
-					setTimeout(function() {
-						first = null;
-					}, 2000);
-				} else {
-					if (new Date().getTime() - first < 2000) {
-						plus.runtime.quit();
-					}
-				}
+				quitApp(first);
 			};
 			//  获取红包、收藏、购物车数量，并更新面板
 			var myBag = document.getElementById("myBag");
@@ -224,7 +214,7 @@
 				setNum();
 				getNoice();
 			});
-			// 切换tab时
+			// 切换tab时， 获取收藏数量及通知
 			window.addEventListener("setNum", function() {
 				setNum();
 				getNoice();

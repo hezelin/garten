@@ -325,7 +325,7 @@ function NetWorkStatus() {
 }
 
 /**
- * @description 改头像
+ * @description 设置头像
  */
 function defaultImg(elemID, URL) {
 	if (!userLoginStatus()) {
@@ -379,7 +379,7 @@ function ajaxError(xhr) {
 }
 
 /**
- * @description 重写mui.toast事件，这里用动态生成节点的方法做在部分手机上无效，所以文档中需要有固定节点
+ * @description 重写mui.toast事件，这里用动态生成节点的方法做在部分手机上无效，所以文档中需要有固定节点<div class="my-toast" id="myToast"><span class="my-toast-content"></span></div>
  * @param {String} message
  */
 mui.toast = function(message) {
@@ -400,10 +400,36 @@ mui.toast = function(message) {
  * @param {function} successCallBack
  * @param {function} errorCallBack
  */
-function fnPullRefresh() {
+//function fnPullRefresh() {
+//	var ws = plus.webview.currentWebview();
+//	ws.setPullToRefresh({
+//		support: true,
+//		height: "50px",
+//		range: "80px",
+//		contentdown: {
+//			caption: "下拉刷新"
+//		},
+//		contentover: {
+//			caption: "松开刷新"
+//		},
+//		contentrefresh: {
+//			caption: "刷新中..."
+//		}
+//	}, function() {
+//		setTimeout(function() {
+//			console.log('正在请求');
+//			ws.endPullToRefresh();
+//		}, 600);
+//	});
+//}
 
+function fnPullRefresh() {
+	// DOMContentLoaded事件处理
+
+	
 }
 
+//
 //function fnPullRefresh(ajaxFunc, successCallBack, errorCallBack) {
 //	init: PullRefresh: function() {
 //		var ws = plus.webview.currentWebview();
@@ -427,5 +453,18 @@ function fnPullRefresh() {
 //			}, 1000);
 //		});
 //	},
-//	
 //}
+
+function quitApp() {
+	if (!first) {
+		first = new Date().getTime();
+		mui.toast('再按一次退出应用');
+		setTimeout(function() {
+			first = null;
+		}, 2000);
+	} else {
+		if (new Date().getTime() - first < 2000) {
+			plus.runtime.quit();
+		}
+	}
+}
