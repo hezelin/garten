@@ -18,6 +18,10 @@
 			body {
 				background-color: rgb(245, 245, 245);
 			}
+			
+			[v-cloak] {
+				display: none;
+			}
 		</style>
 	</head>
 
@@ -25,99 +29,191 @@
 		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
 			<div class="mui-scroll">
 				<!--<ul class="mui-table-view mui-table-view-chevron">-->
-					<div class="home-rent-container">
-						<div class="home-rent-item">
-							<div class="home-rent-bg" style="background: url(../img/tradeListbg2.png); background-size: cover;">   
-								<div class="home-rent-money-bg"></div> 
-								<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
-								<div class="home-rent-name">
-									某某店铺
-								</div>
-								<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
+				<div class="home-rent-container" id="trade-list">
+					<div class="home-rent-item" v-for="item in data" v-cloak data-id="{{ item.id }}" data-shop-id="{{ item.shop_id }}" v-on:tap="openDetail">
+						<div class="home-rent-bg" style="background: url({{ item.cover }}); background-size: cover;">
+							<div class="home-rent-bg-cover"></div>
+							<div class="home-rent-money-bg"></div>
+							<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>{{ item.price}}</em></div>
+							<div class="home-rent-name">
+								{{ item.shop_name }}
 							</div>
-							<label class="home-rent-context">菜地认租 新年特惠</label>
+							<div class="home-rent-logo" style="background: url({{ item.shop_image }}); background-size: cover;"></div>
 						</div>
-						<div class="home-rent-item">
-							<div class="home-rent-bg" style="background: url(../img/tradeListbg1.png); background-size: cover;">
-								<div class="home-rent-money-bg"></div>
-								<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
-								<div class="home-rent-name">
-									某某店铺
-								</div>
-								<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
-							</div>
-							<label class="home-rent-context">玉米地认租 新年特惠</label>
-						</div>
-						<div class="home-rent-item">
-							<div class="home-rent-bg" style="background: url(../img/tradeListbg2.png); background-size: cover;">
-								<div class="home-rent-money-bg"></div>
-								<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
-								<div class="home-rent-name">
-									某某店铺
-								</div>
-								<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
-							</div>
-							<label class="home-rent-context">菜地认租 新年特惠</label>
-						</div>
+						<label class="home-rent-context">{{ item.title }}</label>
 					</div>
-					<!--//刷新容器-->
+				</div>
+				<!--//刷新容器-->
 				<!--</ul>-->
 			</div>
 		</div>
 		<div class="my-toast" id="myToast">
-			<span class="my-toast-content"></span>
+			<span class="my-toast-content">123</span>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
+		<script src="../js/vue.min.js"></script>
 		<script src="../js/public.js"></script>
 		<script>
-			
+			var firstLoad = true;
+			var bugReset = false;
+			var title = "";
+			// 第一页
+			var page = 1;
+			var categoryID = "";
+			// 初始化vue
+			var resData = {
+				sucess: 'true',
+				data: []
+			};
+			var vueObj = new Vue({
+				el: "#trade-list",
+				data: resData,
+				methods: {
+					openDetail: function(event) {
+						openTradeDetail(event);
+					}
+				}
+			});
+			var categoryURL = [{
+				"1": "1"
+			}, {
+				title: "认租",
+				url: "http://farm.rrzuji.com/v1/items?" + fnCreateSign() + "&category=1&fields=id,shop_id,shop_name,shop_image,title,cover,price,high_price"
+			}, {
+				title: "亲子",
+				url: "http://farm.rrzuji.com/v1/items?" + fnCreateSign() + "&category=2&fields=id,shop_id,shop_name,shop_image,title,cover,price,high_price"
+			}, {
+				title: "农家乐",
+				url: "http://farm.rrzuji.com/v1/items?" + fnCreateSign() + "&category=3&fields=id,shop_id,shop_name,shop_image,title,cover,price,high_price"
+			}, {
+				title: "民宿",
+				url: "http://farm.rrzuji.com/v1/items?" + fnCreateSign() + "&category=4&fields=id,shop_id,shop_name,shop_image,title,cover,price,high_price"
+			}, ]
 			setTimeout(function() {
 				mui.init({
 					pullRefresh: {
 						container: "#refreshContainer",
+						down: {
+							callback: downCallBack
+						},
 						up: {
 							callback: upCallback
 						}
 					}
 				});
 			}, 500);
-
-			function upCallback() {
-				window.setTimeout(function() {
-					// 还有更多数据就显示false，否则显示true
-					mui('#refreshContainer').pullRefresh().endPullupToRefresh();
-				}, 700);
+			/**
+			 * 
+			 * 获取列表数据 up = true为上拉加载标志
+			 */
+			function getData(URL, title, up) {
+				if (NetWorkStatus()) {
+					return;
+				}
+				if (bugReset) {
+					bugReset = false;
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+					return;
+				}
+				URL = URL + "&page=" + page;
+				console.log(URL);
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log("获取" + title + "列表成功" + res);
+						res = JSON.parse(res);
+						if (res.success) {
+							if (firstLoad) {
+								// 整体更换
+								console.log("第一次刷新");
+								vueObj.$data = res;
+								firstLoad = false;
+								bugReset = true;
+								mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+								return;
+							} else {
+								if (up) {
+									for (var i = 0; i < res.data.length; i++) {
+										vueObj.data.push(res.data[i]);
+									}
+								} else {
+//									for (var i = 0; i < res.data.length; i++) {
+//										vueObj.data.unshift(res.data[i]);
+//									}
+									vueObj.$data = res;
+								}
+							}
+						}
+						if (up) {
+							mui('#refreshContainer').pullRefresh().endPullupToRefresh();
+						} else {
+							mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						console.log(JSON.stringify(xhr));
+						console.log("获取" + title + "的列表失败");
+						if (up) {
+							mui('#refreshContainer').pullRefresh().endPullupToRefresh();
+						} else {
+							mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+						}
+					}
+				});
 			}
-
+			/**
+			 * 上拉加载业务实现 
+			 */
+			function upCallback() {
+				page = page + 1;
+				getData(categoryURL[categoryID].url, title, true);
+			};
+			/**
+			 * 下拉刷新业务实现 
+			 */
+			function downCallBack() {
+				page = 1;
+				getData(categoryURL[categoryID].url, title, false);
+			};
+			/**
+			 * 打开商品详情页
+			 */
+			function openTradeDetail(event) {
+				var thisbtn = event.target;
+				if (thisbtn.classList.contains("loading")) {
+					return;
+				}
+				thisbtn.classList.add("loading");
+				var nwaiting = plus.nativeUI.showWaiting();
+				var webviewTradeHead = plus.webview.getWebviewById("webview-trade-header");
+				var oldview = webviewTradeHead.children();
+				for (var i = 0; i < oldview.length; i++) {
+					webviewTradeHead.remove(oldview[i]);
+					oldview[i].close();
+				}
+				mui.fire(webviewTradeHead, "initTradeView");
+				webviewTradeHead.show("pop-in", 300, function() {
+					thisbtn.classList.remove("loading");
+				});
+				//打开商品父模板时加载第一页
+				//商品页
+				var newWebview = plus.webview.create("../thirdlv/webview-home-rent-detail.html", "webview-home-rent-detail", fnSetSubpageStyle(98, 0));
+				newWebview.onloaded = function() {
+					setTimeout(function() {
+						nwaiting.close();
+						webviewTradeHead.append(newWebview);
+					}, 100);
+				};
+			}
 			mui.plusReady(function() {
-
+				categoryID = plus.webview.currentWebview().category;
+				setTimeout(function() {
+					mui('#refreshContainer').pullRefresh().pulldownLoading();
+				}, 1000);
 				mui(".home-rent-container").on("tap", ".home-rent-item", function(e) {
-					var thisbtn = this;
-					if (this.classList.contains("loading")) {
-						return;
-					}
-					this.classList.add("loading");
-					var nwaiting = plus.nativeUI.showWaiting();
-					var webviewTradeHead = plus.webview.getWebviewById("webview-trade-header");
-					var oldview = webviewTradeHead.children();
-					for (var i = 0; i < oldview.length; i++) {
-						webviewTradeHead.remove(oldview[i]);
-						oldview[i].close();
-					}
-					mui.fire(webviewTradeHead, "initTradeView");
-					webviewTradeHead.show("pop-in", 300, function() {
-						thisbtn.classList.remove("loading");
-					});
-					//打开商品父模板时加载第一页
-					//商品页
-					var newWebview = plus.webview.create("../thirdlv/webview-home-rent-detail.html", "webview-home-rent-detail", fnSetSubpageStyle(98, 0));
-					newWebview.onloaded = function() {
-						setTimeout(function() {
-							nwaiting.close();
-							webviewTradeHead.append(newWebview);
-						}, 100);
-					};
+					openTradeDetail(e);
 				});
 			});
 		</script>

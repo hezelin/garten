@@ -22,23 +22,37 @@
 	</head>
 
 	<body>
+		<div class="header-control header-control-greenBold head-tab-hide">
+			<div class="header-control-left-btn">
+				<span class="app-log-span header-control-left-btn-span"></span>
+				<!--<span class="white-arrow-big-span header-control-left-btn-span"></span>-->
+			</div>
+			<div>
+				<span id="webview-head-title">地图</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span white-three-point-span"></span>
+			</div>
+		</div>
 		<div class="mui-content">
 			<div class="title">
 				<h4>导航</h4>
 			</div>
 		</div>
-		
+
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
 		</div>
 		<script src="js/mui.min.js"></script>
-		<script src="../js/public.js" ></script>
 		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
 		<script>
 			mui.init();
 			var first = null;
 			mui.back = function() {
-				quitApp(first);
+				if (mui.os.plus) {
+					mui.fire(plus.webview.getWebviewById("HBuilder"), "backHome", {});
+				}
 			};
 		</script>
 	</body>

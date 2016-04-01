@@ -41,52 +41,13 @@
 	</head>
 
 	<body>
-		<div class="header-control header-control-greenBold head-tab-active" id="home-header-control">
-			<div class="header-control-left-btn app-log-div">
-				<span class="app-log-span header-control-left-btn-span"></span>
-			</div>
-			<div class="header-control-app-name">
-				<span id="webview-head-title">曦山农场</span>
-			</div>
-			<div class="header-control-right-btn">
-				<span class="header-control-right-btn-span search-span"></span>
-				<span class="header-control-right-btn-span white-three-point-span"></span>
-			</div>
-		</div>
-		<div class="header-control header-control-greenBold head-tab-hide">
-			<div class="header-control-left-btn">
-				<span class="app-log-span header-control-left-btn-span"></span>
-				<!--<span class="white-arrow-big-span header-control-left-btn-span"></span>-->
-			</div>
-			<div>
-				<span id="webview-head-title">社区</span>
-			</div>
-			<div class="header-control-right-btn">
-				<span class="header-control-right-btn-span white-three-point-span"></span>
-			</div>
-		</div>
-		<div class="header-control header-control-greenBold head-tab-hide">
-			<div class="header-control-left-btn">
-				<span class="app-log-span header-control-left-btn-span"></span>
-				<!--<span class="white-arrow-big-span header-control-left-btn-span"></span>-->
-			</div>
-			<div>
-				<span id="webview-head-title">地图</span>
-			</div>
-			<div class="header-control-right-btn">
-				<span class="header-control-right-btn-span white-three-point-span"></span>
-			</div>
-		</div>
-		<div style="text-align:center;height:44px;line-height:44px; background-color: #FFFFFF;">
-			<div id="pull"><img id="icon" src="img/pull_arrow.png" /></div><font id="text">下拉可刷新</font>
-		</div>
 		<!--底部nav栏-->
 		<div id="index-bar-tab">
-			<div id="home" class="index-tab-item index-tab-active" data-href="webview-home.html">
+			<div id="home" class="index-tab-item index-tab-active" data-href="webview-home-header.html">
 				<span class="icon-index icon-index-home"></span>
 				<span class="icon-label">首页</span>
 			</div>
-			<div id="comu" class="index-tab-item" data-href="webview-comu.html">
+			<div id="comu" class="index-tab-item" data-href="webview-comu-header.html">
 				<span class="icon-index icon-index-comu"></span>
 				<span class="icon-label">社区</span>
 			</div>
@@ -107,76 +68,15 @@
 			mui.init();
 			// 初始化
 			// webview-my页要放在最后
-			var subpages = ['webview-home.html', 'webview-comu.html', 'webview-nav.html', 'webview-my.html'];
+			var subpages = ['webview-home-header.html', 'webview-comu-header.html', 'webview-nav.html', 'webview-my.html'];
 			// 默认激活标签
-			var activeTab = "webview-home.html";
-			
-			
-			//\\
-			var etext = null,
-					eicon = null;
-				etext = document.getElementById("text");
-				eicon = document.getElementById("icon");
-			function pullReset() {
-					etext.innerText = "下拉可刷新";
-					eicon.src = "img/pull_arrow.png";
-					eicon.style.webkitTransition = "";
-					eicon.style.webkitTransform = "";
-					eicon.style.webkitAnimation = "";
-			}
+			var activeTab = "webview-home-header.html";
+			// 供其他三个平级页面调用
+			window.addEventListener("backHome", function() {
+				var btn = document.getElementById("home");
+				mui.trigger(btn, "tap");
+			});
 			mui.plusReady(function() {
-				
-				//	var ws = plus.webview.currentWebview();
-				function fnPullRefresh() {
-					var ws = plus.webview.getWebviewById("webview-home.html");
-					ws.addEventListener("dragBounce", onPullStateChange, false);
-					ws.setBounce({
-						position: {
-							top: "100px"
-						},
-						changeoffset: {
-							top: "50px"
-						}
-					});
-
-					function onPullStateChange(e) {
-						switch (e.status) {
-							case "beforeChangeOffset": //下拉可刷新状态
-								pull1();
-								break;
-							case "afterChangeOffset": //松开可刷新状态
-								pull2();
-								break;
-							case "dragEndAfterChangeOffset": //正在刷新状态
-								ws.evalJS("onRefresh();");
-								pull3();
-								break;
-							default:
-								break;
-						}
-					}
-				}
-
-				function pull1() {
-					etext.innerText = "下拉可刷新";
-					eicon.style.webkitTransition = "all 0.3s ease-in";
-					eicon.style.webkitTransform = "rotate(0deg)";
-				}
-
-				function pull2() {
-					etext.innerText = "松开可刷新";
-					eicon.style.webkitTransition = "all 0.3s ease-in";
-					eicon.style.webkitTransform = "rotate(180deg)";
-				}
-
-				function pull3() {
-					etext.innerText = "正在刷新...";
-					eicon.src = "img/pull_fresh.png";
-					eicon.style.webkitAnimation = "spin 1s infinite linear";
-				}
-
-				
-				//\\
 				// 仅支持竖屏显示
 				plus.screen.lockOrientation("portrait-primary");
 				// 打开app时马上更新本地储存区
@@ -213,8 +113,7 @@
 				var self = plus.webview.currentWebview();
 
 				function fnCloseSplashScreen(loadCount) {
-					if (loadCount == 0) {
-						plus.navigator.closeSplashscreen();
+					if (loadCount == 0) {						
 						var webHead = mui.preload({
 							url: "webview-header.html",
 							id: "webview-header",
@@ -234,16 +133,18 @@
 				}
 				for (var i = 0; i < subpages.length; i++) {
 					if (i == subpages.length - 1) {
-						fnPullRefresh();
+//						plus.webview.currentWebview().onloaded = function() {
+//					plus.navigator.closeSplashscreen();
+//				}
 						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 101));
 						sub.onloaded = function() {
 							loadCount--;
 							fnCloseSplashScreen(loadCount);
-							plus.webview.show("webview-home.html", "none");
+							plus.webview.show("webview-home-header.html", "none");
 							console.log("调试信息：" + (userLoginStatus() ? "已登录" : "未登录"));
 						};
 					} else {
-						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(98, 101));
+						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));
 						sub.onloaded = function() {
 							loadCount--;
 							fnCloseSplashScreen(loadCount);
@@ -256,7 +157,7 @@
 					var targetTab = this.getAttribute("data-href");
 					if (targetTab == activeTab) {
 						return;
-					}
+					}					
 					// 更换状态
 					document.querySelector(".index-tab-active").classList.remove("index-tab-active");
 					this.classList.add("index-tab-active");
@@ -264,32 +165,12 @@
 					if (targetTab == "webview-my.html" && userLoginStatus()) {
 						mui.fire(plus.webview.getWebviewById(targetTab), "setNum", {});
 					}
-					if (targetTab == "webview-home.html") {
-						var oldElem = document.getElementsByClassName("head-tab-active")[0].classList;
-						oldElem.remove("head-tab-active");
-						oldElem.add("head-tab-hide");
-						headElem[0].classList.add("head-tab-active");
-						headElem[0].classList.remove("head-tab-hide");
-					}
-					if (targetTab == "webview-comu.html") {
-						var oldElem = document.getElementsByClassName("head-tab-active")[0].classList;
-						oldElem.remove("head-tab-active");
-						oldElem.add("head-tab-hide");
-						headElem[1].classList.add("head-tab-active");
-						headElem[1].classList.remove("head-tab-hide");
-					}
-					if (targetTab == "webview-nav.html") {
-						var oldElem = document.getElementsByClassName("head-tab-active")[0].classList;
-						oldElem.remove("head-tab-active");
-						oldElem.add("head-tab-hide");
-						headElem[2].classList.add("head-tab-active");
-						headElem[2].classList.remove("head-tab-hide");
-					}
 					plus.webview.hide(activeTab);
 					plus.webview.show(targetTab);
-					activeTab = targetTab;
+					activeTab = targetTab;					
 				});
 			});
+			
 		</script>
 	</body>
 

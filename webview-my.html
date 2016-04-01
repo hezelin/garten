@@ -97,7 +97,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
 		</div>
@@ -108,7 +108,9 @@
 			mui.init();
 			var first = null;
 			mui.back = function() {
-				quitApp(first);
+				if (mui.os.plus) {
+					mui.fire(plus.webview.getWebviewById("HBuilder"), "backHome", {});
+				}
 			};
 			//  获取红包、收藏、购物车数量，并更新面板
 			var myBag = document.getElementById("myBag");
@@ -173,7 +175,10 @@
 				if (URL == null) {
 					return;
 				}
-				var dtask = plus.downloader.createDownload(URL, {filename: "_doc/head.jpg"}, function(d, status) {
+				console.log("开始更新头像");
+				var dtask = plus.downloader.createDownload(URL, {
+					filename: "_doc/head.jpg"
+				}, function(d, status) {
 					// 下载完成
 					if (status == 200) {
 						console.log("头像下载成功: " + d.filename);
@@ -185,11 +190,10 @@
 				});
 				//dtask.addEventListener( "statechanged", onStateChanged, false );				
 				dtask.start();
-				
 			}
 			// 获取通知
 			function getNoice() {
-//				console.log("获取通知，未开发");
+				//				console.log("获取通知，未开发");
 			}
 			// 更新面板昵称、手机
 			window.addEventListener("changeNameOrPhone", function() {

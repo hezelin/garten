@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<title></title>
+		<style>
+			html,
+			body {
+				/*height: 100%;*/
+				background-color: #efeff4;
+			}
+			/*.mui-bar-nav~.mui-content{
+                padding-top: 89px;
+            }*/
+			
+			.mui-pull-top-pocket {
+				top: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class="white-arrow-big-span header-control-left-btn-span"></span>
+			</div>
+			<div>
+				<span id="webview-head-title"></span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span search-span"></span>
+			</div>
+		</div>
+
+		<!--<div class="header-control-tab-fixed" style="display: none;">
+			<div class="header-control-tab">
+				<div class="header-control-tab-nav header-control-tab-nav-active" data-transform="none">
+					全部
+				</div>
+				<div class="header-control-tab-nav header-control-tab-nav-lay" data-transform="translateX(100%)">
+					进行中
+				</div>
+				<div class="header-control-tab-nav header-control-tab-nav-lay" data-transform="translateX(200%)">
+					已结束
+				</div>
+			</div>
+			<div class="head-control-slider head-control-slider-3" style="transform: none">
+			</div>
+		</div>-->
+		<!--<header class="mui-bar-nav"></header>
+		<div class="mui-content"></div>-->
+
+		<!--<div class="loadingPage">
+			<div class="loadingPage-middle">
+				<div class="spinner">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
+				<span class="loadingPage-text">努力加载中...</span>
+			</div>
+		</div>-->
+
+		<!--<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>-->
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
+		<script>
+//		mui.init({
+//					subpages: [{
+//						url: "/secondlv/webview-home-rent.html",
+//						id: "/secondlv/webview-home-rent.html",
+//						styles: fnSetSubpageStyle(98, 0)
+//					}]
+//				});
+			
+			function setTitle(title) {
+				document.getElementById("webview-head-title").innerText = title;
+			}
+			mui.plusReady(function() {
+				var w = plus.webview.currentWebview();
+				var title = w.title;
+				setTitle(title);
+				mui.init({
+					subpages: [{
+						url: "/secondlv/webview-home-rent.html",
+						id: "/secondlv/webview-home-rent.html",
+						styles: fnSetSubpageStyle(98, 0),
+						extras: {
+							title: title,
+							category: w.category
+						}
+					}]
+				});
+			});
+		</script>
+	</body>
+
+</html>

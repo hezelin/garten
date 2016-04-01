@@ -9,8 +9,8 @@ function fnSetSubpageStyle(Top, Bottom) {
 		bottom: fnPx2Rem(Bottom, true),
 		render: "always",
 		popGesture: "none",
-		hardwareAccelerated: true,
-		scrollIndicator: "none"
+		hardwareAccelerated: true
+//		scrollIndicator: "none"
 	}
 };
 
@@ -319,7 +319,7 @@ function NetWorkStatus() {
 	var val = plus.networkinfo.getCurrentType();
 	// 0表示网络连接状态未知，1表示网络无连接
 	if (val == 0 || val == 1) {
-		mui.toast("请求发送失败,请检查您当前的网络环境");
+		mui.toast("请求发送失败,请检查您当前的网络环境", 8000);
 		return true;
 	}
 }
@@ -394,67 +394,10 @@ mui.toast = function(message) {
 	}, 2000)
 }
 
+
 /**
- * @description 下拉刷新 
- * @param {function} ajaxFunc
- * @param {function} successCallBack
- * @param {function} errorCallBack
+ * @description 退出app
  */
-//function fnPullRefresh() {
-//	var ws = plus.webview.currentWebview();
-//	ws.setPullToRefresh({
-//		support: true,
-//		height: "50px",
-//		range: "80px",
-//		contentdown: {
-//			caption: "下拉刷新"
-//		},
-//		contentover: {
-//			caption: "松开刷新"
-//		},
-//		contentrefresh: {
-//			caption: "刷新中..."
-//		}
-//	}, function() {
-//		setTimeout(function() {
-//			console.log('正在请求');
-//			ws.endPullToRefresh();
-//		}, 600);
-//	});
-//}
-
-function fnPullRefresh() {
-	// DOMContentLoaded事件处理
-
-	
-}
-
-//
-//function fnPullRefresh(ajaxFunc, successCallBack, errorCallBack) {
-//	init: PullRefresh: function() {
-//		var ws = plus.webview.currentWebview();
-//		ws.setPullToRefresh({
-//			support: true,
-//			height: "50px",
-//			range: "80px",
-//			contentdown: {
-//				caption: "下拉刷新"
-//			},
-//			contentover: {
-//				caption: "松开刷新"
-//			},
-//			contentrefresh: {
-//				caption: "刷新中..."
-//			}
-//		}, function() {
-//			setTimeout(function() {
-//				console.log('正在请求');
-//				ws.endPullToRefresh();
-//			}, 1000);
-//		});
-//	},
-//}
-
 function quitApp() {
 	if (!first) {
 		first = new Date().getTime();

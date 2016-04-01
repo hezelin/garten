@@ -230,7 +230,9 @@
 					"secondlv/webview-my-collect.html",
 					"webview-trade-header.html",
 					"login/login.html",
-					"webview-shop-header.html"
+					"webview-shop-header.html",
+					"webview-home-header.html",
+					"webview-comu-header.html"
 				],
 				"priority": 0
 			},
@@ -333,7 +335,11 @@
 					"css/FlexStyle.css",
 					"css/mui.min.css",
 					"js/flexible.debug.js",
-					"css/style.css"
+					"css/style.css",
+					"img/head-three-point.png",
+					"/js/public.js",
+					"img/logo.png",
+					"js/public.js"
 				],
 				"refer": [
 					"webview-comu.html",
@@ -383,13 +389,15 @@
 					"img/head-search.png",
 					"img/img4.png",
 					"css/mui.css",
-					"img/imgDefault.png"
+					"img/imgDefault.png",
+					"js/vue.min.js"
 				],
 				"refer": [
 					"webview-nav.html",
 					"webview-my.html",
 					"secondlv/webview-home-rent.html",
-					"crop.html"
+					"crop.html",
+					"webview-normal-list-header.html"
 				],
 				"priority": 0
 			},
@@ -636,7 +644,9 @@
 					"img/tradeListbg1.png",
 					"css/mui.min.css",
 					"css/style.css",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"js/vue.min.js",
+					"img/rent-bg-cover.png"
 				],
 				"refer": [
 					"secondlv/webview-trade-header.html",
@@ -937,6 +947,58 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"data/city.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"webview-home-header.html": {
+				"resources": [
+					"img/head-search.png",
+					"img/head-three-point.png",
+					"img/logo.png",
+					"webview-home.html",
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/flexible.debug.js",
+					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"webview-comu-header.html": {
+				"resources": [
+					"img/head-three-point.png",
+					"img/logo.png",
+					"webview-comu.html",
+					"js/flexible_css.debug.js",
+					"js/md5.min.js",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/flexible.debug.js",
+					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"webview-normal-list-header.html": {
+				"resources": [
+					"secondlv/webview-home-rent.html",
+					"fonts/mui.ttf",
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"img/img.png",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/flexible.debug.js",
+					"img/head-search.png"
 				],
 				"refer": [],
 				"priority": 0

@@ -261,6 +261,10 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
 
 // 头部控制栏，公用部分 
 // 模板为webview-header
+.header-control-fixed {
+    // 为setting页的头部栏设置
+    position: fixed;
+}
 .header-control {
     width: 100%;
     @include px2rem(height,100px);
@@ -370,43 +374,44 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
 }
 @-webkit-keyframes moo {
     10% {
-        -webkit-transform: translateY(-115%);
+        -webkit-transform: translateY(-165%);
         opacity: 0.9;
     }
     15% {
-        -webkit-transform: translateY(-100%);
+        -webkit-transform: translateY(-150%);
         opacity: 1;
     }
     80% {
-        transform: translateY(-100%);
+        transform: translateY(-150%);
         opacity: 1;
     }
     100% {
-        -webkit-transform: translateY(-100%);
+        -webkit-transform: translateY(-150%);
         opacity: 0;
     }
 }
 @keyframes moo {
     10% {
-        transform: translateY(-115%);
+        transform: translateY(-165%);
         opacity: 0.9;
     }
     15% {
-        transform: translateY(-100%);
+        transform: translateY(-150%);
         opacity: 1;
     }
     80% {
-        transform: translateY(-100%);
+        transform: translateY(-150%);
         opacity: 1;
     }
     80% {
-        transform: translateY(-100%);
+        transform: translateY(-150%);
         opacity: 0;
     }
 }
 
 .my-toast-content {
     @include font-dpr(14px);
+    max-width: 100%;
     @include px2rem(height, 80px);
     @include px2rem(padding-left, 25px);
     @include px2rem(padding-right, 25px);
@@ -415,4 +420,13 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     @include px2rem(border-radius, (40px, 40px));
     color: #FFFFFF;
     background-color: rgba(0, 0, 0, 0.6);
+    @include Nowrap;
+}
+
+// 轮播图
+.span-cover-slider {
+    @include px2rem(width, 750px);
+    @include px2rem(height, 360px);
+    display: block;
+    background-size: cover;
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>农场首页</title>
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control header-control-greenBold head-tab-active" id="home-header-control">
+			<div class="header-control-left-btn app-log-div">
+				<span class="app-log-span header-control-left-btn-span"></span>
+			</div>
+			<div class="header-control-app-name">
+				<span id="webview-head-title">曦山农场</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span search-span"></span>
+				<span class="header-control-right-btn-span white-three-point-span"></span>
+			</div>
+		</div>
+
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
+		<script>
+			mui.init({
+				subpages: [{
+					url: "webview-home.html",
+					id: "webview-home.html",
+					styles: fnSetSubpageStyle(98, 0)
+					
+				}]
+			});
+		</script>
+	</body>
+
+</html>

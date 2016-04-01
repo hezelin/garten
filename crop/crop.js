@@ -1,3 +1,4 @@
+
 window.addEventListener("loadFileCrop", function(e) {
 	if (typeof e.detail == "undefined") {
 		return;
@@ -18,6 +19,8 @@ var img = null;
 var fileLoadBool = false;
 //截取视口宽高比例,默认为1，正方形
 var showWindowScale = 1;
+// 0.8表示的是遮罩中空宽度为视口宽的0.8倍
+var coverWidthScale = 0.8;
 //原图尺寸
 var imgNaturalwidth = 0,
 	imgNaturalheight = 0;
@@ -168,7 +171,7 @@ function handIMG() {
 				mui.toast("正在截取图片...");
 				var data = elem.toDataURL();
 				//                            document.querySelector("#printURL").innerHTML = data;
-//				document.querySelector("#test").src = data;
+				//				document.querySelector("#test").src = data;
 				// 将图片保存到本地
 				saveCropImg(data);
 				//								document.querySelector("#testconsole").innerHTML = "截取宽度<br>" + cutWidth + "<br>截取高度<br>" + cutHeight;
@@ -225,8 +228,6 @@ function handleFiles(filePath) {
 
 
 function drawcover() {
-	// 0.8表示的是遮罩中空宽度为视口宽的0.8倍
-	var coverWidthScale = 0.8;
 	var ElemTop = document.getElementById("coverTop");
 	var ElemLeft = document.getElementById("coverLeft");
 	var ElemRight = document.getElementById("coverRight");
@@ -238,6 +239,7 @@ function drawcover() {
 	var coverHeight = viewWidth * coverWidthScale * showWindowScale;
 	var baseTopSize = (viewHeight - coverHeight) / 2;
 	var baseLeftSize = (viewWidth - coverWidth) / 2;
+	// 视口值与偏移值在截取图片的时候会用到
 	// 保存视口值
 	ElemTop.setAttribute("data-show-w", coverWidth);
 	ElemTop.setAttribute("data-show-h", coverHeight);
@@ -248,6 +250,7 @@ function drawcover() {
 	// 改变遮罩位置
 	ElemTop.style.height = baseTopSize + "px";
 	ElemLeft.style.width = baseLeftSize + "px";
+	// 遮罩两边绘制的时候可能会出现一点空隙，乘1.01稍微加长一点绘制高度挡住空隙
 	ElemLeft.style.height = coverHeight * 1.01 + "px";
 	ElemLeft.style.top = baseTopSize + "px";
 	ElemRight.style.width = baseLeftSize + "px";
@@ -288,8 +291,8 @@ function touchMove(event) {
 		return;
 	}
 	moveDiv({
-		x: (newPos.x - mousePos.x) * 1.3,
-		y: (newPos.y - mousePos.y) * 1.3
+		x: (newPos.x - mousePos.x) * 1.2, // 加快移动速度
+		y: (newPos.y - mousePos.y) * 1.2
 	});
 	mousePos = newPos;
 }

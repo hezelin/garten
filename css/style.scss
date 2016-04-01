@@ -27,6 +27,26 @@
     -webkit-transform: scaleY(.5);
     transform: scaleY(.5);
     background-color: #c8c7cc;
+//  position: absolute;
+//  right: 0px;
+//  height: 0px;
+//  content: '';
+//  z-index: 999;
+//  border-right: 13px solid transparent;
+//  border-top: 13px solid transparent;
+//  border-left: 13px solid transparent;
+//  border-bottom: 13px solid #f3f3f3;
+}
+#index-bar-tab::after {
+//  position: absolute;
+//  height: 0px;
+//  content: '';
+//  top: -2px;
+//  right: 0px;
+//  border-right: 13px solid transparent;
+//  border-top: 13px solid transparent;
+//  border-left: 13px solid transparent;
+//  border-bottom: 13px solid #f16b80;
 }
 .index-tab-item {
     width: 25%;
@@ -272,6 +292,7 @@
     @include px2rem(margin-bottom, 10px);
     display: block;
     text-align: left;
+    @include Nowrap;
 }
 .home-news-content-item-detail-money {
     @include px2rem(margin-bottom, 10px);
@@ -352,6 +373,7 @@
     @include px2rem(margin-bottom, 30px);
     display: inline-block;
     position: relative;
+     @include px2rem(margin-right, 5px);
 }
 //每个图片的下方标题
 .home-news-content-item-photo-title {
@@ -378,6 +400,15 @@
 .home-rent-bg {
     @include px2rem(height, 380px);
     position: relative;
+//      box-shadow: 0px -70px 70px -30px rgba(0, 0, 0, 0.7) inset;
+//      -webkit-box-shadow: 0px -60px 60px -20px rgba(0, 0, 0, 0.7) inset;       
+}
+.home-rent-bg-cover {
+    width: 100%;
+    @include px2rem(height, 205px);
+    position: absolute;    
+    bottom: 0;
+    background-color: rgba(0 ,0, 0, 0.5);
 }
 //金额背景
 .home-rent-money-bg {
@@ -393,7 +424,7 @@
     display: inline-block;
     position: absolute;
     left: 0;
-    @include px2rem(bottom, 67px);
+    @include px2rem(bottom, 10px);
 }
 //金额内容
 .home-rent-money-content {
@@ -403,8 +434,8 @@
     color: #FFFFFF;
     display: inline-block;
     position: absolute;
-    @include px2rem(left, 10px);
-    @include px2rem(bottom, 67px);
+    @include px2rem(left, 3px);
+    @include px2rem(bottom, 5px);
     em {
         @include font-dpr(20px);
     }
@@ -2351,29 +2382,24 @@ input[type=color],input[type=date],input[type=datetime-local],input[type=datetim
 .mui-popover {
     @include px2rem(width, 250px);
 }
-// 上拉加载样式设置
-.mui-table-view {
-    background-color: inherit !important;
+//上拉加载和下拉刷新样式设置
+.mui-ios  {
+    .mui-pull-caption {
+        @include font-dpr(14px);
+    }
+    .mui-icon-pulldown {
+        @include font-dpr(14px);
+    }
+    .mui.spinner {
+        @inlcude font-dpr(14px);
+    }
+    .mui-pull-bottom-pocket {
+        height: 50px;
+    }
 }
-// 底部加载栏容器
-.mui-pull-bottom-pocket {
-    @include px2rem(height, 50px);
+.mui-android {
+    .mui-pull-top-pocket {
+        top: 50px;
+    }
 }
-.mui-pull {    
-    @include px2rem(height, 50px);
-    @include px2rem(line-height, 50px);
-//  @include px2rem(top, 10px);
-    position: static;
-}
-.mui-pull-caption {
-    font-size: inherit;
-}
-// 图标大小
-.mui-spinner {
-    @include px2rem(width, 40px);
-    @include px2rem(height, 40px);
-}
-// 文字样式
-.mui-pull-caption, .mui-pull-caption-refresh {
-    @include font-dpr(14px);
-}
+
