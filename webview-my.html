@@ -298,8 +298,33 @@
 				});
 				//打开我的农场
 				document.getElementById("user-menu-group-myfarm").addEventListener("tap", function(e) {});
-				//打开我的问答
-				document.getElementById("user-menu-group-myrequest").addEventListener("tap", function(e) {});
+				//打开我的社区
+				document.getElementById("user-menu-group-myrequest").addEventListener("tap", function(e) {
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
+					showWebviewCOM(plus.webview.currentWebview(), "secondlv/webview-my-comu.html", {
+						func: "initPage",
+						detail: {
+							tokenValue: plus.storage.getItem("tokenValue")
+						}
+					});
+					//					mui.openWindow({
+					//						url: "secondlv/webview-my-comu.html",
+					//						id: "secondlv/webview-my-comu.html",
+					//						styles: fnSetSubpageStyle(0, 0),
+					//						createNew: false,
+					//						show: {
+					//							autoShow: true,
+					//							aniShow: "pop-in",
+					//							duration: 300
+					//						},
+					//						waiting: {
+					//							autoShow: true
+					//						}
+					//					});
+				});
 				//打开设置
 				document.getElementById("user-menu-group-setting").addEventListener("tap", function(e) {
 					if (!userLoginStatus()) {

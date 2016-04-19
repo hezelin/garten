@@ -28,9 +28,10 @@
 				<span class="black-arrow-big-span header-control-left-btn-span"></span>
 			</div>
 			<div class="trade-header-container">
+				<!--商品。详情-->
 				<span class="trade-header-nav trade-header-nav-active" data-url="/thirdlv/webview-home-rent-detail.html">商品</span>
 				<span class="trade-header-nav" data-url="/thirdlv/webview-home-rent-introduce.html">详情</span>
-				<span class="trade-header-nav" data-url="/thirdlv/webview-home-rent-comment.html">评论</span>
+				<span class="trade-header-nav" data-url="/thirdlv/webview-home-rent-comment.html" style="display: none;">评论</span>
 			</div>
 			<div class="header-control-right-btn">
 				<span class="header-control-right-btn-span black-three-point-span"></span>				
@@ -56,7 +57,9 @@
 		<script src="js/public.js"></script>
 		<script>
 			mui.init();
-			window.addEventListener("initTradeView", function() {
+			var itemID = "";
+			window.addEventListener("initTradeView", function(e) {
+				console.log(new Date().getTime().toString());
 				var tabNode = document.querySelectorAll(".trade-header-nav");
 				for (var i = 0; i < tabNode.length; i++) {
 					if (tabNode[i].classList.contains("trade-header-nav-active")) {

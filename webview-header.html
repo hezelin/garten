@@ -98,7 +98,13 @@
 			});
 			window.addEventListener("avatarCrop", function(e) {
 				document.getElementById("saveCrop").addEventListener("tap", function() {
+					this.innerText = "保存中";
 					mui.fire(plus.webview.getWebviewById("../crop/crop.html"), "saveCropAtCrop", {});
+				});
+			});
+			window.addEventListener("avatarCropError", function(e) {
+				document.getElementById("saveCrop").addEventListener("tap", function() {
+					this.innerText = "保存";
 				});
 			});
 			window.addEventListener("setCity", function(e) {

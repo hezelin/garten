@@ -25,7 +25,6 @@
 	<body>
 		<div id="slider" class="mui-slider">
 			<div class="mui-slider-group mui-slider-loop">
-				<!-- (循环轮播：第一个节点是最后一张图片) 节点数量等于轮播图片+1-->
 				<div class="mui-slider-item mui-slider-item-duplicate">
 					<a href="#">
 						<img src="../img/tradeListbg1.png">
@@ -144,8 +143,7 @@
 			</div>
 		</div>
 
-		<!--购买div，动画形式弹出-->
-		<div id="buyDiv" class="mutual-div">
+		<!--<div id="buyDiv" class="mutual-div">
 			<div class="buyDiv-title">
 				<span class="buyDiv-title-img" style="background: url(../img/shop-detail.png); background-size: cover;"></span>
 				<span class="buyDiv-title-context">某某农家乐 xxxxxx</span>
@@ -169,8 +167,33 @@
 			<div class="buyDiv-btn">
 				<button id="btnPostBuy">完成</button>
 			</div>
+		</div>-->
+		<div id="buyDiv" style="bottom: 100px;">
+			<div class="buyDiv-title">
+				<span class="buyDiv-title-img" style="background: url(../img/shop-detail.png); background-size: cover;"></span>
+				<span class="buyDiv-title-context">某某农家乐 xxxxxx</span>
+				<span id="buyDivClose"></span>
+			</div>
+			<div class="buyDiv-item">
+				<span class="buyDiv-group-title">套餐类型</span>
+			</div>
+			<div class="buyDiv-count">
+				<label class="buyDiv-group-title">
+					购买数量
+				</label>
+				<div class="buyDiv-count-left">
+					<div class="num-choice">
+						<span class="num-choice-left num-choice-item">-</span>
+						<span class="num-choice-mid num-choice-item">1</span>
+						<span class="num-choice-right num-choice-item">+</span>
+					</div>
+				</div>
+			</div>
+			<div class="buyDiv-btn">
+				<button id="btnPostBuy">完成</button>
+			</div>
 		</div>
-		<!--end-->
+
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
 		</div>
@@ -195,7 +218,7 @@
 				var val = chocieMID.innerText;
 				if (val == "1") {
 					return;
-				}				
+				}
 				chocieMID.innerText = parseInt(val) - 1;
 				choicePrice.innerText = parseFloat(choicePrice.innerText) - basePrice;
 			});
@@ -224,7 +247,7 @@
 					var shopHead = plus.webview.getWebviewById("webview-shop-header");
 					shopHead.show();
 					//预载好的页面不用等待页面onloaded
-					mui.fire(shopHead, "initPage");			
+					mui.fire(shopHead, "initPage");
 				});
 			});
 		</script>

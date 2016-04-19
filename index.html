@@ -47,11 +47,11 @@
 				<span class="icon-index icon-index-home"></span>
 				<span class="icon-label">首页</span>
 			</div>
-			<div id="comu" class="index-tab-item" data-href="webview-comu-header.html">
+			<div id="comu" class="index-tab-item" data-href="webview-comu-new.html">
 				<span class="icon-index icon-index-comu"></span>
 				<span class="icon-label">社区</span>
 			</div>
-			<div id="map" class="index-tab-item" data-href="webview-nav.html">
+			<div id="map" class="index-tab-item" data-href="webview-map.html">
 				<span class="icon-index icon-index-nav"></span>
 				<span class="icon-label">地图</span>
 			</div>
@@ -67,8 +67,8 @@
 		<script>
 			mui.init();
 			// 初始化
-			// webview-my页要放在最后
-			var subpages = ['webview-home-header.html', 'webview-comu-header.html', 'webview-nav.html', 'webview-my.html'];
+			// webview-my页要放在最后， 并且要与html中data-href统一
+			var subpages = ['webview-home-header.html', 'webview-comu-new.html', 'webview-map.html', 'webview-my.html'];
 			// 默认激活标签
 			var activeTab = "webview-home-header.html";
 			// 供其他三个平级页面调用
@@ -144,7 +144,7 @@
 							console.log("调试信息：" + (userLoginStatus() ? "已登录" : "未登录"));
 						};
 					} else {
-						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));
+						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));		
 						sub.onloaded = function() {
 							loadCount--;
 							fnCloseSplashScreen(loadCount);
@@ -164,6 +164,10 @@
 					// 如果已登录且是个人中心页面，则获取通知
 					if (targetTab == "webview-my.html" && userLoginStatus()) {
 						mui.fire(plus.webview.getWebviewById(targetTab), "setNum", {});
+					}
+					// 如果是社区页，则初始化
+					if (targetTab == "webview-comu-new.html") {
+						mui.fire(plus.webview.getWebviewById(targetTab), "initPage", {});
 					}
 					plus.webview.hide(activeTab);
 					plus.webview.show(targetTab);

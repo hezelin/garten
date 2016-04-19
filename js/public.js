@@ -278,8 +278,9 @@ function openLogin(btn) {
  * @description 打开webview，用截图显示来增加流畅度
  * @param {Object} 当前窗口对象
  * @param {String} 要打开的窗口地址
+ * @param {Object} 附加信息
  */
-function showWebviewCOM(currentView, newViewURL) {
+function showWebviewCOM(currentView, newViewURL, extra) {
 	var bitmap1 = null,
 		bitmap2 = null;
 	bitmap1 = new plus.nativeObj.Bitmap();
@@ -293,6 +294,7 @@ function showWebviewCOM(currentView, newViewURL) {
 		hardwareAccelerated: true
 	});
 	newView.addEventListener("loaded", function() {
+		mui.fire(newView, extra.func, extra.detail);
 		bitmap2 = new plus.nativeObj.Bitmap();
 		newView.draw(bitmap2, function() {
 			console.log("bitmap2截图成功");
@@ -316,6 +318,9 @@ function showWebviewCOM(currentView, newViewURL) {
  * @description 检查网络状况
  */
 function NetWorkStatus() {
+	if (!mui.plus) {
+		return;
+	}
 	var val = plus.networkinfo.getCurrentType();
 	// 0表示网络连接状态未知，1表示网络无连接
 	if (val == 0 || val == 1) {

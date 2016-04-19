@@ -1,7 +1,7 @@
 
 // px转rem
 // 设计稿元素尺寸/(设计稿宽度/10)*页面html.fontsize = 适应后的元素大小
-@mixin px2rem($property,$px-values,$baseline-px:75px,$support-for-ie:false){
+@mixin px2rem($property,$px-values,$important: false,$baseline-px:75px,$support-for-ie:false){
     //根据设计图大小设置baseline-px
     //求出基础rem大小
     $baseline-rem: $baseline-px / 1rem * 1;
@@ -18,7 +18,12 @@
     //  type-of(#fff)   => color
     //  type-of(blue)   => color
     @if type-of($px-values) == "number"{
-        #{$property}: $px-values / $baseline-rem;
+        @if ($important == true) {
+            #{$property}: $px-values / $baseline-rem !important;
+        }
+        @else {
+            #{$property}: $px-values / $baseline-rem;
+        }
     }
     @else {
         //创建一个空列表
@@ -30,7 +35,12 @@
             }
         }
         //返回设置 
-        #{$property}: $rem-values;
+        @if ($important == true) {
+            #{$property}: $rem-values !important;
+        }
+        @else {
+            #{$property}: $rem-values;
+        }
     }
 }
 
@@ -105,6 +115,10 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     font-family: "微软雅黑";
 }
 
+em {
+    font-style: normal;
+}
+
 //图标样式
 //箭头-右白箭头
 .white-arrow-span {
@@ -147,7 +161,7 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     @include px2rem(width, 47px);
     @include px2rem(height, 12px);
     background: url(../img/head-three-point.png);
-   @include px2rem(background-size, (47px, 11px));
+    @include px2rem(background-size, (47px, 11px));
     background-repeat: no-repeat;
     display: inline-block; 
     vertical-align: middle;
@@ -245,6 +259,17 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     @include px2rem(background-position-y,-100px);
 }
 
+// 购物车图片
+.shop-car-black-span {
+    @include px2rem(width, 40px);
+    @include px2rem(height, 40px);
+    background: url(../img/shop-car.png);
+    @include px2rem(background-size, (41px, 41px));
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle; 
+}
+
 //使元素垂直居中
 .set-middle {
     vertical-align: middle !important; 
@@ -275,6 +300,13 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     z-index: 20;
     display: table;
 }
+
+.trade-scroll-position {
+    @include px2rem(top, 98px);    
+    @include px2rem(bottom, 100px);
+}
+
+
 .header-control > div {
     display: table-cell;
     vertical-align: middle;
@@ -289,7 +321,7 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     text-align: left !important; 
 }
 .header-control-right-btn {
-    @include px2rem(width,130px);
+    @include px2rem(width,160px);
     text-align: right !important;
 }
 .header-control-left-btn-span {
@@ -330,6 +362,7 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
 .num-choice {
     @include px2rem(width, 192px);
     @include px2rem(height, 60px);
+    display: inline-block;
     font-size: 0;    
     background-color: #FFFFFF;
 }
@@ -428,5 +461,11 @@ body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
     @include px2rem(width, 750px);
     @include px2rem(height, 360px);
     display: block;
-    background-size: cover;
+}
+
+// 商品详情轮播图
+.trade-span-cover-slider {
+    @include px2rem(width, 750px);
+    @include px2rem(height, 385px);
+    display: block;
 }

@@ -110,6 +110,7 @@
 		<script src="../js/public.js"></script>
 		<script>
 			mui.init();
+			// 购买-动画
 			document.querySelector("#buyNow").addEventListener("tap", function() {
 				var id = "#buyDiv";
 				fnOpenTargetDiv(id);
@@ -118,6 +119,7 @@
 				var id = "#buyDiv";
 				fnCloseShade(id);
 			});
+			// 购买-动画end
 			//数字选择器
 			var chocieMID = document.querySelector(".num-choice-mid");
 			var choicePrice = document.querySelector(".buyDiv-money-count");
@@ -164,15 +166,12 @@
 					fnShowBarOperate();
 				}, 400);
 			});
-			var Range;
-
-			function fnShowBarWipe(Range, Width) {
-			}
 
 			function fnShowBarOperate() {
-				//获取屏幕视口宽度
-				var screenWidth = plus.screen.resolutionWidth;
+				//获取屏幕视口宽度				
 				var screenScale = plus.screen.scale;
+				var screenWidth = plus.screen.resolutionWidth;
+				screenWidth = mui.os.ios ? screenWidth * screenScale : screenWidth;  
 				//初始化页标
 				document.querySelector(".pageIndex").innerText = 1 + "/" + document.querySelectorAll(".showBar-img").length;
 				var nStartX = 0;
@@ -201,17 +200,20 @@
 					nStartX = touch.pageX;
 				});
 				container.addEventListener("touchend", function(e) {
-					console.log("滑动end");
 					e.preventDefault();
 					//已移动距离
-					Range = parseFloat(oBar.getAttribute("data-left")) % screenWidth;
+					var Range = parseFloat(oBar.getAttribute("data-left")) % screenWidth;
 					var Middle = screenWidth / 2;
+					console.log(Range);
+					console.log(screenWidth);
 					var Count = document.querySelectorAll(".showBar-img").length - 1;
 					var _left = parseFloat(oBar.getAttribute("data-left"));
 					Range = Math.abs(Range);
 					if (Range <= Middle) {
-						_left = _left + Range;
+						// 左移						
+						_left = _left + Range;		
 					} else {
+						// 右移
 						_left = _left - (screenWidth - Range);
 					}
 					if (_left >= 0) {
@@ -223,8 +225,8 @@
 					}
 					oBar.style.transform = "translate3d(" + _left + "px, 0px, 0px)";
 					oBar.style.WebkitTransform = "translate3d(" + _left + "px, 0px, 0px)";
-					oBar.style.transitionDuration = "700ms";
-					oBar.style.webkitTransitionDuration = "700ms";
+					oBar.style.transitionDuration = "1000ms";
+					oBar.style.webkitTransitionDuration = "1000ms";
 					//使用timeout队列解决滑动冲突的问题
 					alam.setup(function() {
 						oBar.style.transitionDuration = "0ms";

@@ -1,4 +1,5 @@
 
+var imgURL = "";
 window.addEventListener("loadFileCrop", function(e) {
 	if (typeof e.detail == "undefined") {
 		return;
@@ -6,6 +7,7 @@ window.addEventListener("loadFileCrop", function(e) {
 	// 有url进来 e.detail.fileFullPath
 	console.log(e.detail.fileFullPath);
 	handleFiles(e.detail.fileFullPath);
+	imgURL = e.detail.fileFullPath;
 });
 window.addEventListener("saveCropAtCrop", function(e) {
 	handIMG();
@@ -78,18 +80,12 @@ btnRange.addEventListener("change", function() {
 // 放大缩小图片end
 // 截取图片
 function handIMG() {
+	if (imgURL == "" || imgURL.toString().length == 0) {
+		return;
+	}
 	if (fileLoadBool) {
-		// 截取出来的图片会置入这个画布，并由这个画布转换为dataURL, 这个画布隐藏起来
-		var elem = document.createElement("canvas");
+		fileLoadBool = false;
 		var show = document.getElementById("coverTop");
-
-		elem.id = "canvarResult";
-		elem.style.display = "none";
-		var oldcanvas = resDiv.querySelectorAll("canvas");
-		for (var i = 0; i < oldcanvas.length; i++) {
-			resDiv.removeChild(oldcanvas[i]);
-		}
-		resDiv.appendChild(elem);
 		if (img) {
 			var x = 0,
 				y = 0,
@@ -153,28 +149,33 @@ function handIMG() {
 			y = y * oldToNewScaleH;
 			cutWidth = cutWidth * oldToNewScaleW;
 			cutHeight = cutHeight * oldToNewScaleH;
-			var ctx = elem.getContext("2d");
 
 			try {
-				fileLoadBool = true;
-				// 解决模糊问题
-				// 画布尺寸与原图尺寸一样大
-				// 再css缩小
-				// 这样截出来的就是原质量的图片了
-				elem.width = cutWidth;
-				elem.height = cutHeight;
-				elem.style.width = "200px";
-				elem.style.height = "200px";
-				elem.style.border = "1px solid";
-				ctx.drawImage(img, x, y, cutWidth, cutHeight, 0, 0, cutWidth, cutHeight);
-				console.log("截取成功");
-				mui.toast("正在截取图片...");
-				var data = elem.toDataURL();
-				//                            document.querySelector("#printURL").innerHTML = data;
-				//				document.querySelector("#test").src = data;
-				// 将图片保存到本地
-				saveCropImg(data);
-				//								document.querySelector("#testconsole").innerHTML = "截取宽度<br>" + cutWidth + "<br>截取高度<br>" + cutHeight;
+				var clipData = {
+					top: y,
+					left: x,
+					width: cutWidth,
+					height: cutHeight
+				}
+				if (mui.os.plus) {
+					plus.zip.compressImage({
+							src: imgURL,
+							dst: imgURL,
+							quality: 100,
+							overwrite: true,
+							rotate: 0,
+							clip: clipData
+						},
+						function() {
+							createUpload();
+							fileLoadBool = true;
+							console.log("图片保存成功");
+						},
+						function(error) {
+							console.log("Compress error!" + error.message);
+							fileLoadBool = true;
+						});
+				}
 			} catch (e) {
 				fileLoadBool = true;
 				console.log(e.error + "截取失败");
@@ -311,23 +312,23 @@ function moveDiv(movePos) {
 /*
  * @desciption 保存图片到本地，保存成功后上传
  */
-function saveCropImg(DataUrl) {
-	if (mui.os.plus) {
-		var bitmap = new plus.nativeObj.Bitmap();
-		bitmap.loadBase64Data(DataUrl, function() {
-			console.log("加载Base64图片数据成功");
-		}, function(e) {
-			console.log('加载Base64图片数据失败：' + JSON.stringify(e));
-		});
-		bitmap.save("_doc/headTamp.jpg", {}, function(i) {
-			console.log('保存截取头像成功：' + JSON.stringify(i));
-			createUpload();
-			bitmap.clear();
-		}, function(e) {
-			console.log('保存截取头像失败：' + JSON.stringify(e));
-		});
-	}
-}
+//function saveCropImg(DataUrl) {
+//	if (mui.os.plus) {
+//		var bitmap = new plus.nativeObj.Bitmap();
+//		bitmap.loadBase64Data(DataUrl, function() {
+//			console.log("加载Base64图片数据成功");
+//		}, function(e) {
+//			console.log('加载Base64图片数据失败：' + JSON.stringify(e));
+//		});
+//		bitmap.save("_doc/headTamp.jpg", {}, function(i) {
+//			console.log('保存截取头像成功：' + JSON.stringify(i));
+//			createUpload();
+//			bitmap.clear();
+//		}, function(e) {
+//			console.log('保存截取头像失败：' + JSON.stringify(e));
+//		});
+//	}
+//}
 
 /**
  * @description 新建上传任务上传图片
@@ -431,4 +432,11 @@ function updateAvatar(filePath) {
 	mui.fire(plus.webview.getWebviewById("secondlv/webview-my-setting.html"), "changeAvatar", {
 		url: filePath
 	});
+}
+
+/**
+ * @description 操作失败
+ */
+function errorWithImg() {
+	mui.fire(plus.webview.getWebviewById("webview-header"), "avatarCropError", {});
 }

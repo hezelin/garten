@@ -27,26 +27,6 @@
     -webkit-transform: scaleY(.5);
     transform: scaleY(.5);
     background-color: #c8c7cc;
-//  position: absolute;
-//  right: 0px;
-//  height: 0px;
-//  content: '';
-//  z-index: 999;
-//  border-right: 13px solid transparent;
-//  border-top: 13px solid transparent;
-//  border-left: 13px solid transparent;
-//  border-bottom: 13px solid #f3f3f3;
-}
-#index-bar-tab::after {
-//  position: absolute;
-//  height: 0px;
-//  content: '';
-//  top: -2px;
-//  right: 0px;
-//  border-right: 13px solid transparent;
-//  border-top: 13px solid transparent;
-//  border-left: 13px solid transparent;
-//  border-bottom: 13px solid #f16b80;
 }
 .index-tab-item {
     width: 25%;
@@ -58,7 +38,7 @@
 //图标尺寸
 .icon-index {
     @include px2rem(height,57px);
-    @include px2rem(width,50px);
+    @include px2rem(width,53px);
 //  @include px2rem(margin-bottom, 13px);
     background-repeat: no-repeat;
     position: relative;
@@ -106,7 +86,7 @@
     }
     .icon-index-comu {
         @include spirtes-img3;
-        @include px2rem(background-position-x, -77px);//73
+        @include px2rem(background-position-x, -78px);//73
         @include px2rem(background-position-y, 4px);
     }
     
@@ -405,10 +385,10 @@
 }
 .home-rent-bg-cover {
     width: 100%;
-    @include px2rem(height, 205px);
+    @include px2rem(height, 70px);
     position: absolute;    
     bottom: 0;
-    background-color: rgba(0 ,0, 0, 0.5);
+    background-color: rgba(0 ,0, 0, 0.35);
 }
 //金额背景
 .home-rent-money-bg {
@@ -424,7 +404,7 @@
     display: inline-block;
     position: absolute;
     left: 0;
-    @include px2rem(bottom, 10px);
+    @include px2rem(bottom, 0px);
 }
 //金额内容
 .home-rent-money-content {
@@ -435,7 +415,7 @@
     display: inline-block;
     position: absolute;
     @include px2rem(left, 3px);
-    @include px2rem(bottom, 5px);
+    @include px2rem(bottom, 0px);
     em {
         @include font-dpr(20px);
     }
@@ -529,20 +509,21 @@
 //展示图模块区域end
 //详细介绍
 //商品名
-.home-rent-detail-name {
-    @include px2rem(margin-top, 18px);
-    @include px2rem(margin-bottom, 21px);
+.detail-price {
+    @include px2rem(padding-top, 18px);
     @include px2rem(padding-left, 28px);
-    @inlcude px2rem(padding-right, 28px);
+    @include px2rem(padding-right, 28px);
+    @include px2rem(padding-bottom, 45px);
+    background-color: #FFFFFF;
+}
+.home-rent-detail-name {
+    @include px2rem(margin-bottom, 21px);
     display: block;
     @include font-dpr(20px);
     color: #000000;
 }
 //商品价格
 .home-rent-detail-money {
-    @include px2rem(margin-bottom, 45px);
-    @include px2rem(padding-left, 28px);
-    @inlcude px2rem(padding-right, 28px);
     display: block;
     @include font-dpr(18px);
     color: #848484;
@@ -556,8 +537,10 @@
 }
 .home-rent-detail-suit-item {
     @include px2rem(height, 96px);
-    @include px2rem(padding-left, 28px);
-    @include px2rem(padding-right, 28px);
+//  @include px2rem(padding-left, 28px);
+//  @include px2rem(padding-right, 28px);
+    padding-left: 3%;
+    padding-right: 3%;
     @include font-dpr(16px);
     border-bottom: $base-border;
 }
@@ -568,18 +551,22 @@
     display: inline-block;
     color: #848484;
     text-align: left;
+    @include Nowrap;
 }
-.home-rent-detail-suit-item-right {
-    @include px2rem(line-height, 96px);
+.home-rent-detail-suit-item-right {    
+    width: 50%;
     height: 100%;
+    @include px2rem(line-height, 96px);
     display: inline-block;
     color: #000000;
     text-align: left;
+    @include Nowrap;
 }
 //商铺名字
 .home-rent-detail-shop {
     width: 100%;
     @include px2rem(height, 96px);
+    background-color: #FFFFFF;
     border-bottom: $base-border;
     display: table;
 }
@@ -612,7 +599,8 @@
 .home-rent-detail-shop-detail {
     width: 100%;
     @include px2rem(height, 132px);
-    @include px2rem(margin-bottom, 110px);
+    @include px2rem(margin-bottom, 20px);
+    background-color: #FFFFFF;
     display: table;
 }
 .home-rent-detail-shop-detail-btn {
@@ -787,8 +775,8 @@
     text-align: center;
 }
 .spinner > div {
-    width: 30px;
-    height: 30px;
+    width: 10px;
+    height: 10px;
     background-color: #67CF22;
     border-radius: 100%;
     display: inline-block;
@@ -826,6 +814,124 @@
 }
 /**
      * ******** ******** ******** ********
+     * webview-shopping-list-header
+     * 商城页父模板
+ */
+.shopping-nav-tab {
+    width: 100%;
+    @include px2rem(height, 90px);
+    display: table;
+    @include font-dpr(19px);
+    background-color: #FFFFFF;
+}
+.shopping-nav-tab-item {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    border-bottom: 3px solid #FFFFFF;
+}
+.shopping-nav-tab-item-active {
+    color: $green-color;
+    border-bottom-color: $green-color;
+} 
+.shopping-nav-tab-item-line:after {
+    content: " ";
+    width: 1px;
+    @include px2rem(height, 46px);
+    display: block;
+    background-color: #737373;
+    transform: scaleX(0.5);
+    position: absolute;
+    @include px2rem(top, 24px);
+}
+/**
+     * ******** ******** ******** ********
+     * webview-shopping-list
+     * 商城页子页面-列表页
+ */
+// 第一层容器
+.shopping-list-tab-container {
+    width: 10rem;
+    background-color: #FFFFFF;
+//  @include px2rem(padding-bottom, 20px);
+    margin: 0 auto;    
+    font-size: 0;
+}
+.shopping-list-item {
+    @include px2rem(width, 337px);
+    @include px2rem(height, 404px);    
+    @include px2rem(margin-top, 28px);
+    border: $base-border;
+    display: inline-block;
+    overflow: hidden;
+    box-shadow: 2px 2px 4px 0px rgb(196, 196, 196);
+}
+.shopping-list-item:nth-of-type(odd) {
+    @include px2rem(margin-left, 28px);
+    @include px2rem(margin-right, 20px);
+}
+.shopping-list-item-bg {
+    @include px2rem(height, 225px);
+}
+.shopping-list-item-title {
+    @include px2rem(height, 112px);
+    color: #282828;
+    border-bottom: $base-border;
+    overflow: hidden;
+}
+.shopping-list-item-title-span {
+//  @include px2rem(margin-top, 28px);
+    @include px2rem(margin-right, 10px);
+    @include px2rem(margin-left, 10px);
+    @include px2rem(line-height, 40px);
+    @include font-dpr(13px);
+    font-weight: 500;
+    display: inline-block;
+}
+.shopping-list-item-store {
+    @include px2rem(height, 67px);
+    @include px2rem(line-height, 67px);    
+    background-color: rgb(250, 250, 250);
+    overflow: hidden;    
+    .shop-span {
+        @include px2rem(margin-left, 12px);
+        @include px2rem(margin-right, 7px);
+        vertical-align: middle;
+    }
+}
+.shopping-list-item-store-left {
+    width: 75%;
+    display: inline-block;
+}
+.shopping-list-item-store-right {
+    width: 25%;
+    @include px2rem(padding-right, 18px);
+    display: inline-block;
+    text-align: right;
+}
+.shopping-list-item-store-name {
+    @include px2rem(max-width, 180px);
+    @include font-dpr(15px);
+    color: #737373;
+    display: inline-block;
+    vertical-align: middle;
+    @include Nowrap;
+}
+.shopping-list-item-store-price {
+    @include font-dpr(12px);
+    color: #F24949;
+    display: inline-block;
+    vertical-align: middle;
+    em {
+        @include font-dpr(18px);
+    }
+}
+.shop-list-hide {
+    display: none;
+}
+/**
+     * ******** ******** ******** ********
      * webview-trade-header
      * 商品详情页模板
  */
@@ -837,8 +943,12 @@
 }
 .trade-header-nav {
     width: 25%;
+//  @include px2rem(line-height, 99px);
+    @include px2rem(height, 98px);
+    @include px2rem(border-bottom-width, 5px);
     @include px2rem(line-height, 93px);
-    border-bottom-width: 2px;
+    // line-height + border-width = height
+//  border-bottom-width: 4px;
     border-bottom-style: solid;
     border-bottom-color: #FFFFFF;
     display: inline-block;
@@ -859,13 +969,36 @@
     font-size: 0px;
 }
 .trade-foot-control-btn {
-    width: 50%;
+    width: 27.5%;
     height: 100%;
     background-color: #9d9d9d;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
     font-size: 0;
+}
+.trade-foot-control-small-btn {
+    width: 15%;
+    height: 100%;
+    border-top: $base-border;
+    border-right: $base-border;
+    background-color: #FFFFFF;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0;
+}
+.trade-foot-control-small-btn-logo {
+    @include px2rem(width, 43px);
+    @include px2rem(height, 43px);
+    background-repeat: no-repeat;
+    vertical-align: middle; 
+    display: inline-block;
+}
+.trade-foot-control-small-btn-title {
+    @include px2rem(margin-top, 8px);
+    display: block;
+    @include font-dpr(12px);
 }
 .trade-foot-control-logo {
     width: 45%;
@@ -878,26 +1011,6 @@
     color: #FFFFFF;
     vertical-align: middle;
     @include px2rem(margin-left, 15px);
-}
-//购物车图标
-.shop-car-span {
-    @include px2rem(width,56px);
-    @include px2rem(height,56px); 
-    @include spirtes-img2;
-    display: inline-block;
-    @include px2rem(background-position-x, 1px);
-    @include px2rem(background-position-y, -519px);
-    vertical-align: middle;
-}
-//购买图标
-.shop-buy-span {
-    @include px2rem(width,56px);
-    @include px2rem(height,56px); 
-    @include spirtes-img2;
-    display: inline-block;
-    vertical-align: middle;
-    @include px2rem(background-position-x, -71px);
-    @include px2rem(background-position-y, -519px);
 }
 //点击购买后的弹出框
 #buyDiv {
@@ -940,7 +1053,7 @@
     @include px2rem(top, 40px);
     @include px2rem(right, 31px);
 }
-//第二栏
+// 第二栏
 .buyDiv-count {
     @include px2rem(height, 236px);
     border-bottom: $base-border;
@@ -965,7 +1078,7 @@
     @include px2rem(right, 31px);
     display: inline-block;
     @include px2rem(padding-top, 36px);
-    
+    text-align: right;
 }
 //金额区域
 .buyDiv-money {
@@ -1700,6 +1813,11 @@
      * ******** ******** ******** ********
      * webview-comu社区
  */
+.comu-list-tab-container {
+    width: 10rem;
+    margin: 0 auto;
+    font-size: 0;
+}
 //第一个div，带上边距
 .comu-nav {
     width: 100%;
@@ -1771,7 +1889,6 @@
 //评论
 .comu-content {
     width: 100%;
-    @include px2rem(height, 452px);
     @include px2rem(padding-left, 17px);
     @include px2rem(padding-right, 17px);
     @include px2rem(margin-bottom, 23px);
@@ -1779,11 +1896,13 @@
 }
 .comu-content-main {
     width: 100%;
-    @include px2rem(height, 378px);
     @include px2rem(padding-top, 12px);
+    @include px2rem(padding-bottom, 12px);
     @include px2rem(padding-left, 33px);
+    @include px2rem(padding-right, 33px);
     border-bottom: $base-border;
     background-color: white;
+    @include px2rem(border-radius, (6px, 6px));
 }
 .comu-content-main-title {
     display: table;
@@ -1817,60 +1936,54 @@
 .comu-content-main-article {
     @include px2rem(margin-top, 21px);
     @include px2rem(margin-bottom, 21px);
-    @include font-dpr(16px);
+    @include font-dpr(14px);
     color: #282828;
 }
-//图片列表
 .comu-content-main-photo-list {
-    @include px2rem(width, 158px);
-    @include px2rem(height, 158px);
-    @include px2rem(margin-right, 6px);
+    @include px2rem(width, 190px, true);
+    @include px2rem(height, 190px, true);
+    @include px2rem(margin-right, 12px);
+    @include px2rem(margin-bottom, 12px);
     display: inline-block;
-    img {
-        @include px2rem(width, 158px);
-        @include px2rem(height, 158px);
-    }
 }
-//评论点赞
-.comu-content-review {
-    width: 100%;
-    @include px2rem(height, 70px);
-    display: table;
-    background-color: white;
-    font-size: 0;
-    div {
-        width: 50%;
-        @include px2rem(height, 70px);
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-    }
+.comu-comment-control {
+    text-align: right;
 }
-//评论
-.comu-content-review-count {
-    border-right: $base-border;
+.comu-comment-control-left  {
+    @include px2rem(width, 115px);
+    @include px2rem(height, 90px);
+    @include px2rem(line-height, 90px);
+    display: inline-block;    
 }
-.comu-review-discuss {
-    @include px2rem(width,41px);
-    @include px2rem(height, 37px); 
-    @include spirtes-img2;
+.comu-comment-control-right {
+    @include px2rem(width, 115px);
+    @include px2rem(height, 90px);
+    @include px2rem(line-height, 90px);
     display: inline-block;
-    @include px2rem(background-position-y, -217px);
 }
-//点赞
-.comu-review-praise {
-    @include px2rem(width,41px);
-    @include px2rem(height,37px); 
-    @include spirtes-img2;
+.comu-comment-control-logo-praise {
+    @include px2rem(width, 35px);
+    @include px2rem(height, 34px);
+    background: url(../img/praise.png) no-repeat;
+    background-size: contain;    
     display: inline-block;
-    @include px2rem(background-position-x, -57px);
-    @include px2rem(background-position-y, -217px);
+    vertical-align: middle;
 }
-.comu-review-discuss-count, .comu-review-praise-count {
-    @include font-dpr(16px);
-    color: #737373;
+.comu-comment-control-logo-comu {
+    @include px2rem(width, 36px);
+    @include px2rem(height, 34px);
+    background: url(../img/comment.png) no-repeat;
+    background-size: contain;    
+    display: inline-block;
+    vertical-align: middle;
 }
-
+.comu-comment-control-text {
+    @include px2rem(margin-left, 3px);
+    @include font-dpr(13px);
+    color: rgb(96, 96, 96);
+    display: inline-block;
+    vertical-align: middle;
+}
 //漂浮按钮
 .fixed-btn {
     @include px2rem(width,107px);
@@ -2382,24 +2495,68 @@ input[type=color],input[type=date],input[type=datetime-local],input[type=datetim
 .mui-popover {
     @include px2rem(width, 250px);
 }
-//上拉加载和下拉刷新样式设置
-.mui-ios  {
-    .mui-pull-caption {
-        @include font-dpr(14px);
-    }
-    .mui-icon-pulldown {
-        @include font-dpr(14px);
-    }
-    .mui.spinner {
-        @inlcude font-dpr(14px);
-    }
-    .mui-pull-bottom-pocket {
-        height: 50px;
-    }
+//.mui-ios {
+//  .mui-pull-caption {
+//      @include font-dpr(14px);
+//  }
+//  .mui-icon-pulldown {
+//      @include font-dpr(14px);
+//  }
+//  .mui.spinner {
+//      @inlcude font-dpr(14px);
+//      font-size: 28px;
+//  }
+//  .mui-pull-bottom-pocket {
+//      height: 50px;
+//  }
+//}
+//
+//.mui-android {
+//  .mui-pull-top-pocket {
+//      top: 50px;
+//  }
+//}
+// 滑动刷新切换
+.mui-bar~.mui-content .mui-fullscreen {
+    @include px2rem(top, 100px);
+    height: auto;
 }
-.mui-android {
-    .mui-pull-top-pocket {
-        top: 50px;
-    }
+.mui-bar-nav~.mui-content {
+    @include px2rem(padding-top, 100px);
 }
-
+.mui-bar {
+    height: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+    color: $green-color;    
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+//  background-color: rgb(232,232,232);
+}
+.mui-fullscreen .mui-segmented-control~.mui-slider-group {
+    top: 50px;
+}
+.mui-slider-indicator.mui-segmented-control {
+    background-color: #FFFFFF;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
+    border-top: none;
+    border-bottom: none;
+}
+.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+    background-color: $green-color;
+}
+div#sliderProgressBar:before {
+    content: ' ';
+    height: 20px;
+    background-color: rgba(100, 100, 100, 0.2);
+    width: 100%;
+    height: 38px;
+    position: absolute;
+    z-index: 999;
+    bottom: 2px;
+    left: 0;
+    display: inline-block;
+}

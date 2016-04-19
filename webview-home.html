@@ -14,6 +14,44 @@
 				background-color: #efeff4;
 			}
 			
+			[data-dpr="2"],
+			.mui-ios .mui-pull-caption {
+				font-size: 28px;
+			}
+			
+			[data-dpr="2"],
+			.mui-ios .mui.spinner {
+				font-size: 28px;
+			}
+			
+			[data-dpr="2"],
+			.mui-ios .mui-icon-pulldown {
+				font-size: 28px;
+			}
+			
+			[data-dpr="3"],
+			.mui-ios .mui-pull-caption {
+				font-size: 42px;
+			}
+			
+			[data-dpr="3"],
+			.mui-ios .mui.spinner {
+				font-size: 42px;
+			}
+			
+			[data-dpr="3"],
+			.mui-ios .mui-icon-pulldown {
+				font-size: 42px;
+			}
+			
+			.mui-ios .mui-pull-bottom-pocket {
+				height: 50px;
+			}
+			
+			.mui-android .mui-pull-top-pocket {
+				top: 50px;
+			}
+			
 			[v-cloak] {
 				display: none;
 			}
@@ -24,43 +62,31 @@
 		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
 			<div class="mui-scroll">
 				<div class="container-globar" id="home-container-all">
-					<!--轮播图尺寸规定为750*350-->
 					<div id="slider" class="mui-slider">
 						<div class="mui-slider-group mui-slider-loop">
 							<!-- (循环轮播：第一个节点是最后一张图片) 节点数量等于轮播图片+1-->
 							<div class="mui-slider-item mui-slider-item-duplicate">
 								<a href="#">
-									<!--<img src="img/test-slider3.png">-->
-									<span class="span-cover-slider" style="background: url({{ data.baseImgUrl }}{{ data.images[2] }}); background-size: cover;"></span>
+									<!--轮播图尺寸规定为750*350-->
+									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{data.images[data.images.length - 1]}}); background-size: cover;"></span>
 								</a>
 							</div>
-							<div class="mui-slider-item">
+							<div class="mui-slider-item" v-for="img in data.images">
 								<a href="#">
-									<span class="span-cover-slider" style="background: url({{ data.baseImgUrl }}{{ data.images[0] }}); background-size: cover;"></span>
-								</a>
-							</div>
-							<div class="mui-slider-item">
-								<a href="#">
-									<span class="span-cover-slider" style="background: url({{ data.baseImgUrl }}{{ data.images[1] }}); background-size: cover;"></span>
-								</a>
-							</div>
-							<div class="mui-slider-item">
-								<a href="#">
-									<span class="span-cover-slider" style="background: url({{ data.baseImgUrl }}{{ data.images[2] }}); background-size: cover;"></span>
+									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{img}}); background-size: cover;"></span>
 								</a>
 							</div>
 							<!--额外增加的一个节点(最后一个节点与“原”第一张图片相同)-->
 							<div class="mui-slider-item mui-slider-item-duplicate">
 								<a href="#">
-									<span class="span-cover-slider" style="background: url({{ data.baseImgUrl }}{{ data.images[0] }}); background-size: cover;"></span>
+									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{data.images[0]}}); background-size: cover;"></span>
 								</a>
 							</div>
 						</div>
 						<div class="mui-slider-indicator mui-text-center">
 							<!--对应图片个数-->
 							<div class="mui-indicator mui-active home-slider-text-size"></div>
-							<div class="mui-indicator home-slider-text-size"></div>
-							<div class="mui-indicator home-slider-text-size"></div>
+							<div class="mui-indicator home-slider-text-size" v-for="n in data.images.length" v-if="n > 0"></div>
 						</div>
 					</div>
 					<div class="home-nav-tab">
@@ -95,7 +121,7 @@
 							<div class="home-news-content-item-left" id="{{ data.new_data[0].id}}">
 								<span class="span-new"></span>
 								<span class="span-new-content">新</span>
-								<img class="home-news-content-item-left-img" src="{{ data.baseImgUrl }}{{ data.new_data[0].cover}}" />
+								<img class="home-news-content-item-left-img" src="{{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[0].cover == null ? '../www/img/imgDefault.png' : data.new_data[0].cover}}" />
 								<div class="home-news-content-item-detail home-width-320">
 									<span class="home-news-content-item-detail-title">{{ data.new_data[0].title}}</span>
 									<!--<span class="home-news-content-item-detail-money">家长:<em>&yen;100&nbsp;</em>学生:<em>&yen;80</em></span>-->
@@ -106,7 +132,7 @@
 							<div class="home-news-content-item-right" id="{{ data.new_data[1].id}}">
 								<span class="span-new"></span>
 								<span class="span-new-content">新</span>
-								<img class="home-news-content-item-right-img" src="{{ data.baseImgUrl }}{{ data.new_data[1].cover}}" />
+								<img class="home-news-content-item-right-img" src="{{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[1].cover == null ? '../www/img/imgDefault.png' : data.new_data[1].cover}}" />
 								<div class="home-news-content-item-detail home-width-180">
 									<span class="home-news-content-item-detail-title">{{ data.new_data[1].title}}</span>
 									<span class="home-news-content-item-detail-money"><em>{{ data.charPrice }}{{ data.new_data[1].price }}</em></span>
@@ -115,7 +141,7 @@
 							<div class="home-news-content-item-right" id="{{ data.new_data[2].id}}">
 								<span class="span-new"></span>
 								<span class="span-new-content">新</span>
-								<img class="home-news-content-item-right-img" src="{{ data.baseImgUrl }}{{ data.new_data[2].cover}}" />
+								<img class="home-news-content-item-right-img" src="{{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[2].cover == null ? '../www/img/imgDefault.png' : data.new_data[2].cover}}" />
 								<div class="home-news-content-item-detail home-width-180">
 									<span class="home-news-content-item-detail-title">{{ data.new_data[2].title}}</span>
 									<span class="home-news-content-item-detail-money"><em>{{ data.charPrice }}{{ data.new_data[2].price }}</em></span>
@@ -152,64 +178,6 @@
 			};
 			var bugReset = false;
 			var firstLoad = true;
-			var resData = {
-				"data": {
-					"images": [
-						"../www/img/imgDefault.png",
-						"../www/img/imgDefault.png",
-						"../www/img/imgDefault.png"
-					],
-					"new_data": [{
-						"id": " ",
-						"title": " ",
-						"cover": "../www/img/imgDefault.png",
-						"price": " "
-					}, {
-						"id": "",
-						"title": "",
-						"cover": "../www/img/imgDefault.png",
-						"price": ""
-					}, {
-						"id": "",
-						"title": "",
-						"cover": "../www/img/imgDefault.png",
-						"price": ""
-					}],
-					"item_data": [{
-						"id": "",
-						"title": "",
-						"cover": "../www/img/imgDefault.png",
-						"price": ""
-					}, {
-						"id": "",
-						"title": "",
-						"cover": "../www/img/imgDefault.png",
-						"price": ""
-					}, {
-						"id": "",
-						"title": "",
-						"cover": "../www/img/imgDefault.png",
-						"price": ""
-					}, {
-						"id": "",
-						"title": "",
-						"cover": "../www/img/imgDefault.png",
-						"price": ""
-					}, {
-						"id": "",
-						"title": "",
-						"cover": "../www/img/imgDefault.png",
-						"price": ""
-					}, {
-						"id": "",
-						"title": "",
-						"cover": "../www/img/imgDefault.png",
-						"price": ""
-					}],
-					"baseImgUrl": "",
-					"charPrice": "",
-				}
-			};
 			mui.init({
 				pullRefresh: {
 					container: '#refreshContainer',
@@ -220,13 +188,11 @@
 			});
 			var vueObj = new Vue({
 				el: "#home-container-all",
-				data: resData,
-			});
-			vueObj.$nextTick(function() {
-				// DOM 现在更新了
-				mui(".mui-slider").slider({
-					interval: 5000
-				});
+				data: {
+					"data":{
+						"new_data":[{},{},{}]
+					}
+				}
 			});
 
 			function downCallBack() {
@@ -267,27 +233,39 @@
 				mui.ajax(URL, {
 					type: "GET",
 					dataType: "JSON",
+					timeout: 10000,
 					success: function(res) {
 						console.log("获取首页数据成功" + res);
 						res = JSON.parse(res);
-						if (res.success) {							
+						if (res.success) {
 							if (firstLoad) {
 								bugReset = true;
 								firstLoad = false;
 								vueObj.$data = res;
+								vueObj.$nextTick(function() {
+									// DOM 现在更新了
+									mui(".mui-slider").slider({
+										interval: 5000
+									});
+								});
 								mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
 								return;
 							} else {
 								vueObj.$data = res;
+								vueObj.$nextTick(function() {
+									// DOM 现在更新了
+									mui(".mui-slider").slider({
+										interval: 5000
+									});
+								});
 							}
-							
 						}
 						mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
 					},
 					error: function(xhr, type, errorThrown) {
 						console.log(JSON.stringify(xhr));
-						console.log("获取" + title + "的列表失败");
 						mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+						mui.toast("加载失败，请检查您的网络");
 					}
 				});
 			}
@@ -309,8 +287,19 @@
 					});
 				});
 				document.querySelector("#homeShop").addEventListener("tap", function(e) {
-					fnOpenWindow({
-						title: "商城"
+					mui.openWindow({
+						url: "secondlv/webview-shopping-list.html",
+						id: "secondlv/webview-shopping-list.html",
+						styles: fnSetSubpageStyle(0, 0),
+						createNew: false,
+						show: {
+							autoShow: true,
+							aniShow: "pop-in",
+							duration: 300
+						},
+						waiting: {
+							autoShow: false
+						}
 					});
 				});
 				document.querySelector("#homeRent").addEventListener("tap", function(e) {
