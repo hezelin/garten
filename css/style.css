@@ -881,14 +881,19 @@ em {
 
 .home-rent-detail-money {
   display: block;
-  font-size: 18px;
-  color: #848484; }
-  [data-dpr="2"] .home-rent-detail-money {
-    font-size: 36px; }
-  [data-dpr="3"] .home-rent-detail-money {
-    font-size: 54px; }
+  color: #f05363; }
+  .home-rent-detail-money label {
+    font-size: 18px; }
+    [data-dpr="2"] .home-rent-detail-money label {
+      font-size: 36px; }
+    [data-dpr="3"] .home-rent-detail-money label {
+      font-size: 54px; }
   .home-rent-detail-money em {
-    color: #f05363; }
+    font-size: 14px; }
+    [data-dpr="2"] .home-rent-detail-money em {
+      font-size: 28px; }
+    [data-dpr="3"] .home-rent-detail-money em {
+      font-size: 42px; }
 
 .home-rent-detail-suit {
   background-color: whitesmoke; }
@@ -1421,7 +1426,6 @@ em {
 
 #buyDiv {
   width: 100%;
-  height: 7.32rem;
   background-color: white;
   z-index: 999;
   position: fixed;
@@ -1434,22 +1438,33 @@ em {
   line-height: 2.46667rem; }
 
 .buyDiv-title-img {
-  width: 1.49333rem;
-  height: 1.49333rem;
+  width: 2rem;
+  height: 2rem;
   margin-left: 0.37333rem;
   margin-right: 0.24rem;
   vertical-align: middle;
   display: inline-block;
   border-radius: 6px; }
 
-.buyDiv-title-context {
-  font-size: 18px;
-  color: #000000;
+.buyDiv-message {
+  width: 6.8rem;
+  height: 2rem;
+  word-break: keep-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: middle;
   display: inline-block; }
-  [data-dpr="2"] .buyDiv-title-context {
-    font-size: 36px; }
-  [data-dpr="3"] .buyDiv-title-context {
-    font-size: 54px; }
+
+.buyDiv-message-item {
+  margin-top: 0.06667rem;
+  margin-bottom: 0.06667rem;
+  font-size: 14px;
+  display: block; }
+  [data-dpr="2"] .buyDiv-message-item {
+    font-size: 28px; }
+  [data-dpr="3"] .buyDiv-message-item {
+    font-size: 42px; }
 
 #buyDivClose {
   width: 0.76rem;
@@ -1463,20 +1478,49 @@ em {
   top: 0.53333rem;
   right: 0.41333rem; }
 
+.buyDiv-item {
+  padding-top: 0.53333rem;
+  padding-bottom: 0.4rem;
+  padding-left: 0.50667rem;
+  padding-right: 0.37333rem;
+  border-bottom: 1px solid #dcdcdc;
+  font-size: 0; }
+
+.buyDiv-item-title {
+  margin-bottom: 0.26667rem;
+  display: block;
+  font-size: 18px;
+  color: #848484; }
+  [data-dpr="2"] .buyDiv-item-title {
+    font-size: 36px; }
+  [data-dpr="3"] .buyDiv-item-title {
+    font-size: 54px; }
+
+.buyDiv-items {
+  margin: 0.13333rem;
+  padding: 0.13333rem 0.13333rem;
+  border-radius: 0.26667rem;
+  background-color: #f5f5f0;
+  display: inline-block;
+  font-size: 14px; }
+  [data-dpr="2"] .buyDiv-items {
+    font-size: 28px; }
+  [data-dpr="3"] .buyDiv-items {
+    font-size: 42px; }
+
+.buyDiv-items-active {
+  background-color: #3d8f52;
+  color: #FFFFFF; }
+
 .buyDiv-count {
-  height: 3.14667rem;
+  height: 1.73333rem;
   border-bottom: 1px solid #dcdcdc;
   font-size: 0;
   position: relative; }
 
-.buyDiv-count-left {
-  width: 70%;
-  position: absolute;
-  display: inline-block; }
-
 .buyDiv-count-title {
   margin-left: 0.50667rem;
-  margin-top: 0.66667rem;
+  margin-top: 0.53333rem;
   display: inline-block;
   font-size: 18px;
   color: #848484; }
@@ -1493,15 +1537,6 @@ em {
   padding-top: 0.48rem;
   text-align: right; }
 
-.buyDiv-money {
-  margin-top: 0.62667rem;
-  font-size: 15px;
-  display: block; }
-  [data-dpr="2"] .buyDiv-money {
-    font-size: 30px; }
-  [data-dpr="3"] .buyDiv-money {
-    font-size: 45px; }
-
 .buyDiv-btn {
   height: 1.69333rem;
   text-align: center; }
@@ -1509,6 +1544,7 @@ em {
 #btnPostBuy {
   width: 90%;
   height: 62%;
+  border: none;
   margin-top: 0.37333rem;
   padding: 0;
   background-color: #3d8f52;
@@ -1740,7 +1776,7 @@ em {
 
 /**
      * ******** ******** ******** ********
-     * webview-shop-introduce.html商品介绍
+     * webview-shop-introduce.html商店介绍
      * 
  */
 .shop-introduce-item {
@@ -1781,6 +1817,35 @@ em {
     font-size: 30px; }
   [data-dpr="3"] .shop-introduce-item-right {
     font-size: 45px; }
+
+/**
+     * ******** ******** ******** ********
+     * webview-trade-order确认订单
+     * 
+ */
+#consignee {
+  height: 2.73333rem;
+  margin-bottom: 0.33333rem;
+  background-color: #FFFFFF; }
+
+#orderForm {
+  height: 8.26667rem;
+  margin-bottom: 0.26667rem;
+  background-color: #FFFFFF; }
+
+#coupon {
+  height: 1.26667rem;
+  margin-bottom: 0.33333rem;
+  background-color: #FFFFFF; }
+
+#totalPrice {
+  height: 1.70667rem;
+  margin-bottom: 0.26667rem;
+  background-color: #FFFFFF; }
+
+#buttonGroup {
+  height: 3.26667rem;
+  padding: 0.33333rem 0.4rem 0.4rem 0.33333rem; }
 
 /**
      * ******** ******** ******** ********
@@ -2115,6 +2180,8 @@ em {
     font-size: 28px; }
   [data-dpr="3"] .my-trader-title-name {
     font-size: 42px; }
+  .my-trader-title-name span {
+    vertical-align: middle; }
 
 .my-trader-title-right {
   width: 50%;
@@ -2849,7 +2916,7 @@ em {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   opacity: 0;
   -webkit-transition: all .4s ease;

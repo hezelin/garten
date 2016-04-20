@@ -1,888 +1,912 @@
 {
-  "webview-comu.html": {
-    "resources": [
-      "img/photo3.png",
-      "js/flexible_css.debug.js",
-      "img/photo2.png",
-      "img/head1.jpg",
-      "img/photo1.png",
-      "img/img2.png",
-      "img/head2.jpeg",
-      "js/md5.min.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "fonts/mui.ttf",
-      "js/flexible.debug.js",
-      "img/img.png",
-      "css/mui.min.css",
-      "css/style.css",
-      "img/head-three-point-black.png",
-      "img/head-three-point.png",
-      "img/img3.png"
-    ],
-    "refer": [
-      "secondlv/webview-comu-knowledge-list.html",
-      "thirdlv/webview-comu-knowledge-detail.html",
-      "secondlv/webview-comu-knowledge.html",
-      "secondlv/webview-comu-farm-introduce.html",
-      "crop.html"
-    ]
-  },
-  "index.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/img.png",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "js/initPage.js",
-      "webview-home.html",
-      "img/img3.png",
-      "fonts/mui.ttf",
-      "img/head-three-point.png",
-      "img/head-search.png",
-      "img/logo.png",
-      "img/pull_arrow.png",
-      "/img/pull_fresh.png",
-      "/img/pull_arrow.png",
-      "img/pull_fresh.png"
-    ],
-    "refer": [
-      "webview-comu.html",
-      "webview-nav.html",
-      "webview-my.html",
-      "webview-home.html",
-      "webview-header.html",
-      "secondlv/webview-my-setting.html",
-      "webview-trade-header.html",
-      "login/login.html",
-      "webview-shop-header.html",
-      "webview-home-header.html",
-      "webview-comu-header.html",
-      "webview-comu-new.html",
-      "webview-map.html"
-    ]
-  },
-  "webview-my.html": {
-    "resources": [
-      "img/user-img.png",
-      "img/user-info-bg.png",
-      "js/flexible_css.debug.js",
-      "js/md5.min.js",
-      "img/img.png",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "secondlv/webview-my-setting.html",
-      "img/head.jpg"
-    ],
-    "refer": [
-      "secondlv/webview-my-setting.html",
-      "secondlv/webview-my-collect.html",
-      "secondlv/webview-my-order.html",
-      "secondlv/webview-my-shopcar.html",
-      "secondlv/webview-my-userbag.html",
-      "login/login.html",
-      "thirdlv/webview-my-userbag-amply.html",
-      "secondlv/webview-my-comu.html"
-    ]
-  },
-  "webview-home.html": {
-    "resources": [
-      "js/md5.min.js",
-      "img/testhome3.png",
-      "img/img3.png",
-      "img/test-slider2.png",
-      "fonts/mui.ttf",
-      "js/public.js",
-      "js/flexible.debug.js",
-      "img/testhome1.png",
-      "js/mui.min.js",
-      "img/test-slider3.png",
-      "img/testhome2.png",
-      "img/logo.png",
-      "img/test-slider.png",
-      "js/flexible_css.debug.js",
-      "img/img.png",
-      "css/style.css",
-      "css/mui.min.css",
-      "img/img2.png",
-      "img/testhome/testhome3.png",
-      "img/testhome/testhome1.png",
-      "img/testhome/testhome6.png",
-      "img/testhome/testhome2.png",
-      "img/testhome/testhome5.png",
-      "img/testhome/testhome4.png",
-      "img/testhome/testhome7.png",
-      "img/testhome/testhome8.png",
-      "img/testhome/testhome9.png",
-      "img/head-three-point.png",
-      "img/head-search.png",
-      "img/img4.png",
-      "css/mui.css",
-      "img/imgDefault.png",
-      "js/vue.min.js"
-    ],
-    "refer": [
-      "secondlv/webview-home-rent.html",
-      "crop.html",
-      "webview-normal-list-header.html",
-      "webview-shopping-list-header.html",
-      "pullrefresh_with_tab.html",
-      "secondlv/webview-shopping-list.html"
-    ]
-  },
-  "webview-header.html": {
-    "resources": [
-      "js/flexible_css.debug.js",
-      "js/flexible.debug.js",
-      "js/public.js",
-      "secondlv/webview-my-order.html",
-      "img/img.png",
-      "secondlv/webview-home-rent.html",
-      "js/md5.min.js",
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "fonts/mui.ttf",
-      "secondlv/webview-my-collect.html",
-      "secondlv/webview-comu-knowledge.html",
-      "secondlv/webview-my-userbag.html",
-      "img/head-three-point.png",
-      "img/head-search.png",
-      "secondlv/webview-my-shopcar.html",
-      "crop.html",
-      "secondlv/webview-comu-farm-introduce.html",
-      "crop/crop.html",
-      "thirdlv/choiceAddress.html"
-    ],
-    "refer": [
-      "secondlv/webview-my-collect.html",
-      "secondlv/webview-my-shopcar.html",
-      "secondlv/webview-my-userbag.html",
-      "secondlv/webview-my-order.html",
-      "secondlv/webview-comu-knowledge-list.html",
-      "secondlv/webview-home-rent.html",
-      "secondlv/webview-comu-knowledge.html",
-      "secondlv/webview-comu-farm-introduce.html",
-      "crop.html",
-      "crop/crop.html",
-      "thirdlv/choiceAddress.html"
-    ]
-  },
-  "secondlv/webview-my-setting.html": {
-    "resources": [
-      "js/exif.js",
-      "js/flexible_css.debug.js",
-      "js/feedback.js",
-      "css/feedback-page.css",
-      "js/feedback-page.js",
-      "js/mui.view.js",
-      "img/img.png",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "fonts/mui.ttf",
-      "img/head.jpg",
-      "img/comuDescribe.png",
-      "img/iconfont-tianjia.png",
-      "img/img3.png",
-      "js/md5.min.js",
-      "crop/crop.js",
-      "crop/action.js"
-    ],
-    "refer": [
-      "crop/crop.html",
-      "thirdlv/choiceAddress.html"
-    ]
-  },
-  "webview-nav.html": {
-    "resources": [
-      "js/flexible_css.debug.js",
-      "js/md5.min.js",
-      "js/mui.min.js",
-      "js/flexible.debug.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "img/head-three-point.png",
-      "/js/public.js",
-      "img/logo.png",
-      "js/public.js"
-    ],
-    "refer": []
-  },
-  "secondlv/webview-my-collect.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "js/flexible.debug.js",
-      "img/fruitTree.png",
-      "img/plowLand.png",
-      "img/img.png",
-      "css/mui.min.css",
-      "css/style.css"
-    ],
-    "refer": []
-  },
-  "secondlv/webview-my-order.html": {
-    "resources": [
-      "img/fruitTree.png",
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "img/plowLand.png",
-      "js/flexible.debug.js",
-      "img/plowLand2.png",
-      "img/img.png",
-      "css/mui.min.css",
-      "css/style.css"
-    ],
-    "refer": []
-  },
-  "secondlv/webview-my-shopcar.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "js/flexible.debug.js",
-      "img/fruitTree.png",
-      "img/img.png",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "css/style.css",
-      "img/plowLand.png"
-    ],
-    "refer": []
-  },
-  "secondlv/webview-my-userbag.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "js/flexible.debug.js",
-      "img/img.png",
-      "css/mui.min.css",
-      "css/style.css",
-      "img/red-bag-bg.png",
-      "img/red-line.png"
-    ],
-    "refer": []
-  },
-  "secondlv/webview-comu-knowledge-list.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/test-knowledge5.png",
-      "js/mui.min.js",
-      "img/test-knowledge2.png",
-      "img/test-knowledge1.png",
-      "fonts/mui.ttf",
-      "img/test-knowledge4.png",
-      "js/public.js",
-      "img/test-knowledge3.png",
-      "js/flexible.debug.js"
-    ],
-    "refer": []
-  },
-  "secondlv/webview-home-rent.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/tradeListbg2.png",
-      "js/mui.min.js",
-      "js/public.js",
-      "img/TradeLogo.png",
-      "js/flexible.debug.js",
-      "img/tradeListbg1.png",
-      "css/mui.min.css",
-      "css/style.css",
-      "fonts/mui.ttf",
-      "js/vue.min.js",
-      "img/rent-bg-cover.png"
-    ],
-    "refer": [
-      "secondlv/webview-trade-header.html",
-      "webview-trade-header.html",
-      "thirdlv/webview-home-rent-detail.html",
-      "thirdlv/webview-trade-detail.html"
-    ]
-  },
-  "secondlv/webview-trade-header.html": {
-    "resources": [
-      "js/flexible_css.debug.js",
-      "fonts/mui.ttf",
-      "js/md5.min.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "js/flexible.debug.js"
-    ],
-    "refer": []
-  },
-  "webview-trade-header.html": {
-    "resources": [
-      "fonts/mui.ttf",
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "img/img2.png",
-      "thirdlv/webview-home-rent-detail.html",
-      "img/shop-detail.png",
-      "img/head-left-black.png",
-      "img/head-three-point.png",
-      "img/head-search.png",
-      "img/head-three-point-black.png"
-    ],
-    "refer": [
-      "thirdlv/webview-home-detail.html",
-      "thirdlv/webview-home-rent-detail.html",
-      "thirdlv/webview-home-rent-comment.html",
-      "thirdlv/webview-home-rent-introduce.html",
-      "thirdlv/test.html"
-    ]
-  },
-  "thirdlv/webview-home-detail.html": {
-    "resources": [
-      "img/tradeListbg1.png",
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js"
-    ],
-    "refer": []
-  },
-  "thirdlv/webview-home-rent-detail.html": {
-    "resources": [
-      "img/TradeLogo.png",
-      "img/tradeListbg1.png",
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "img/img2.png",
-      "js/flexible.debug.js",
-      "img/shop-detail.png"
-    ],
-    "refer": []
-  },
-  "thirdlv/webview-home-rent-comment.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "img/shop-detail.png",
-      "img/img2.png",
-      "js/flexible.debug.js",
-      "img/head2.jpeg"
-    ],
-    "refer": []
-  },
-  "thirdlv/webview-home-rent-introduce.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "img/tradeListbg1.png",
-      "img/shop-detail.png",
-      "img/img2.png"
-    ],
-    "refer": []
-  },
-  "thirdlv/webview-comu-knowledge-detail.html": {
-    "resources": [
-      "img/test-slider4.png",
-      "img/test-slider2.png",
-      "img/test-slider3.png",
-      "secondlv/webview-comu-knowledge.html",
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/img3.png",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "img/head-three-point.png",
-      "img/logo.png"
-    ],
-    "refer": [
-      "secondlv/webview-comu-knowledge.html"
-    ]
-  },
-  "secondlv/webview-comu-knowledge.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/test-knowledge5.png",
-      "js/mui.min.js",
-      "img/test-knowledge2.png",
-      "img/test-knowledge1.png",
-      "img/test-knowledge4.png",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "img/img2.png",
-      "img/test-knowledge3.png",
-      "js/flexible.debug.js",
-      "img/img3.png"
-    ],
-    "refer": [
-      "thirdlv/webview-comu-knowledge-detail.html"
-    ]
-  },
-  "thirdlv/test.html": {
-    "resources": [
-      "thirdlv/style.css",
-      "thirdlv/jquery.js",
-      "thirdlv/5.jpg",
-      "thirdlv/4.jpg"
-    ],
-    "refer": []
-  },
-  "login/login.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/img.png",
-      "js/mui.min.js",
-      "css/login.css",
-      "js/public.js",
-      "js/flexible.debug.js",
-      "img/login-bg-img.png",
-      "img/input-phone.png",
-      "img/input-pwd.png",
-      "login/register.html",
-      "img/img4.png"
-    ],
-    "refer": [
-      "login/register.html",
-      "login/register2.html",
-      "login/forgetPassword.html"
-    ]
-  },
-  "login/register.html": {
-    "refer": [
-      "login/register2.html"
-    ],
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/img.png",
-      "js/mui.min.js",
-      "css/login.css",
-      "js/public.js",
-      "js/flexible.debug.js"
-    ]
-  },
-  "login/register2.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/img.png",
-      "js/mui.min.js",
-      "css/login.css",
-      "js/public.js",
-      "js/flexible.debug.js",
-      "img/img3.png"
-    ],
-    "refer": [
-      "login/userRead.html"
-    ]
-  },
-  "login/forgetPassword.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/img.png",
-      "js/mui.min.js",
-      "css/login.css",
-      "js/public.js",
-      "js/flexible.debug.js"
-    ],
-    "refer": []
-  },
-  "webview-shop-header.html": {
-    "resources": [
-      "img/shop-introduce-navigation.png",
-      "img/shop-introduce-bg-test.png",
-      "js/flexible_css.debug.js",
-      "img/head-search.png",
-      "img/head-three-point.png",
-      "img/img.png",
-      "img/img2.png",
-      "js/md5.min.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js"
-    ],
-    "refer": []
-  },
-  "thirdlv/webview-my-userbag-amply.html": {
-    "resources": [
-      "img/user-bag-amply-bg.png",
-      "secondlv/webview-my-userbag.html"
-    ],
-    "refer": [
-      "secondlv/webview-my-userbag.html"
-    ]
-  },
-  "secondlv/webview-comu-farm-introduce.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js"
-    ],
-    "refer": [
-      "secondlv/webview-comu-knowledge.html"
-    ]
-  },
-  "crop.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "css/mui.min.css",
-      "img/head2.jpeg",
-      "js/mui.zoom.js",
-      "img/crop.jpg",
-      "img/head1.jpg",
-      "crop/bg.png",
-      "crop/crop.css",
-      "crop/crop.js"
-    ],
-    "refer": []
-  },
-  "crop/crop.html": {
-    "resources": [
-      "crop/crop.css",
-      "js/md5.min.js",
-      "crop/bg.png",
-      "js/mui.min.js",
-      "js/public.js",
-      "crop/crop.js",
-      "js/exif.js"
-    ],
-    "refer": []
-  },
-  "thirdlv/choiceAddress.html": {
-    "resources": [
-      "fonts/mui.ttf",
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "data/city.js"
-    ],
-    "refer": []
-  },
-  "webview-home-header.html": {
-    "resources": [
-      "img/head-search.png",
-      "img/head-three-point.png",
-      "img/logo.png",
-      "webview-home.html",
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "fonts/mui.ttf"
-    ],
-    "refer": [
-      "webview-home.html"
-    ]
-  },
-  "webview-comu-header.html": {
-    "resources": [
-      "img/head-three-point.png",
-      "img/logo.png",
-      "webview-comu.html",
-      "js/flexible_css.debug.js",
-      "js/md5.min.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "fonts/mui.ttf"
-    ],
-    "refer": [
-      "webview-comu.html"
-    ]
-  },
-  "webview-normal-list-header.html": {
-    "resources": [
-      "secondlv/webview-home-rent.html",
-      "fonts/mui.ttf",
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/img.png",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "img/head-search.png"
-    ],
-    "refer": [
-      "secondlv/webview-home-rent.html"
-    ]
-  },
-  "webview-shopping-list-header.html": {
-    "resources": [
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "secondlv/webview-home-rent.html",
-      "img/head-search.png",
-      "img/img.png",
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "secondlv/webview-shopping-list.html"
-    ],
-    "refer": [
-      "secondlv/webview-home-rent.html",
-      "secondlv/webview-shopping-list.html"
-    ]
-  },
-  "secondlv/webview-shopping-list.html": {
-    "resources": [
-      "img/tradeListbg2.png",
-      "img/TradeLogo.png",
-      "img/tradeListbg1.png",
-      "js/vue.min.js",
-      "js/flexible_css.debug.js",
-      "js/md5.min.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "js/flexible.debug.js",
-      "img/shopping-list-item-test.png",
-      "img/img.png",
-      "css/mui.min.css",
-      "css/style.css",
-      "fonts/mui.ttf",
-      "js/mui.pullToRefresh.js",
-      "img/head-search.png",
-      "js/mui.pullToRefresh.material.js"
-    ],
-    "refer": []
-  },
-  "pullrefresh_with_tab.html": {
-    "resources": [
-      "js/mui.pullToRefresh.js",
-      "js/mui.pullToRefresh.material.js",
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/mui.min.js",
-      "js/public.js",
-      "js/flexible.debug.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "css/style.css",
-      "img/img.png",
-      "img/head-search.png",
-      "img/shopping-list-item-test.png"
-    ],
-    "refer": []
-  },
-  "webview-comu-new.html": {
-    "resources": [
-      "js/mui.pullToRefresh.js",
-      "js/mui.pullToRefresh.material.js",
-      "img/shopping-list-item-test.png",
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "img/head-search.png",
-      "img/img.png",
-      "js/mui.min.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/flexible.debug.js",
-      "img/photo2.png",
-      "img/photo1.png",
-      "img/head2.jpeg",
-      "img/photo3.png",
-      "img/img2.png",
-      "img/comment.png",
-      "img/praise.png",
-      "js/vue.min.js",
-      "img/test-knowledge5.png",
-      "img/test-knowledge4.png",
-      "img/test-knowledge2.png",
-      "img/test-knowledge1.png",
-      "img/test-knowledge3.png",
-      "img/head.jpg"
-    ],
-    "refer": []
-  },
-  "secondlv/webview-my-comu.html": {
-    "resources": [
-      "js/mui.pullToRefresh.js",
-      "img/comment.png",
-      "js/flexible_css.debug.js",
-      "js/md5.min.js",
-      "img/img.png",
-      "js/mui.pullToRefresh.material.js",
-      "js/public.js",
-      "css/style.css",
-      "img/photo1.png",
-      "img/praise.png",
-      "js/flexible.debug.js",
-      "img/head2.jpeg",
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "img/head-search.png",
-      "js/vue.min.js"
-    ],
-    "refer": []
-  },
-  "thirdlv/webview-trade-detail.html": {
-    "resources": [
-      "img/collect.png",
-      "img/custom-service.png",
-      "img/shop-car.png",
-      "img/shop-detail.png",
-      "img/shop.png",
-      "img/TradeLogo.png",
-      "img/tradeListbg1.png",
-      "js/flexible_css.debug.js",
-      "js/md5.min.js",
-      "fonts/mui.ttf",
-      "js/public.js",
-      "css/style.css",
-      "js/vue.min.js",
-      "js/flexible.debug.js",
-      "js/mui.min.js",
-      "img/head-left-black.png",
-      "css/mui.min.css",
-      "img/img2.png"
-    ],
-    "refer": []
-  },
-  "webview-map.html": {
-    "resources": [
-      "tiles/18/tile51285_10964.png",
-      "tiles/18/tile51286_10965.png",
-      "tiles/18/tile51286_10964.png",
-      "tiles/18/tile51286_10963.png",
-      "tiles/18/tile51285_10963.png",
-      "tiles/18/tile51285_10965.png",
-      "tiles/15/tile6411_1369.png",
-      "tiles/15/tile6410_1371.png",
-      "tiles/15/tile6411_1370.png",
-      "tiles/15/tile6410_1370.png",
-      "tiles/15/tile6409_1371.png",
-      "tiles/15/tile6409_1369.png",
-      "tiles/15/tile6410_1369.png",
-      "tiles/15/tile6411_1371.png",
-      "tiles/15/tile6409_1370.png",
-      "tiles/12/tile801_170.png",
-      "tiles/14/tile3205_684.png",
-      "tiles/13/tile1603_342.png",
-      "tiles/14/tile3206_685.png",
-      "tiles/12/tile802_170.png",
-      "tiles/14/tile3206_684.png",
-      "tiles/14/tile3205_685.png",
-      "tiles/13/tile1602_342.png",
-      "tiles/12/tile800_170.png",
-      "tiles/13/tile1602_343.png",
-      "tiles/13/tile1602_341.png",
-      "tiles/15/tile6410_1368.png",
-      "tiles/14/tile3206_683.png",
-      "tiles/12/tile800_171.png",
-      "tiles/14/tile3204_683.png",
-      "tiles/12/tile802_171.png",
-      "tiles/14/tile3205_683.png",
-      "tiles/12/tile801_171.png",
-      "tiles/15/tile6411_1368.png",
-      "tiles/14/tile3204_685.png",
-      "tiles/13/tile1603_343.png",
-      "tiles/13/tile1603_341.png",
-      "tiles/14/tile3204_684.png",
-      "tiles/13/tile1601_343.png",
-      "tiles/13/tile1601_341.png",
-      "tiles/13/tile1601_342.png",
-      "img/head-three-point.png",
-      "js/md5.min.js",
-      "js/flexible_css.debug.js",
-      "js/public.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "img/logo.png",
-      "js/flexible.debug.js",
-      "tiles/15/tile6410_1367.png",
-      "tiles/15/tile6411_1367.png",
-      "tiles/13/tile1604_343.png",
-      "tiles/14/tile3207_685.png",
-      "tiles/13/tile1604_342.png",
-      "tiles/13/tile1604_341.png",
-      "tiles/14/tile3207_683.png",
-      "tiles/14/tile3207_684.png",
-      "tiles/14/tile3205_686.png",
-      "tiles/14/tile3206_686.png",
-      "tiles/14/tile3208_687.png",
-      "tiles/14/tile3207_686.png",
-      "tiles/14/tile3205_687.png",
-      "tiles/14/tile3208_685.png",
-      "tiles/14/tile3208_686.png",
-      "tiles/14/tile3207_687.png",
-      "tiles/14/tile3206_687.png",
-      "js/mui.min.js",
-      "tiles/15/tile6409_1368.png",
-      "tiles/15/tile6409_1367.png",
-      "tiles/14/tile3204_686.png",
-      "tiles/15/tile6412_1371.png",
-      "tiles/15/tile6412_1370.png",
-      "tiles/15/tile6407_1371.png",
-      "tiles/15/tile6405_1371.png",
-      "tiles/15/tile6405_1372.png",
-      "tiles/15/tile6406_1372.png",
-      "tiles/14/tile3203_686.png",
-      "tiles/14/tile3203_685.png",
-      "tiles/15/tile6407_1372.png",
-      "tiles/15/tile6406_1371.png"
-    ],
-    "refer": []
-  }
+	"webview-comu.html": {
+		"resources": [
+			"img/photo3.png",
+			"js/flexible_css.debug.js",
+			"img/photo2.png",
+			"img/head1.jpg",
+			"img/photo1.png",
+			"img/img2.png",
+			"img/head2.jpeg",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"fonts/mui.ttf",
+			"js/flexible.debug.js",
+			"img/img.png",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/head-three-point-black.png",
+			"img/head-three-point.png",
+			"img/img3.png"
+		],
+		"refer": [
+			"secondlv/webview-comu-knowledge-list.html",
+			"thirdlv/webview-comu-knowledge-detail.html",
+			"secondlv/webview-comu-knowledge.html",
+			"secondlv/webview-comu-farm-introduce.html",
+			"crop.html"
+		]
+	},
+	"index.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"js/initPage.js",
+			"webview-home.html",
+			"img/img3.png",
+			"fonts/mui.ttf",
+			"img/head-three-point.png",
+			"img/head-search.png",
+			"img/logo.png",
+			"img/pull_arrow.png",
+			"/img/pull_fresh.png",
+			"/img/pull_arrow.png",
+			"img/pull_fresh.png"
+		],
+		"refer": [
+			"webview-comu.html",
+			"webview-nav.html",
+			"webview-my.html",
+			"webview-home.html",
+			"webview-header.html",
+			"secondlv/webview-my-setting.html",
+			"webview-trade-header.html",
+			"login/login.html",
+			"webview-shop-header.html",
+			"webview-home-header.html",
+			"webview-comu-header.html",
+			"webview-comu-new.html",
+			"webview-map.html"
+		]
+	},
+	"webview-my.html": {
+		"resources": [
+			"img/user-img.png",
+			"img/user-info-bg.png",
+			"js/flexible_css.debug.js",
+			"js/md5.min.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"secondlv/webview-my-setting.html",
+			"img/head.jpg"
+		],
+		"refer": [
+			"secondlv/webview-my-setting.html",
+			"secondlv/webview-my-collect.html",
+			"secondlv/webview-my-order.html",
+			"secondlv/webview-my-shopcar.html",
+			"secondlv/webview-my-userbag.html",
+			"login/login.html",
+			"thirdlv/webview-my-userbag-amply.html",
+			"secondlv/webview-my-comu.html"
+		]
+	},
+	"webview-home.html": {
+		"resources": [
+			"js/md5.min.js",
+			"img/testhome3.png",
+			"img/img3.png",
+			"img/test-slider2.png",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"img/testhome1.png",
+			"js/mui.min.js",
+			"img/test-slider3.png",
+			"img/testhome2.png",
+			"img/logo.png",
+			"img/test-slider.png",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"css/style.css",
+			"css/mui.min.css",
+			"img/img2.png",
+			"img/testhome/testhome3.png",
+			"img/testhome/testhome1.png",
+			"img/testhome/testhome6.png",
+			"img/testhome/testhome2.png",
+			"img/testhome/testhome5.png",
+			"img/testhome/testhome4.png",
+			"img/testhome/testhome7.png",
+			"img/testhome/testhome8.png",
+			"img/testhome/testhome9.png",
+			"img/head-three-point.png",
+			"img/head-search.png",
+			"img/img4.png",
+			"css/mui.css",
+			"img/imgDefault.png",
+			"js/vue.min.js"
+		],
+		"refer": [
+			"secondlv/webview-home-rent.html",
+			"crop.html",
+			"webview-normal-list-header.html",
+			"webview-shopping-list-header.html",
+			"pullrefresh_with_tab.html",
+			"secondlv/webview-shopping-list.html"
+		]
+	},
+	"webview-header.html": {
+		"resources": [
+			"js/flexible_css.debug.js",
+			"js/flexible.debug.js",
+			"js/public.js",
+			"secondlv/webview-my-order.html",
+			"img/img.png",
+			"secondlv/webview-home-rent.html",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"fonts/mui.ttf",
+			"secondlv/webview-my-collect.html",
+			"secondlv/webview-comu-knowledge.html",
+			"secondlv/webview-my-userbag.html",
+			"img/head-three-point.png",
+			"img/head-search.png",
+			"secondlv/webview-my-shopcar.html",
+			"crop.html",
+			"secondlv/webview-comu-farm-introduce.html",
+			"crop/crop.html",
+			"thirdlv/choiceAddress.html"
+		],
+		"refer": [
+			"secondlv/webview-my-collect.html",
+			"secondlv/webview-my-shopcar.html",
+			"secondlv/webview-my-userbag.html",
+			"secondlv/webview-my-order.html",
+			"secondlv/webview-comu-knowledge-list.html",
+			"secondlv/webview-home-rent.html",
+			"secondlv/webview-comu-knowledge.html",
+			"secondlv/webview-comu-farm-introduce.html",
+			"crop.html",
+			"crop/crop.html",
+			"thirdlv/choiceAddress.html"
+		]
+	},
+	"secondlv/webview-my-setting.html": {
+		"resources": [
+			"js/exif.js",
+			"js/flexible_css.debug.js",
+			"js/feedback.js",
+			"css/feedback-page.css",
+			"js/feedback-page.js",
+			"js/mui.view.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"fonts/mui.ttf",
+			"img/head.jpg",
+			"img/comuDescribe.png",
+			"img/iconfont-tianjia.png",
+			"img/img3.png",
+			"js/md5.min.js",
+			"crop/crop.js",
+			"crop/action.js"
+		],
+		"refer": [
+			"crop/crop.html",
+			"thirdlv/choiceAddress.html"
+		]
+	},
+	"webview-nav.html": {
+		"resources": [
+			"js/flexible_css.debug.js",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"js/flexible.debug.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/head-three-point.png",
+			"/js/public.js",
+			"img/logo.png",
+			"js/public.js"
+		],
+		"refer": []
+	},
+	"secondlv/webview-my-collect.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"img/fruitTree.png",
+			"img/plowLand.png",
+			"img/img.png",
+			"css/mui.min.css",
+			"css/style.css"
+		],
+		"refer": []
+	},
+	"secondlv/webview-my-order.html": {
+		"resources": [
+			"img/fruitTree.png",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"img/plowLand.png",
+			"js/flexible.debug.js",
+			"img/plowLand2.png",
+			"img/img.png",
+			"css/mui.min.css",
+			"css/style.css"
+		],
+		"refer": []
+	},
+	"secondlv/webview-my-shopcar.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"img/fruitTree.png",
+			"img/img.png",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/plowLand.png"
+		],
+		"refer": []
+	},
+	"secondlv/webview-my-userbag.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"img/img.png",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/red-bag-bg.png",
+			"img/red-line.png"
+		],
+		"refer": []
+	},
+	"secondlv/webview-comu-knowledge-list.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/test-knowledge5.png",
+			"js/mui.min.js",
+			"img/test-knowledge2.png",
+			"img/test-knowledge1.png",
+			"fonts/mui.ttf",
+			"img/test-knowledge4.png",
+			"js/public.js",
+			"img/test-knowledge3.png",
+			"js/flexible.debug.js"
+		],
+		"refer": []
+	},
+	"secondlv/webview-home-rent.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/tradeListbg2.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"img/TradeLogo.png",
+			"js/flexible.debug.js",
+			"img/tradeListbg1.png",
+			"css/mui.min.css",
+			"css/style.css",
+			"fonts/mui.ttf",
+			"js/vue.min.js",
+			"img/rent-bg-cover.png"
+		],
+		"refer": [
+			"secondlv/webview-trade-header.html",
+			"webview-trade-header.html",
+			"thirdlv/webview-home-rent-detail.html",
+			"thirdlv/webview-trade-detail.html"
+		]
+	},
+	"secondlv/webview-trade-header.html": {
+		"resources": [
+			"js/flexible_css.debug.js",
+			"fonts/mui.ttf",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/flexible.debug.js"
+		],
+		"refer": []
+	},
+	"webview-trade-header.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"img/img2.png",
+			"thirdlv/webview-home-rent-detail.html",
+			"img/shop-detail.png",
+			"img/head-left-black.png",
+			"img/head-three-point.png",
+			"img/head-search.png",
+			"img/head-three-point-black.png"
+		],
+		"refer": [
+			"thirdlv/webview-home-detail.html",
+			"thirdlv/webview-home-rent-detail.html",
+			"thirdlv/webview-home-rent-comment.html",
+			"thirdlv/webview-home-rent-introduce.html",
+			"thirdlv/test.html"
+		]
+	},
+	"thirdlv/webview-home-detail.html": {
+		"resources": [
+			"img/tradeListbg1.png",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js"
+		],
+		"refer": []
+	},
+	"thirdlv/webview-home-rent-detail.html": {
+		"resources": [
+			"img/TradeLogo.png",
+			"img/tradeListbg1.png",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/img2.png",
+			"js/flexible.debug.js",
+			"img/shop-detail.png"
+		],
+		"refer": []
+	},
+	"thirdlv/webview-home-rent-comment.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/shop-detail.png",
+			"img/img2.png",
+			"js/flexible.debug.js",
+			"img/head2.jpeg"
+		],
+		"refer": []
+	},
+	"thirdlv/webview-home-rent-introduce.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"img/tradeListbg1.png",
+			"img/shop-detail.png",
+			"img/img2.png"
+		],
+		"refer": []
+	},
+	"thirdlv/webview-comu-knowledge-detail.html": {
+		"resources": [
+			"img/test-slider4.png",
+			"img/test-slider2.png",
+			"img/test-slider3.png",
+			"secondlv/webview-comu-knowledge.html",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img3.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"img/head-three-point.png",
+			"img/logo.png"
+		],
+		"refer": [
+			"secondlv/webview-comu-knowledge.html"
+		]
+	},
+	"secondlv/webview-comu-knowledge.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/test-knowledge5.png",
+			"js/mui.min.js",
+			"img/test-knowledge2.png",
+			"img/test-knowledge1.png",
+			"img/test-knowledge4.png",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/img2.png",
+			"img/test-knowledge3.png",
+			"js/flexible.debug.js",
+			"img/img3.png"
+		],
+		"refer": [
+			"thirdlv/webview-comu-knowledge-detail.html"
+		]
+	},
+	"thirdlv/test.html": {
+		"resources": [
+			"thirdlv/style.css",
+			"thirdlv/jquery.js",
+			"thirdlv/5.jpg",
+			"thirdlv/4.jpg"
+		],
+		"refer": []
+	},
+	"login/login.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"css/login.css",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"img/login-bg-img.png",
+			"img/input-phone.png",
+			"img/input-pwd.png",
+			"login/register.html",
+			"img/img4.png"
+		],
+		"refer": [
+			"login/register.html",
+			"login/register2.html",
+			"login/forgetPassword.html"
+		]
+	},
+	"login/register.html": {
+		"refer": [
+			"login/register2.html"
+		],
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"css/login.css",
+			"js/public.js",
+			"js/flexible.debug.js"
+		]
+	},
+	"login/register2.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"css/login.css",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"img/img3.png"
+		],
+		"refer": [
+			"login/userRead.html"
+		]
+	},
+	"login/forgetPassword.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"css/login.css",
+			"js/public.js",
+			"js/flexible.debug.js"
+		],
+		"refer": []
+	},
+	"webview-shop-header.html": {
+		"resources": [
+			"img/shop-introduce-navigation.png",
+			"img/shop-introduce-bg-test.png",
+			"js/flexible_css.debug.js",
+			"img/head-search.png",
+			"img/head-three-point.png",
+			"img/img.png",
+			"img/img2.png",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js"
+		],
+		"refer": []
+	},
+	"thirdlv/webview-my-userbag-amply.html": {
+		"resources": [
+			"img/user-bag-amply-bg.png",
+			"secondlv/webview-my-userbag.html"
+		],
+		"refer": [
+			"secondlv/webview-my-userbag.html"
+		]
+	},
+	"secondlv/webview-comu-farm-introduce.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js"
+		],
+		"refer": [
+			"secondlv/webview-comu-knowledge.html"
+		]
+	},
+	"crop.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"css/mui.min.css",
+			"img/head2.jpeg",
+			"js/mui.zoom.js",
+			"img/crop.jpg",
+			"img/head1.jpg",
+			"crop/bg.png",
+			"crop/crop.css",
+			"crop/crop.js"
+		],
+		"refer": []
+	},
+	"crop/crop.html": {
+		"resources": [
+			"crop/crop.css",
+			"js/md5.min.js",
+			"crop/bg.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"crop/crop.js",
+			"js/exif.js"
+		],
+		"refer": []
+	},
+	"thirdlv/choiceAddress.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"data/city.js"
+		],
+		"refer": []
+	},
+	"webview-home-header.html": {
+		"resources": [
+			"img/head-search.png",
+			"img/head-three-point.png",
+			"img/logo.png",
+			"webview-home.html",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"webview-home.html"
+		]
+	},
+	"webview-comu-header.html": {
+		"resources": [
+			"img/head-three-point.png",
+			"img/logo.png",
+			"webview-comu.html",
+			"js/flexible_css.debug.js",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"webview-comu.html"
+		]
+	},
+	"webview-normal-list-header.html": {
+		"resources": [
+			"secondlv/webview-home-rent.html",
+			"fonts/mui.ttf",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"img/head-search.png"
+		],
+		"refer": [
+			"secondlv/webview-home-rent.html"
+		]
+	},
+	"webview-shopping-list-header.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"secondlv/webview-home-rent.html",
+			"img/head-search.png",
+			"img/img.png",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"secondlv/webview-shopping-list.html"
+		],
+		"refer": [
+			"secondlv/webview-home-rent.html",
+			"secondlv/webview-shopping-list.html"
+		]
+	},
+	"secondlv/webview-shopping-list.html": {
+		"resources": [
+			"img/tradeListbg2.png",
+			"img/TradeLogo.png",
+			"img/tradeListbg1.png",
+			"js/vue.min.js",
+			"js/flexible_css.debug.js",
+			"js/md5.min.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"img/shopping-list-item-test.png",
+			"img/img.png",
+			"css/mui.min.css",
+			"css/style.css",
+			"fonts/mui.ttf",
+			"js/mui.pullToRefresh.js",
+			"img/head-search.png",
+			"js/mui.pullToRefresh.material.js"
+		],
+		"refer": [
+			"thirdlv/webview-trade-detail.html"
+		]
+	},
+	"pullrefresh_with_tab.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/flexible.debug.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/img.png",
+			"img/head-search.png",
+			"img/shopping-list-item-test.png"
+		],
+		"refer": []
+	},
+	"webview-comu-new.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"img/shopping-list-item-test.png",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/head-search.png",
+			"img/img.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"img/photo2.png",
+			"img/photo1.png",
+			"img/head2.jpeg",
+			"img/photo3.png",
+			"img/img2.png",
+			"img/comment.png",
+			"img/praise.png",
+			"js/vue.min.js",
+			"img/test-knowledge5.png",
+			"img/test-knowledge4.png",
+			"img/test-knowledge2.png",
+			"img/test-knowledge1.png",
+			"img/test-knowledge3.png",
+			"img/head.jpg"
+		],
+		"refer": []
+	},
+	"secondlv/webview-my-comu.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"img/comment.png",
+			"js/flexible_css.debug.js",
+			"js/md5.min.js",
+			"img/img.png",
+			"js/mui.pullToRefresh.material.js",
+			"js/public.js",
+			"css/style.css",
+			"img/photo1.png",
+			"img/praise.png",
+			"js/flexible.debug.js",
+			"img/head2.jpeg",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"img/head-search.png",
+			"js/vue.min.js"
+		],
+		"refer": []
+	},
+	"thirdlv/webview-trade-detail.html": {
+		"resources": [
+			"img/collect.png",
+			"img/custom-service.png",
+			"img/shop-car.png",
+			"img/shop-detail.png",
+			"img/shop.png",
+			"img/TradeLogo.png",
+			"img/tradeListbg1.png",
+			"js/flexible_css.debug.js",
+			"js/md5.min.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"css/style.css",
+			"js/vue.min.js",
+			"js/flexible.debug.js",
+			"js/mui.min.js",
+			"img/head-left-black.png",
+			"css/mui.min.css",
+			"img/img2.png"
+		],
+		"refer": []
+	},
+	"webview-map.html": {
+		"resources": [
+			"tiles/18/tile51285_10964.png",
+			"tiles/18/tile51286_10965.png",
+			"tiles/18/tile51286_10964.png",
+			"tiles/18/tile51286_10963.png",
+			"tiles/18/tile51285_10963.png",
+			"tiles/18/tile51285_10965.png",
+			"tiles/15/tile6411_1369.png",
+			"tiles/15/tile6410_1371.png",
+			"tiles/15/tile6411_1370.png",
+			"tiles/15/tile6410_1370.png",
+			"tiles/15/tile6409_1371.png",
+			"tiles/15/tile6409_1369.png",
+			"tiles/15/tile6410_1369.png",
+			"tiles/15/tile6411_1371.png",
+			"tiles/15/tile6409_1370.png",
+			"tiles/12/tile801_170.png",
+			"tiles/14/tile3205_684.png",
+			"tiles/13/tile1603_342.png",
+			"tiles/14/tile3206_685.png",
+			"tiles/12/tile802_170.png",
+			"tiles/14/tile3206_684.png",
+			"tiles/14/tile3205_685.png",
+			"tiles/13/tile1602_342.png",
+			"tiles/12/tile800_170.png",
+			"tiles/13/tile1602_343.png",
+			"tiles/13/tile1602_341.png",
+			"tiles/15/tile6410_1368.png",
+			"tiles/14/tile3206_683.png",
+			"tiles/12/tile800_171.png",
+			"tiles/14/tile3204_683.png",
+			"tiles/12/tile802_171.png",
+			"tiles/14/tile3205_683.png",
+			"tiles/12/tile801_171.png",
+			"tiles/15/tile6411_1368.png",
+			"tiles/14/tile3204_685.png",
+			"tiles/13/tile1603_343.png",
+			"tiles/13/tile1603_341.png",
+			"tiles/14/tile3204_684.png",
+			"tiles/13/tile1601_343.png",
+			"tiles/13/tile1601_341.png",
+			"tiles/13/tile1601_342.png",
+			"img/head-three-point.png",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/logo.png",
+			"js/flexible.debug.js",
+			"tiles/15/tile6410_1367.png",
+			"tiles/15/tile6411_1367.png",
+			"tiles/13/tile1604_343.png",
+			"tiles/14/tile3207_685.png",
+			"tiles/13/tile1604_342.png",
+			"tiles/13/tile1604_341.png",
+			"tiles/14/tile3207_683.png",
+			"tiles/14/tile3207_684.png",
+			"tiles/14/tile3205_686.png",
+			"tiles/14/tile3206_686.png",
+			"tiles/14/tile3208_687.png",
+			"tiles/14/tile3207_686.png",
+			"tiles/14/tile3205_687.png",
+			"tiles/14/tile3208_685.png",
+			"tiles/14/tile3208_686.png",
+			"tiles/14/tile3207_687.png",
+			"tiles/14/tile3206_687.png",
+			"js/mui.min.js",
+			"tiles/15/tile6409_1368.png",
+			"tiles/15/tile6409_1367.png",
+			"tiles/14/tile3204_686.png",
+			"tiles/15/tile6412_1371.png",
+			"tiles/15/tile6412_1370.png",
+			"tiles/15/tile6407_1371.png",
+			"tiles/15/tile6405_1371.png",
+			"tiles/15/tile6405_1372.png",
+			"tiles/15/tile6406_1372.png",
+			"tiles/14/tile3203_686.png",
+			"tiles/14/tile3203_685.png",
+			"tiles/15/tile6407_1372.png",
+			"tiles/15/tile6406_1371.png",
+			"tiles/15/tile6413_1371.png",
+			"tiles/15/tile6413_1370.png",
+			"tiles/16/tile12824_2741.png",
+			"tiles/16/tile12825_2741.png",
+			"tiles/16/tile12825_2742.png",
+			"tiles/16/tile12824_2742.png",
+			"tiles/15/tile6411_1372.png",
+			"tiles/15/tile6410_1372.png",
+			"tiles/16/tile12824_2743.png",
+			"tiles/16/tile12825_2744.png",
+			"tiles/16/tile12825_2743.png",
+			"tiles/16/tile12824_2744.png",
+			"tiles/15/tile6413_1372.png",
+			"tiles/16/tile12826_2744.png",
+			"tiles/15/tile6412_1372.png",
+			"tiles/16/tile12826_2743.png",
+			"tiles/15/tile6412_1367.png",
+			"tiles/15/tile6412_1368.png",
+			"tiles/14/tile3208_684.png",
+			"tiles/14/tile3208_683.png",
+			"tiles/14/tile3203_684.png",
+			"tiles/14/tile3203_683.png"
+		],
+		"refer": []
+	}
 }

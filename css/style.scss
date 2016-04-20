@@ -523,12 +523,14 @@
     color: #000000;
 }
 //商品价格
-.home-rent-detail-money {
+.home-rent-detail-money {    
     display: block;
-    @include font-dpr(18px);
-    color: #848484;
-    em {
-        color: #f05363;
+    color: #f05363;
+    label {
+        @include font-dpr(18px);
+    }
+    em {        
+        @include font-dpr(14px);
     }
 }
 //适合耕种
@@ -1015,7 +1017,7 @@
 //点击购买后的弹出框
 #buyDiv {
     width: 100%;
-    @include px2rem(height, 549px);
+//  @include px2rem(height, 549px); 
     background-color: rgb(255, 255, 255);
     z-index: 999;
     position: fixed;
@@ -1029,18 +1031,26 @@
     @include px2rem(line-height, 185px);
 }
 .buyDiv-title-img {
-    @include px2rem(width, 112px);
-    @include px2rem(height, 112px);
+    @include px2rem(width, 150px);
+    @include px2rem(height, 150px);
     @include px2rem(margin-left, 28px);
     @include px2rem(margin-right, 18px);
     vertical-align: middle;
     display: inline-block;
     border-radius: 6px;
 }
-.buyDiv-title-context {
-    @include font-dpr(18px);
-    color: #000000;
+.buyDiv-message {
+    @include px2rem(width, 510px);
+    @include px2rem(height, 150px);
+    @include Nowrap;
+    vertical-align: middle;
     display: inline-block;
+}
+.buyDiv-message-item {
+    @include px2rem(margin-top, 5px);
+    @include px2rem(margin-bottom, 5px);
+    @include font-dpr(14px);
+    display: block;
 }
 #buyDivClose {
     @include px2rem(width,57px);
@@ -1053,21 +1063,43 @@
     @include px2rem(top, 40px);
     @include px2rem(right, 31px);
 }
+// 套餐栏
+.buyDiv-item {
+    @include px2rem(padding-top, 40px);
+    @include px2rem(padding-bottom, 30px);
+    @include px2rem(padding-left, 38px);
+    @include px2rem(padding-right, 28px);
+    border-bottom: $base-border;
+    font-size: 0;    
+}
+.buyDiv-item-title {
+    @include px2rem(margin-bottom, 20px);
+    display: block;
+    @include font-dpr(18px);
+    color: #848484;
+}
+.buyDiv-items {
+    @include px2rem(margin, 10px);
+    @include px2rem(padding, (10px, 10px));
+    @include px2rem(border-radius, 20px);
+    background-color: rgb(245, 245, 240);
+    display: inline-block;
+    @include font-dpr(14px);
+}
+.buyDiv-items-active {
+    background-color: $green-color;
+    color: #FFFFFF;
+}
 // 第二栏
 .buyDiv-count {
-    @include px2rem(height, 236px);
+    @include px2rem(height, 130px);
     border-bottom: $base-border;
     font-size: 0;
     position: relative;
 }
-.buyDiv-count-left {
-    width: 70%;
-    position: absolute;
-    display: inline-block;
-}
 .buyDiv-count-title {    
     @include px2rem(margin-left, 38px);
-    @include px2rem(margin-top, 50px);
+    @include px2rem(margin-top, 40px);
     display: inline-block;
     @include font-dpr(18px);
     color: #848484;
@@ -1080,12 +1112,6 @@
     @include px2rem(padding-top, 36px);
     text-align: right;
 }
-//金额区域
-.buyDiv-money {
-    @include px2rem(margin-top, 47px);
-    @include font-dpr(15px);
-    display: block;
-}
 //第三栏
 .buyDiv-btn {
     @include px2rem(height, 127px);
@@ -1094,6 +1120,7 @@
 #btnPostBuy {
     width: 90%;
     height: 62%;
+    border: none;
     @include px2rem(margin-top, 28px);
     padding: 0;
     background-color: $green-color;
@@ -1293,7 +1320,7 @@
 
 /**
      * ******** ******** ******** ********
-     * webview-shop-introduce.html商品介绍
+     * webview-shop-introduce.html商店介绍
      * 
  */
 .shop-introduce-item {
@@ -1323,7 +1350,35 @@
     display: table-cell;
     vertical-align: middle;
 }
-
+/**
+     * ******** ******** ******** ********
+     * webview-trade-order确认订单
+     * 
+ */
+#consignee {
+    @include px2rem(height, 205px);
+    @include px2rem(margin-bottom, 25px);
+    background-color: #FFFFFF;
+}
+#orderForm {
+    @include px2rem(height, 620px);
+    @include px2rem(margin-bottom, 20px);
+    background-color: #FFFFFF;
+}
+#coupon {
+    @include px2rem(height, 95px);
+    @include px2rem(margin-bottom, 25px);
+    background-color: #FFFFFF;
+}
+#totalPrice {
+    @include px2rem(height, 128px);
+    @include px2rem(margin-bottom, 20px);
+    background-color: #FFFFFF;
+}
+#buttonGroup {
+    @include px2rem(height, 245px);
+    @include px2rem(padding, (25px, 30px, 30px, 25px));
+}
 /**
      * ******** ******** ******** ********
      * webview-my.html个人中心页面
@@ -1638,6 +1693,9 @@
     color: #595959;
     display: table-cell;
     vertical-align: middle;
+    span {
+        vertical-align: middle;
+    }
 }
 //收藏时间
 .my-trader-title-right {
@@ -2313,7 +2371,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,.3);
+    background-color: rgba(0,0,0,.5);
     z-index: 1;
     opacity: 0;
     -webkit-transition: all .4s ease;

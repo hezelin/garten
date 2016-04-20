@@ -44,7 +44,6 @@ viewDiv.addEventListener("touchmove", function(event) {
 viewDiv.addEventListener("touchend", function(event) {
 	event.preventDefault();
 	moving = false;
-
 });
 // 移动图片end
 // 放大缩小图片
@@ -292,8 +291,10 @@ function touchMove(event) {
 		return;
 	}
 	moveDiv({
-		x: (newPos.x - mousePos.x) * 1.2, // 加快移动速度
-		y: (newPos.y - mousePos.y) * 1.2
+//		x: (newPos.x - mousePos.x) * 1.2, // 加快移动速度
+//		y: (newPos.y - mousePos.y) * 1.2
+		x: (newPos.x - mousePos.x),
+		y: (newPos.y - mousePos.y)
 	});
 	mousePos = newPos;
 }

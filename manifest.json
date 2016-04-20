@@ -1050,7 +1050,9 @@
 					"img/head-search.png",
 					"js/mui.pullToRefresh.material.js"
 				],
-				"refer": [],
+				"refer": [
+					"thirdlv/webview-trade-detail.html"
+				],
 				"priority": 0
 			},
 			"pullrefresh_with_tab.html": {
@@ -1233,7 +1235,29 @@
 					"tiles/14/tile3203_686.png",
 					"tiles/14/tile3203_685.png",
 					"tiles/15/tile6407_1372.png",
-					"tiles/15/tile6406_1371.png"
+					"tiles/15/tile6406_1371.png",
+					"tiles/15/tile6413_1371.png",
+					"tiles/15/tile6413_1370.png",
+					"tiles/16/tile12824_2741.png",
+					"tiles/16/tile12825_2741.png",
+					"tiles/16/tile12825_2742.png",
+					"tiles/16/tile12824_2742.png",
+					"tiles/15/tile6411_1372.png",
+					"tiles/15/tile6410_1372.png",
+					"tiles/16/tile12824_2743.png",
+					"tiles/16/tile12825_2744.png",
+					"tiles/16/tile12825_2743.png",
+					"tiles/16/tile12824_2744.png",
+					"tiles/15/tile6413_1372.png",
+					"tiles/16/tile12826_2744.png",
+					"tiles/15/tile6412_1372.png",
+					"tiles/16/tile12826_2743.png",
+					"tiles/15/tile6412_1367.png",
+					"tiles/15/tile6412_1368.png",
+					"tiles/14/tile3208_684.png",
+					"tiles/14/tile3208_683.png",
+					"tiles/14/tile3203_684.png",
+					"tiles/14/tile3203_683.png"
 				],
 				"refer": [],
 				"priority": 0
