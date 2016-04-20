@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>认租</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: rgb(245, 245, 245);
+			}
+			/*.mui-bar-nav~.mui-content{
+                padding-top: 89px;
+            }
+            .mui-bar-nav~.mui-content .mui-pull-top-pocket{
+                top: 89px;
+            }*/
+		</style>
+	</head>
+
+	<body>
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--<ul class="mui-table-view mui-table-view-chevron">-->
+				<div class="home-rent-container">
+					<div class="home-rent-item">
+						<div class="home-rent-bg" style="background: url(../img/tradeListbg2.png); background-size: cover;">
+							<div class="home-rent-bg-cover"></div>
+							<div class="home-rent-money-bg"></div>
+							<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
+							<div class="home-rent-name">
+								某某店铺
+							</div>
+							<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
+						</div>
+						<label class="home-rent-context">菜地认租 新年特惠</label>
+					</div>
+					<div class="home-rent-item">
+						<div class="home-rent-bg" style="background: url(../img/tradeListbg1.png); background-size: cover;">
+							<div class="home-rent-money-bg"></div>
+							<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
+							<div class="home-rent-name">
+								某某店铺
+							</div>
+							<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
+						</div>
+						<label class="home-rent-context">玉米地认租 新年特惠</label>
+					</div>
+					<div class="home-rent-item">
+						<div class="home-rent-bg" style="background: url(../img/tradeListbg2.png); background-size: cover;">
+							<div class="home-rent-money-bg"></div>
+							<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>259</em>/亩</div>
+							<div class="home-rent-name">
+								某某店铺
+							</div>
+							<div class="home-rent-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></div>
+						</div>
+						<label class="home-rent-context">菜地认租 新年特惠</label>
+					</div>
+				</div>
+				<!--//刷新容器-->
+				<!--</ul>-->
+			</div>
+		</div>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script>
+			var categoryURL = {
+				"认租": "http://farm/v1/items?" + fnCreateSign() + "&category=1&fields=id,shop_id,shop_name,shop_image,title,cover,price,high_price",
+				"活动": "http://farm/v1/items?" + fnCreateSign() + "&category=2&fields=id,shop_id,shop_name,shop_image,title,cover,price,high_price",
+				"农家乐": "http://farm/v1/items?" + fnCreateSign() + "&category=3&fields=id,shop_id,shop_name,shop_image,title,cover,price,high_price",
+				"民宿": "http://farm/v1/items?" + fnCreateSign() + "&category=4&fields=id,shop_id,shop_name,shop_image,title,cover,price,high_price",
+			};
+			setTimeout(function() {
+				mui.init({
+					pullRefresh: {
+						container: "#refreshContainer",
+						down: {
+							callback: downCallBack
+						},
+						up: {
+							callback: upCallback
+						}
+					}
+				});
+			}, 500);
+
+			function getData(title) {
+				if (NetWorkStatus()) {
+					return;
+				}
+				mui.ajax(categoryURL.title, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log("获取" + title + "列表成功" + res);
+						res = JSON.parse(res);
+						if (res.success) {
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						console.log(JSON.stringify(xhr));
+						console.log("获取" + title + "的列表失败");
+					}
+				});
+			}
+			/**
+			 * 上拉加载业务实现 
+			 */
+			function upCallback() {
+				window.setTimeout(function() {
+					// 还有更多数据就显示false，否则显示true
+					mui('#refreshContainer').pullRefresh().endPullupToRefresh();
+				}, 700);
+			};
+			/**
+			 * 下拉刷新业务实现 
+			 */
+			function downCallBack() {
+				window.setTimeout(function() {
+					// 还有更多数据就显示false，否则显示true
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+				}, 700);
+			};
+			mui.plusReady(function() {
+				console.log(plus.webview.currentWebview().title);
+				setTimeout(function() {
+					mui('#refreshContainer').pullRefresh().pulldownLoading();
+					console.log("第一次打开刷新一次");
+				}, 1000);
+				mui(".home-rent-container").on("tap", ".home-rent-item", function(e) {
+					var thisbtn = this;
+					if (this.classList.contains("loading")) {
+						return;
+					}
+					this.classList.add("loading");
+					var nwaiting = plus.nativeUI.showWaiting();
+					var webviewTradeHead = plus.webview.getWebviewById("webview-trade-header");
+					var oldview = webviewTradeHead.children();
+					for (var i = 0; i < oldview.length; i++) {
+						webviewTradeHead.remove(oldview[i]);
+						oldview[i].close();
+					}
+					mui.fire(webviewTradeHead, "initTradeView");
+					webviewTradeHead.show("pop-in", 300, function() {
+						thisbtn.classList.remove("loading");
+					});
+					//打开商品父模板时加载第一页
+					//商品页
+					var newWebview = plus.webview.create("../thirdlv/webview-home-rent-detail.html", "webview-home-rent-detail", fnSetSubpageStyle(98, 0));
+					newWebview.onloaded = function() {
+						setTimeout(function() {
+							nwaiting.close();
+							webviewTradeHead.append(newWebview);
+						}, 100);
+					};
+				});
+			});
+		</script>
+	</body>
+
+</html>

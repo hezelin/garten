@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<title>商城列表页头部</title>
+		<style>
+			html,
+			body {
+				/*height: 100%;*/
+				background-color: #efeff4;
+			}
+			[data-dpr="2"], .mui-ios .mui-pull-caption {
+				font-size: 28px;
+			}
+			[data-dpr="2"], .mui-ios .mui.spinner {
+				font-size: 28px;
+			}
+			[data-dpr="2"], .mui-ios .mui-icon-pulldown{
+				font-size: 28px;
+			}
+			[data-dpr="3"], .mui-ios .mui-pull-caption {
+				font-size: 42px;
+			}
+			[data-dpr="3"], .mui-ios .mui.spinner {
+				font-size: 42px;
+			}
+			[data-dpr="3"], .mui-ios .mui-icon-pulldown{
+				font-size: 42px;
+			}
+			.mui-ios .mui-pull-bottom-pocket{
+				height: 50px;
+			}			
+			.mui-android .mui-pull-top-pocket{
+				 top: 95px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class="white-arrow-big-span header-control-left-btn-span"></span>
+			</div>
+			<div>
+				<span id="webview-head-title">商城</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span search-span"></span>
+			</div>
+		</div>
+
+		<div class="shopping-nav-tab">
+			<div class="shopping-nav-tab-item shopping-nav-tab-item-active" id="flower">花卉</div>
+			<div class="shopping-nav-tab-item shopping-nav-tab-item-line" id="vegetables">蔬菜</div>
+			<div class="shopping-nav-tab-item shopping-nav-tab-item-line" id="fruit">水果</div>
+			<div class="shopping-nav-tab-item shopping-nav-tab-item-line" id="meat">肉肉</div>
+			<div class="shopping-nav-tab-item shopping-nav-tab-item-line" id="other">其他</div>
+		</div>
+
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
+		<script>
+			mui.init({
+				subpages: [{
+					url: "/secondlv/webview-shopping-list.html",
+					id: "/secondlv/webview-shopping-list.html",
+					styles: fnSetSubpageStyle(200, 0)
+				}]
+			});
+//			funtion changeTab(tapBtn) {
+//				if ()
+//			}
+			mui(".shopping-nav-tab").on("tap", ".shopping-nav-tab-item", function() {
+				var tapBtn = this;
+				mui.fire(plus.webview.getWebviewById("/secondlv/webview-shopping-list.html"), "changeList", {id: tapBtn.id});
+			})
+			mui.plusReady(function() {
+			});
+		</script>
+	</body>
+
+</html>

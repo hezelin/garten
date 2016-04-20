@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				margin: 0;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="header-control">
+				<div class="header-control-left-btn  mui-action-back">
+					<span class="white-arrow-big-span header-control-left-btn-span"></span>
+				</div>
+				<div>
+					<span id="webview-head-title">商城</span>
+				</div>
+				<div class="header-control-right-btn">
+					<span class="header-control-right-btn-span search-span"></span>
+				</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item mui-active" href="#item1mobile">
+						热销
+					</a>
+					<a class="mui-control-item" href="#item2mobile">
+						花卉
+					</a>
+					<a class="mui-control-item" href="#item3mobile">
+						蔬菜
+					</a>
+					<a class="mui-control-item" href="#item4mobile">
+						水果
+					</a>
+					<a class="mui-control-item" href="#item5mobile">
+						肉类
+					</a>
+					<a class="mui-control-item" href="#item6mobile">
+						其他
+					</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-2"></div>
+
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll" id="hotSale">
+								<div class="shopping-list-tab-container">
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll" id="flower">
+								<div class="shopping-list-tab-container">
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺1</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺1</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺1</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺1</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺1</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺1</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺1</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺1</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺1</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll" id="vegetables">
+								<div class="shopping-list-tab-container">
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item4mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll" id="fruit">
+								<div class="shopping-list-tab-container">
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item5mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll" id="meat">
+								<div class="shopping-list-tab-container">
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item6mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll" id="other">
+								<div class="spinner">
+									<div class="bounce1"></div>
+									<div class="bounce2"></div>
+									<div class="bounce3"></div>
+								</div>
+								<!--<div class="shopping-list-tab-container">-->
+
+								<!--<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>
+									<div class="shopping-list-item">
+										<div class="shopping-list-item-bg" style="background: url(img/shopping-list-item-test.png); background-size: cover;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">满天星  花种子四季室内阳台花卉盘栽</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span"></span>
+												<span class="shopping-list-item-store-name">格子店铺</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>20</em></span>
+											</div>
+										</div>
+									</div>-->
+								<!--</div>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
+		<script src="js/mui.pullToRefresh.js"></script>
+		<script src="js/mui.pullToRefresh.material.js"></script>
+		<script>
+			// 系统页面初始化
+			mui.init();
+			//阻尼系数
+			var deceleration = mui.os.ios ? 0.003 : 0.0009;
+			mui('.mui-scroll-wrapper').scroll({
+				bounce: false,
+				indicators: true, //是否显示滚动条
+				deceleration: deceleration
+			});
+			
+			var pageLoad = function() {
+				this
+			}
+			var createFragment = function(ul, index, count, reverse) {
+				var length = ul.querySelectorAll('li').length;
+				var fragment = document.createDocumentFragment();
+				var li;
+				for (var i = 0; i < count; i++) {
+					li = document.createElement('li');
+					li.className = 'mui-table-view-cell';
+					li.innerHTML = '第' + (index + 1) + '个选项卡子项-' + (length + (reverse ? (count - i) : (i + 1)));
+					fragment.appendChild(li);
+				}
+				return fragment;
+			};
+
+			function downCallBack(index) {
+				var self = this;
+				console.log(self.element.id);
+				setTimeout(function() {
+					var ul = self.element.querySelector('.mui-table-view');
+					ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
+					self.endPullDownToRefresh();
+				}, 1000);
+			}
+
+			function upCallBack() {
+				var self = this;
+				setTimeout(function() {
+					var ul = self.element.querySelector('.mui-table-view');
+					ul.appendChild(createFragment(ul, 1, 5));
+					self.endPullUpToRefresh();
+				}, 1000);
+			}
+			mui.ready(function() {
+				//循环初始化所有下拉刷新，上拉加载。
+				mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+					mui(pullRefreshEl).pullToRefresh({
+						down: {
+							callback: downCallBack
+						},
+						up: {
+							callback: upCallBack
+						}
+					});
+				});
+				document.getElementById("slider").addEventListener("scrollend", function() {
+					console.log(123 + new Date().getTime().toString());
+					console.log(document.querySelector("#sliderSegmentedControl .mui-active").innerText);
+					//							document.addEventListener("release", test1);
+				})
+			});
+		</script>
+	</body>
+
+</html>
