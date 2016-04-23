@@ -113,7 +113,7 @@
 				var self = plus.webview.currentWebview();
 
 				function fnCloseSplashScreen(loadCount) {
-					if (loadCount == 0) {						
+					if (loadCount == 0) {
 						var webHead = mui.preload({
 							url: "webview-header.html",
 							id: "webview-header",
@@ -128,9 +128,9 @@
 				}
 				for (var i = 0; i < subpages.length; i++) {
 					if (i == subpages.length - 1) {
-//						plus.webview.currentWebview().onloaded = function() {
-//					plus.navigator.closeSplashscreen();
-//				}
+						//						plus.webview.currentWebview().onloaded = function() {
+						//					plus.navigator.closeSplashscreen();
+						//				}
 						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 101));
 						sub.onloaded = function() {
 							loadCount--;
@@ -139,7 +139,7 @@
 							console.log("调试信息：" + (userLoginStatus() ? "已登录" : "未登录"));
 						};
 					} else {
-						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));		
+						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));
 						sub.onloaded = function() {
 							loadCount--;
 							fnCloseSplashScreen(loadCount);
@@ -148,11 +148,12 @@
 				}
 				// 选项卡点击事件
 				var headElem = document.getElementsByClassName("header-control");
+				var comuFirstOpen = true;
 				mui("#index-bar-tab").on("tap", ".index-tab-item", function(e) {
 					var targetTab = this.getAttribute("data-href");
 					if (targetTab == activeTab) {
 						return;
-					}					
+					}
 					// 更换状态
 					document.querySelector(".index-tab-active").classList.remove("index-tab-active");
 					this.classList.add("index-tab-active");
@@ -160,16 +161,19 @@
 					if (targetTab == "webview-my.html" && userLoginStatus()) {
 						mui.fire(plus.webview.getWebviewById(targetTab), "setNum", {});
 					}
-					// 如果是社区页，则初始化
+					// 如果是社区页，则刷新
 					if (targetTab == "webview-comu-new.html") {
-						mui.fire(plus.webview.getWebviewById(targetTab), "initPage", {});
+						if (comuFirstOpen && !NetWorkStatus()) {
+							mui.fire(plus.webview.getWebviewById(targetTab), "initPage", {});
+							console.log("初始化一次社区页");
+							comuFirstOpen = !comuFirstOpen;
+						}
 					}
 					plus.webview.hide(activeTab);
 					plus.webview.show(targetTab);
-					activeTab = targetTab;					
+					activeTab = targetTab;
 				});
 			});
-			
 		</script>
 	</body>
 

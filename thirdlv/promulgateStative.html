@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>发布评论</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<!--<link href="../css/mui.min.css" rel="stylesheet" />-->
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: rgb(245, 245, 245);
+			}
+			
+			.checkGroup-content {
+				margin-right: 60px;
+			}
+			
+			* {
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				/*-webkit-user-select: none;*/
+				outline: 0;
+				-webkit-tap-highlight-color: transparent;
+				-webkit-tap-highlight-color: transparent;
+			}
+			
+			.farm-display-none {
+				display: none;
+			}
+			
+			#submitForm {
+				height: 40px;
+				line-height: 40px;
+				width: 94%;
+				margin-left: 3%;
+				background-color: #FFFFFF;
+				text-align: center;
+				margin-top: 10px;
+				/*position: fixed;*/
+				/*bottom: 10px;*/
+				font-size: 18px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control header-control-fixed">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class="white-arrow-big-span header-control-left-btn-span"></span>
+			</div>
+			<div>
+				<span id="webview-head-title">记录动态</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span"></span>
+			</div>
+		</div>
+		<div id="head-holder"></div>
+		<form id="promulgateForm" method="post" enctype="multipart/form-data">
+			<textarea name="text" id="promulgateForm-textArea" placeholder="请输入想说的话"></textarea>
+			<div class="promulgateForm-file">
+				<span class="promulgateForm-addFile" style="background: url(../img/addIMG.png); background-repeat: no-repeat;background-position: center; background-size: 70px;"></span>
+				<input type="file" name="img0" class="promulgateForm-Input" id="promulgateForm-Input0" />
+			</div>
+			<!--<div class="promulgateForm-file">
+				<span class="promulgateForm-addFile" style="background: url(../img/addIMG.png); background-repeat: no-repeat;background-position: center; background-size: 70px;"></span>
+				<input type="file" name="img1" class="promulgateForm-Input" />
+			</div>-->
+			<!--<div class="promulgateForm-file">
+				<span class="promulgateForm-addFile" style="background: url(../img/addIMG.png); background-repeat: no-repeat;background-position: center; background-size: 70px;"></span>
+				<input type="file" name="img2" class="promulgateForm-Input" />
+			</div>-->
+			<br />
+			<span class="promulgateForm-span">最多可添加三张图片</span>
+		</form>
+		<div class="comu-post-checkGroup">
+			<span class="radio-check-span radio-check-item radio-check-active"></span>
+			<span class="checkGroup-content">分享</span>
+			<span class="radio-check-span radio-check-item"></span>
+			<span class="checkGroup-content">问答</span>
+		</div>
+		<div id="submitForm">
+			发布
+		</div>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script>
+			mui.init();
+			// 默认是问答
+			var typeOfpromulgate = true;
+			mui.plusReady(function() {
+				document.getElementById("submitForm").addEventListener("tap", function() {
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
+					var user_id = plus.storage.getItem("userID");
+					var token = plus.storage.getItem("tokenValue");
+					var textValue = document.getElementById("promulgateForm-textArea").value;
+					if (textValue.length == 0) {
+						mui.toast("请输入文字内容");
+						return;
+					}
+					if (user_id == null && token == null) {
+						mui.toast("用户信息不完整，请重新登录");
+						return;
+					}
+					var nwaiting = plus.nativeUI.showWaiting("发布中");
+					var typePost = typeOfpromulgate ? 1 : 2;
+					var URL = "http://farm.rrzuji.com/v1/talk/create?" + fnCreateSign() + "&access-token=" + token;
+					var fData = new FormData();
+					fData.append("img0", document.getElementById('promulgateForm-Input0').files[0]);
+					fData.append("text", textValue);
+					fData.append("user_id", user_id);
+					fData.append("type", typePost);
+					var xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function(e) {
+						if (xhr.readyState == 4) {
+							if (xhr.status == 200) {
+								console.log("上传完成");
+								console.log(JSON.stringify(xhr));
+								console.log(JSON.parse(xhr.responseText).success);
+								console.log(plus.storage.getItem("userAvatar"));
+								if (!JSON.parse(xhr.responseText).success) {
+									mui.toast("无法连接服务器，发布失败，请检查网络连接");
+									nwaiting.close();
+									return;
+								}								
+								var w = plus.webview.getWebviewById("webview-comu-new.html");
+								mui.fire(w, "refreshTab", {
+									type: typePost
+								});
+								var w2 = plus.webview.getWebviewById("secondlv/webview-my-comu.html");
+								mui.fire(w2, "refreshTab", {
+									type: typePost
+								});
+								nwaiting.close();
+								mui.back();
+							} else {
+								mui.toast("网络不稳定，发布失败，请检查网络连接");
+								nwaiting.close();
+							}
+						} 
+					}
+					xhr.open("POST", URL);
+					//					xhr.setRequestHeader("Content-Type", "multipart/form-data");
+					xhr.send(fData);
+				});
+			})
+			mui(".comu-post-checkGroup").on("tap", ".radio-check-item", function(e) {
+				var oldElem = document.querySelector(".radio-check-active");
+				var thisElem = e.target;
+				if (oldElem == thisElem) {
+					return;
+				}
+				if (oldElem) {
+					oldElem.classList.remove("radio-check-active");
+				}
+				typeOfpromulgate = !typeOfpromulgate;
+				thisElem.classList.add("radio-check-active");
+			});
+		</script>
+	</body>
+
+</html>

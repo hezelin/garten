@@ -1,5 +1,4 @@
 @import "public";
-
 /**
      * ******** ******** ******** ********
      * index页
@@ -8,9 +7,8 @@
 #index-bar-tab {
     width: 100%;
     @include px2rem(height, 100px);
-    font-size: 0px;
-    background-color: #FFFFFF;
-//  border-top: $base-border;
+    font-size: 0;
+    background-color: #FFFFFF; //  border-top: $base-border;
     display: table !important;
     z-index: 10;
     position: fixed;
@@ -31,42 +29,37 @@
 .index-tab-item {
     width: 25%;
     display: table-cell;
-    font-size: 0px !important;
+    font-size: 0 !important;
     vertical-align: middle;
     text-align: center;
 }
 //图标尺寸
 .icon-index {
     @include px2rem(height,57px);
-    @include px2rem(width,53px);
-//  @include px2rem(margin-bottom, 13px);
+    @include px2rem(width,53px); //  @include px2rem(margin-bottom, 13px);
     background-repeat: no-repeat;
     position: relative;
     z-index: 20;
     display: inline-block;
 }
-
 .icon-index-home {
     @include spirtes-img;
-    @include px2rem(background-position-x, -73px);//73
+    @include px2rem(background-position-x, -73px); //73
     @include px2rem(background-position-y, -467px);
 }
-
 .icon-index-comu {
     @include spirtes-img;
-    @include px2rem(background-position-x, -504px);//432
+    @include px2rem(background-position-x, -504px); //432
     @include px2rem(background-position-y, -467px);
 }
-
 .icon-index-nav {
     @include spirtes-img;
-    @include px2rem(background-position-x, -361px);//361
+    @include px2rem(background-position-x, -361px); //361
     @include px2rem(background-position-y, -467px);
 }
-
 .icon-index-info {
     @include spirtes-img;
-    @include px2rem(background-position-x, -144px);//216
+    @include px2rem(background-position-x, -144px); //216
     @include px2rem(background-position-y, -467px);
 }
 //图标下面的字体区域
@@ -77,33 +70,30 @@
 //重写点击底部按键active事件
 .index-tab-active {
     .icon-index-home {
-//      @include spirtes-img;
-//      @include px2rem(background-position-x, -1px);//73
-//      @include px2rem(background-position-y, -472px);
+        //      @include spirtes-img;
+        //      @include px2rem(background-position-x, -1px);//73
+        //      @include px2rem(background-position-y, -472px);
         @include spirtes-img3;
-        @include px2rem(background-position-x, -2px);//73
+        @include px2rem(background-position-x, -2px); //73
         @include px2rem(background-position-y, 4px);
     }
     .icon-index-comu {
         @include spirtes-img3;
-        @include px2rem(background-position-x, -78px);//73
+        @include px2rem(background-position-x, -78px); //73
         @include px2rem(background-position-y, 4px);
     }
-    
     .icon-index-nav {
         @include spirtes-img3;
-        @include px2rem(background-position-x, -154px);//73
+        @include px2rem(background-position-x, -154px); //73
         @include px2rem(background-position-y, 2px);
     }
-    
     .icon-index-info {
         @include spirtes-img3;
-        @include px2rem(background-position-x, -232px);//73
+        @include px2rem(background-position-x, -232px); //73
         @include px2rem(background-position-y, 1px);
     }
     color: $green-color;
 }
-
 /**
      * ******** ******** ******** ********
      * webview-home
@@ -129,7 +119,7 @@
 .app-log-span {
     @include px2rem(width, 60px);
     @include px2rem(height, 60px);
-    background: url(../img/logo.png);
+    background: url("../img/logo.png");
     background-size: cover;
     display: inline-block;
 }
@@ -154,17 +144,15 @@
     width: 100%;
     @include px2rem(height, 190px);
     @include px2rem(margin-top, 23px);
-    @include px2rem(margin-bottom, 23px);
-//  @include px2rem(padding-left, 28px);
-//  @include px2rem(padding-right, 28px);
+    @include px2rem(margin-bottom, 23px); //  @include px2rem(padding-left, 28px);
+    //  @include px2rem(padding-right, 28px);
     background-color: white;
     display: table;
     font-size: 0;
 }
 //五个按钮各自的样式
 .home-nav-tab-item {
-    width: 20%;
-//  @include px2rem(height, 190px);
+    width: 20%; //  @include px2rem(height, 190px);
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -202,7 +190,6 @@
     @include px2rem(background-position-x, -488px);
     @include px2rem(background-position-y, 0px);
 }
-
 //按钮文字
 .home-nav-tab-item-title {
     @include font-dpr(16px);
@@ -227,7 +214,7 @@
     @include px2rem(margin-bottom, 12px);
     @include px2rem(padding-top, 30px);
     clear: both;
-    font-size: 0px;
+    font-size: 0;
     text-align: justify;
 }
 //标题格式
@@ -261,7 +248,7 @@
     display: inline-block;
 }
 .home-news-content-item-detail {
-   @include font-dpr(15px);
+    @include font-dpr(15px);
     color: #585858;
     @include px2rem(padding, (10px, 10px, 10px, 10px));
     vertical-align: top;
@@ -318,8 +305,7 @@
 }
 .span-new {
     width: 0;
-    height: 0;
-//  @include px2rem(padding, (3px, 3px, 0px, 0px));
+    height: 0; //  @include px2rem(padding, (3px, 3px, 0px, 0px));
     @include px2rem(border-width, 28px);
     border-style: solid;
     border-color: transparent;
@@ -336,16 +322,13 @@
     @include px2rem(top, 4px);
     @include px2rem(right, 4px);
 }
-
-
 // 图片列表
 .home-news-content-item-photo {
     font-size: 0;
 }
-.home-news-content-item-photo:after{
-    @include setJustify;    
-}  
-
+.home-news-content-item-photo:after {
+    @include setJustify;
+}
 // 每个图片
 .home-news-content-item-photo-list {
     @include px2rem(width, 225px);
@@ -353,7 +336,7 @@
     @include px2rem(margin-bottom, 30px);
     display: inline-block;
     position: relative;
-     @include px2rem(margin-right, 5px);
+    @include px2rem(margin-right, 5px);
 }
 //每个图片的下方标题
 .home-news-content-item-photo-title {
@@ -368,7 +351,6 @@
     bottom: 0;
     @include Nowrap;
 }
-
 /**
      * ******** ******** ******** ********
      * webview-home-rent
@@ -379,14 +361,13 @@
 }
 .home-rent-bg {
     @include px2rem(height, 380px);
-    position: relative;
-//      box-shadow: 0px -70px 70px -30px rgba(0, 0, 0, 0.7) inset;
-//      -webkit-box-shadow: 0px -60px 60px -20px rgba(0, 0, 0, 0.7) inset;       
+    position: relative; //      box-shadow: 0px -70px 70px -30px rgba(0, 0, 0, 0.7) inset;
+    //      -webkit-box-shadow: 0px -60px 60px -20px rgba(0, 0, 0, 0.7) inset;       
 }
 .home-rent-bg-cover {
     width: 100%;
     @include px2rem(height, 70px);
-    position: absolute;    
+    position: absolute;
     bottom: 0;
     background-color: rgba(0 ,0, 0, 0.35);
 }
@@ -409,7 +390,7 @@
 //金额内容
 .home-rent-money-content {
     @include px2rem(height, 70px);
-    @include px2rem(line-height, 70px);    
+    @include px2rem(line-height, 70px);
     @include font-dpr(15px);
     color: #FFFFFF;
     display: inline-block;
@@ -446,7 +427,7 @@
     right: 0;
     bottom: 0;
 }
-.home-rent-context{
+.home-rent-context {
     @include px2rem(margin-left, 27px);
     @include px2rem(margin-top, 18px);
     @include font-dpr(14px);
@@ -471,12 +452,12 @@
     padding: 0;
     position: relative;
     white-space: nowrap;
-    transition: all 0s linear; 
+    transition: all 0s linear;
 }
 .showBar-item {
     width: 100%;
     display: inline-block;
-    position: relative;    
+    position: relative;
     white-space: normal;
     vertical-align: top;
     font-size: 0;
@@ -523,13 +504,13 @@
     color: #000000;
 }
 //商品价格
-.home-rent-detail-money {    
+.home-rent-detail-money {
     display: block;
     color: #f05363;
     label {
         @include font-dpr(18px);
     }
-    em {        
+    em {
         @include font-dpr(14px);
     }
 }
@@ -538,9 +519,8 @@
     background-color: rgb(245, 245, 245);
 }
 .home-rent-detail-suit-item {
-    @include px2rem(height, 96px);
-//  @include px2rem(padding-left, 28px);
-//  @include px2rem(padding-right, 28px);
+    @include px2rem(height, 96px); //  @include px2rem(padding-left, 28px);
+    //  @include px2rem(padding-right, 28px);
     padding-left: 3%;
     padding-right: 3%;
     @include font-dpr(16px);
@@ -555,7 +535,7 @@
     text-align: left;
     @include Nowrap;
 }
-.home-rent-detail-suit-item-right {    
+.home-rent-detail-suit-item-right {
     width: 50%;
     height: 100%;
     @include px2rem(line-height, 96px);
@@ -596,7 +576,6 @@
     vertical-align: middle;
     text-align: right;
 }
-
 //店铺介绍入口
 .home-rent-detail-shop-detail {
     width: 100%;
@@ -628,7 +607,7 @@
 //商品详情页面底部的商品按钮
 .shop-wares-span {
     @include px2rem(width,32px);
-    @include px2rem(height,33px); 
+    @include px2rem(height,33px);
     @include spirtes-img2;
     display: inline-block;
     vertical-align: middle;
@@ -638,7 +617,7 @@
 //商品详情页面底部的评价按钮
 .shop-wares-assess-span {
     @include px2rem(width,32px);
-    @include px2rem(height,33px); 
+    @include px2rem(height,33px);
     @include spirtes-img2;
     display: inline-block;
     vertical-align: middle;
@@ -648,7 +627,7 @@
 //商品详情页面底部的分享按钮
 .shop-wares-share-span {
     @include px2rem(width,32px);
-    @include px2rem(height,33px); 
+    @include px2rem(height,33px);
     @include spirtes-img2;
     display: inline-block;
     vertical-align: middle;
@@ -656,7 +635,8 @@
     @include px2rem(background-position-y, 0px);
 }
 //容器
-.home-rent-comment-container, .home-rent-introduce-container {
+.home-rent-comment-container,
+.home-rent-introduce-container {
     @include px2rem(margin-bottom, 100px);
 }
 //商品评论页面
@@ -710,7 +690,6 @@
     @include font-dpr(15px);
     color: #737373;
 }
-
 /**
      * ******** ******** ******** ********
      * webview-header
@@ -763,7 +742,7 @@
     display: table;
 }
 .loadingPage-middle {
-    display:table-cell;
+    display: table-cell;
     vertical-align: middle;
 }
 .loadingPage-text {
@@ -771,7 +750,7 @@
     display: block;
 }
 //css3动画
-.spinner { 
+.spinner {
     margin: 0 auto;
     width: 150px;
     text-align: center;
@@ -801,17 +780,25 @@
     animation-delay: -0.16s;
 }
 @-webkit-keyframes bouncedelay {
-    0%, 80%, 100% { -webkit-transform: scale(0.0) }
-    40% { -webkit-transform: scale(1.0) }
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0.0);
+    }
+    40% {
+        -webkit-transform: scale(1.0);
+    }
 }
 @keyframes bouncedelay {
-    0%, 80%, 100% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-    } 
+    0%,
+    80%,
+    100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
     40% {
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
     }
 }
 /**
@@ -836,7 +823,7 @@
 .shopping-nav-tab-item-active {
     color: $green-color;
     border-bottom-color: $green-color;
-} 
+}
 .shopping-nav-tab-item-line:after {
     content: " ";
     width: 1px;
@@ -855,19 +842,18 @@
 // 第一层容器
 .shopping-list-tab-container {
     width: 10rem;
-    background-color: #FFFFFF;
-//  @include px2rem(padding-bottom, 20px);
-    margin: 0 auto;    
+    background-color: #FFFFFF; //  @include px2rem(padding-bottom, 20px);
+    margin: 0 auto;
     font-size: 0;
 }
 .shopping-list-item {
     @include px2rem(width, 337px);
-    @include px2rem(height, 404px);    
+    @include px2rem(height, 404px);
     @include px2rem(margin-top, 28px);
     border: $base-border;
     display: inline-block;
     overflow: hidden;
-    box-shadow: 2px 2px 4px 0px rgb(196, 196, 196);
+    box-shadow: 2px 2px 4px 0 rgb(196, 196, 196);
 }
 .shopping-list-item:nth-of-type(odd) {
     @include px2rem(margin-left, 28px);
@@ -883,7 +869,7 @@
     overflow: hidden;
 }
 .shopping-list-item-title-span {
-//  @include px2rem(margin-top, 28px);
+    //  @include px2rem(margin-top, 28px);
     @include px2rem(margin-right, 10px);
     @include px2rem(margin-left, 10px);
     @include px2rem(line-height, 40px);
@@ -893,9 +879,9 @@
 }
 .shopping-list-item-store {
     @include px2rem(height, 67px);
-    @include px2rem(line-height, 67px);    
+    @include px2rem(line-height, 67px);
     background-color: rgb(250, 250, 250);
-    overflow: hidden;    
+    overflow: hidden;
     .shop-span {
         @include px2rem(margin-left, 12px);
         @include px2rem(margin-right, 7px);
@@ -944,13 +930,12 @@
     font-size: 0;
 }
 .trade-header-nav {
-    width: 25%;
-//  @include px2rem(line-height, 99px);
+    width: 25%; //  @include px2rem(line-height, 99px);
     @include px2rem(height, 98px);
     @include px2rem(border-bottom-width, 5px);
     @include px2rem(line-height, 93px);
     // line-height + border-width = height
-//  border-bottom-width: 4px;
+    //  border-bottom-width: 4px;
     border-bottom-style: solid;
     border-bottom-color: #FFFFFF;
     display: inline-block;
@@ -968,7 +953,7 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    font-size: 0px;
+    font-size: 0;
 }
 .trade-foot-control-btn {
     width: 27.5%;
@@ -994,7 +979,7 @@
     @include px2rem(width, 43px);
     @include px2rem(height, 43px);
     background-repeat: no-repeat;
-    vertical-align: middle; 
+    vertical-align: middle;
     display: inline-block;
 }
 .trade-foot-control-small-btn-title {
@@ -1016,8 +1001,7 @@
 }
 //点击购买后的弹出框
 #buyDiv {
-    width: 100%;
-//  @include px2rem(height, 549px); 
+    width: 100%; //  @include px2rem(height, 549px); 
     background-color: rgb(255, 255, 255);
     z-index: 999;
     position: fixed;
@@ -1054,7 +1038,7 @@
 }
 #buyDivClose {
     @include px2rem(width,57px);
-    @include px2rem(height,57px); 
+    @include px2rem(height,57px);
     @include spirtes-img2;
     display: inline-block;
     @include px2rem(background-position-x, -142px);
@@ -1070,7 +1054,7 @@
     @include px2rem(padding-left, 38px);
     @include px2rem(padding-right, 28px);
     border-bottom: $base-border;
-    font-size: 0;    
+    font-size: 0;
 }
 .buyDiv-item-title {
     @include px2rem(margin-bottom, 20px);
@@ -1097,7 +1081,7 @@
     font-size: 0;
     position: relative;
 }
-.buyDiv-count-title {    
+.buyDiv-count-title {
     @include px2rem(margin-left, 38px);
     @include px2rem(margin-top, 40px);
     display: inline-block;
@@ -1189,12 +1173,12 @@
     @include px2rem(top, 27px);
     @include px2rem(right, 28px);
 }
-
 //底部
 .shop-foot-container {
     width: 100%;
     @include px2rem(height, 100px);
     border-top: $base-border;
+    background-color: rgb(245, 245, 245);
     display: table;
     position: fixed;
     left: 0;
@@ -1259,7 +1243,6 @@
 .shop-home-page-hot-img {
     @include px2rem(width, 694px);
     @include px2rem(height, 303px);
-    
 }
 //其他商品列表
 .shop-home-page-container {
@@ -1316,8 +1299,6 @@
         color: #f05353;
     }
 }
-
-
 /**
      * ******** ******** ******** ********
      * webview-shop-introduce.html商店介绍
@@ -1345,6 +1326,7 @@
 .shop-introduce-item-right {
     @include px2rem(width, 170px);
     @include px2rem(height, 95px);
+    @include px2rem(padding, (20px, 0px));
     @include font-dpr(15px);
     color: #737373;
     display: table-cell;
@@ -1356,28 +1338,203 @@
      * 
  */
 #consignee {
-    @include px2rem(height, 205px);
     @include px2rem(margin-bottom, 25px);
+    @include px2rem(padding, (30px, 28px));
     background-color: #FFFFFF;
+}
+.consignee-group-left {
+    @include px2rem(width, 50px);
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+}
+.consignee-group-right {
+    @include px2rem(width, 600px);
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+.consignee-name-phone-content {
+    @include font-dpr(16px);
+    color: rgb(19,19,19);
+    @include px2rem(margin-bottom, 15px);
+}
+.consignee-address-content {
+    @include font-dpr(14px);
+    color: rgb(70,70,70);
+}
+.right-arrow-group {
+    @include px2rem(width, 30px);
+    height: 100%;
+    display: inline-block;
+    text-align: right;
 }
 #orderForm {
     @include px2rem(height, 620px);
     @include px2rem(margin-bottom, 20px);
     background-color: #FFFFFF;
 }
+#orderForm-shop {
+    width: 95%;
+    margin: 0 auto;
+}
+#orderForm-detail {
+    width: 93%;
+    @include px2rem(height, 210px);
+    @include px2rem(line-height, 210px);
+    margin: 0 auto;
+    font-size: 0;    
+}
+.orderForm-detail-left {
+    @include px2rem(width, 170px);
+    height: 100%;
+    vertical-align: top;
+    line-height: inherit;
+    display: inline-block;
+}
+.orderForm-detail-img {
+    @include px2rem(width, 160px);
+    @include px2rem(height, 160px);
+    display: inline-block;
+    vertical-align: middle;
+}
+.orderForm-detail-middle {
+    @include px2rem(width, 460px);
+    height: 100%;
+    position: relative;
+    vertical-align: top;
+    line-height: inherit;
+    display: inline-block;
+}
+.orderForm-detail-title {
+    position: absolute;
+    @include px2rem(top, 30px);
+    @include px2rem(left, 25px);
+    display: inline-block;
+    @include font-dpr(16px);
+    color: rgb(96, 96, 96);
+}
+.orderForm-detail-money {
+    position: absolute;
+    @include px2rem(bottom, 30px);
+    @include px2rem(left, 25px);
+    display: inline-block;
+    @include font-dpr(16px);
+    color: rgb(236, 66, 63);
+}
+.orderTrade-detail-right {
+    @include px2rem(width, 50px);
+    height: 100%;
+    @include font-dpr(18px);
+    color: rgb(96, 96, 96);
+    vertical-align: top;
+    line-height: inherit;
+    display: inline-block;
+}
+.orderForm-other-item {
+    width: 93%;
+    @include px2rem(height, 102px);
+    @include px2rem(line-height, 103px);    
+    font-size: 0;
+    margin: 0 auto;
+    border-top: $base-border;
+}
+.other-item-left {
+    width: 30%;
+    height: 100%;
+    vertical-align: middle;
+    line-height: inherit;
+    display: inline-block;
+    @include font-dpr(16px);
+    color: rgb(19, 19, 19);
+}
+.other-item-right {
+    width: 70%;
+    height: 100%;
+    vertical-align: middle;
+    line-height: inherit;
+    display: inline-block;
+    text-align: right;
+    @include font-dpr(16px);
+    color: rgb(96, 96, 96);
+}
+#choseExpress {
+    @include px2rem(margin-left, 31px);
+    vertical-align: middle;
+}
+#leaveMessage {
+    border: none;
+    @include font-dpr(16px);
+}
 #coupon {
     @include px2rem(height, 95px);
     @include px2rem(margin-bottom, 25px);
+    font-size: 0;
     background-color: #FFFFFF;
+}
+.coupon-left {
+    width: 22%;
+    height: 100%;
+    @include px2rem(padding-left, 28px);
+    @include px2rem(line-height, 95px);
+    @include font-dpr(16px);
+    color: rgb(19, 19, 19);
+    vertical-align: middle;
+    display: inline-block;
+}
+.coupon-middle {
+    width: 70%;
+    height: 100%;
+    @include px2rem(padding-right, 20px);
+    @include px2rem(line-height, 95px);
+    @include font-dpr(16px);
+    color: rgb(109, 109, 109);
+    vertical-align: middle;
+    text-align: right;
+    display: inline-block;
+}
+.coupon-right {
+    width: 8%;
+    height: 100%;
+    @include px2rem(padding-right, 28px);    
+    @include px2rem(line-height, 95px);    
+    display: inline-block;
+    text-align: right;
+    .black-arrow-span {
+        vertical-align: middle;
+    }
 }
 #totalPrice {
     @include px2rem(height, 128px);
     @include px2rem(margin-bottom, 20px);
+    @include px2rem(padding-top, 30px);
+    @include font-dpr(16px);
+    text-align: center;
     background-color: #FFFFFF;
+}
+.totalPrice-above {
+    @include px2rem(margin-bottom, 10px);
+    display: inline-block;
+}
+.totalPrice-under {
+    color: rgb(223, 59, 66);
 }
 #buttonGroup {
     @include px2rem(height, 245px);
-    @include px2rem(padding, (25px, 30px, 30px, 25px));
+    @include px2rem(padding, (30px, 28px));
+}
+.buttonGroup-pay {
+    width: 100%;
+    @include px2rem(height, 80px);
+    @include px2rem(line-height, 80px);
+    @include px2rem(border-radius, 10px);
+    @include font-dpr(16px);
+    text-align: center;
+    color: #FFFFFF;
+    background-color: $green-color;
+}
+#btnZhiFuBao {
+    @include px2rem(margin-top, 25px);
 }
 /**
      * ******** ******** ******** ********
@@ -1387,7 +1544,7 @@
 //背景
 .user-bg {
     @include px2rem(height,507px);
-    background-image: url(../img/user-info-bg.png);
+    background-image: url("../img/user-info-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
@@ -1400,24 +1557,23 @@
     @include px2rem(top,22px);
     @include px2rem(right,28px);
     @include spirtes-img;
-     @include px2rem(background-position-y,-541px);
- }
- .no-message {
-     @include px2rem(width,62px);
+    @include px2rem(background-position-y,-541px);
+}
+.no-message {
+    @include px2rem(width,62px);
     @include px2rem(height,70px);
     position: absolute;
     @include px2rem(top,22px);
     @include px2rem(right,28px);
-     @include spirtes-img;
-     @include px2rem(background-position-x, -79px);
-     @include px2rem(background-position-y,-541px);
- }
+    @include spirtes-img;
+    @include px2rem(background-position-x, -79px);
+    @include px2rem(background-position-y,-541px);
+}
 //用户头像
 .user-bg-img {
     @include px2rem(width,150px);
     @include px2rem(height,150px);
-    border-radius: 50%;
-//  border: 2px solid #FFFFFF !important;
+    border-radius: 50%; //  border: 2px solid #FFFFFF !important;
     @include px2rem(margin-top,107px);
     @include px2rem(margin-bottom,9px);
 }
@@ -1427,7 +1583,7 @@
     @include px2rem(margin-top, 10px);
     @include px2rem(margin-bottom,10px);
     @include font-dpr(18px);
-    color: #fff;    
+    color: #fff;
     display: inline-block;
     @include Nowrap;
 }
@@ -1452,7 +1608,7 @@
     position: absolute;
     bottom: 0;
     display: table;
-    font-size: 0px;
+    font-size: 0;
     a {
         width: 30%;
         @include font-dpr(15px);
@@ -1474,7 +1630,7 @@
 .user-bg-nav-counts {
     @include font-dpr(18px);
     color: #fff;
- }
+}
 //我的红包，我的收藏，购物车 之间的两根白线
 #l-border {
     @include px2rem(width,2px);
@@ -1484,7 +1640,7 @@
 #r-border {
     @include px2rem(width,2px);
     @include px2rem(height,66px);
-    border-left: 1px solid #fff;;
+    border-left: 1px solid #fff;
 }
 //菜单区域
 .user-menu-group {
@@ -1497,7 +1653,7 @@
 }
 //左边图标区域
 .user-menu-icon {
-    @include px2rem(width,131px);       
+    @include px2rem(width,131px);
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -1506,56 +1662,53 @@
     letter-spacing: -4px;
     word-spacing: -4px;
     span {
-         @include px2rem(width,73px);
-         @include px2rem(height,73px); 
-         display: inline-block;
+        @include px2rem(width,73px);
+        @include px2rem(height,73px);
+        display: inline-block;
     }
- }
+}
 //菜单各个图标
 .my-orderform {
-     @include spirtes-img;
-     @include px2rem(background-position-x, -903px);
+    @include spirtes-img;
+    @include px2rem(background-position-x, -903px);
 }
 .my-farm {
-     @include spirtes-img;
-     @include px2rem(background-position-x, -990px);
+    @include spirtes-img;
+    @include px2rem(background-position-x, -990px);
 }
 .my-request {
-     @include spirtes-img;
-     @include px2rem(background-position-x, -1166px);
+    @include spirtes-img;
+    @include px2rem(background-position-x, -1166px);
 }
 .my-setting {
-     @include spirtes-img;
-     @include px2rem(background-position-x, -1080px);
+    @include spirtes-img;
+    @include px2rem(background-position-x, -1080px);
 }
- //右边菜单名字和箭头
- .user-menu-group-describle {
-     display: table-cell;
-     vertical-align: middle;
- }
- .user-menu-group-describle-right {
-     @include px2rem(padding-right, 28px);
+//右边菜单名字和箭头
+.user-menu-group-describle {
+    display: table-cell;
+    vertical-align: middle;
+}
+.user-menu-group-describle-right {
+    @include px2rem(padding-right, 28px);
     display: table-cell;
     vertical-align: middle;
     text-align: right;
- }
+}
 //第一第四个有上边距
- .user-menu-group:nth-child(1), .user-menu-group:nth-child(4) {
-    @include px2rem(margin-top,23px);           
- }
-
- //第二个有上下边
- .user-menu-group:nth-child(2) > .user-menu-group-describle {
-     border-top: $base-border;
-     border-bottom: $base-border;
- }
-  .user-menu-group:nth-child(2) > .user-menu-group-describle-right {
-     border-top: $base-border;
-     border-bottom: $base-border;
- }
- 
-
-
+.user-menu-group:nth-child(1),
+.user-menu-group:nth-child(4) {
+    @include px2rem(margin-top,23px);
+}
+//第二个有上下边
+.user-menu-group:nth-child(2) > .user-menu-group-describle {
+    border-top: $base-border;
+    border-bottom: $base-border;
+}
+.user-menu-group:nth-child(2) > .user-menu-group-describle-right {
+    border-top: $base-border;
+    border-bottom: $base-border;
+}
 /**
      * ******** ******** ******** ********
      * webview-my-userbag红包列表
@@ -1578,9 +1731,8 @@
     margin: 0 auto;
     @include px2rem(margin-bottom, 40px);
     @include px2rem(border-radius, 6px);
-    background: url(../img/red-bag-bg.png);
+    background: url("../img/red-bag-bg.png");
     background-repeat-y: no-repeat;
-    
     display: table;
     background-color: #FFFFFF;
 }
@@ -1592,7 +1744,7 @@
     text-align: center;
 }
 .user-bag-money {
-    @include font-dpr(36px);    
+    @include font-dpr(36px);
 }
 .user-bag-money::before {
     content: '￥';
@@ -1608,11 +1760,11 @@
     vertical-align: middle;
     text-align: center;
 }
-.user-bag-item-line {   
+.user-bag-item-line {
     width: 3px;
     height: 85%;
     display: inline-block;
-    background: url(../img/red-line.png);
+    background: url("../img/red-line.png");
     background-repeat-x: no-repeat;
     background-size: contain;
 }
@@ -1637,7 +1789,6 @@
     color: #737373;
     display: block;
 }
-
 /**
      * ******** ******** ******** ********
      * webview-my-collect收藏页面
@@ -1669,11 +1820,9 @@
     .shop-arrow-span {
         display: inline-block;
         //与标题的间距
-        @include px2rem(margin-left, 20px);
-//      vertical-align: middle;
+        @include px2rem(margin-left, 20px); //      vertical-align: middle;
     }
 }
-
 //内容容器
 .my-trader-content {
     width: 100%;
@@ -1751,7 +1900,7 @@
     position: absolute;
     bottom: 0;
     em {
-    color: #ff2222;
+        color: #ff2222;
     }
 }
 /**
@@ -1814,7 +1963,7 @@
      * webview-my-shopcar
  */
 //题目右边垃圾桶图标
-.my-trader-title-right  .shop-delete-span {
+.my-trader-title-right .shop-delete-span {
     display: inline-block;
 }
 .my-shop-car-check {
@@ -1823,7 +1972,6 @@
     vertical-align: middle;
     position: relative;
 }
-
 //页脚控制栏
 .foot-control-bar {
     width: 100%;
@@ -1843,7 +1991,7 @@
 .my-shop-car-pay {
     display: table-cell;
     vertical-align: middle;
-    text-align: right;    
+    text-align: right;
 }
 .allCount {
     color: #FF2222;
@@ -1866,7 +2014,6 @@
     right: 0;
     bottom: 0;
 }
-
 /**
      * ******** ******** ******** ********
      * webview-comu社区
@@ -1935,7 +2082,7 @@
     display: table;
 }
 //每个div
-.comu-nav-tab-item{
+.comu-nav-tab-item {
     width: 25%;
     height: 100%;
     @include font-dpr(18px);
@@ -1998,20 +2145,22 @@
     color: #282828;
 }
 .comu-content-main-photo-list {
-    @include px2rem(width, 190px, true);
-    @include px2rem(height, 190px, true);
-    @include px2rem(margin-right, 12px);
-    @include px2rem(margin-bottom, 12px);
+//  @include px2rem(width, 190px, true);
+//  @include px2rem(height, 190px, true);
+    width: 80px;
+    height: 80px;
+    @include px2rem(margin-right, 8px);
+    @include px2rem(margin-bottom, 8px);
     display: inline-block;
 }
 .comu-comment-control {
     text-align: right;
 }
-.comu-comment-control-left  {
+.comu-comment-control-left {
     @include px2rem(width, 115px);
     @include px2rem(height, 90px);
     @include px2rem(line-height, 90px);
-    display: inline-block;    
+    display: inline-block;
 }
 .comu-comment-control-right {
     @include px2rem(width, 115px);
@@ -2019,19 +2168,32 @@
     @include px2rem(line-height, 90px);
     display: inline-block;
 }
-.comu-comment-control-logo-praise {
+//.comu-comment-control-logo-praise {
+//  
+//}
+.comu-comment-praise-default {
     @include px2rem(width, 35px);
-    @include px2rem(height, 34px);
-    background: url(../img/praise.png) no-repeat;
-    background-size: contain;    
+    @include px2rem(height, 34px);    
     display: inline-block;
     vertical-align: middle;
+    background: url(../img/praise.png);
+    background-repeat: no-repeat; 
+    background-size: contain;
+}
+.comu-comment-praise-active {
+    @include px2rem(width, 35px);
+    @include px2rem(height, 34px);    
+    display: inline-block;
+    vertical-align: middle;
+    background: url(../img/ispraise.png);
+    background-repeat: no-repeat; 
+    background-size: contain;
 }
 .comu-comment-control-logo-comu {
     @include px2rem(width, 36px);
     @include px2rem(height, 34px);
-    background: url(../img/comment.png) no-repeat;
-    background-size: contain;    
+    background: url("../img/comment.png") no-repeat;
+    background-size: contain;
     display: inline-block;
     vertical-align: middle;
 }
@@ -2045,7 +2207,7 @@
 //漂浮按钮
 .fixed-btn {
     @include px2rem(width,107px);
-    @include px2rem(height,107px); 
+    @include px2rem(height,107px);
     @include spirtes-img3;
     display: inline-block;
     position: fixed;
@@ -2056,7 +2218,6 @@
     @include px2rem(bottom, 140px);
     @include px2rem(background-position-x, -137px);
     @include px2rem(background-position-y, -171px);
-    
 }
 //加号样式
 .fixed-add {
@@ -2072,6 +2233,61 @@
     color: rgb(124,124,124) !important;
     padding: 0 !important;
 }
+#recordStative {
+    @include font-dpr(16px);
+}
+.comu-post-checkGroup {
+    @include px2rem(height, 135px);    
+    @include px2rem(line-height, 135px);
+    @include px2rem(padding-left, 28px);
+    @include px2rem(padding-right, 28px);
+    border-top: $base-border;
+    @include font-dpr(16px);
+    background-color: #FFFFFF;
+}
+.comu-post-checkGroup span {
+    vertical-align: middle;
+}
+#promulgateForm {
+    @include px2rem(padding, (25px, 28px));   
+    background-color: #FFFFFF;
+}
+#promulgateForm-textArea {
+    width: 100%;
+    @include px2rem(height, 230px);
+    margin-bottom: 10px;
+    display: block;
+    resize: none;
+    border: none;
+    @include font-dpr(16px);
+    color: rgb(124,124,124);
+}
+.promulgateForm-file {
+    display: inline-block;
+    font-size: 0;
+    position: relative;
+}
+.promulgateForm-addFile {   
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    z-index: 99;
+}
+.promulgateForm-Input {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    z-index: 100;
+}
+.promulgateForm-span {
+    display: inline-block;
+    color: rgb(213, 213, 213);
+}
+
 /**
      * ******** ******** ******** ********
      * webview-comu-knowledge百科详情页面
@@ -2103,7 +2319,7 @@
      * webview-comu-knowledge-list 农耕知识列表
  */
 .comu-knowledge-list-container {
-    font-size: 0px;
+    font-size: 0;
 }
 .comu-knowledge-list-item {
     @include px2rem(width, 333px);
@@ -2134,9 +2350,9 @@
     @include px2rem(line-height, 61px);
     position: absolute;
     bottom: 0;
+    text-align: center;
     @include Nowrap;
 }
-
 /**
      * ******** ******** ******** ********
      * webview-my-setting设置页面
@@ -2157,7 +2373,6 @@
 .my-setting-item-margin-bottom {
     @include px2rem(margin-bottom, 23px);
 }
-
 //子容器
 .my-setting-left {
     @include px2rem(width, 230px);
@@ -2191,7 +2406,6 @@
     border: none !important;
     @include font-dpr(16px);
 }
-
 //右侧容器，用来放小箭头
 .my-setting-right {
     //箭头宽度20+左外边距27
@@ -2237,13 +2451,12 @@
     border: none;
     background-color: $green-color;
 }
-
 .input-name-container {
-        width: 80%;
-        margin-left: 10%;
-        margin-right: 10%;
-        @include px2rem(margin-top, 60px);
-        @include px2rem(margin-bottom, 60px);
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    @include px2rem(margin-top, 60px);
+    @include px2rem(margin-bottom, 60px);
 }
 #inputNickName {
     width: 90%;
@@ -2252,7 +2465,6 @@
     width: 9%;
     color: rgb(201,201,201);
 }
-
 .input-name-container {
     @include px2rem(height, 90px);
     border: 1px solid rgba(0,0,0,.2);
@@ -2292,11 +2504,10 @@
 }
 .editPhoneInput {
     @include font-dpr(18px);
-    border: none !important; 
+    border: none !important;
     margin-bottom: 0 !important;
     padding-left: 0 !important;
 }
-
 //修改性别选项内容
 #sexList-item {
     position: absolute;
@@ -2305,7 +2516,6 @@
     left: 50%;
     @include px2rem(margin-top, -214px);
     margin-left: -40%;
-    
     width: 80%;
     @include px2rem(height, 427px);
     z-index: 999;
@@ -2327,7 +2537,6 @@
 }
 .sexList-item-content:nth-child(1) {
     @include px2rem(width, 100px);
-    
 }
 .sexList-item-content:nth-child(3) {
     width: 60%;
@@ -2361,9 +2570,8 @@
     @include spirtes-img;
     display: inline-block;
     @include px2rem(background-position-x,-910px);
-    @include px2rem(background-position-y,-85px);    
+    @include px2rem(background-position-y,-85px);
 }
-
 //遮罩
 .mutual-shade {
     position: fixed;
@@ -2374,22 +2582,21 @@
     background-color: rgba(0,0,0,.5);
     z-index: 1;
     opacity: 0;
-    -webkit-transition: all .4s ease;
-    transition: all .4s ease;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 .mutual-shade-active {
     z-index: 998;
     opacity: 1;
 }
-
 //通用动画弹出模块
 .mutual-div {
     //将div隐藏相对其正常位置自身3倍长度的地方
     -webkit-transform: translate3d(0, 300%, 0);
     transform: translate3d(0, 300%, 0);
-    -webkit-transition: -webkit-transform .4s, opacity .4s;
-    transition: transform .4s, opacity .4s; 
-//  z-index: 999;
+    -webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
+    transition: transform 0.4s, opacity 0.4s;
+    //  z-index: 999;
     opacity: 0;
 }
 .mutual-div-active {
@@ -2402,20 +2609,19 @@
 #__mui-imageview__group {
     background-color: rgba(0, 0, 0, 0.9);
 }
-
 //旧的
 .my-setting-list-span {
-    width: 90%; 
-    display: inline-block; 
+    width: 90%;
+    display: inline-block;
     text-align: left;
 }
 .my-setting-list-arrow-div {
-    width: 10%; 
-    display: inline-block; 
+    width: 10%;
+    display: inline-block;
     text-align: right;
 }
 .my-setting-list-arrow-span {
-    display: inline-block; 
+    display: inline-block;
 }
 .account-table {
     @include px2rem(height,120px);
@@ -2424,10 +2630,9 @@
 .my-setting-font-size {
     @include font-dpr(18px);
 }
-.feedback button { 
+.feedback button {
     @include px2rem(height,80px);
 }
-
 //重写setting页面属性
 //页面结构头部
 .mui-navbar {
@@ -2458,22 +2663,21 @@
     @include font-dpr(18px);
 }
 .mui-table-view-cell>a:not(.mui-btn) {
-    padding-right: 0px;
+    padding-right: 0;
     @include px2rem(padding-right, 28px);
 }
 .mui-table-view-chevron .mui-table-view-cell {
-    padding-right: 0px;
-//  @include px2rem(padding-right, 28px);
+    padding-right: 0; //  @include px2rem(padding-right, 28px);
 }
 .mui-table-view-chevron .mui-table-view-cell>a:not(.mui-btn) {
-    margin-right: 0px
+    margin-right: 0;
 }
 //重写上下before  after元素
 .mui-table-view:before {
-    top: 0px;
+    top: 0;
 }
 .mui-table-view:after {
-    bottom: 0px;
+    bottom: 0;
     height: 1px;
 }
 .mui-table-view-cell:after {
@@ -2487,7 +2691,21 @@
 .feedback textarea {
     @include px2rem(height,200px);
 }
-input[type=color],input[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week],select {
+input[type=color],
+input[type=date],
+input[type=datetime-local],
+input[type=datetime],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week],
+select {
     @include px2rem(height, 80px);
     line-height: normal;
 }
@@ -2495,38 +2713,47 @@ select {
     @include font-dpr(18px);
     height: 100%;
 }
-
-input[type=color],input[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week],select{
-
-}
+input[type=color],
+input[type=date],
+input[type=datetime-local],
+input[type=datetime],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week],
+select {}
 //重写setting页面属性end (这里后面需要修改)
 //旧的
-
-
-
-
 /**
      * ******** ******** ******** ********
      * 以下为覆盖mui默认样式
  */
-
-
 //重写多选按钮checkbox  mui框架
-.mui-checkbox input[type=checkbox], .mui-radio input[type=radio] {
-    position: static; 
+.mui-checkbox input[type=checkbox],
+.mui-radio input[type=radio] {
+    position: static;
     //这两个元素决定了点击区域
     @include px2rem(width,42px);
     @include px2rem(height, 50px);
 }
-.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before {
+.mui-checkbox input[type=checkbox]:checked:before,
+.mui-radio input[type=radio]:checked:before {
     color: $green-color;
 }
-.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before {
+.mui-checkbox input[type=checkbox]:before,
+.mui-radio input[type=radio]:before {
     //这个元素决定按钮大小
     @include font-dpr(24px);
 }
 //重写input的labei标签,默认的会占一行
-.mui-checkbox label,.mui-radio label {
+.mui-checkbox label,
+.mui-radio label {
     display: inline;
     padding: 0;
 }
@@ -2535,17 +2762,20 @@ input[type=color],input[type=date],input[type=datetime-local],input[type=datetim
     @include px2rem(width, 180px);
     @include px2rem(height, 65px);
 }
-.mui-numbox [class*=btn-numbox],.mui-numbox [class*=numbox-btn] {
+.mui-numbox [class*=btn-numbox],
+.mui-numbox [class*=numbox-btn] {
     width: 31%;
 }
 .mui-numbox {
     padding: 0;
 }
-.mui-numbox .mui-input-numbox, .mui-numbox .mui-numbox-input {
+.mui-numbox .mui-input-numbox,
+.mui-numbox .mui-numbox-input {
     width: 100% !important;
     @include font-dpr(18px);
 }
-.mui-numbox [class*=btn-numbox],.mui-numbox [class*=numbox-btn] {
+.mui-numbox [class*=btn-numbox],
+.mui-numbox [class*=numbox-btn] {
     font-size: 18px;
     @include font-dpr(18px);
 }
@@ -2583,15 +2813,15 @@ input[type=color],input[type=date],input[type=datetime-local],input[type=datetim
     @include px2rem(padding-top, 100px);
 }
 .mui-bar {
-    height: 0px;
-    padding-right: 0px;
-    padding-left: 0px;
+    height: 0;
+    padding-right: 0;
+    padding-left: 0;
 }
 .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
-    color: $green-color;    
+    color: $green-color;
 }
 .mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
-//  background-color: rgb(232,232,232);
+    //  background-color: rgb(232,232,232);
 }
 .mui-fullscreen .mui-segmented-control~.mui-slider-group {
     top: 50px;

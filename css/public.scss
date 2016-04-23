@@ -1,7 +1,6 @@
-
 // px转rem
 // 设计稿元素尺寸/(设计稿宽度/10)*页面html.fontsize = 适应后的元素大小
-@mixin px2rem($property,$px-values,$important: false,$baseline-px:75px,$support-for-ie:false){
+@mixin px2rem($property, $px-values, $important: false, $baseline-px:75px, $support-for-ie:false) {
     //根据设计图大小设置baseline-px
     //求出基础rem大小
     $baseline-rem: $baseline-px / 1rem * 1;
@@ -17,7 +16,7 @@
     //  type-of(true)   => bool
     //  type-of(#fff)   => color
     //  type-of(blue)   => color
-    @if type-of($px-values) == "number"{
+    @if type-of($px-values) == "number" {
         @if ($important == true) {
             #{$property}: $px-values / $baseline-rem !important;
         }
@@ -27,10 +26,10 @@
     }
     @else {
         //创建一个空列表
-        $rem-values:();
-        @each $value in $px-values{
+        $rem-values: ();
+        @each $value in $px-values {
             // 如果属性值为大于0px的像素值，那么用append把值加入列表里    append(list, var , separator);
-            @if $value != 0 or type-of($value) == "number"{
+            @if $value != 0 or type-of($value) == "number" {
                 $rem-values: append($rem-values, $value / $baseline-rem);
             }
         }
@@ -43,7 +42,6 @@
         }
     }
 }
-
 // 转化字体大小，设计稿字体/设计稿dpr = fontsize
 @mixin font-dpr($font-size) {
     font-size: $font-size;
@@ -54,31 +52,25 @@
         font-size: $font-size * 3;
     }
 }
-
 // 雪碧图位置，大小
 @mixin spirtes-img {
-    background: url(../img/img.png);
+    background: url("../img/img.png");
     @include px2rem(background-size,(2716px, 811px));
 }
-
 @mixin spirtes-img2 {
-    background: url(../img/img2.png);
+    background: url("../img/img2.png");
     @include px2rem(background-size,(1153px, 591px));
 }
-
 @mixin spirtes-img3 {
-    background: url(../img/img3.png);
+    background: url("../img/img3.png");
     @include px2rem(background-size, (283px, 284px));
 }
-
 @mixin spirtes-img4 {
-    background: url(../img/img4.png);
+    background: url("../img/img4.png");
     @include px2rem(background-size, (579px, 293px));
 }
-
-
 //不换行处理
-@mixin Nowrap{
+@mixin Nowrap {
     //文本不换行
     word-break: keep-all;
     white-space: nowrap;
@@ -86,7 +78,6 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
-
 //去除两端对齐限制，用于容器的after上
 @mixin setJustify {
     // 打破justify限制，使第二行也能两端对齐
@@ -94,31 +85,38 @@
     display: inline-block;
     width: 100%;
 }
-
 // 基础色包括页面背景；灰色块的颜色
 // 基础绿色
 // 基础边框样式
 // 基础绿色背景
-$base-color: #efeff4;
-//$green-color: #83C347;
+$base-color: #efeff4; //$green-color: #83C347;
 $green-color: #3d8f52;
 $base-border: 1px solid #dcdcdc;
 .bg-color-green {
     background-color: $green-color !important;
 }
-
 // 去除默认内外边距，去除line-height
-body, div, p, a, em, span ,h1, h2, h3, h4, h5, h6, article{
+body,
+div,
+p,
+a,
+em,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+article {
     margin: 0;
     padding: 0;
     line-height: normal;
     font-family: "微软雅黑";
 }
-
 em {
     font-style: normal;
 }
-
 //图标样式
 //箭头-右白箭头
 .white-arrow-span {
@@ -128,82 +126,83 @@ em {
     display: inline-block;
     @include px2rem(background-position-y,-47px);
 }
-
 //箭头-右黑箭头
 .black-arrow-span {
     @include px2rem(width,20px);
-    @include px2rem(height,35px); 
+    @include px2rem(height,35px);
     @include spirtes-img;
     display: inline-block;
     @include px2rem(background-position-x, -31px);
     @include px2rem(background-position-y,-47px);
 }
-
 //箭头-左大白箭头
 .white-arrow-big-span {
     @include px2rem(width,26px);
-    @include px2rem(height,46px); 
+    @include px2rem(height,46px);
     @include spirtes-img;
     display: inline-block;
     @include px2rem(background-position-y,-104px);
 }
-
 //箭头-左大黑箭头  商品详情
 .black-arrow-big-span {
     @include px2rem(width, 25px);
     @include px2rem(height, 47px);
-    background: url(../img/head-left-black.png);    
+    background: url("../img/head-left-black.png");
     @include px2rem(background-size, (25px, 46px));
-    display: inline-block; 
+    display: inline-block;
 }
 //白色的三点
 .white-three-point-span {
     @include px2rem(width, 47px);
     @include px2rem(height, 12px);
-    background: url(../img/head-three-point.png);
+    background: url("../img/head-three-point.png");
     @include px2rem(background-size, (47px, 11px));
     background-repeat: no-repeat;
-    display: inline-block; 
+    display: inline-block;
     vertical-align: middle;
 }
 //黑色的三点
 .black-three-point-span {
     @include px2rem(width, 47px);
     @include px2rem(height, 12px);
-    background: url(../img/head-three-point-black.png);
-   @include px2rem(background-size, (47px, 11px));
+    background: url("../img/head-three-point-black.png");
+    @include px2rem(background-size, (47px, 11px));
     background-repeat: no-repeat;
-    display: inline-block; 
+    display: inline-block;
     vertical-align: middle;
 }
-
+//黑色的导航图标
+.black-nav-span {
+    @include px2rem(width,36px);
+    @include px2rem(height,49px);
+    @include spirtes-img2;
+    display: inline-block;
+    @include px2rem(background-position-y,-47px);
+}
 //头部搜索
 .search-span {
     @include px2rem(width, 52px);
     @include px2rem(height, 39px);
-    background: url(../img/head-search.png);
+    background: url("../img/head-search.png");
     @include px2rem(background-size, (51px, 38px));
     background-repeat: no-repeat;
     display: inline-block;
-    vertical-align: middle; 
+    vertical-align: middle;
 }
-
 //地图  导航
 .navigation-span {
     @include px2rem(width, 35px);
     @include px2rem(height, 41px);
-    background: url(../img/shop-introduce-navigation.png);
+    background: url("../img/shop-introduce-navigation.png");
     background-repeat: no-repeat;
-    background-size: contain;
-//  @include px2rem(background-size, (38px, 42px));
+    background-size: contain; //  @include px2rem(background-size, (38px, 42px));
     display: inline-block;
     vertical-align: middle;
 }
-
 //箭头-右小黑箭头
 .black-arrow-small-span {
     @include px2rem(width,17px);
-    @include px2rem(height,28px); 
+    @include px2rem(height,28px);
     @include spirtes-img;
     display: inline-block;
     @include px2rem(background-position-x, -16px);
@@ -258,32 +257,27 @@ em {
     @include px2rem(background-position-x, -5px);
     @include px2rem(background-position-y,-100px);
 }
-
 // 购物车图片
 .shop-car-black-span {
     @include px2rem(width, 40px);
     @include px2rem(height, 40px);
-    background: url(../img/shop-car.png);
+    background: url("../img/shop-car.png");
     @include px2rem(background-size, (41px, 41px));
     background-repeat: no-repeat;
     display: inline-block;
-    vertical-align: middle; 
+    vertical-align: middle;
 }
-
 //使元素垂直居中
 .set-middle {
-    vertical-align: middle !important; 
+    vertical-align: middle !important;
 }
-
 //头部占位
 #head-holder {
     @include px2rem(height, 98px);
 }
-
 .white-bg {
     background-color: #FFFFFF !important;
 }
-
 // 头部控制栏，公用部分 
 // 模板为webview-header
 .header-control-fixed {
@@ -293,20 +287,16 @@ em {
 .header-control {
     width: 100%;
     @include px2rem(height,100px);
-    background-color: $green-color;
-//  position: fixed;
+    background-color: $green-color; //  position: fixed;
     top: 0;
     left: 0;
     z-index: 20;
     display: table;
 }
-
 .trade-scroll-position {
-    @include px2rem(top, 98px);    
+    @include px2rem(top, 98px);
     @include px2rem(bottom, 100px);
 }
-
-
 .header-control > div {
     display: table-cell;
     vertical-align: middle;
@@ -318,7 +308,7 @@ em {
 //左右两边按钮大小，图标样式。头部分左中右三部分，中间宽度自动
 .header-control-left-btn {
     @include px2rem(width,130px);
-    text-align: left !important; 
+    text-align: left !important;
 }
 .header-control-right-btn {
     @include px2rem(width,160px);
@@ -329,19 +319,18 @@ em {
     display: inline-block;
     @include font-dpr(18px);
     color: #FFFFFF;
-}      
-.header-control-right-btn-span {                
+}
+.header-control-right-btn-span {
     @include px2rem(margin-right,28px);
     display: inline-block;
     @include font-dpr(18px);
     color: #FFFFFF;
-}     
+}
 #webview-head-title {
     display: inline-block;
     @include font-dpr(20px);
     color: #FFFFFF;
 }
-
 //验证码按钮
 #getAuthCode {
     @include px2rem(width, 180px);
@@ -357,13 +346,12 @@ em {
     background-color: rgb(235, 235, 235) !important;
     color: rgb(142, 96, 104) !important;
 }
-
 //数字选择器
 .num-choice {
     @include px2rem(width, 192px);
     @include px2rem(height, 60px);
     display: inline-block;
-    font-size: 0;    
+    font-size: 0;
     background-color: #FFFFFF;
 }
 .num-choice-item {
@@ -389,7 +377,6 @@ em {
     color: rgb(190, 190, 190);
 }
 // 数字选择器end
-
 // toast
 .my-toast {
     width: 100%;
@@ -399,11 +386,11 @@ em {
     -webkit-transform: translateY(200%);
     opacity: 0;
     z-index: 999;
-    text-align: center;    
+    text-align: center;
 }
 .my-toast-transform {
-    animation:moo 2s ease-out normal;
-    -webkit-animation:moo 2s ease-out normal;
+    animation: moo 2s ease-out normal;
+    -webkit-animation: moo 2s ease-out normal;
 }
 @-webkit-keyframes moo {
     10% {
@@ -441,7 +428,6 @@ em {
         opacity: 0;
     }
 }
-
 .my-toast-content {
     @include font-dpr(14px);
     max-width: 100%;
@@ -455,14 +441,12 @@ em {
     background-color: rgba(0, 0, 0, 0.6);
     @include Nowrap;
 }
-
 // 轮播图
 .span-cover-slider {
     @include px2rem(width, 750px);
     @include px2rem(height, 360px);
     display: block;
 }
-
 // 商品详情轮播图
 .trade-span-cover-slider {
     @include px2rem(width, 750px);

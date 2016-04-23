@@ -318,14 +318,16 @@ function showWebviewCOM(currentView, newViewURL, extra) {
  * @description 检查网络状况
  */
 function NetWorkStatus() {
-	if (!mui.plus) {
+	if (!mui.os.plus) {
 		return;
 	}
 	var val = plus.networkinfo.getCurrentType();
 	// 0表示网络连接状态未知，1表示网络无连接
 	if (val == 0 || val == 1) {
-		mui.toast("请求发送失败,请检查您当前的网络环境", 8000);
+		mui.toast("网络不稳定,请检查您当前的网络环境", 8000);
 		return true;
+	} else {
+		return false;
 	}
 }
 
@@ -379,7 +381,8 @@ function ajaxError(xhr) {
 			mui.toast("出错：" + res.data.message);
 		}
 	} catch (e) {
-		console.log("调试信息，更新信息失败，服务器错误");
+//		console.log("调试信息，更新信息失败，服务器错误");
+		mui.toast("连接服务器失败");
 	}
 }
 

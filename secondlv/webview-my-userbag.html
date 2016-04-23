@@ -18,97 +18,35 @@
 			body {
 				background-color: rgb(246, 246, 246);
 			}
+			
+			[v-cloak] {
+				display: none;
+			}
 		</style>
 	</head>
 
 	<body>
 		<div class="mui-content">
 			<div id="user-bag-list" class="mui-control-content mui-active">
-				<div id="user-bag-counts">
-					共有5张可用代金券
+				<div id="user-bag-counts" v-cloak>
+					共有{{data.length}}张可用代金券
 				</div>
-				<div class="user-bag-item">
+				<div class="user-bag-item" v-for="item in data" v-cloak>
 					<div class="user-bag-item-left">
-						<span class="user-bag-money-group"><em class="user-bag-money">15</em></span>
+						<span class="user-bag-money-group"><em class="user-bag-money">{{item.money}}</em></span>
 					</div>
 					<div class="user-bag-item-middle">
 						<span class="user-bag-item-line"></span>
 					</div>
 					<div class="user-bag-item-right">
 						<span class="user-bag-item-content">
-							<span class="user-bag-item-title">注册赠用劵</span>
-							<span class="user-bag-item-list">本店消费满50元可用</span>
-							<span class="user-bag-item-list">不可找零</span>
-							<span class="user-bag-item-list">有效期2016-3-1至2016-3-21</span>
+							<span class="user-bag-item-title">{{item.get_from}}</span>
+						<span class="user-bag-item-list">单笔订单消费满{{item.order_limit}}元可用</span>
+						<span class="user-bag-item-list">不可找零</span>
+						<span class="user-bag-item-list">有效期{{item.date_start}}至{{item.date_end}}</span>
 						</span>
 					</div>
 				</div>
-				<!--test-->
-				<div class="user-bag-item">
-					<div class="user-bag-item-left">
-						<span class="user-bag-money-group"><em class="user-bag-money">15</em></span>
-					</div>
-					<div class="user-bag-item-middle">
-						<span class="user-bag-item-line"></span>
-					</div>
-					<div class="user-bag-item-right">
-						<span class="user-bag-item-content">
-							<span class="user-bag-item-title">注册赠用劵</span>
-							<span class="user-bag-item-list">本店消费满50元可用</span>
-							<span class="user-bag-item-list">不可找零</span>
-							<span class="user-bag-item-list">有效期2016-3-1至2016-3-21</span>
-						</span>
-					</div>
-				</div>
-				<div class="user-bag-item">
-					<div class="user-bag-item-left">
-						<span class="user-bag-money-group"><em class="user-bag-money">15</em></span>
-					</div>
-					<div class="user-bag-item-middle">
-						<span class="user-bag-item-line"></span>
-					</div>
-					<div class="user-bag-item-right">
-						<span class="user-bag-item-content">
-							<span class="user-bag-item-title">注册赠用劵</span>
-							<span class="user-bag-item-list">本店消费满50元可用</span>
-							<span class="user-bag-item-list">不可找零</span>
-							<span class="user-bag-item-list">有效期2016-3-1至2016-3-21</span>
-						</span>
-					</div>
-				</div>
-				<div class="user-bag-item">
-					<div class="user-bag-item-left">
-						<span class="user-bag-money-group"><em class="user-bag-money">15</em></span>
-					</div>
-					<div class="user-bag-item-middle">
-						<span class="user-bag-item-line"></span>
-					</div>
-					<div class="user-bag-item-right">
-						<span class="user-bag-item-content">
-							<span class="user-bag-item-title">注册赠用劵</span>
-							<span class="user-bag-item-list">本店消费满50元可用</span>
-							<span class="user-bag-item-list">不可找零</span>
-							<span class="user-bag-item-list">有效期2016-3-1至2016-3-21</span>
-						</span>
-					</div>
-				</div>
-				<div class="user-bag-item">
-					<div class="user-bag-item-left">
-						<span class="user-bag-money-group"><em class="user-bag-money">15</em></span>
-					</div>
-					<div class="user-bag-item-middle">
-						<span class="user-bag-item-line"></span>
-					</div>
-					<div class="user-bag-item-right">
-						<span class="user-bag-item-content">
-							<span class="user-bag-item-title">注册赠用劵</span>
-							<span class="user-bag-item-list">本店消费满50元可用</span>
-							<span class="user-bag-item-list">不可找零</span>
-							<span class="user-bag-item-list">有效期2016-3-1至2016-3-21</span>
-						</span>
-					</div>
-				</div>
-
 			</div>
 		</div>
 		<div class="my-toast" id="myToast">
@@ -117,8 +55,39 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
+
+			function getData() {
+				if (NetWorkStatus()) {
+					return;
+				}
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/hongbao/index?" + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JOSN",
+					timeout: 15000,
+					success: function(res) {
+						console.log("获取红包列表" + res);
+						res = JSON.parse(res);						
+						if (res.success) {							
+							new Vue({
+								el: "#user-bag-list",
+								data: res
+							});
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						ajaxError(xhr);
+						mui.toast("加载失败，请检查您的网络");
+					}
+				});
+			}
+			mui.plusReady(function() {				
+				getData();
+			});
 		</script>
 	</body>
 

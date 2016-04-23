@@ -1,4 +1,3 @@
-
 var imgURL = "";
 window.addEventListener("loadFileCrop", function(e) {
 	if (typeof e.detail == "undefined") {
@@ -226,7 +225,6 @@ function handleFiles(filePath) {
 	img.src = filePath;
 };
 
-
 function drawcover() {
 	var ElemTop = document.getElementById("coverTop");
 	var ElemLeft = document.getElementById("coverLeft");
@@ -259,7 +257,6 @@ function drawcover() {
 	ElemBottom.style.height = baseTopSize + "px";
 }
 
-
 var moving = false;
 var mousePos = {
 	x: 0,
@@ -274,7 +271,6 @@ function touchStartPosition(event) {
 	initPos.x = event.targetTouches[0].pageX;
 	initPos.y = event.targetTouches[0].pageY;
 }
-
 
 function touchPosition(event) {
 	return {
@@ -291,8 +287,8 @@ function touchMove(event) {
 		return;
 	}
 	moveDiv({
-//		x: (newPos.x - mousePos.x) * 1.2, // 加快移动速度
-//		y: (newPos.y - mousePos.y) * 1.2
+		//		x: (newPos.x - mousePos.x) * 1.2, // 加快移动速度
+		//		y: (newPos.y - mousePos.y) * 1.2
 		x: (newPos.x - mousePos.x),
 		y: (newPos.y - mousePos.y)
 	});
@@ -426,13 +422,15 @@ function saveFile() {
 }
 
 /**
- * @description 更新面板
+ * @description 更新面板 更新社区、我的社区列表
  */
 function updateAvatar(filePath) {
 	mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeAvatar", {});
 	mui.fire(plus.webview.getWebviewById("secondlv/webview-my-setting.html"), "changeAvatar", {
 		url: filePath
 	});
+	var w = plus.webview.getWebviewById("webview-comu-new.html");
+	mui.fire(w, "refreshTab", {});
 }
 
 /**

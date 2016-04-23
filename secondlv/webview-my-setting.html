@@ -628,7 +628,7 @@
 			var btnAble = true;
 			var btnAble2 = false;
 			document.querySelector("#getAuthCode").addEventListener("tap", function() {
-				if (!checkPhoneInput()) {				
+				if (!checkPhoneInput()) {
 					return;
 				}
 				if (NetWorkStatus()) {
@@ -748,17 +748,16 @@
 			/*
 			 * 修改手机号码end
 			 */
-			
 			/**
 			 *  退出登录start
-			 */		
+			 */
 			document.querySelector("#my-setting-loginout").addEventListener("tap", function() {
 				if (mui.os.plus) {
 					plus.nativeUI.confirm("确定退出登录？", function(e) {
 						if (e.index == 0) {
 							plus.storage.clear();
 							deleteIMG();
-							mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeInfo", {});						
+							mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeInfo", {});
 							mui.toast("已退出登录状态");
 							plus.webview.getWebviewById("secondlv/webview-my-setting.html").close();
 						}
@@ -898,6 +897,8 @@
 							plus.storage.setItem("userName", res.data.name);
 							mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeNameOrPhone", {});
 							document.getElementById("nickNameText").innerText = res.data.name;
+							var w = plus.webview.getWebviewById("webview-comu-new.html");
+							mui.fire(w, "refreshTab", {});
 							mui.back();
 						}
 						setTimeout(function() {
@@ -906,15 +907,7 @@
 					},
 					error: function(xhr, error, thrownError) {
 						btn.disable = false;
-						try {
-							console.log(JSON.stringify(xhr));
-							var res = JSON.parse(xhr.response);
-							if (typeof res.data.message !== "undefined") {
-								mui.toast("更新信息" + res.data.message);
-							}
-						} catch (e) {
-							console.log("调试信息，更新信息失败，服务器错误");
-						}
+						ajaxError(xhr);
 					}
 				});
 			});
@@ -949,7 +942,7 @@
 					dataType: "JSON",
 					success: function(res) {
 						console.log(res);
-						res = JSON.parse(res);				
+						res = JSON.parse(res);
 						if (res.success) {
 							// 无地址
 							if (!res.data) {
@@ -960,7 +953,7 @@
 								document.getElementById("addressPhone").value = res.data.phone;
 								document.getElementById("addressCity").innerText = res.data.city_name;
 								document.getElementById("addressDetail").value = res.data.address;
-							}					
+							}
 						}
 					},
 					error: function(xhr, error, thrownError) {
@@ -1061,10 +1054,10 @@
 			document.getElementById("head").addEventListener("tap", function() {
 				// 操作列表
 				imgActions();
-			});						
+			});
 			document.getElementById("settingUserIMG").addEventListener("tap", function(e) {
 				e.stopPropagation();
-			});			
+			});
 			// 图片预览
 			function initImgPreview() {
 				var imgs = document.querySelectorAll("#settingUserIMG");

@@ -92,6 +92,23 @@
 			[v-cloak] {
 				display: none;
 			}
+			
+			div#slider {
+				bottom: 50px;
+			}
+			
+			#recordStative {
+				height: 40px;
+				width: 94%;
+				margin: 0 3%;
+				position: fixed;
+				bottom: 5px;
+				border-radius: 2px;
+				color: rgb(30, 30, 30);
+				text-align: center;
+				line-height: 40px;
+				background-color: rgb(255, 255, 255);
+			}
 		</style>
 	</head>
 
@@ -102,7 +119,7 @@
 					<span class="white-arrow-big-span header-control-left-btn-span"></span>
 				</div>
 				<div>
-					<span id="webview-head-title">社区</span>
+					<span id="webview-head-title">我的社区</span>
 				</div>
 				<div class="header-control-right-btn">
 					<span class="header-control-right-btn-span search-span"></span>
@@ -145,11 +162,11 @@
 												{{item.text}}
 											</div>
 											<div class="comu-content-main-photo">
-												<img class="comu-content-main-photo-list" v-for="img in item.images" src="{{img}}">
+												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
 											</div>
 											<div class="comu-comment-control">
-												<div class="comu-comment-control-left">
-													<span class="comu-comment-control-logo-praise"></span>
+												<div class="comu-comment-control-left" v-on:tap="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
+													<span class="{{item.is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>																						
 													<span class="comu-comment-control-text">{{item.like_num}}</span>
 												</div>
 												<div class="comu-comment-control-right">
@@ -186,11 +203,11 @@
 												{{item.text}}
 											</div>
 											<div class="comu-content-main-photo">
-												<img class="comu-content-main-photo-list" v-for="img in item.images" src="{{img}}">
+												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
 											</div>
 											<div class="comu-comment-control">
-												<div class="comu-comment-control-left">
-													<span class="comu-comment-control-logo-praise"></span>
+												<div class="comu-comment-control-left" v-on:tap="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
+													<span class="{{item.is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>													
 													<span class="comu-comment-control-text">{{item.like_num}}</span>
 												</div>
 												<div class="comu-comment-control-right">
@@ -207,6 +224,8 @@
 				</div>
 			</div>
 		</div>
+		<div id="recordStative">
+			记录动态
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
@@ -235,6 +254,7 @@
 				this.vueObj = null;
 				this.spinner = document.querySelector("#" + IDscroll + " .spinner");
 				this.init();
+				this.praiseFirst = null;
 			}
 			tabObj.prototype = {
 				init: function() {
@@ -300,7 +320,6 @@
 								} else {
 									// 不是第一次
 									if (thisObj.refreshSign == "up") {
-										console.log(2);
 										for (var i = 0; i < res.data.items.length; i++) {
 											thisObj.vueObj.data.items.push(res.data.items[i]);
 										}
@@ -351,19 +370,105 @@
 						methods: {
 							openDetail: function(event) {
 								console.log("事件处理");
+							},
+							tapPraise: function(event) {
+								// 点赞
+								thisObj.handlePraise(event);
 							}
 						}
 					})
+				},
+				triggerDownRefresh: function() {
+					// 触发下拉刷新
+					this.refreshContainer.pullToRefresh().pullDownLoading();
+				},
+				handlePraise: function(event) {
+					// 点击时改变vue数组的值;
+					// 然后发送请求，请求时创建一个临时数据，记录在请求期间点赞的变化（用户重复点击），保存最后一个点赞值
+					// 请求完成时，根据这个最后的点赞值判断是否需要再发送请求。如果请求失败，回到上一次点赞的值。
+					var thisBtn = event.currentTarget;
+					if (!userLoginStatus()) {
+						openLogin(thisBtn);
+						return;
+					}
+					var index = thisBtn.getAttribute("data-index");
+					var status = thisBtn.getAttribute("data-islike");
+					var send = thisBtn.getAttribute("data-send");
+					var _id = thisBtn.getAttribute("data-id");
+					var numContent = thisBtn.getElementsByClassName("comu-comment-control-text")[0];
+					var num = parseInt(numContent.innerText);
+					if (status == "true") {
+						if (!send) {
+							thisBtn.setAttribute("data-send", "sending");
+							this.praiseFirst = true;
+						}
+						(num >= 1) && (num = --num);
+						numContent.innerText = num;
+						this.vueObj.$set("data.items[" + index + "].is_like", false);
+					} else {
+						if (!send) {
+							thisBtn.setAttribute("data-send", "sending");
+							this.praiseFirst = false;
+						}
+						numContent.innerText = ++num;
+						this.vueObj.$set("data.items[" + index + "].is_like", true);
+					}
+					this.praiseAjax(thisBtn, _id);
+				},
+				praiseAjax: function(btn, id) {
+					if (!mui.os.plus) {
+						return;
+					}
+					var thisObj = this;
+					var token = plus.storage.getItem("tokenValue");
+					var URL = this.praiseFirst ? "http://farm.rrzuji.com/v1/community/unlike?" : "http://farm.rrzuji.com/v1/community/like?";
+					URL = URL + fnCreateSign() + "&access-token=" + token;
+					mui.ajax(URL, {
+						type: "POST",
+						dataType: "JSON",
+						data: {
+							community_id: id
+						},
+						success: function(res) {
+							res = JSON.parse(res);
+							if (res.success) {
+								!thisObj.praiseFirst ? console.log("已点赞") : console.log("已取消点赞");
+								btn.removeAttribute("data-send");
+							} else {
+								thisObj.praiseAjaxError(btn);
+							}
+						},
+						error: function(xhr) {
+							thisObj.praiseAjaxError(btn);
+							ajaxError(xhr);
+						}
+					});
+				},
+				praiseAjaxError: function(thisBtn) {
+					// 点赞出错回滚
+					var numContent = thisBtn.getElementsByClassName("comu-comment-control-text")[0];
+					var num = parseInt(numContent.innerText);
+					if (this.praiseFirst) {
+						numContent.innerText = ++num;
+						this.vueObj.$set("data.items[" + index + "].is_like", true);
+					} else {
+						(num >= 1) && (num = --num);
+						numContent.innerText = num;
+						this.vueObj.$set("data.items[" + index + "].is_like", false);
+					}
 				}
-			}
+			};
+			// 存放分享、问答两个tab对象。
+			// 当用户发布动态时，数组里面两个对象触发刷新列表
+			var objArray = [];
 			window.addEventListener("initPage", function(e) {
 				url = {
 					"shareList": "http://farm.rrzuji.com/v1/talk/index?type=1&access-token=" + e.detail.tokenValue,
 					"questionList": "http://farm.rrzuji.com/v1/talk/index?type=2&access-token=" + e.detail.tokenValue
 				};
-				console.log(e.detail.tokenValue);
 				// 第一个标签手动设置				
-				new tabObj("shareList", "shareScroll", "true");
+				var newObj = new tabObj("shareList", "shareScroll", "true");
+				objArray.push(newObj);
 				document.getElementById("slider").addEventListener("scrollend", function() {
 					var elem = document.querySelector("#sliderSegmentedControl .mui-active");
 					if (elem.getAttribute("data-id") == null) {
@@ -371,10 +476,40 @@
 					}
 					var first = elem.getAttribute("data-first");
 					if (first == "true") {
-						new tabObj(elem.getAttribute("data-id"), elem.getAttribute("data-scroll-id"), first);
+						var newObj2 = new tabObj(elem.getAttribute("data-id"), elem.getAttribute("data-scroll-id"), first);
+						objArray.push(newObj2);
 						elem.setAttribute("data-first", "false");
 					}
 				})
+			});
+			window.addEventListener("refreshTab", function(e) {
+				var type = e.detail.type;
+				if (type == 1 && objArray[0]) {
+					objArray[0].triggerDownRefresh();
+				}
+				if (type == 2 && objArray[1]) {
+					objArray[1].triggerDownRefresh();
+				}
+			});
+			mui.plusReady(function() {
+				document.getElementById("recordStative").addEventListener("tap", function() {
+					mui.openWindow({
+						url: "../thirdlv/promulgateStative.html",
+						styles: fnSetSubpageStyle(0, 0),
+						createNew: false,
+						extras: {
+							//							itemID: _id
+						},
+						show: {
+							autoShow: true,
+							aniShow: "pop-in",
+							duration: 300
+						},
+						waiting: {
+							autoShow: true
+						}
+					});
+				});
 			});
 		</script>
 	</body>

@@ -19,107 +19,161 @@
 				background-color: rgb(246, 246, 246);
 				/*background-color: #efeff4;*/
 			}
+			
+			[v-cloak] {
+				display: none;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div class="header-control header-control-greenBold head-tab-hide">
-			<div class="header-control-left-btn mui-back">
-				<span class="app-log-span header-control-left-btn-span"></span>
-				<!--<span class="white-arrow-big-span header-control-left-btn-span"></span>-->
+		<div class="header-control header-control-fixed">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class="white-arrow-big-span header-control-left-btn-span"></span>
 			</div>
 			<div>
 				<span id="webview-head-title"></span>
 			</div>
 			<div class="header-control-right-btn">
-				<span class="header-control-right-btn-span white-three-point-span"></span>
+				<span class="header-control-right-btn-span"></span>
 			</div>
 		</div>
+		<div id="head-holder"></div>
 		<!--轮播图尺寸规定为750*350-->
-		<div id="slider" class="mui-slider">
-			<div class="mui-slider-group mui-slider-loop">
-				<!-- (循环轮播：第一个节点是最后一张图片) 节点数量等于轮播图片+1-->
-				<div class="mui-slider-item mui-slider-item-duplicate">
-					<a href="#">
-						<img src="../img/test-slider3.png">
-					</a>
+		<div id="vueContainer">
+			<div id="slider" class="mui-slider" v-cloak>
+				<div class="mui-slider-group mui-slider-loop">
+					<!--这里有个bug，页面打开时会显示第一张轮播图-->
+					<!-- (循环轮播：第一个节点是最后一张图片) 节点数量等于轮播图片+1-->
+					<!--轮播图尺寸规定为750*350-->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<span class="span-cover-slider" style="background: url({{data.images[data.images.length - 1]}}); background-size: cover; background-position: center;"></span>
+						</a>
+					</div>
+					<div class="mui-slider-item" v-for="img in data.images">
+						<a href="#">
+							<span class="span-cover-slider" style="background: url({{img}}); background-size: cover; background-position: center;"></span>
+						</a>
+					</div>
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<span class="span-cover-slider" style="background: url({{data.images[0]}}); background-size: cover; background-position: center;"></span>
+						</a>
+					</div>
+					<!--额外增加的一个节点(最后一个节点与“原”第一张图片相同)-->
 				</div>
-				<div class="mui-slider-item">
-					<a href="#">
-						<img src="../img/test-slider4.png">
-					</a>
-				</div>
-				<div class="mui-slider-item">
-					<a href="#">
-						<img src="../img/test-slider2.png">
-					</a>
-				</div>
-				<div class="mui-slider-item">
-					<a href="#">
-						<img src="../img/test-slider3.png">
-					</a>
-				</div>
-				<!-- 额外增加的一个节点(最后一个节点与第二图片相同) -->
-				<div class="mui-slider-item mui-slider-item-duplicate">
-					<a href="#">
-						<<img src="../img/test-slider4.png">
-					</a>
+				<div class="mui-slider-indicator mui-text-center">
+					<div class="mui-indicator mui-active home-slider-text-size"></div>
+					<div class="mui-indicator home-slider-text-size" v-for="n in data.images.length" v-if="n > 0"></div>
 				</div>
 			</div>
-			<div class="mui-slider-indicator mui-text-center">
-				<!--对应图片个数-->
-				<div class="mui-indicator mui-active home-slider-text-size"></div>
-				<div class="mui-indicator home-slider-text-size"></div>
-				<div class="mui-indicator home-slider-text-size"></div>
+			<div class="comu-knowledge-item" v-if="data.wiki.length > 0" v-cloak>
+				<label class="comu-knowledge-title"> 知识百科</label>
+				<hr class="comu-knowledge-hr">
+				<p class="comu-knowledge-article">
+					{{data.wiki}}
+				</p>
+			</div>
+
+			<div class="comu-knowledge-item" v-if="data.grow.length > 0" v-cloak>
+				<label class="comu-knowledge-title">生长环境</label>
+				<hr class="comu-knowledge-hr">
+				<p class="comu-knowledge-article">
+					{{data.grow}}
+				</p>
+			</div>
+
+			<div class="comu-knowledge-item" v-if="data.pabulum.length > 0" v-cloak>
+				<label class="comu-knowledge-title">营养价值</label>
+				<hr class="comu-knowledge-hr">
+				<p class="comu-knowledge-article">
+					{{data.pabulum}}
+				</p>
+			</div>
+
+			<div class="comu-knowledge-item" v-if="data.plant.length > 0" v-cloak>
+				<label class="comu-knowledge-title">栽培</label>
+				<hr class="comu-knowledge-hr">
+				<p class="comu-knowledge-article">
+					{{data.plant}}
+				</p>
+			</div>
+
+			<div class="comu-knowledge-item" v-if="data.disease.length > 0" v-cloak>
+				<label class="comu-knowledge-title">防治虫害疫病</label>
+				<hr class="comu-knowledge-hr">
+				<p class="comu-knowledge-article">
+					{{data.disease}}
+				</p>
 			</div>
 		</div>
-
-		<div class="comu-knowledge-item">
-			<label class="comu-knowledge-title">生长环境</label>
-			<hr class="comu-knowledge-hr">
-			<p class="comu-knowledge-article">《植物生长与环境》分三篇十三章。第一篇讲述植物生长发育的物质基础，包括植物细胞、植物组织和器官、光合作用、呼吸作用、植物体内有机物的代谢与运输。第二篇讲述植物生长与环境调控，包括植物生长与土壤环境、水分、温度、养分、气候环境的关系，以及植物的环境胁迫生理。第三篇讲述植物的生长发育和繁殖，包括植物的生长发育，植物的生殖、衰老和脱落。
-			</p>
-		</div>
-
-		<div class="comu-knowledge-item">
-			<label class="comu-knowledge-title">营养价值</label>
-			<hr class="comu-knowledge-hr">
-			<p class="comu-knowledge-article">营养价值指在特定食品中的营养素及其质和量的关系。一般认为含有一定量的人体所需的营养素的食品，就具有一定的营养价值；含有较多营养素且质量较高的食品，则营养价值较高。
-			</p>
-		</div>
-
-		<div class="comu-knowledge-item">
-			<label class="comu-knowledge-title">生长环境</label>
-			<hr class="comu-knowledge-hr">
-			<p class="comu-knowledge-article">《植物生长与环境》分三篇十三章。第一篇讲述植物生长发育的物质基础，包括植物细胞、植物组织和器官、光合作用、呼吸作用、植物体内有机物的代谢与运输。第二篇讲述植物生长与环境调控，包括植物生长与土壤环境、水分、温度、养分、气候环境的关系，以及植物的环境胁迫生理。第三篇讲述植物的生长发育和繁殖，包括植物的生长发育，植物的生殖、衰老和脱落。
-			</p>
-		</div>
-		<!--弹出菜单按钮-->
-		<a href="#bottomPopover" class="fixed-btn fixed-list">
-		</a>
-		<!--弹出菜单-->
-		<div id="bottomPopover" class="mui-popover mui-popover-bottom">
-			<div class="mui-popover-arrow"></div>
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell"><a href="#" class="fixed-btn-item">蔬菜</a>
-				</li>
-				<li class="mui-table-view-cell"><a href="#" class="fixed-btn-item">施肥</a>
-				</li>
-			</ul>
-		</div>
-
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
-			//设置轮播图轮播周期
-			var gallery = mui('.mui-slider');
-			gallery.slider({
-				interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0；
+
+			function initVue(res) {
+				var vueObj = new Vue({
+					el: "#vueContainer",
+					data: res,
+					methods: {
+						openDetail: function(event) {
+							var thisBtn = event.currentTarget;
+							var _id = thisBtn.getAttribute("data-id");
+							mui.openWindow({
+								url: "webview-comu-knowledge-detail.html",
+								styles: fnSetSubpageStyle(0, 0),
+								createNew: false,
+								extras: {
+									itemID: _id
+								},
+								show: {
+									autoShow: true,
+									aniShow: "pop-in",
+									duration: 300
+								},
+								waiting: {
+									autoShow: true
+								}
+							});
+						}
+					}
+				});
+				vueObj.$nextTick(function() {
+					mui(".mui-slider").slider({
+						interval: 5000
+					});
+				});
+			}
+
+			function getData(id) {
+				var URL = "http://farm.rrzuji.com/v1/wiki/view?id=" + id + "&" + fnCreateSign();
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					timeout: 15000,
+					success: function(res) {
+						console.log(res);
+						res = JSON.parse(res);
+						if (res.success) {
+							initVue(res);
+							document.getElementById("webview-head-title").innerText = res.data.name;
+						}
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				});
+			};
+			mui.plusReady(function() {
+				var cw = plus.webview.currentWebview();
+				getData(cw.itemID);
 			});
 		</script>
 	</body>

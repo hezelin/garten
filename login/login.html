@@ -171,10 +171,11 @@
 					error: function(xhr, type, errorThrown) {
 						nwaiting.close();
 						btnAble = true;
-						var res = JSON.parse(xhr.response);
-						if (typeof res.data.message !== "undefined") {
-							mui.toast(res.data.message);
-						}
+//						var res = JSON.parse(xhr.response);
+//						if (typeof res.data.message !== "undefined") {
+//							mui.toast(res.data.message);
+//						}
+						ajaxError(xhr);
 					}
 				});
 			});

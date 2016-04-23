@@ -68,18 +68,18 @@
 							<div class="mui-slider-item mui-slider-item-duplicate">
 								<a href="#">
 									<!--轮播图尺寸规定为750*350-->
-									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{data.images[data.images.length - 1]}}); background-size: cover;"></span>
+									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{data.images[data.images.length - 1]}}); background-size: cover;background-position: center;"></span>
 								</a>
 							</div>
 							<div class="mui-slider-item" v-for="img in data.images">
 								<a href="#">
-									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{img}}); background-size: cover;"></span>
+									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{img}}); background-size: cover;background-position: center;"></span>
 								</a>
 							</div>
 							<!--额外增加的一个节点(最后一个节点与“原”第一张图片相同)-->
 							<div class="mui-slider-item mui-slider-item-duplicate">
 								<a href="#">
-									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{data.images[0]}}); background-size: cover;"></span>
+									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{data.images[0]}}); background-size: cover;background-position: center;"></span>
 								</a>
 							</div>
 						</div>
@@ -222,6 +222,7 @@
 
 			function getData() {
 				if (NetWorkStatus()) {
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
 					return;
 				}
 				if (bugReset) {
@@ -252,7 +253,7 @@
 								return;
 							} else {
 								vueObj.$data = res;
-								vueObj.$nextTick(function() {
+								Vue.nextTick(function() {
 									// DOM 现在更新了
 									mui(".mui-slider").slider({
 										interval: 5000

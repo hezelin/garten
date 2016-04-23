@@ -50,11 +50,11 @@ input::-webkit-input-placeholder {
     @include px2rem(border-radius, 6px);
     background-color: $green-color;
     color: #FFFFFF;
-    transition: all .4s;
+    transition: all 0.4s;
 }
 .forgetPWD-span {
     @include px2rem(width, 647px);
-    @include px2rem(height, 90px);    
+    @include px2rem(height, 90px);
     display: inline-block;
 }
 #forgetPWD {
@@ -98,7 +98,7 @@ input::-webkit-input-placeholder {
 .other-btn-title {
     @include font-dpr(16px);
     color: #FFFFFF;
-    display: inline-block;    
+    display: inline-block;
     vertical-align: middle;
 }
 .other-way-line {
@@ -134,20 +134,19 @@ input::-webkit-input-placeholder {
 }
 .logo-weixin {
     @include spirtes-img4;
-    @include px2rem(background-position-x, -81px);//216
+    @include px2rem(background-position-x, -81px); //216
     @include px2rem(background-position-y, -237px);
 }
 .logo-qq {
     @include spirtes-img4;
-    @include px2rem(background-position-x, -160px);//216
-    @include px2rem(background-position-y, -237px);    
+    @include px2rem(background-position-x, -160px); //216
+    @include px2rem(background-position-y, -237px);
 }
 .logo-weibo {
     @include spirtes-img4;
-    @include px2rem(background-position-x, 0px);//216
-    @include px2rem(background-position-y, -237px);    
+    @include px2rem(background-position-x, 0px); //216
+    @include px2rem(background-position-y, -237px);
 }
-
 //注册页面共用部分
 .register-input {
     @include px2rem(width, 631px);
@@ -163,7 +162,7 @@ input::-webkit-input-placeholder {
     @include px2rem(border-radius, 6px);
 }
 .register-input:nth-child(1) {
-//  @include px2rem(margin-top, 80px);
+    //  @include px2rem(margin-top, 80px);
 }
 .register-btn {
     @include px2rem(width, 681px);
@@ -187,7 +186,7 @@ input::-webkit-input-placeholder {
     @include px2rem(border-radius, 6px);
     overflow: hidden;
     text-align: justify;
-    background-color: #FFFFFF;   
+    background-color: #FFFFFF;
 }
 //验证码输入
 #authCode {
@@ -198,7 +197,6 @@ input::-webkit-input-placeholder {
     border: none;
     vertical-align: middle;
 }
-
 //注册页面二
 .span-agreement {
     @include px2rem(width, 680px);
@@ -222,7 +220,6 @@ input::-webkit-input-placeholder {
     color: #FFFFFF;
     background-color: $green-color;
     border: none;
-    
 }
 //重置密码
 //返回登录
@@ -239,12 +236,12 @@ input::-webkit-input-placeholder {
     display: inline-block;
 }
 .reset-item {
-     width: 100%;
+    width: 100%;
     @include px2rem(height, 94px);
-    display: table;   
+    display: table;
     text-align: left;
     @include font-dpr(18px);
-     color: #000000;
+    color: #000000;
     border-bottom: $base-border;
 }
 .reset-item-cell-left {

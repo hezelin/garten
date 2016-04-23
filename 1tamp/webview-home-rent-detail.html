@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>商品第一页</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: rgb(255, 255, 255);
+				/*background-color: #efeff4;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="slider" class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="../img/tradeListbg1.png">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../img/tradeListbg1.png">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../img/tradeListbg1.png">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../img/tradeListbg1.png">
+					</a>
+				</div>
+				<!-- 额外增加的一个节点(最后一个节点与原第一张图片相同) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="../img/tradeListbg1.png">
+					</a>
+				</div>
+			</div>
+			<div class="pageIndex">
+				<!--1/3-->
+			</div>
+			<div class="mui-slider-indicator mui-text-center" style="display: none;">
+				<!--对应图片个数-->
+				<div class="mui-indicator mui-active home-slider-text-size"></div>
+				<div class="mui-indicator home-slider-text-size"></div>
+				<div class="mui-indicator home-slider-text-size"></div>
+			</div>
+		</div>
+		<!--详细介绍-->
+		<span class="home-rent-detail-name">
+			认租玉米地 (xxxxxxx) xxxxx
+		</span>
+		<span class="home-rent-detail-money">
+			<em>&yen;&nbsp;<label class="home-rent-detail-money-num">250</label></em>/亩
+		</span>
+		<div class="home-rent-detail-suit">
+			<div class="home-rent-detail-suit-item">
+				<div class="home-rent-detail-suit-item-left">适合种植</div>
+				<div class="home-rent-detail-suit-item-right">玉米、花生</div>
+			</div>
+			<div class="home-rent-detail-suit-item">
+				<div class="home-rent-detail-suit-item-left">适合种植</div>
+				<div class="home-rent-detail-suit-item-right">玉米、花生</div>
+			</div>
+			<div class="home-rent-detail-suit-item">
+				<div class="home-rent-detail-suit-item-left">适合种植</div>
+				<div class="home-rent-detail-suit-item-right">玉米、花生</div>
+			</div>
+			<div class="home-rent-detail-suit-item">
+				<div class="home-rent-detail-suit-item-left">适合种植</div>
+				<div class="home-rent-detail-suit-item-right">玉米、花生</div>
+			</div>
+		</div>
+		<div class="home-rent-detail-shop">
+			<div class="home-rent-detail-shop-left">
+				<span class="home-rent-detail-shop-logo" style="background: url(../img/TradeLogo.png);     background-size: contain;">					
+				</span>
+			</div>
+			<div class="home-rent-detail-shop-middle">
+				<span class="home-rent-detail-shop-name">
+					某某商家
+				</span>
+			</div>
+			<div class="home-rent-detail-shop-right">
+				<span class="mui-icon mui-icon-forward">
+				</span>
+			</div>
+		</div>
+		<div class="home-rent-detail-shop-detail">
+			<div class="home-rent-detail-shop-detail-btn">
+				<div class="home-rent-detail-shop-detail-content">
+					<span class="home-rent-detail-shop-detail-content-num">38</span>
+					<div>
+						<span class="shop-wares-span"></span>
+						<span class="home-rent-detail-shop-detail-content-name">商品</span>
+					</div>
+				</div>
+			</div>
+			<div class="home-rent-detail-shop-detail-btn">
+				<div class="home-rent-detail-shop-detail-content">
+					<span class="home-rent-detail-shop-detail-content-num">6</span>
+					<div>
+						<span class="shop-wares-assess-span"></span>
+						<span class="home-rent-detail-shop-detail-content-name">评价</span>
+					</div>
+				</div>
+			</div>
+			<div class="home-rent-detail-shop-detail-btn">
+				<div class="home-rent-detail-shop-detail-content">
+					<span class="home-rent-detail-shop-detail-content-num">3</span>
+					<div>
+						<span class="shop-wares-share-span"></span>
+						<span class="home-rent-detail-shop-detail-content-name">分享</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="trade-foot-control">
+			<div class="trade-foot-control-btn">
+				<span class="shop-car-span"></span>
+				<span class="trade-foot-control-name">购物车</span>
+			</div>
+			<div class="trade-foot-control-btn bg-color-green" id="buyNow">
+				<span class="shop-buy-span"></span>
+				<span class="trade-foot-control-name">立即购买</span>
+			</div>
+		</div>
+
+		<div id="buyDiv" class="mutual-div">
+			<div class="buyDiv-title">
+				<span class="buyDiv-title-img" style="background: url(../img/shop-detail.png); background-size: cover;"></span>
+				<span class="buyDiv-title-context">某某农家乐 xxxxxx</span>
+				<span id="buyDivClose"></span>
+			</div>
+			<div class="buyDiv-count">
+				<div class="buyDiv-count-left">
+					<label class="buyDiv-count-title">
+						购买数量
+					</label>
+				</div>
+				<div class="buyDiv-count-right">
+					<div class="num-choice">
+						<span class="num-choice-left num-choice-item">-</span>
+						<span class="num-choice-mid num-choice-item">1</span>
+						<span class="num-choice-right num-choice-item">+</span>
+					</div>
+					<span class="buyDiv-money">总价：&yen;&nbsp;<em class="buyDiv-money-count" data-normal="250">250</em></span>
+				</div>
+			</div>
+			<div class="buyDiv-btn">
+				<button id="btnPostBuy">完成</button>
+			</div>
+		</div>
+
+
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script>
+			mui.init();
+			document.getElementById("buyNow").addEventListener("tap", function() {
+				var id = "#buyDiv";
+				fnOpenTargetDiv(id);
+			});
+			document.getElementById("buyDivClose").addEventListener("tap", function() {
+				var id = "#buyDiv";
+				fnCloseShade(id);
+			});
+			//数字选择器
+			var chocieMID = document.querySelector(".num-choice-mid");
+			var choicePrice = document.querySelector(".buyDiv-money-count");
+			var basePrice = parseFloat(choicePrice.getAttribute("data-normal"));
+			document.querySelector(".num-choice-left").addEventListener("tap", function() {
+				var val = chocieMID.innerText;
+				if (val == "1") {
+					return;
+				}
+				chocieMID.innerText = parseInt(val) - 1;
+				choicePrice.innerText = parseFloat(choicePrice.innerText) - basePrice;
+			});
+			document.querySelector(".num-choice-right").addEventListener("tap", function() {
+				chocieMID.innerText = parseInt(chocieMID.innerText) + 1;
+				choicePrice.innerText = parseFloat(choicePrice.innerText) + basePrice;
+			});
+			//数字选择器end
+			document.querySelector(".pageIndex").innerText = 1 + "/" + (document.querySelectorAll(".mui-slider-item").length - 2);
+			mui(".mui-slider").on("dragend", ".mui-slider-group", function() {
+				setTimeout(function() {
+					var nodeElem = document.querySelectorAll(".mui-indicator");
+					var count = 1;
+					for (var i = 0; i < nodeElem.length; i++) {
+						if (nodeElem[i].classList.contains("mui-active")) {
+							break;
+						}
+						count++;
+					}
+					document.querySelector(".pageIndex").innerHTML = count + "/" + nodeElem.length;
+				}, 600);
+			});
+			mui.plusReady(function() {
+				//打开商家模板
+				document.querySelector(".home-rent-detail-shop").addEventListener("tap", function() {
+					var shopHead = plus.webview.getWebviewById("webview-shop-header");
+					shopHead.show();
+					//预载好的页面不用等待页面onloaded
+					mui.fire(shopHead, "initPage");
+				});
+			});
+		</script>
+	</body>
+
+</html>

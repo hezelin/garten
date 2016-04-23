@@ -456,7 +456,8 @@
 					"img/user-bag-amply-bg.png",
 					"thirdlv/webview-my-userbag-amply.html",
 					"img/red-bag-bg.png",
-					"img/red-line.png"
+					"img/red-line.png",
+					"js/vue.min.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -781,7 +782,9 @@
 					"css/style.css",
 					"js/flexible.debug.js",
 					"img/head-three-point.png",
-					"img/logo.png"
+					"img/logo.png",
+					"img/img.png",
+					"js/vue.min.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -1102,9 +1105,14 @@
 					"img/test-knowledge2.png",
 					"img/test-knowledge1.png",
 					"img/test-knowledge3.png",
-					"img/head.jpg"
+					"img/head.jpg",
+					null,
+					"img/ispraise.png"
 				],
-				"refer": [],
+				"refer": [
+					"thirdlv/webview-comu-knowledge-list.html",
+					"login/login.html"
+				],
 				"priority": 0
 			},
 			"secondlv/webview-my-comu.html": {
@@ -1125,9 +1133,12 @@
 					"css/mui.min.css",
 					null,
 					"img/head-search.png",
-					"js/vue.min.js"
+					"js/vue.min.js",
+					"img/ispraise.png"
 				],
-				"refer": [],
+				"refer": [
+					"thirdlv/promulgateStative.html"
+				],
 				"priority": 0
 			},
 			"thirdlv/webview-trade-detail.html": {
@@ -1151,7 +1162,9 @@
 					"css/mui.min.css",
 					"img/img2.png"
 				],
-				"refer": [],
+				"refer": [
+					"thirdlv/webview-shop.html"
+				],
 				"priority": 0
 			},
 			"webview-map.html": {
@@ -1260,6 +1273,57 @@
 					"tiles/14/tile3203_683.png"
 				],
 				"refer": [],
+				"priority": 0
+			},
+			"thirdlv/promulgateStative.html": {
+				"resources": [
+					"img/addIMG.png",
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"img/img3.png",
+					"img/img.png",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/style.css",
+					"js/vue.min.js",
+					"js/flexible.debug.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"thirdlv/webview-shop.html": {
+				"resources": [
+					"img/shop-home-page-hot.png",
+					"img/fruitTree.png",
+					"img/shop-introduce-navigation.png",
+					"img/plowLand.png",
+					"img/plowLand2.png",
+					"img/shop-introduce-bg-test.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"thirdlv/webview-comu-knowledge-list.html": {
+				"resources": [
+					"img/test-knowledge5.png",
+					"img/test-knowledge2.png",
+					"img/test-knowledge1.png",
+					"img/test-knowledge4.png",
+					"img/test-knowledge3.png",
+					"js/flexible_css.debug.js",
+					"js/md5.min.js",
+					"img/img3.png",
+					"img/img.png",
+					"js/public.js",
+					"css/style.css",
+					"js/flexible.debug.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/vue.min.js"
+				],
+				"refer": [
+					"thirdlv/webview-comu-knowledge-detail.html"
+				],
 				"priority": 0
 			}
 		},
