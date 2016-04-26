@@ -23,6 +23,9 @@ article {
 em {
   font-style: normal; }
 
+body {
+  background-color: #F7F7F7; }
+
 .white-arrow-span {
   width: 0.26667rem;
   height: 0.46667rem;
@@ -354,7 +357,7 @@ em {
 
 .trade-span-cover-slider {
   width: 10rem;
-  height: 5.13333rem;
+  height: 6.53333rem;
   display: block; }
 
 /*# sourceMappingURL=public.css.map */

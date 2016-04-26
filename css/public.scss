@@ -1,3 +1,4 @@
+
 // px转rem
 // 设计稿元素尺寸/(设计稿宽度/10)*页面html.fontsize = 适应后的元素大小
 @mixin px2rem($property, $px-values, $important: false, $baseline-px:75px, $support-for-ie:false) {
@@ -91,7 +92,7 @@
 // 基础绿色背景
 $base-color: #efeff4; //$green-color: #83C347;
 $green-color: #3d8f52;
-$base-border: 1px solid #dcdcdc;
+$base-border: 1px solid #dfdfdf;
 .bg-color-green {
     background-color: $green-color !important;
 }
@@ -116,6 +117,9 @@ article {
 }
 em {
     font-style: normal;
+}
+body {
+    background-color: #F7F7F7;
 }
 //图标样式
 //箭头-右白箭头
@@ -450,6 +454,6 @@ em {
 // 商品详情轮播图
 .trade-span-cover-slider {
     @include px2rem(width, 750px);
-    @include px2rem(height, 385px);
+    @include px2rem(height, 490px);
     display: block;
 }

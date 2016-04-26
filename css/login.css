@@ -23,6 +23,9 @@ article {
 em {
   font-style: normal; }
 
+body {
+  background-color: #F7F7F7; }
+
 .white-arrow-span {
   width: 0.26667rem;
   height: 0.46667rem;
@@ -354,7 +357,7 @@ em {
 
 .trade-span-cover-slider {
   width: 10rem;
-  height: 5.13333rem;
+  height: 6.53333rem;
   display: block; }
 
 .input-group {
@@ -531,7 +534,7 @@ input::-webkit-input-placeholder {
   font-size: 19px;
   color: #9a9a9a;
   background-color: white;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #dfdfdf;
   border-radius: 0.08rem; }
   [data-dpr="2"] .register-input {
     font-size: 38px; }
@@ -559,7 +562,7 @@ input::-webkit-input-placeholder {
   height: 1.2rem;
   padding-left: 0.33333rem;
   display: inline-block;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #dfdfdf;
   border-radius: 0.08rem;
   overflow: hidden;
   text-align: justify;
@@ -623,7 +626,7 @@ input::-webkit-input-placeholder {
   text-align: left;
   font-size: 18px;
   color: #000000;
-  border-bottom: 1px solid #dcdcdc; }
+  border-bottom: 1px solid #dfdfdf; }
   [data-dpr="2"] .reset-item {
     font-size: 36px; }
   [data-dpr="3"] .reset-item {

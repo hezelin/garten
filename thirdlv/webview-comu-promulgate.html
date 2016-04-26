@@ -49,6 +49,21 @@
 				/*bottom: 10px;*/
 				font-size: 18px;
 			}
+			
+			.removeImg {
+				width: 16px;
+				height: 16px;
+				line-height: 16px;
+				display: inline-block;
+				font-size: 16px;
+				position: absolute;
+				top: -5px;
+				right: -5px;
+				text-align: center;
+				border-radius: 8px 8px;
+				background-color: rgb(250, 54, 31);
+				color: #fff;
+			}
 		</style>
 	</head>
 
@@ -67,18 +82,20 @@
 		<div id="head-holder"></div>
 		<form id="promulgateForm" method="post" enctype="multipart/form-data">
 			<textarea name="text" id="promulgateForm-textArea" placeholder="请输入想说的话"></textarea>
+			
 			<div class="promulgateForm-file">
-				<span class="promulgateForm-addFile" style="background: url(../img/addIMG.png); background-repeat: no-repeat;background-position: center; background-size: 70px;"></span>
+				<span class="removeImg">x</span>
+				<span class="promulgateForm-addFile" style="background: url(../img/crop.jpg); background-repeat: no-repeat;background-position: center; background-size: 80px;"></span>
 				<input type="file" name="img0" class="promulgateForm-Input" id="promulgateForm-Input0" />
 			</div>
-			<!--<div class="promulgateForm-file">
-				<span class="promulgateForm-addFile" style="background: url(../img/addIMG.png); background-repeat: no-repeat;background-position: center; background-size: 70px;"></span>
-				<input type="file" name="img1" class="promulgateForm-Input" />
-			</div>-->
-			<!--<div class="promulgateForm-file">
-				<span class="promulgateForm-addFile" style="background: url(../img/addIMG.png); background-repeat: no-repeat;background-position: center; background-size: 70px;"></span>
-				<input type="file" name="img2" class="promulgateForm-Input" />
-			</div>-->
+			<div class="promulgateForm-file" id="addFileTap">				
+				<span class="promulgateForm-addFile" style="background: url(../img/addIMG.png); background-repeat: no-repeat;background-position: center; background-size: 80px;"></span>
+				<!--<input type="file" name="img0" class="promulgateForm-Input" id="promulgateForm-Input0" />-->
+			</div>
+			<div class="promulgateForm-file" id="addFileTap">				
+				<span class="promulgateForm-addFile" style="background: url(); background-repeat: no-repeat;background-position: center; background-size: 80px;"></span>
+				<input type="file" name="img0" class="promulgateForm-Input" id="promulgateForm-Input0" />
+			</div>			
 			<br />
 			<span class="promulgateForm-span">最多可添加三张图片</span>
 		</form>
@@ -101,8 +118,9 @@
 		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
-			// 默认是问答
+			// 默认是分享
 			var typeOfpromulgate = true;
+			var fileArray = [];
 			mui.plusReady(function() {
 				document.getElementById("submitForm").addEventListener("tap", function() {
 					if (!userLoginStatus()) {
@@ -124,7 +142,7 @@
 					var typePost = typeOfpromulgate ? 1 : 2;
 					var URL = "http://farm.rrzuji.com/v1/talk/create?" + fnCreateSign() + "&access-token=" + token;
 					var fData = new FormData();
-					fData.append("img0", document.getElementById('promulgateForm-Input0').files[0]);
+					//					fData.append("img0", document.getElementById('promulgateForm-Input0').files[0]);
 					fData.append("text", textValue);
 					fData.append("user_id", user_id);
 					fData.append("type", typePost);
@@ -140,7 +158,7 @@
 									mui.toast("无法连接服务器，发布失败，请检查网络连接");
 									nwaiting.close();
 									return;
-								}								
+								}
 								var w = plus.webview.getWebviewById("webview-comu-new.html");
 								mui.fire(w, "refreshTab", {
 									type: typePost
@@ -155,7 +173,7 @@
 								mui.toast("网络不稳定，发布失败，请检查网络连接");
 								nwaiting.close();
 							}
-						} 
+						}
 					}
 					xhr.open("POST", URL);
 					//					xhr.setRequestHeader("Content-Type", "multipart/form-data");
@@ -173,6 +191,9 @@
 				}
 				typeOfpromulgate = !typeOfpromulgate;
 				thisElem.classList.add("radio-check-active");
+			});
+			document.getElementById("addFileTap").addEventListener("tap", function() {
+				console.log("添加图片");
 			});
 		</script>
 	</body>

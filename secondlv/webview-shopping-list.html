@@ -13,11 +13,6 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
 		<style>
-			html,
-			body {
-				background-color: #efeff4;
-			}
-			
 			.mui-pull-top-tips {
 				position: absolute;
 				top: -20px;
@@ -482,7 +477,7 @@
 					})
 				}
 			}
-			mui.ready(function() {
+			mui.plusReady(function() {
 				// 第一个标签手动设置				
 				new tabObj("hotSaleList", "hotSaleScroll", "true");
 				document.getElementById("slider").addEventListener("scrollend", function() {

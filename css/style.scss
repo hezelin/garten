@@ -519,10 +519,9 @@
     background-color: rgb(245, 245, 245);
 }
 .home-rent-detail-suit-item {
-    @include px2rem(height, 96px); //  @include px2rem(padding-left, 28px);
-    //  @include px2rem(padding-right, 28px);
-    padding-left: 3%;
-    padding-right: 3%;
+    width: 94%;
+    margin: 0 auto;
+    @include px2rem(height, 96px);     
     @include font-dpr(16px);
     border-bottom: $base-border;
 }
@@ -540,7 +539,7 @@
     height: 100%;
     @include px2rem(line-height, 96px);
     display: inline-block;
-    color: #000000;
+    color: #282828;
     text-align: left;
     @include Nowrap;
 }
@@ -1383,7 +1382,7 @@
     @include px2rem(height, 210px);
     @include px2rem(line-height, 210px);
     margin: 0 auto;
-    font-size: 0;    
+    font-size: 0;
 }
 .orderForm-detail-left {
     @include px2rem(width, 170px);
@@ -1434,7 +1433,7 @@
 .orderForm-other-item {
     width: 93%;
     @include px2rem(height, 102px);
-    @include px2rem(line-height, 103px);    
+    @include px2rem(line-height, 103px);
     font-size: 0;
     margin: 0 auto;
     border-top: $base-border;
@@ -1496,8 +1495,8 @@
 .coupon-right {
     width: 8%;
     height: 100%;
-    @include px2rem(padding-right, 28px);    
-    @include px2rem(line-height, 95px);    
+    @include px2rem(padding-right, 28px);
+    @include px2rem(line-height, 95px);
     display: inline-block;
     text-align: right;
     .black-arrow-span {
@@ -2105,7 +2104,6 @@
     @include px2rem(padding-bottom, 12px);
     @include px2rem(padding-left, 33px);
     @include px2rem(padding-right, 33px);
-    border-bottom: $base-border;
     background-color: white;
     @include px2rem(border-radius, (6px, 6px));
 }
@@ -2125,7 +2123,13 @@
 .comu-user-picture {
     @include px2rem(width, 93px);
     @include px2rem(height, 93px);
+    @include px2rem(margin-right, 10px);
     border-radius: 50% 50%;
+    display: inline-block;
+}
+.comu-user-picture-small {
+    @include px2rem(width, 70px);
+    @include px2rem(height, 70px);
 }
 //用户名
 .comu-user-name {
@@ -2145,8 +2149,8 @@
     color: #282828;
 }
 .comu-content-main-photo-list {
-//  @include px2rem(width, 190px, true);
-//  @include px2rem(height, 190px, true);
+    //  @include px2rem(width, 190px, true);
+    //  @include px2rem(height, 190px, true);
     width: 80px;
     height: 80px;
     @include px2rem(margin-right, 8px);
@@ -2173,20 +2177,20 @@
 //}
 .comu-comment-praise-default {
     @include px2rem(width, 35px);
-    @include px2rem(height, 34px);    
+    @include px2rem(height, 34px);
     display: inline-block;
     vertical-align: middle;
-    background: url(../img/praise.png);
-    background-repeat: no-repeat; 
+    background: url("../img/praise.png");
+    background-repeat: no-repeat;
     background-size: contain;
 }
 .comu-comment-praise-active {
     @include px2rem(width, 35px);
-    @include px2rem(height, 34px);    
+    @include px2rem(height, 34px);
     display: inline-block;
     vertical-align: middle;
-    background: url(../img/ispraise.png);
-    background-repeat: no-repeat; 
+    background: url("../img/ispraise.png");
+    background-repeat: no-repeat;
     background-size: contain;
 }
 .comu-comment-control-logo-comu {
@@ -2237,7 +2241,7 @@
     @include font-dpr(16px);
 }
 .comu-post-checkGroup {
-    @include px2rem(height, 135px);    
+    @include px2rem(height, 135px);
     @include px2rem(line-height, 135px);
     @include px2rem(padding-left, 28px);
     @include px2rem(padding-right, 28px);
@@ -2249,7 +2253,7 @@
     vertical-align: middle;
 }
 #promulgateForm {
-    @include px2rem(padding, (25px, 28px));   
+    @include px2rem(padding, (25px, 28px));
     background-color: #FFFFFF;
 }
 #promulgateForm-textArea {
@@ -2263,11 +2267,13 @@
     color: rgb(124,124,124);
 }
 .promulgateForm-file {
+    margin-right: 5px;
     display: inline-block;
     font-size: 0;
     position: relative;
+    border: 1px solid #d3d3d3;
 }
-.promulgateForm-addFile {   
+.promulgateForm-addFile {
     width: 60px;
     height: 60px;
     display: inline-block;
@@ -2287,7 +2293,106 @@
     display: inline-block;
     color: rgb(213, 213, 213);
 }
-
+// 社区详情点赞
+.comu-detail-praise-comment-group {
+    width: 100%;
+    @include px2rem(padding-left, 17px);
+    @include px2rem(padding-right, 17px);
+    @include px2rem(margin-bottom, 23px);
+    font-size: 0;
+}
+.comu-detail-praise-group {
+    width: 100%;
+    @include px2rem(height, 94px);
+    @include px2rem(line-height, 94px);
+    @include px2rem(padding-top, 12px);
+    @include px2rem(padding-bottom, 12px);
+    @include px2rem(padding-left, 33px);
+    @include px2rem(padding-right, 33px);
+    background-color: white;
+    @include px2rem(border-radius, (6px, 6px));
+}
+.comu-detail-praise-group-span {    
+    line-height: inherit;
+    vertical-align: top;
+    @include font-dpr(14px);
+    color: rgb(160, 160, 160);
+    display: inline-block;
+}
+.comu-detail-praise-group-icon {
+    line-height: inherit;
+    vertical-align: top;
+    color: rgb(160, 160, 160);
+}
+// 社区详情评论
+.comu-detail-comment-group {
+    width: 100%;
+    @include px2rem(padding-top, 12px);
+    @include px2rem(padding-bottom, 12px);
+    @include px2rem(padding-left, 33px);
+    @include px2rem(padding-right, 33px);
+    background-color: white;
+    @include px2rem(border-radius, (6px, 6px));
+}
+.comu-detail-comment-item {
+//  @include px2
+}
+// 社区详情发送评论
+.comu-send-comment-group {
+    width: 100%;
+    @include px2rem(height, 95px);
+    border-top: $base-border;
+    background-color: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+    font-size: 0;
+}
+.comu-send-comment-group-item {
+    height: 100%;
+    @include px2rem(line-height, 95px);
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.comu-send-comment-group-left {
+    @include px2rem(width, 120px);
+    @include font-dpr(16px);
+}
+.comu-send-comment-group-left-span {
+    position: absolute;
+    @include px2rem(left, 24px);
+    @include px2rem(bottom, 26px);
+    color: #555;
+}
+.comu-send-comment-group-middle {
+    @include px2rem(width, 500px);
+    @include font-dpr(16px);
+}
+.comu-send-comment-group-left-input {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid #D3D3D3;
+    position: absolute;
+    @include px2rem(bottom, 25px);
+}
+.comu-send-comment-group-right {
+    @include px2rem(width, 130px);
+}
+.comu-send-comment-span {
+    @include px2rem(width, 47px);
+    @include px2rem(height, 48px);
+    background: url("../img/send-comu-comment.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: inline-block;
+    position: absolute;
+    @include px2rem(right, 44px);
+    @include px2rem(bottom, 20px);
+}
 /**
      * ******** ******** ******** ********
      * webview-comu-knowledge百科详情页面
@@ -2835,16 +2940,4 @@ select {}
 }
 .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
     background-color: $green-color;
-}
-div#sliderProgressBar:before {
-    content: ' ';
-    height: 20px;
-    background-color: rgba(100, 100, 100, 0.2);
-    width: 100%;
-    height: 38px;
-    position: absolute;
-    z-index: 999;
-    bottom: 2px;
-    left: 0;
-    display: inline-block;
 }

@@ -316,7 +316,14 @@
 					null,
 					"img/head-three-point-black.png",
 					"img/head-three-point.png",
-					"img/img3.png"
+					"img/img3.png",
+					"js/mui.pullToRefresh.js",
+					"js/mui.pullToRefresh.material.js",
+					"js/vue.min.js",
+					"img/head-search.png",
+					"img/comment.png",
+					"img/praise.png",
+					"img/ispraise.png"
 				],
 				"refer": [
 					"webview-nav.html",
@@ -1111,7 +1118,8 @@
 				],
 				"refer": [
 					"thirdlv/webview-comu-knowledge-list.html",
-					"login/login.html"
+					"login/login.html",
+					"secondlv/webview-comu-detail.html"
 				],
 				"priority": 0
 			},
@@ -1137,7 +1145,9 @@
 					"img/ispraise.png"
 				],
 				"refer": [
-					"thirdlv/promulgateStative.html"
+					"thirdlv/promulgateStative.html",
+					"secondlv/webview-comu-detail.html",
+					"thirdlv/webview-comu-promulgate.html"
 				],
 				"priority": 0
 			},
@@ -1270,7 +1280,47 @@
 					"tiles/14/tile3208_684.png",
 					"tiles/14/tile3208_683.png",
 					"tiles/14/tile3203_684.png",
-					"tiles/14/tile3203_683.png"
+					"tiles/14/tile3203_683.png",
+					"img/comuKnowledgable.png",
+					"tiles/17/tile25643_5481.png",
+					"tiles/17/tile25643_5482.png",
+					"tiles/17/tile25642_5481.png",
+					"tiles/17/tile25642_5482.png",
+					"tiles/16/tile12820_2741.png",
+					"tiles/16/tile12822_2740.png",
+					"tiles/16/tile12820_2740.png",
+					"tiles/16/tile12822_2741.png",
+					"tiles/16/tile12821_2741.png",
+					"tiles/16/tile12821_2740.png",
+					"tiles/16/tile12823_2741.png",
+					"tiles/17/tile25644_5482.png",
+					"tiles/17/tile25644_5481.png",
+					"tiles/17/tile25645_5481.png",
+					"tiles/16/tile12823_2740.png",
+					"tiles/17/tile25645_5482.png",
+					"tiles/17/tile25646_5482.png",
+					"tiles/17/tile25646_5481.png",
+					"tiles/17/tile25643_5480.png",
+					"tiles/17/tile25643_5483.png",
+					"tiles/17/tile25642_5480.png",
+					"tiles/17/tile25642_5483.png",
+					"tiles/17/tile25644_5483.png",
+					"tiles/16/tile12822_2742.png",
+					"tiles/16/tile12821_2742.png",
+					"tiles/16/tile12820_2742.png",
+					"tiles/17/tile25641_5481.png",
+					"tiles/17/tile25641_5482.png",
+					"tiles/17/tile25641_5480.png",
+					"tiles/16/tile12823_2739.png",
+					"tiles/16/tile12822_2739.png",
+					"tiles/16/tile12821_2739.png",
+					"tiles/16/tile12823_2742.png",
+					"tiles/16/tile12820_2739.png",
+					"tiles/16/tile12819_2739.png",
+					"tiles/16/tile12819_2741.png",
+					"tiles/16/tile12819_2740.png",
+					"tiles/16/tile12819_2742.png",
+					"tiles/17/tile25644_5480.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1286,7 +1336,8 @@
 					"js/public.js",
 					"css/style.css",
 					"js/vue.min.js",
-					"js/flexible.debug.js"
+					"js/flexible.debug.js",
+					"img/crop.jpg"
 				],
 				"refer": [],
 				"priority": 0
@@ -1324,6 +1375,35 @@
 				"refer": [
 					"thirdlv/webview-comu-knowledge-detail.html"
 				],
+				"priority": 0
+			},
+			"secondlv/webview-comu-detail.html": {
+				"resources": [
+					"img/fruitTree.png",
+					"img/head.jpg",
+					"img/send-comu-comment.png",
+					"img/comment.png",
+					"js/flexible_css.debug.js",
+					"js/md5.min.js",
+					"img/img.png",
+					"js/public.js",
+					"css/style.css",
+					"js/vue.min.js",
+					"img/praise.png",
+					"js/flexible.debug.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"thirdlv/webview-comu-promulgate.html": {
+				"resources": [
+					"img/addIMG.png",
+					"img/crop.jpg"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

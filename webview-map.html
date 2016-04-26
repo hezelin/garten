@@ -7,12 +7,11 @@
 		<meta http-equiv="content-security-policy">
 		<meta content="yes" name="apple-mobile-web-app-capable">
 		<meta content="yes" name="apple-touch-fullscreen">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 		<meta content="telephone=no,email=no" name="format-detection">
 		<script src="js/flexible_css.debug.js"></script>
 		<script src="js/flexible.debug.js"></script>
-		<script src="http://api.map.baidu.com/api?v=2.0&aak=74af171e2b27ee021ed33e549a9d3fb9"></script>
-		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=74af171e2b27ee021ed33e549a9d3fb9&services=&t=20160401164342"></script>
+		<script src="http://api.map.baidu.com/api?v=2.0&ak=iwvdqPIdPiGxdcqB2Tl28lLD"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
 		<title></title>
@@ -21,15 +20,14 @@
 			body {
 				width: 100%;
 				height: 100%;
-				background-color: #efeff4;
 			}
 		</style>
 	</head>
 
 	<body>
-		<div class="header-control header-control-greenBold head-tab-hide">
+		<div class="header-control header-control-greenBold head-tab-hide header-control-fixed">
 			<div class="header-control-left-btn">
-				<span class="app-log-span header-control-left-btn-span"></span>
+				<span class="header-control-left-btn-span"></span>
 				<!--<span class="white-arrow-big-span header-control-left-btn-span"></span>-->
 			</div>
 			<div>
@@ -39,8 +37,7 @@
 				<span class="header-control-right-btn-span white-three-point-span"></span>
 			</div>
 		</div>
-		<div id="map" style="width:100%;height: 280px;"></div>
-
+		<div id="map" style="width:100%;height: 100%; "></div>		
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
 		</div>
@@ -62,12 +59,12 @@
 				return 'tiles/' + zoom + '/tile' + x + '_' + y + '.png';
 			}
 			var map = new BMap.Map('map', {
-				minZoom: 12,
-				maxZoom: 16
+				minZoom: 13,
+				maxZoom: 17
 			});
 			map.addTileLayer(tileLayer);
 			map.addControl(new BMap.NavigationControl());
-			map.centerAndZoom(new BMap.Point(117.938911, 24.581768), 13);
+			map.centerAndZoom(new BMap.Point(117.941431, 24.583924), 16);
 		</script>
 	</body>
 

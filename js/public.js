@@ -3,12 +3,13 @@
  * @param {Number}
  * @param {Number} 
  */
-function fnSetSubpageStyle(Top, Bottom) {
+function fnSetSubpageStyle(Top, Bottom, scale) {
 	return {
 		top: fnPx2Rem(Top, true),
 		bottom: fnPx2Rem(Bottom, true),
 		render: "always",
 		popGesture: "none",
+		scalable: scale ? true : false,
 		hardwareAccelerated: true
 //		scrollIndicator: "none"
 	}
@@ -321,6 +322,7 @@ function NetWorkStatus() {
 	if (!mui.os.plus) {
 		return;
 	}
+//	mui.plusReady()
 	var val = plus.networkinfo.getCurrentType();
 	// 0表示网络连接状态未知，1表示网络无连接
 	if (val == 0 || val == 1) {

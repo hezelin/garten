@@ -47,7 +47,7 @@
 				<span class="icon-index icon-index-home"></span>
 				<span class="icon-label">首页</span>
 			</div>
-			<div id="comu" class="index-tab-item" data-href="webview-comu-new.html">
+			<div id="comu" class="index-tab-item" data-href="webview-comu.html">
 				<span class="icon-index icon-index-comu"></span>
 				<span class="icon-label">社区</span>
 			</div>
@@ -68,7 +68,7 @@
 			mui.init();
 			// 初始化
 			// webview-my页要放在最后， 并且要与html中data-href统一
-			var subpages = ['webview-home-header.html', 'webview-comu-new.html', 'webview-map.html', 'webview-my.html'];
+			var subpages = ['webview-home-header.html', 'webview-comu.html', 'webview-map.html', 'webview-my.html'];
 			// 默认激活标签
 			var activeTab = "webview-home-header.html";
 			// 供其他三个平级页面调用
@@ -119,11 +119,6 @@
 							id: "webview-header",
 							styles: fnSetSubpageStyle(0, 0)
 						});
-						var shophead = mui.preload({
-							url: "webview-shop-header.html",
-							id: "webview-shop-header",
-							styles: fnSetSubpageStyle(0, 0)
-						});
 					}
 				}
 				for (var i = 0; i < subpages.length; i++) {
@@ -162,7 +157,7 @@
 						mui.fire(plus.webview.getWebviewById(targetTab), "setNum", {});
 					}
 					// 如果是社区页，则刷新
-					if (targetTab == "webview-comu-new.html") {
+					if (targetTab == "webview-comu.html") {
 						if (comuFirstOpen && !NetWorkStatus()) {
 							mui.fire(plus.webview.getWebviewById(targetTab), "initPage", {});
 							console.log("初始化一次社区页");

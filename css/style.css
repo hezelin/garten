@@ -23,6 +23,9 @@ article {
 em {
   font-style: normal; }
 
+body {
+  background-color: #F7F7F7; }
+
 .white-arrow-span {
   width: 0.26667rem;
   height: 0.46667rem;
@@ -354,7 +357,7 @@ em {
 
 .trade-span-cover-slider {
   width: 10rem;
-  height: 5.13333rem;
+  height: 6.53333rem;
   display: block; }
 
 /**
@@ -582,7 +585,7 @@ em {
   height: 1px;
   margin-top: 0.16rem;
   margin-bottom: 0.16rem;
-  border-bottom: 1px solid #dcdcdc; }
+  border-bottom: 1px solid #dfdfdf; }
 
 .home-news-content-item-left {
   width: 4.66667rem;
@@ -919,11 +922,11 @@ em {
   background-color: whitesmoke; }
 
 .home-rent-detail-suit-item {
+  width: 94%;
+  margin: 0 auto;
   height: 1.28rem;
-  padding-left: 3%;
-  padding-right: 3%;
   font-size: 16px;
-  border-bottom: 1px solid #dcdcdc; }
+  border-bottom: 1px solid #dfdfdf; }
   [data-dpr="2"] .home-rent-detail-suit-item {
     font-size: 32px; }
   [data-dpr="3"] .home-rent-detail-suit-item {
@@ -946,7 +949,7 @@ em {
   height: 100%;
   line-height: 1.28rem;
   display: inline-block;
-  color: #000000;
+  color: #282828;
   text-align: left;
   word-break: keep-all;
   white-space: nowrap;
@@ -957,7 +960,7 @@ em {
   width: 100%;
   height: 1.28rem;
   background-color: #FFFFFF;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dfdfdf;
   display: table; }
 
 .home-rent-detail-shop-left {
@@ -1001,7 +1004,7 @@ em {
   vertical-align: middle; }
 
 .home-rent-detail-shop-detail-content {
-  border-right: 1px solid #dcdcdc;
+  border-right: 1px solid #dfdfdf;
   text-align: center; }
 
 .home-rent-detail-shop-detail-content-num {
@@ -1058,7 +1061,7 @@ em {
 .home-rent-comment-item {
   margin-left: 0.37333rem;
   margin-right: 0.37333rem;
-  border-bottom: 1px solid #dcdcdc; }
+  border-bottom: 1px solid #dfdfdf; }
 
 .home-rent-comment-user {
   width: 100%;
@@ -1275,7 +1278,7 @@ em {
   width: 4.49333rem;
   height: 5.38667rem;
   margin-top: 0.37333rem;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #dfdfdf;
   display: inline-block;
   overflow: hidden;
   box-shadow: 2px 2px 4px 0 #c4c4c4; }
@@ -1290,7 +1293,7 @@ em {
 .shopping-list-item-title {
   height: 1.49333rem;
   color: #282828;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dfdfdf;
   overflow: hidden; }
 
 .shopping-list-item-title-span {
@@ -1409,8 +1412,8 @@ em {
 .trade-foot-control-small-btn {
   width: 15%;
   height: 100%;
-  border-top: 1px solid #dcdcdc;
-  border-right: 1px solid #dcdcdc;
+  border-top: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
   background-color: #FFFFFF;
   display: table-cell;
   vertical-align: middle;
@@ -1458,7 +1461,7 @@ em {
 
 .buyDiv-title {
   height: 2.46667rem;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dfdfdf;
   position: relative;
   line-height: 2.46667rem; }
 
@@ -1508,7 +1511,7 @@ em {
   padding-bottom: 0.4rem;
   padding-left: 0.50667rem;
   padding-right: 0.37333rem;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dfdfdf;
   font-size: 0; }
 
 .buyDiv-item-title {
@@ -1539,7 +1542,7 @@ em {
 
 .buyDiv-count {
   height: 1.73333rem;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dfdfdf;
   font-size: 0;
   position: relative; }
 
@@ -1651,7 +1654,7 @@ em {
 .shop-foot-container {
   width: 100%;
   height: 1.33333rem;
-  border-top: 1px solid #dcdcdc;
+  border-top: 1px solid #dfdfdf;
   background-color: whitesmoke;
   display: table;
   position: fixed;
@@ -1676,8 +1679,8 @@ em {
     font-size: 48px; }
 
 .shop-foot-content-border {
-  border-left: 1px solid #dcdcdc;
-  border-right: 1px solid #dcdcdc; }
+  border-left: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf; }
 
 /**
      * ******** ******** ******** ********
@@ -1810,7 +1813,7 @@ em {
   padding-top: 0.13333rem;
   padding-bottom: 0.13333rem;
   margin: 0 auto;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dfdfdf;
   display: table; }
 
 .shop-introduce-item-left {
@@ -1970,7 +1973,7 @@ em {
   line-height: 1.37333rem;
   font-size: 0;
   margin: 0 auto;
-  border-top: 1px solid #dcdcdc; }
+  border-top: 1px solid #dfdfdf; }
 
 .other-item-left {
   width: 30%;
@@ -2271,12 +2274,12 @@ em {
   margin-top: 0.30667rem; }
 
 .user-menu-group:nth-child(2) > .user-menu-group-describle {
-  border-top: 1px solid #dcdcdc;
-  border-bottom: 1px solid #dcdcdc; }
+  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf; }
 
 .user-menu-group:nth-child(2) > .user-menu-group-describle-right {
-  border-top: 1px solid #dcdcdc;
-  border-bottom: 1px solid #dcdcdc; }
+  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf; }
 
 /**
      * ******** ******** ******** ********
@@ -2397,7 +2400,7 @@ em {
   height: 0.86667rem;
   padding-left: 0.37333rem;
   padding-right: 0.37333rem;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dfdfdf;
   display: table; }
   .my-trader-title .shop-span {
     display: inline-block;
@@ -2511,7 +2514,7 @@ em {
   color: #000000; }
 
 .my-order-content-bottom-border {
-  border-bottom: 1px solid #dcdcdc; }
+  border-bottom: 1px solid #dfdfdf; }
 
 .my-order-total {
   width: 100%;
@@ -2658,7 +2661,7 @@ em {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  border-right: 1px solid #dcdcdc; }
+  border-right: 1px solid #dfdfdf; }
 
 .comu-nav-knowledgeble-bg {
   width: 1.46667rem;
@@ -2721,7 +2724,6 @@ em {
   padding-bottom: 0.16rem;
   padding-left: 0.44rem;
   padding-right: 0.44rem;
-  border-bottom: 1px solid #dcdcdc;
   background-color: white;
   border-radius: 0.08rem 0.08rem; }
 
@@ -2739,7 +2741,13 @@ em {
 .comu-user-picture {
   width: 1.24rem;
   height: 1.24rem;
-  border-radius: 50% 50%; }
+  margin-right: 0.13333rem;
+  border-radius: 50% 50%;
+  display: inline-block; }
+
+.comu-user-picture-small {
+  width: 0.93333rem;
+  height: 0.93333rem; }
 
 .comu-user-name {
   font-size: 18px;
@@ -2794,7 +2802,7 @@ em {
   height: 0.45333rem;
   display: inline-block;
   vertical-align: middle;
-  background: url(../img/praise.png);
+  background: url("../img/praise.png");
   background-repeat: no-repeat;
   background-size: contain; }
 
@@ -2803,7 +2811,7 @@ em {
   height: 0.45333rem;
   display: inline-block;
   vertical-align: middle;
-  background: url(../img/ispraise.png);
+  background: url("../img/ispraise.png");
   background-repeat: no-repeat;
   background-size: contain; }
 
@@ -2864,7 +2872,7 @@ em {
   line-height: 1.8rem;
   padding-left: 0.37333rem;
   padding-right: 0.37333rem;
-  border-top: 1px solid #dcdcdc;
+  border-top: 1px solid #dfdfdf;
   font-size: 16px;
   background-color: #FFFFFF; }
   [data-dpr="2"] .comu-post-checkGroup {
@@ -2894,9 +2902,11 @@ em {
     font-size: 48px; }
 
 .promulgateForm-file {
+  margin-right: 5px;
   display: inline-block;
   font-size: 0;
-  position: relative; }
+  position: relative;
+  border: 1px solid #d3d3d3; }
 
 .promulgateForm-addFile {
   width: 60px;
@@ -2917,6 +2927,112 @@ em {
 .promulgateForm-span {
   display: inline-block;
   color: #d5d5d5; }
+
+.comu-detail-praise-comment-group {
+  width: 100%;
+  padding-left: 0.22667rem;
+  padding-right: 0.22667rem;
+  margin-bottom: 0.30667rem;
+  font-size: 0; }
+
+.comu-detail-praise-group {
+  width: 100%;
+  height: 1.25333rem;
+  line-height: 1.25333rem;
+  padding-top: 0.16rem;
+  padding-bottom: 0.16rem;
+  padding-left: 0.44rem;
+  padding-right: 0.44rem;
+  background-color: white;
+  border-radius: 0.08rem 0.08rem; }
+
+.comu-detail-praise-group-span {
+  line-height: inherit;
+  vertical-align: top;
+  font-size: 14px;
+  color: #a0a0a0;
+  display: inline-block; }
+  [data-dpr="2"] .comu-detail-praise-group-span {
+    font-size: 28px; }
+  [data-dpr="3"] .comu-detail-praise-group-span {
+    font-size: 42px; }
+
+.comu-detail-praise-group-icon {
+  line-height: inherit;
+  vertical-align: top;
+  color: #a0a0a0; }
+
+.comu-detail-comment-group {
+  width: 100%;
+  padding-top: 0.16rem;
+  padding-bottom: 0.16rem;
+  padding-left: 0.44rem;
+  padding-right: 0.44rem;
+  background-color: white;
+  border-radius: 0.08rem 0.08rem; }
+
+.comu-send-comment-group {
+  width: 100%;
+  height: 1.26667rem;
+  border-top: 1px solid #dfdfdf;
+  background-color: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  font-size: 0; }
+
+.comu-send-comment-group-item {
+  height: 100%;
+  line-height: 1.26667rem;
+  position: relative;
+  display: inline-block;
+  overflow: hidden; }
+
+.comu-send-comment-group-left {
+  width: 1.6rem;
+  font-size: 16px; }
+  [data-dpr="2"] .comu-send-comment-group-left {
+    font-size: 32px; }
+  [data-dpr="3"] .comu-send-comment-group-left {
+    font-size: 48px; }
+
+.comu-send-comment-group-left-span {
+  position: absolute;
+  left: 0.32rem;
+  bottom: 0.34667rem;
+  color: #555; }
+
+.comu-send-comment-group-middle {
+  width: 6.66667rem;
+  font-size: 16px; }
+  [data-dpr="2"] .comu-send-comment-group-middle {
+    font-size: 32px; }
+  [data-dpr="3"] .comu-send-comment-group-middle {
+    font-size: 48px; }
+
+.comu-send-comment-group-left-input {
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: inline-block;
+  border: none;
+  border-bottom: 1px solid #D3D3D3;
+  position: absolute;
+  bottom: 0.33333rem; }
+
+.comu-send-comment-group-right {
+  width: 1.73333rem; }
+
+.comu-send-comment-span {
+  width: 0.62667rem;
+  height: 0.64rem;
+  background: url("../img/send-comu-comment.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: inline-block;
+  position: absolute;
+  right: 0.58667rem;
+  bottom: 0.26667rem; }
 
 /**
      * ******** ******** ******** ********
@@ -3062,7 +3178,7 @@ em {
     display: inline-block; }
 
 .my-setting-border {
-  border-bottom: 1px solid #dcdcdc; }
+  border-bottom: 1px solid #dfdfdf; }
 
 #my-setting-loginout {
   height: 1.30667rem;
@@ -3203,7 +3319,7 @@ em {
   text-align: right; }
 
 #setSexMan {
-  border-bottom: 1px solid #dcdcdc; }
+  border-bottom: 1px solid #dfdfdf; }
 
 #postSexChoose {
   height: 1.06667rem;
@@ -3478,17 +3594,5 @@ select {
 
 .mui-segmented-control.mui-segmented-control-inverted ~ .mui-slider-progress-bar {
   background-color: #3d8f52; }
-
-div#sliderProgressBar:before {
-  content: ' ';
-  height: 20px;
-  background-color: rgba(100, 100, 100, 0.2);
-  width: 100%;
-  height: 38px;
-  position: absolute;
-  z-index: 999;
-  bottom: 2px;
-  left: 0;
-  display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */

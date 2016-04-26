@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control header-control-fixed">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class="white-arrow-big-span header-control-left-btn-span"></span>
+			</div>
+			<div>
+				<span id="webview-head-title"></span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span"></span>
+			</div>
+		</div>
+		<div id="head-holder"></div>
+
+		<div class="comu-content" >
+			<div class="comu-content-main">
+				<div class="comu-content-main-title">
+					<div class="comu-content-main-user">
+						<span class="comu-user-picture" style="background: url(../img/head.jpg); background-size: cover;"></span>
+						<span class="comu-user-name">&nbsp;&nbsp;本</span>
+						<span class="comu-user-date">&nbsp;&nbsp;2014-8-9</span>
+					</div>
+				</div>
+				<div class="comu-content-main-article">
+					不错不错
+				</div>
+				<div class="comu-content-main-photo">
+					<span class="comu-content-main-photo-list" style="background: url(../img/fruitTree.png); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
+					<span class="comu-content-main-photo-list" style="background: url(../img/fruitTree.png); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
+					<span class="comu-content-main-photo-list" style="background: url(../img/fruitTree.png); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
+					<span class="comu-content-main-photo-list" style="background: url(../img/fruitTree.png); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
+				</div>
+				<div class="comu-comment-control">
+					<div class="comu-comment-control-left">
+						<span class="comu-comment-praise-default"></span>						
+						<span class="comu-comment-control-text">0</span>
+					</div>
+					<div class="comu-comment-control-right">
+						<span class="comu-comment-control-logo-comu"></span>
+						<span class="comu-comment-control-text">0</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="comu-detail-praise-comment-group">
+			<div class="comu-detail-praise-group">
+				<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+				<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+				<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+				<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+				<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>				
+				<span class="comu-detail-praise-group-span">
+					10人觉得赞					
+				</span>			
+				<span class="mui-icon mui-icon-arrowright comu-detail-praise-group-icon"></span>
+			</div>			
+		</div>
+		<div class="comu-detail-praise-comment-group">
+			<div class="comu-detail-comment-group">
+				<div class="comu-detail-comment-item"></div>
+				<div class="comu-detail-comment-item"></div>
+				<div class="comu-detail-comment-item"></div>
+				<div class="comu-detail-comment-item"></div>
+			</div>
+		</div>
+		<div id="head-holder"></div>
+		<div class="comu-send-comment-group">
+			<div class="comu-send-comment-group-left comu-send-comment-group-item">
+				<span class="comu-send-comment-group-left-span">评论</span>
+			</div>
+			<div class="comu-send-comment-group-middle comu-send-comment-group-item">
+				<input class="comu-send-comment-group-left-input" />
+			</div>
+			<div class="comu-send-comment-group-right comu-send-comment-group-item">
+				<span class="comu-send-comment-span"></span>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script>
+			mui.plusReady(function() {
+				var w = plus.webview.currentWebview();				
+				var token = w.token;
+				var id = w._id;
+				console.log(token);
+				console.log(id);
+//				var URL = "http://farm.rrzuji.com/talk/view?";
+//				mui.ajax(URL, {
+//					
+//				});
+			});
+		</script>
+	</body>
+
+</html>

@@ -13,11 +13,6 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
 		<style>
-			html,
-			body {
-				background-color: #efeff4;
-			}
-			
 			.mui-pull-top-tips {
 				position: absolute;
 				top: -20px;
@@ -148,13 +143,13 @@
 									<div class="bounce3"></div>
 								</div>
 								<div class="comu-list-tab-container" id="shareList">
-									<div class="comu-content" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-user-id="{{item.user_id}}">
+									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}" data-user-id="{{item.user_id}}">
 										<div class="comu-content-main">
-											<div class="comu-content-main-title">
+											<div class="comu-content-main-title" v-on:tap.stop="openUserDetail">
 												<div class="comu-content-main-user">
 													<span class="comu-user-picture" style="background: url({{item.user_avatar == null ? '../www/img/head.jpg' : item.user_avatar }}); background-size: cover;">
 													</span>
-													<span class="comu-user-name">&nbsp;&nbsp;{{item.user_name}}</span>
+													<span class="comu-user-name">{{item.user_name}}</span>
 													<span class="comu-user-date">&nbsp;&nbsp;{{item.created_at}}</span>
 												</div>
 											</div>
@@ -165,7 +160,7 @@
 												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
 											</div>
 											<div class="comu-comment-control">
-												<div class="comu-comment-control-left" v-on:tap="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
+												<div class="comu-comment-control-left" v-on:tap.stop="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
 													<span class="{{item.is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>																						
 													<span class="comu-comment-control-text">{{item.like_num}}</span>
 												</div>
@@ -189,13 +184,13 @@
 									<div class="bounce3"></div>
 								</div>
 								<div class="comu-list-tab-container" id="questionList">
-									<div class="comu-content" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-user-id="{{item.user_id}}">
+									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}" data-user-id="{{item.user_id}}">
 										<div class="comu-content-main">
-											<div class="comu-content-main-title">
+											<div class="comu-content-main-title" v-on:tap.stop="openUserDetail">
 												<div class="comu-content-main-user">
 													<span class="comu-user-picture" style="background: url({{item.user_avatar == null ? '../www/img/head.jpg' : item.user_avatar }}); background-size: cover;">
 													</span>
-													<span class="comu-user-name">&nbsp;&nbsp;{{item.user_name}}</span>
+													<span class="comu-user-name">{{item.user_name}}</span>
 													<span class="comu-user-date">&nbsp;&nbsp;{{item.created_at}}</span>
 												</div>
 											</div>
@@ -206,7 +201,7 @@
 												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
 											</div>
 											<div class="comu-comment-control">
-												<div class="comu-comment-control-left" v-on:tap="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
+												<div class="comu-comment-control-left" v-on:tap.stop="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
 													<span class="{{item.is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>													
 													<span class="comu-comment-control-text">{{item.like_num}}</span>
 												</div>
@@ -374,6 +369,13 @@
 							tapPraise: function(event) {
 								// 点赞
 								thisObj.handlePraise(event);
+							},
+							openComuDetail: function(event) {
+								// 打开评论详情页
+								thisObj.handleOpenComuDetail(event);
+							},
+							openUserDetail: function(event) {
+								thisObj.handleOpenUserDetail(event);
 							}
 						}
 					})
@@ -456,6 +458,37 @@
 						numContent.innerText = num;
 						this.vueObj.$set("data.items[" + index + "].is_like", false);
 					}
+				},
+				handleOpenComuDetail: function(event) {
+					// 打开社区详情
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
+					var itemID = event.currentTarget.getAttribute("data-id");
+					var token = plus.storage.getItem("tokenValue");
+					console.log(itemID);
+					console.log(token);
+					mui.openWindow({
+						url: "webview-comu-detail.html",
+						styles: fnSetSubpageStyle(0, 0),
+						createNew: false,
+						extras: {			
+							_id: itemID,
+							token: token
+						},
+						show: {
+							autoShow: true,
+							aniShow: "pop-in",
+							duration: 300
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				},
+				handleOpenUserDetail: function(event) {
+					console.log("打开用户信息");
 				}
 			};
 			// 存放分享、问答两个tab对象。
@@ -494,7 +527,7 @@
 			mui.plusReady(function() {
 				document.getElementById("recordStative").addEventListener("tap", function() {
 					mui.openWindow({
-						url: "../thirdlv/promulgateStative.html",
+						url: "../thirdlv/webview-comu-promulgate.html",
 						styles: fnSetSubpageStyle(0, 0),
 						createNew: false,
 						extras: {
