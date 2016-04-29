@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>发布评论</title>
+		<title>发布社区文章</title>
 		<meta http-equiv="Access-Control-Allow-Origin" content="*">
 		<meta http-equiv="content-security-policy">
 		<meta content="yes" name="apple-mobile-web-app-capable">
@@ -82,22 +82,18 @@
 		<div id="head-holder"></div>
 		<form id="promulgateForm" method="post" enctype="multipart/form-data">
 			<textarea name="text" id="promulgateForm-textArea" placeholder="请输入想说的话"></textarea>
-			
-			<div class="promulgateForm-file">
-				<span class="removeImg">x</span>
-				<span class="promulgateForm-addFile" style="background: url(../img/crop.jpg); background-repeat: no-repeat;background-position: center; background-size: 80px;"></span>
-				<input type="file" name="img0" class="promulgateForm-Input" id="promulgateForm-Input0" />
+
+			<!--<div class="promulgateForm-file">
+				<span class="removeImg" onclick="fileDelete()">x</span>
+				<span class="promulgateForm-addFile" style="background: url(../img/crop.jpg); background-repeat: no-repeat;background-position: center; background-size: 80px;"></span>				
+			</div>-->
+			<div class="promulgateForm-file" id="group0">
+				<span class="promulgateForm-addFile" style="background: url(../img/addIMG.png); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>
+				<input type="file" name="img0" class="promulgateForm-Input" id="promulgateForm-Input0" onchange="fileChange(this)" />
 			</div>
-			<div class="promulgateForm-file" id="addFileTap">				
-				<span class="promulgateForm-addFile" style="background: url(../img/addIMG.png); background-repeat: no-repeat;background-position: center; background-size: 80px;"></span>
-				<!--<input type="file" name="img0" class="promulgateForm-Input" id="promulgateForm-Input0" />-->
-			</div>
-			<div class="promulgateForm-file" id="addFileTap">				
-				<span class="promulgateForm-addFile" style="background: url(); background-repeat: no-repeat;background-position: center; background-size: 80px;"></span>
-				<input type="file" name="img0" class="promulgateForm-Input" id="promulgateForm-Input0" />
-			</div>			
+
 			<br />
-			<span class="promulgateForm-span">最多可添加三张图片</span>
+			<span class="promulgateForm-span">最多可添加六张图片</span>
 		</form>
 		<div class="comu-post-checkGroup">
 			<span class="radio-check-span radio-check-item radio-check-active"></span>
@@ -117,10 +113,17 @@
 		<script src="../js/public.js"></script>
 		<script src="../js/vue.min.js"></script>
 		<script>
+			/**
+			 * 上传图片的处理
+			 * 点击添加图片按钮，打开获取一张图片。图片加载完成后显示在预览区域，并创建新的input节点，代替旧节点的位置，旧节点与图片绑定，并设置style.display=none
+			 * 预览区域有删除按键，点击删除时会连带绑定的input节点一起删除
+			 * 对于多个图片，建立一个图片对象数组，并使用从0开始的id作为唯一标志，删除时按id删除，该id保存在节点data标签中
+			 */
 			mui.init();
 			// 默认是分享
 			var typeOfpromulgate = true;
 			var fileArray = [];
+			var fileNum = 0;
 			mui.plusReady(function() {
 				document.getElementById("submitForm").addEventListener("tap", function() {
 					if (!userLoginStatus()) {
@@ -142,7 +145,9 @@
 					var typePost = typeOfpromulgate ? 1 : 2;
 					var URL = "http://farm.rrzuji.com/v1/talk/create?" + fnCreateSign() + "&access-token=" + token;
 					var fData = new FormData();
-					//					fData.append("img0", document.getElementById('promulgateForm-Input0').files[0]);
+					for (var i in fileArray) {
+						fData.append("img" + i, document.getElementById(fileArray[i].id).files[0]);
+					}		
 					fData.append("text", textValue);
 					fData.append("user_id", user_id);
 					fData.append("type", typePost);
@@ -150,22 +155,52 @@
 					xhr.onreadystatechange = function(e) {
 						if (xhr.readyState == 4) {
 							if (xhr.status == 200) {
-								console.log("上传完成");
-								console.log(JSON.stringify(xhr));
-								console.log(JSON.parse(xhr.responseText).success);
-								console.log(plus.storage.getItem("userAvatar"));
-								if (!JSON.parse(xhr.responseText).success) {
+								console.log(xhr.responseText);
+								res = JSON.parse(xhr.responseText);
+				
+								if (!res.success) {
 									mui.toast("无法连接服务器，发布失败，请检查网络连接");
 									nwaiting.close();
 									return;
 								}
-								var w = plus.webview.getWebviewById("webview-comu-new.html");
-								mui.fire(w, "refreshTab", {
-									type: typePost
+								var name = plus.storage.getItem("userName");
+								if (name == null) {
+									alert("用户信息过期，请重新登录");
+									return;
+								}
+								var w = plus.webview.getWebviewById("webview-comu.html");
+								mui.fire(w, "addNewArticle", {
+									type: typePost,
+									data: {
+										id: res.data.id,
+										user_id: res.data.user_id,
+										text: res.data.text,
+										images: res.data.images,
+										type: res.data.type,
+										comment_num: res.data.comment_num,
+										like_num: res.data.like_num,
+										created_at: time2year(res.data.created_at),
+										user_name: name,
+										user_avatar: "../doc/head.jpg",
+										is_like: false
+									}
 								});
 								var w2 = plus.webview.getWebviewById("secondlv/webview-my-comu.html");
-								mui.fire(w2, "refreshTab", {
-									type: typePost
+								mui.fire(w2, "addNewArticle", {
+									type: typePost,
+									data: {
+										id: res.data.id,
+										user_id: res.data.user_id,
+										text: res.data.text,
+										images: res.data.images,
+										type: res.data.type,
+										comment_num: res.data.comment_num,
+										like_num: res.data.like_num,
+										created_at: time2year(res.data.created_at),
+										user_name: name,
+										user_avatar: "../../doc/head.jpg",
+										is_like: false
+									}
 								});
 								nwaiting.close();
 								mui.back();
@@ -192,9 +227,86 @@
 				typeOfpromulgate = !typeOfpromulgate;
 				thisElem.classList.add("radio-check-active");
 			});
-			document.getElementById("addFileTap").addEventListener("tap", function() {
-				console.log("添加图片");
-			});
+
+			function fileChange(file) {
+				// file节点更新了图片
+				// 将图片显示出来	
+				var File = file.files[0];
+				if (!File) {
+					return;
+				}
+				console.log(File.name);
+				if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG|JPEG)$/.test(File.name)) {
+					mui.toast("图片类型必须是.gif,jpeg,jpg,png中的一种");
+					return;
+				}
+				if (File.size > 2000000) {
+					mui.toast("请选择大小不超过2M的图片");
+					return;
+				}
+				var reader = new FileReader();
+				reader.onload = function(event) {
+					createIMG(event.target.result, file);
+				};
+				reader.readAsDataURL(File);
+			}
+
+			function fileDelete(elem) {
+				var _id = elem.getAttribute('data-id');
+				// 删除图片节点
+				document.getElementById("promulgateForm").removeChild(elem.parentNode);
+				// 删除绑定的file节点
+				document.getElementById("group0").removeChild(document.getElementById(_id));
+				// 删除数组内元素
+				for (var i in fileArray) {
+					if (fileArray[i].id == _id) {
+						fileArray.splice(i, 1);
+						break;
+					}
+				}
+			}
+
+			function creatNewFile(elem) {
+				elem.style.display = "none";
+				var newInput = document.createElement("input");
+				newInput.setAttribute("type", "file");
+				newInput.setAttribute("name", "img" + fileNum);
+				newInput.setAttribute("id", "promulgateForm-Input" + fileNum);
+				newInput.setAttribute("class", "promulgateForm-Input");
+				newInput.setAttribute("onchange", "fileChange(this)");
+				elem.parentNode.appendChild(newInput);
+			}
+
+			function createIMG(src, elem) {
+				if (fileArray.length > 5) {
+					//					console.log("最多可上传六张图");
+					mui.toast("最多可上传六张图");
+					return;
+				}
+				var divEl = document.createElement("div");
+				divEl.setAttribute("class", "promulgateForm-file");
+				var spanEl1 = document.createElement("span");
+				spanEl1.setAttribute("class", "removeImg");
+				spanEl1.setAttribute("data-id", "promulgateForm-Input" + fileNum);
+				spanEl1.innerText = "x";
+				spanEl1.setAttribute("onclick", "fileDelete(this)");
+				var spanEl2 = document.createElement("span");
+				spanEl2.setAttribute("class", "promulgateForm-addFile");
+				spanEl2.style.background = "url(" + src + ")";
+				spanEl2.style.backgroundRepeat = "no-repeat";
+				spanEl2.style.backgroundPosition = "center";
+				spanEl2.style.backgroundSize = "cover";
+				divEl.appendChild(spanEl1);
+				divEl.appendChild(spanEl2);
+				var tampObj = {
+					id: "promulgateForm-Input" + fileNum
+				}
+				fileNum++;
+				creatNewFile(elem);
+				fileArray.push(tampObj);
+				console.log(JSON.stringify(fileArray));
+				document.getElementById("promulgateForm").insertBefore(divEl, document.getElementById("group0"));
+			}
 		</script>
 	</body>
 

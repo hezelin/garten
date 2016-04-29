@@ -132,11 +132,11 @@
 									<div class="bounce3"></div>
 								</div>
 								<div class="comu-list-tab-container" id="shareList">
-									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}" data-user-id="{{item.user_id}}">
+									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}">
 										<div class="comu-content-main">
-											<div class="comu-content-main-title" v-on:tap.stop="openUserDetail">
+											<div class="comu-content-main-title" v-on:tap.stop="openUserDetail" data-user-id="{{item.user_id}}">
 												<div class="comu-content-main-user">
-													<span class="comu-user-picture" style="background: url({{item.user_avatar == null ? '../www/img/head.jpg' : item.user_avatar }}); background-size: cover;">
+													<span class="comu-user-picture" style="background: url({{item.user_avatar == null ? '../www/img/head.jpg' : item.user_avatar }}); background-size: cover;">				
 													</span>
 													<span class="comu-user-name">{{item.user_name}}</span>
 													<span class="comu-user-date">&nbsp;&nbsp;{{item.created_at}}</span>
@@ -146,7 +146,7 @@
 												{{item.text}}
 											</div>
 											<div class="comu-content-main-photo">
-												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
+												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>
 											</div>
 											<div class="comu-comment-control">
 												<div class="comu-comment-control-left" v-on:tap.stop="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
@@ -173,9 +173,9 @@
 									<div class="bounce3"></div>
 								</div>
 								<div class="comu-list-tab-container" id="questionList">
-									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}" data-user-id="{{item.user_id}}">
+									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}">
 										<div class="comu-content-main">
-											<div class="comu-content-main-title" v-on:tap.stop="openUserDetail">
+											<div class="comu-content-main-title" v-on:tap.stop="openUserDetail" data-user-id="{{item.user_id}}">
 												<div class="comu-content-main-user">
 													<span class="comu-user-picture" style="background: url({{item.user_avatar == null ? '../www/img/head.jpg' : item.user_avatar }}); background-size: cover;">
 													</span>
@@ -187,7 +187,7 @@
 												{{item.text}}
 											</div>
 											<div class="comu-content-main-photo">
-												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
+												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>
 											</div>
 											<div class="comu-comment-control">
 												<div class="comu-comment-control-left" v-on:tap.stop="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
@@ -267,8 +267,9 @@
 				this.refreshSign = "";
 				this.vueObj = null;
 				this.spinner = document.querySelector("#" + IDscroll + " .spinner");
-				this.init();
+				this.itemData = [];
 				this.praiseFirst = null;
+				this.init();
 			}
 			tabObj.prototype = {
 				init: function() {
@@ -331,12 +332,16 @@
 								// 第一次获取数据后的处理
 								if (thisObj.first == "true") {
 									thisObj.dealFirst(res);
+									thisObj.itemData = res.data.items;
 								} else {
 									// 不是第一次
 									if (thisObj.refreshSign == "up") {
-										for (var i = 0; i < res.data.items.length; i++) {
-											thisObj.vueObj.data.items.push(res.data.items[i]);
-										}
+										//										for (var i = 0; i < res.data.items.length; i++) {
+										//											thisObj.vueObj.data.items.push(res.data.items[i]);
+										//										}
+										var _items = res.data.items;
+										thisObj.itemData = thisObj.itemData.concat(_items);
+										thisObj.vueObj.data.items = thisObj.vueObj.data.items.concat(_items);
 										if (thisObj.noMore(res)) {
 											return;
 										};
@@ -344,6 +349,7 @@
 										thisObj.vueObj.$data = res;
 										thisObj.refreshContainer.pullToRefresh().endPullDownToRefresh();
 										thisObj.refreshContainer.pullToRefresh().refresh(true);
+										thisObj.itemData = res.data.items;
 										thisObj.noMore(res);
 										return;
 									}
@@ -402,10 +408,6 @@
 							}
 						}
 					})
-				},
-				triggerDownRefresh: function() {
-					// 触发下拉刷新
-					this.refreshContainer.pullToRefresh().pullDownLoading();
 				},
 				handleOpenKnowledgeList: function(event) {
 					var thisBtn = event.currentTarget;
@@ -517,7 +519,7 @@
 						url: "secondlv/webview-comu-detail.html",
 						styles: fnSetSubpageStyle(0, 0),
 						createNew: false,
-						extras: {			
+						extras: {
 							_id: itemID,
 							token: token
 						},
@@ -533,6 +535,54 @@
 				},
 				handleOpenUserDetail: function(event) {
 					console.log("打开用户信息");
+				},
+				refreshAvatar: function(id) {
+					for (var i in this.itemData) {
+						if (this.itemData[i].user_id == id) {
+							this.itemData[i].user_avatar = null;
+						}
+					}
+					this.vueObj.data.items = this.itemData;
+					var thisObj = this;
+					setTimeout(function() {
+						for (var i in thisObj.itemData) {
+							if (thisObj.itemData[i].user_id == id) {
+								thisObj.itemData[i].user_avatar = "../doc/head.jpg";
+							}
+						}
+						thisObj.vueObj.data.items = thisObj.itemData;
+					}, 3000);
+				},
+				deleteArticle: function(id) {
+					for (var i in this.itemData) {
+						if (this.itemData[i].id == id) {
+							this.itemData.splice(i, 1);
+							this.vueObj.data.items = this.itemData;
+						}
+					}
+				},
+				addNewArticle: function(data) {
+					this.itemData.unshift(data);
+					this.vueObj.data.items = this.itemData;
+				},
+				refreshPraise: function(id, isLike) {
+					for (var i in this.itemData) {
+						if (this.itemData[i].id == id) {
+							this.itemData[i].is_like = isLike;
+							isLike ? this.itemData[i].like_num = this.itemData[i].like_num + 1 : this.itemData[i].like_num = this.itemData[i].like_num - 1;
+						}
+					}
+					this.vueObj.data.items = this.itemData;
+				},
+				handleDetailPraiseAndComment: function(data) {
+					// id, likeNum, CommentNum, isLike
+					for (var i in this.itemData) {
+						if (this.itemData[i].id == data.id) {
+							this.itemData[i].like_num = data.like_num;
+							this.itemData[i].comment_num = data.comment_num;
+							this.itemData[i].is_like = data.is_like;
+						}
+					}
 				}
 			};
 			// 存放分享、问答两个tab对象。
@@ -557,18 +607,48 @@
 					}
 				})
 			});
-			window.addEventListener("refreshTab", function(e) {
+			// 在我的社区发布新动态时触发
+			window.addEventListener("addNewArticle", function(e) {
 				var type = e.detail.type;
 				if (type == 1 && objArray[0]) {
-					objArray[0].triggerDownRefresh();
+					objArray[0].addNewArticle(e.detail.data);
 				}
 				if (type == 2 && objArray[1]) {
-					objArray[1].triggerDownRefresh();
+					objArray[1].addNewArticle(e.detail.data);
 				}
-				if (typeof type == "undefined") {
-					for (var i = 0; i < objArray.length; i++) {
-						objArray[i].triggerDownRefresh();
-					}
+			});
+			// 在我的社区删除动态时触发
+			window.addEventListener("deleteArticle", function(e) {
+				if (e.detail.type == 1 && objArray[0]) {
+					objArray[0].deleteArticle(e.detail.itemID);
+				}
+				if (e.detail.type == 2 && objArray[1]) {
+					objArray[1].deleteArticle(e.detail.itemID);
+				}
+			});
+			// 更换个人头像时触发
+			window.addEventListener("changeAvatar", function(e) {
+				for (var i in objArray) {
+					objArray[i].refreshAvatar(e.detail.userID);
+				}
+			});
+			// 在我的社区赞操作时触发
+			window.addEventListener("refreshPraise", function(e) {
+				if (e.detail.type == 1 && objArray[0]) {
+					objArray[0].refreshPraise(e.detail.itemID, e.detail.islike);
+				}
+				if (e.detail.type == 2 && objArray[1]) {
+					objArray[1].refreshPraise(e.detail.itemID, e.detail.islike);
+				}
+			});
+			// 在详情页点赞评论触发
+			window.addEventListener("handleDetailPraiseAndComment", function(e) {
+				var type = e.detail.type;
+				if (type == 1 && objArray[0]) {
+					objArray[0].handleDetailPraiseAndComment(e.detail.data);
+				}
+				if (type == 2 && objArray[1]) {
+					objArray[1].handleDetailPraiseAndComment(e.detail.data);
 				}
 			});
 		</script>

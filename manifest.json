@@ -1,7 +1,7 @@
 {
 	"@platforms": ["android", "iPhone", "iPad"],
 	"id": "H5E72D2E4",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "曦山农场",/*应用名称，程序桌面图标名称*/
+	"name": "大曦山休闲旅游公园",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "1.0.0",/*应用版本名称*/
 		"code": "83"
@@ -55,9 +55,7 @@
             "description": "使用Native.js能力"
         },
         
-        "Orientation": {
-            "description": "访问方向感应器"
-        },
+        
         
         "Storage": {
             "description": "管理应用本地数据"
@@ -100,7 +98,7 @@
 		},
 		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
-		"distribute": {
+		"distribute": {"plugins":{"maps":{"baidu":{"appkey_ios":"sqtZGu9YGiFo2SCqzFZLT6hGHvE30iMC","appkey_android":"8IDMobYstONcps4a7awhxjBSWx04RSRM","appkey":"","description":""}}},
 			"apple": {
 				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
 				"mobileprovision": "",/*iOS应用打包配置文件*/
@@ -154,12 +152,12 @@
 			},
 			"splashscreen": {
 				"ios": {
-					"iphone": {"default":"/Users/mac/Downloads/farm22/启动页尺寸/320x480.png","retina55":"/Users/mac/Downloads/farm22/启动页尺寸/1242x2280.png","retina47":"/Users/mac/Downloads/farm22/启动页尺寸/750x1334.png","retina40":"/Users/mac/Downloads/farm22/启动页尺寸/640x1136.png","retina35":"/Users/mac/Downloads/farm22/启动页尺寸/640x960.png"
+					"iphone": {"default":"/Users/mac/Downloads/有机农场/启动页尺寸/320x480.png","retina55":"/Users/mac/Downloads/有机农场/启动页尺寸/1242x2280.png","retina47":"/Users/mac/Downloads/有机农场/启动页尺寸/750x1334.png","retina40":"/Users/mac/Downloads/有机农场/启动页尺寸/640x1136.png","retina35":"/Users/mac/Downloads/有机农场/启动页尺寸/640x960.png"
 						 /*iPhone3启动图片选，分辨率：320x480*/
 						/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
 						
 					},
-					"ipad": {"portrait":"/Users/mac/Downloads/farm22/启动页尺寸/768x1004.png","portrait7":"/Users/mac/Downloads/farm22/启动页尺寸/768x1024.png","portrait-retina":"/Users/mac/Downloads/farm22/启动页尺寸/1536x2008.png","portrait-retina7":"/Users/mac/Downloads/farm22/启动页尺寸/1536x2048.png"
+					"ipad": {"portrait":"/Users/mac/Downloads/有机农场/启动页尺寸/768x1004.png","portrait7":"/Users/mac/Downloads/有机农场/启动页尺寸/768x1024.png","portrait-retina":"/Users/mac/Downloads/有机农场/启动页尺寸/1536x2008.png","portrait-retina7":"/Users/mac/Downloads/有机农场/启动页尺寸/1536x2048.png"
 						 /*iPad竖屏启动图片，分辨率：768x1004*/
 						/*iPad高分屏竖屏图片，分辨率：1536x2008*/
 						 /*iPad横屏启动图片，分辨率：1024x748*/
@@ -170,7 +168,7 @@
 						
 					}
 				},
-				"android": {"hdpi":"/Users/mac/Downloads/farm22/启动页尺寸/480x762.png","ldpi":"/Users/mac/Downloads/farm22/启动页尺寸/320x442.png","mdpi":"/Users/mac/Downloads/farm22/启动页尺寸/240x282.png","xhdpi":"/Users/mac/Downloads/farm22/启动页尺寸/720x1242.png","xxhdpi":"/Users/mac/Downloads/farm22/启动页尺寸/1080x1882.png"
+				"android": {"hdpi":"/Users/mac/Downloads/有机农场/启动页尺寸/480x762.png","ldpi":"/Users/mac/Downloads/有机农场/启动页尺寸/320x442.png","mdpi":"/Users/mac/Downloads/有机农场/启动页尺寸/240x282.png","xhdpi":"/Users/mac/Downloads/有机农场/启动页尺寸/720x1242.png","xxhdpi":"/Users/mac/Downloads/有机农场/启动页尺寸/1080x1882.png"
 					 /*普通屏启动图片，分辨率：240x282*/
 					 /*大屏启动图片，分辨率：320x442*/
 					 /*高分屏启动图片，分辨率：480x762*/
@@ -323,7 +321,8 @@
 					"img/head-search.png",
 					"img/comment.png",
 					"img/praise.png",
-					"img/ispraise.png"
+					"img/ispraise.png",
+					"img/head.jpg"
 				],
 				"refer": [
 					"webview-nav.html",
@@ -332,7 +331,8 @@
 					"thirdlv/webview-comu-knowledge-detail.html",
 					"secondlv/webview-comu-knowledge.html",
 					"secondlv/webview-comu-farm-introduce.html",
-					"crop.html"
+					"crop.html",
+					"secondlv/webview-comu-detail.html"
 				],
 				"priority": 0
 			},
@@ -1142,7 +1142,8 @@
 					null,
 					"img/head-search.png",
 					"js/vue.min.js",
-					"img/ispraise.png"
+					"img/ispraise.png",
+					"fonts/mui.ttf"
 				],
 				"refer": [
 					"thirdlv/promulgateStative.html",
@@ -1320,7 +1321,46 @@
 					"tiles/16/tile12819_2741.png",
 					"tiles/16/tile12819_2740.png",
 					"tiles/16/tile12819_2742.png",
-					"tiles/17/tile25644_5480.png"
+					"tiles/17/tile25644_5480.png",
+					"tiles/17/tile25644_5479.png",
+					"tiles/17/tile25643_5479.png",
+					"tiles/17/tile25645_5483.png",
+					"tiles/17/tile25645_5480.png",
+					"tiles/17/tile25645_5479.png",
+					"tiles/17/tile25642_5478.png",
+					"tiles/17/tile25641_5479.png",
+					"tiles/17/tile25642_5479.png",
+					"tiles/17/tile25643_5478.png",
+					"tiles/17/tile25644_5478.png",
+					"tiles/17/tile25645_5478.png",
+					"tiles/16/tile12818_2739.png",
+					"tiles/17/tile25639_5480.png",
+					"tiles/17/tile25638_5480.png",
+					"tiles/17/tile25638_5482.png",
+					"tiles/17/tile25639_5482.png",
+					"tiles/16/tile12818_2740.png",
+					"tiles/17/tile25639_5481.png",
+					"tiles/16/tile12818_2741.png",
+					"tiles/17/tile25638_5481.png",
+					"tiles/17/tile25637_5481.png",
+					"tiles/17/tile25637_5482.png",
+					"tiles/17/tile25637_5480.png",
+					"tiles/17/tile25640_5482.png",
+					"tiles/17/tile25640_5480.png",
+					"tiles/17/tile25640_5481.png",
+					"tiles/17/tile25640_5483.png",
+					"tiles/17/tile25639_5483.png",
+					"tiles/17/tile25638_5483.png",
+					"tiles/17/tile25637_5483.png",
+					"tiles/17/tile25636_5481.png",
+					"tiles/17/tile25636_5483.png",
+					"tiles/17/tile25636_5482.png",
+					"tiles/16/tile12818_2742.png",
+					"tiles/17/tile25640_5479.png",
+					"tiles/17/tile25640_5478.png",
+					"tiles/17/tile25639_5479.png",
+					"tiles/17/tile25641_5478.png",
+					"tiles/17/tile25639_5478.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1393,7 +1433,8 @@
 					"js/flexible.debug.js",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"img/ispraise.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1401,7 +1442,16 @@
 			"thirdlv/webview-comu-promulgate.html": {
 				"resources": [
 					"img/addIMG.png",
-					"img/crop.jpg"
+					"img/crop.jpg",
+					"img/img3.png",
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"img/img.png",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/style.css",
+					"js/vue.min.js",
+					"js/flexible.debug.js"
 				],
 				"refer": [],
 				"priority": 0

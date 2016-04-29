@@ -13,6 +13,10 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
 		<style>
+			.farm-display-none {
+				display: none;
+			}
+			
 			[v-cloak] {
 				display: none;
 			}
@@ -33,55 +37,68 @@
 		</div>
 		<div id="head-holder"></div>
 
-		<div class="comu-content" >
-			<div class="comu-content-main">
-				<div class="comu-content-main-title">
-					<div class="comu-content-main-user">
-						<span class="comu-user-picture" style="background: url(../img/head.jpg); background-size: cover;"></span>
-						<span class="comu-user-name">&nbsp;&nbsp;本</span>
-						<span class="comu-user-date">&nbsp;&nbsp;2014-8-9</span>
+		<div id="comu-detail-container">
+			<div class="comu-content">
+				<div class="comu-content-main">
+					<div class="comu-content-main-title">
+						<div class="comu-content-main-user" data-user-id="{{user_id}}">
+							<span class="comu-user-picture" style="background: url({{user_avatar == null ? '../../www/img/head.jpg' : user_avatar }}); background-size: cover;"></span>
+							<span class="comu-user-name">&nbsp;&nbsp;{{user_name}}</span>
+							<span class="comu-user-date">&nbsp;&nbsp;{{created_at}}</span>
+						</div>
 					</div>
-				</div>
-				<div class="comu-content-main-article">
-					不错不错
-				</div>
-				<div class="comu-content-main-photo">
-					<span class="comu-content-main-photo-list" style="background: url(../img/fruitTree.png); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
-					<span class="comu-content-main-photo-list" style="background: url(../img/fruitTree.png); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
-					<span class="comu-content-main-photo-list" style="background: url(../img/fruitTree.png); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
-					<span class="comu-content-main-photo-list" style="background: url(../img/fruitTree.png); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
-				</div>
-				<div class="comu-comment-control">
-					<div class="comu-comment-control-left">
-						<span class="comu-comment-praise-default"></span>						
-						<span class="comu-comment-control-text">0</span>
+					<div class="comu-content-main-article">
+						{{text}}
 					</div>
-					<div class="comu-comment-control-right">
-						<span class="comu-comment-control-logo-comu"></span>
-						<span class="comu-comment-control-text">0</span>
+					<div class="comu-content-main-photo" v-cloak>
+						<span v-for="i in images" class="comu-content-main-photo-list" style="background: url({{i}}); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>
+					</div>
+					<div class="comu-comment-control">
+						<div class="comu-comment-control-left" v-on:tap.stop="tapPraise" data-id="{{id}}" data-index="{{$index}}" data-islike="{{is_like.toString()}}">
+							<span class="{{is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>
+							<span class="comu-comment-control-text">{{like_num}}</span>
+						</div>
+						<div class="comu-comment-control-right">
+							<span class="comu-comment-control-logo-comu"></span>
+							<span class="comu-comment-control-text">{{comment_num}}</span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="comu-detail-praise-comment-group">
-			<div class="comu-detail-praise-group">
-				<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
-				<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
-				<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
-				<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
-				<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>				
+			<!--<div class="comu-detail-praise-comment-group {{like_num > 0 ? '' : 'farm-display-none'}}">
+				<div class="comu-detail-praise-group">
+					<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+					<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+					<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+					<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+					<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+					<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+					<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+					<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+					<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+					<span class="comu-user-picture comu-user-picture-small" style="background: url(../img/head.jpg); background-size: cover;"></span>
+				</div>
 				<span class="comu-detail-praise-group-span">
-					10人觉得赞					
-				</span>			
+					10人觉得赞
+				</span>
 				<span class="mui-icon mui-icon-arrowright comu-detail-praise-group-icon"></span>
-			</div>			
-		</div>
-		<div class="comu-detail-praise-comment-group">
-			<div class="comu-detail-comment-group">
-				<div class="comu-detail-comment-item"></div>
-				<div class="comu-detail-comment-item"></div>
-				<div class="comu-detail-comment-item"></div>
-				<div class="comu-detail-comment-item"></div>
+			</div>-->
+			<div class="comu-detail-praise-comment-group">
+				<div class="{{comment_num == 0 ? '' : 'farm-display-none'}}" style="font-size: 16px; text-align: center; background-color: #FFFFFF;">
+					暂无评论~
+				</div>
+				<div class="comu-detail-comment-group {{comment_num > 0 ? '' : 'farm-display-none'}}">
+					<div class="comu-detail-comment-item" v-for="i in comment">
+						<div id="userDetail">
+							<span class="comu-detail-comment-img" style="background: url({{i.avatar == null ? '../www/img/head.jpg' : i.avatar }}); background-size: cover;"></span>
+							<div class="comu-detail-comment-user">
+								<span class="comu-detail-comment-name">{{i.name}}</span>
+								<span class="comu-detail-comment-date">{{i.created_at}}</span>
+							</div>
+						</div>
+						<span class="comu-detail-comment-content {{i == comment[comment.length -1 ] ? 'comu-detail-comment-content-last' : ''}}">{{i.text}}</span>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div id="head-holder"></div>
@@ -90,28 +107,211 @@
 				<span class="comu-send-comment-group-left-span">评论</span>
 			</div>
 			<div class="comu-send-comment-group-middle comu-send-comment-group-item">
-				<input class="comu-send-comment-group-left-input" />
+				<input class="comu-send-comment-group-left-input" id="commentContent" />
 			</div>
-			<div class="comu-send-comment-group-right comu-send-comment-group-item">
+			<div class="comu-send-comment-group-right comu-send-comment-group-item" id="btnSendComment">
 				<span class="comu-send-comment-span"></span>
 			</div>
+		</div>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
 		<script src="../js/vue.min.js"></script>
 		<script>
+			var vueObj = new Vue({
+				el: "#comu-detail-container",
+				methods: {
+					tapPraise: function(event) {
+						// 点赞
+						handlePraise(event);
+					}
+				}
+			});
+			var detailData = null;
+			var articleType = null;
+			var commentHandle;
 			mui.plusReady(function() {
-				var w = plus.webview.currentWebview();				
+				var w = plus.webview.currentWebview();
 				var token = w.token;
 				var id = w._id;
-				console.log(token);
-				console.log(id);
-//				var URL = "http://farm.rrzuji.com/talk/view?";
-//				mui.ajax(URL, {
-//					
-//				});
+				(function() {
+					var URL = "http://farm.rrzuji.com/v1/talk/view?" + fnCreateSign() + "&access-token=" + token + "&id=" + id;
+					console.log(URL);
+					mui.ajax(URL, {
+						type: "GET",
+						dataType: "JSON",
+						success: function(res) {
+							console.log("社区详情" + res);
+							res = JSON.parse(res);
+							if (res.success) {
+								vueObj.$data = res.data;
+								articleType = res.data.type;
+								res.data.comment_num == 0 ? commentHandle = true :commentHandle = false;
+								detailData = {
+									id: res.data.id,
+									comment_num: res.data.comment_num,
+									like_num: res.data.like_num,
+									is_like: res.data.is_like
+								}
+							}
+						},
+						error: function(xhr) {
+							ajaxError(xhr);
+						}
+					});
+				})();
+				document.getElementById("btnSendComment").addEventListener("tap", function(event) {
+					console.log("发送评论");
+					var contentTextElem = document.getElementById("commentContent");
+					var contentText = contentTextElem.value;
+					console.log(contentText);
+					if (contentText.length == 0) {
+						mui.toast("评论内容不能为空!");
+						return;
+					}
+					var URL = "http://farm.rrzuji.com/v1/community/comment?" + fnCreateSign() + "&access-token=" + token;
+					mui.ajax(URL, {
+						type: "POST",
+						dataType: "JSON",
+						data: {
+							community_id: id,
+							text: contentText
+						},
+						success: function(res) {
+							console.log(res);
+							res = JSON.parse(res);
+							if (res.success) {
+								// 评论成功
+								// 1.清空提交评论栏
+								contentTextElem.value = "";
+								// 2.插入评论列表
+								if (commentHandle) {
+									vueObj.comment.$set(0, newComment(res.data));
+								} else {
+									vueObj.comment.push(newComment(res.data));	
+								}
+								
+								// 3.修改评论数量
+								vueObj.comment_num = parseInt(vueObj.comment_num) + 1;
+								detailData.comment_num = detailData.comment_num + 1;
+								handlePraiseAndComment(detailData);
+							}
+						},
+						error: function(xhr) {
+							ajaxError(xhr);
+						}
+					});
+				});
 			});
+
+			function newComment(data) {
+				// text name created_at avatar
+				var uname = plus.storage.getItem("userName");
+				var data = {
+					avatar: "../../doc/head.jpg",
+					name: uname,
+					text: data.text,
+					created_at: time2date(data.created_at)
+				};
+				return data;
+			};
+			var praiseFirst = null;
+
+			function handlePraise(event) {
+				// 点击时改变vue数组的值;
+				// 然后发送请求，请求时创建一个临时数据，记录在请求期间点赞的变化（用户重复点击），保存最后一个点赞值
+				// 请求完成时，根据这个最后的点赞值判断是否需要再发送请求。如果请求失败，回到上一次点赞的值。
+				var thisBtn = event.currentTarget;
+				if (!userLoginStatus()) {
+					openLogin(thisBtn);
+					return;
+				}
+				var index = thisBtn.getAttribute("data-index");
+				var status = thisBtn.getAttribute("data-islike");
+				var send = thisBtn.getAttribute("data-send");
+				var _id = thisBtn.getAttribute("data-id");
+				var numContent = thisBtn.getElementsByClassName("comu-comment-control-text")[0];
+				var num = parseInt(numContent.innerText);
+				if (status == "true") {
+					if (!send) {
+						thisBtn.setAttribute("data-send", "sending");
+						praiseFirst = true;
+					}
+					(num >= 1) && (num = --num);
+					numContent.innerText = num;
+					vueObj.is_like = false;
+				} else {
+					if (!send) {
+						thisBtn.setAttribute("data-send", "sending");
+						praiseFirst = false;
+					}
+					numContent.innerText = ++num;
+					vueObj.is_like = true;
+				}
+				praiseAjax(thisBtn, _id);
+			}
+
+			function praiseAjax(btn, id) {
+				if (!mui.os.plus) {
+					return;
+				}
+				var token = plus.storage.getItem("tokenValue");
+				var URL = praiseFirst ? "http://farm.rrzuji.com/v1/community/unlike?" : "http://farm.rrzuji.com/v1/community/like?";
+				URL = URL + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "POST",
+					dataType: "JSON",
+					data: {
+						community_id: id
+					},
+					success: function(res) {
+						res = JSON.parse(res);
+						if (res.success) {
+							!praiseFirst ? console.log("已点赞") : console.log("已取消点赞");
+							btn.removeAttribute("data-send");
+							!praiseFirst ? detailData.like_num ++ :  detailData.like_num--;
+							!praiseFirst ? detailData.is_like = true : detailData.is_like = false;
+							handlePraiseAndComment(detailData);
+						} else {
+							praiseAjaxError(btn);
+						}
+					},
+					error: function(xhr) {
+						praiseAjaxError(btn);
+						ajaxError(xhr);
+					}
+				});
+			}
+
+			function praiseAjaxError(thisBtn) {
+				// 点赞出错回滚
+				var numContent = thisBtn.getElementsByClassName("comu-comment-control-text")[0];
+				var num = parseInt(numContent.innerText);
+				if (praiseFirst) {
+					numContent.innerText = ++num;
+					vueObj.is_like = true;
+				} else {
+					(num >= 1) && (num = --num);
+					numContent.innerText = num;
+					vueObj.is_like = false;
+				}
+			}
+
+			function handlePraiseAndComment(detail) {
+				var w = plus.webview.getWebviewById("webview-comu.html");
+				mui.fire(w, "handleDetailPraiseAndComment", {
+					type: articleType,
+					data: detail
+				});
+				var w2 = plus.webview.getWebviewById("secondlv/webview-my-comu.html");
+				mui.fire(w2, "handleDetailPraiseAndComment", {
+					type: articleType,
+					data: detail
+				});
+			}
 		</script>
 	</body>
 

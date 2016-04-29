@@ -348,7 +348,7 @@ function createUpload() {
 			priority: 100
 		},
 		function(t, status) {
-			// 上传完成后状态码一般为200
+			// 上传完成后状态码为200
 			if (status == 200) {
 				// 上传成功后删除head文件，并将headTamp改为head
 				saveFile();
@@ -429,8 +429,10 @@ function updateAvatar(filePath) {
 	mui.fire(plus.webview.getWebviewById("secondlv/webview-my-setting.html"), "changeAvatar", {
 		url: filePath
 	});
-	var w = plus.webview.getWebviewById("webview-comu-new.html");
-	mui.fire(w, "refreshTab", {});
+	var w = plus.webview.getWebviewById("webview-comu.html");
+	var _id = plus.storage.getItem("userID");
+	mui.fire(w, "changeAvatar", {userID: _id});
+//	mui.fire(w, "refreshTab", {});
 }
 
 /**

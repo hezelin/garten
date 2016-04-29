@@ -143,25 +143,28 @@
 									<div class="bounce3"></div>
 								</div>
 								<div class="comu-list-tab-container" id="shareList">
-									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}" data-user-id="{{item.user_id}}">
+									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}">
 										<div class="comu-content-main">
-											<div class="comu-content-main-title" v-on:tap.stop="openUserDetail">
-												<div class="comu-content-main-user">
-													<span class="comu-user-picture" style="background: url({{item.user_avatar == null ? '../www/img/head.jpg' : item.user_avatar }}); background-size: cover;">
+											<div class="comu-content-main-title">
+												<div class="comu-content-main-user" v-on:tap.stop="openUserDetail" data-user-id="{{item.user_id}}">
+													<span class="comu-user-picture" style="background: url({{item.user_avatar == null ? '../../www/img/head.jpg' : item.user_avatar }}); background-size: cover;">
 													</span>
 													<span class="comu-user-name">{{item.user_name}}</span>
 													<span class="comu-user-date">&nbsp;&nbsp;{{item.created_at}}</span>
+												</div>
+												<div id="delete-my-comu-content" v-on:tap.stop="deleteComuContent" data-id="{{item.id}}">
+													<span class="mui-icon mui-icon-trash"></span>
 												</div>
 											</div>
 											<div class="comu-content-main-article">
 												{{item.text}}
 											</div>
 											<div class="comu-content-main-photo">
-												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
+												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>
 											</div>
 											<div class="comu-comment-control">
 												<div class="comu-comment-control-left" v-on:tap.stop="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
-													<span class="{{item.is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>																						
+													<span class="{{item.is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>
 													<span class="comu-comment-control-text">{{item.like_num}}</span>
 												</div>
 												<div class="comu-comment-control-right">
@@ -184,25 +187,28 @@
 									<div class="bounce3"></div>
 								</div>
 								<div class="comu-list-tab-container" id="questionList">
-									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}" data-user-id="{{item.user_id}}">
+									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}">
 										<div class="comu-content-main">
-											<div class="comu-content-main-title" v-on:tap.stop="openUserDetail">
-												<div class="comu-content-main-user">
-													<span class="comu-user-picture" style="background: url({{item.user_avatar == null ? '../www/img/head.jpg' : item.user_avatar }}); background-size: cover;">
+											<div class="comu-content-main-title">
+												<div class="comu-content-main-user" v-on:tap.stop="openUserDetail" data-user-id="{{item.user_id}}">
+													<span class="comu-user-picture" style="background: url({{item.user_avatar == null ? '../../www/img/head.jpg' : item.user_avatar }}); background-size: cover;">													
 													</span>
 													<span class="comu-user-name">{{item.user_name}}</span>
 													<span class="comu-user-date">&nbsp;&nbsp;{{item.created_at}}</span>
+												</div>
+												<div id="delete-my-comu-content" v-on:tap.stop="deleteComuContent" data-id="{{item.id}}">
+													<span class="mui-icon mui-icon-trash"></span>
 												</div>
 											</div>
 											<div class="comu-content-main-article">
 												{{item.text}}
 											</div>
 											<div class="comu-content-main-photo">
-												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: 90px;"></span>
+												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>
 											</div>
 											<div class="comu-comment-control">
 												<div class="comu-comment-control-left" v-on:tap.stop="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
-													<span class="{{item.is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>													
+													<span class="{{item.is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>
 													<span class="comu-comment-control-text">{{item.like_num}}</span>
 												</div>
 												<div class="comu-comment-control-right">
@@ -222,6 +228,9 @@
 		<div id="recordStative">
 			记录动态
 		</div>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
@@ -239,7 +248,7 @@
 				deceleration: deceleration
 			});
 			var url = null;
-			var tabObj = function(IDlist, IDscroll, isFirst) {
+			var tabObj = function(IDlist, IDscroll, isFirst, type) {
 				this.list_ID = IDlist;
 				this.refreshContainer = mui(document.getElementById(IDscroll));
 				this.first = isFirst;
@@ -248,8 +257,11 @@
 				this.refreshSign = "";
 				this.vueObj = null;
 				this.spinner = document.querySelector("#" + IDscroll + " .spinner");
-				this.init();
 				this.praiseFirst = null;
+				this.type = type;
+				// 保存动态列表
+				this.itemData = [];
+				this.init();
 			}
 			tabObj.prototype = {
 				init: function() {
@@ -312,12 +324,18 @@
 								// 第一次获取数据后的处理
 								if (thisObj.first == "true") {
 									thisObj.dealFirst(res);
+									thisObj.itemData = res.data.items;
 								} else {
 									// 不是第一次
 									if (thisObj.refreshSign == "up") {
-										for (var i = 0; i < res.data.items.length; i++) {
-											thisObj.vueObj.data.items.push(res.data.items[i]);
-										}
+										console.log("上拉刷新");
+										var _items = res.data.items;
+										thisObj.itemData = thisObj.itemData.concat(_items);
+										thisObj.vueObj.data.items = thisObj.vueObj.data.items.concat(_items);
+										//										for (var i = 0; i < _items.length; i++) {			
+										//											// 如果把thisObj.itemData的处理放在这里，会出错
+										//											thisObj.vueObj.data.items.push(_items[i]);//											
+										//										}
 										if (thisObj.noMore(res)) {
 											return;
 										};
@@ -326,6 +344,7 @@
 										thisObj.refreshContainer.pullToRefresh().endPullDownToRefresh();
 										thisObj.refreshContainer.pullToRefresh().refresh(true);
 										thisObj.noMore(res);
+										thisObj.itemData = res.data.items;
 										return;
 									}
 								}
@@ -376,13 +395,12 @@
 							},
 							openUserDetail: function(event) {
 								thisObj.handleOpenUserDetail(event);
+							},
+							deleteComuContent: function(event) {
+								thisObj.handleDeleteComuContent(event);
 							}
 						}
 					})
-				},
-				triggerDownRefresh: function() {
-					// 触发下拉刷新
-					this.refreshContainer.pullToRefresh().pullDownLoading();
 				},
 				handlePraise: function(event) {
 					// 点击时改变vue数组的值;
@@ -436,6 +454,12 @@
 							if (res.success) {
 								!thisObj.praiseFirst ? console.log("已点赞") : console.log("已取消点赞");
 								btn.removeAttribute("data-send");
+								var w = plus.webview.getWebviewById("webview-comu.html");
+								mui.fire(w, "refreshPraise", {
+									type: thisObj.type,
+									itemID: id,
+									islike: !thisObj.praiseFirst
+								});
 							} else {
 								thisObj.praiseAjaxError(btn);
 							}
@@ -473,7 +497,7 @@
 						url: "webview-comu-detail.html",
 						styles: fnSetSubpageStyle(0, 0),
 						createNew: false,
-						extras: {			
+						extras: {
 							_id: itemID,
 							token: token
 						},
@@ -489,6 +513,67 @@
 				},
 				handleOpenUserDetail: function(event) {
 					console.log("打开用户信息");
+				},
+				handleDeleteComuContent: function(event) {
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
+					var thisObj = this;
+					var itemID = event.currentTarget.getAttribute("data-id");
+					plus.nativeUI.confirm("确定删除这条动态？", function(e) {
+						if (e.index == 0) {
+							var token = plus.storage.getItem("tokenValue");
+							var URL = "http://farm.rrzuji.com/v1/talk/delete?" + fnCreateSign() + "&access-token=" + token + "&id=" + itemID;
+							mui.ajax(URL, {
+								type: "POST",
+								dataType: "JSON",
+								data: {},
+								success: function(res) {
+									console.log(res);
+									res = JSON.parse(res);
+									if (res.success) {
+										var _items = thisObj.itemData;
+										for (var i = 0; i < _items.length; i++) {
+											if (_items[i].id == itemID) {
+												_items.splice(i, 1);
+												thisObj.vueObj.data.items = _items;
+												thisObj.itemData = _items;
+												// 修改社区页面
+												var w = plus.webview.getWebviewById("webview-comu.html");
+												mui.fire(w, "deleteArticle", {
+													itemID: itemID,
+													type: thisObj.type
+												});
+												break;
+											}
+										}
+										mui.toast("删除成功");
+									}
+								},
+								error: function(xhr) {
+									ajaxError(xhr);
+								}
+							});
+						}
+					}, "退出", ["确定", "取消"])
+				},
+				addNewArticle: function(data) {
+					this.itemData.unshift(data);
+					this.vueObj.data.items = this.itemData;
+				},
+				handleDetailPraiseAndComment: function(data) {
+					// id, likeNum, CommentNum, isLike
+					for (var i in this.itemData) {
+						if (this.itemData[i].id == data.id) {
+							this.itemData[i].like_num = data.like_num;
+							this.itemData[i].comment_num = data.comment_num;
+							this.itemData[i].is_like = data.is_like;
+							this.vueObj.data.items = this.itemData;
+							break;
+						}
+					}
+					
 				}
 			};
 			// 存放分享、问答两个tab对象。
@@ -500,7 +585,7 @@
 					"questionList": "http://farm.rrzuji.com/v1/talk/index?type=2&access-token=" + e.detail.tokenValue
 				};
 				// 第一个标签手动设置				
-				var newObj = new tabObj("shareList", "shareScroll", "true");
+				var newObj = new tabObj("shareList", "shareScroll", "true", 1);
 				objArray.push(newObj);
 				document.getElementById("slider").addEventListener("scrollend", function() {
 					var elem = document.querySelector("#sliderSegmentedControl .mui-active");
@@ -509,19 +594,31 @@
 					}
 					var first = elem.getAttribute("data-first");
 					if (first == "true") {
-						var newObj2 = new tabObj(elem.getAttribute("data-id"), elem.getAttribute("data-scroll-id"), first);
+						var newObj2 = new tabObj(elem.getAttribute("data-id"), elem.getAttribute("data-scroll-id"), first, 2);
 						objArray.push(newObj2);
 						elem.setAttribute("data-first", "false");
 					}
 				})
 			});
-			window.addEventListener("refreshTab", function(e) {
+			// 发布新动态时触发
+			window.addEventListener("addNewArticle", function(e) {
 				var type = e.detail.type;
 				if (type == 1 && objArray[0]) {
-					objArray[0].triggerDownRefresh();
+					objArray[0].addNewArticle(e.detail.data);
 				}
 				if (type == 2 && objArray[1]) {
-					objArray[1].triggerDownRefresh();
+					objArray[1].addNewArticle(e.detail.data);
+				}
+			});
+			// 在详情页点赞评论触发 
+			window.addEventListener("handleDetailPraiseAndComment", function(e) {	
+				console.log(12);
+				var type = e.detail.type;
+				if (type == 1 && objArray[0]) {
+					objArray[0].handleDetailPraiseAndComment(e.detail.data);
+				}
+				if (type == 2 && objArray[1]) {
+					objArray[1].handleDetailPraiseAndComment(e.detail.data);
 				}
 			});
 			mui.plusReady(function() {

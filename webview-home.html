@@ -9,7 +9,6 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
 		<style>
-			
 			[data-dpr="2"],
 			.mui-ios .mui-pull-caption {
 				font-size: 28px;
@@ -92,7 +91,7 @@
 						</div>
 						<div class="home-nav-tab-item" id="homeShop">
 							<span class="home-nav-tab-item-icon home-shop"></span>
-							<span class="home-nav-tab-item-title">商城</span>
+							<span class="home-nav-tab-item-title">农场</span>
 						</div>
 						<div class="home-nav-tab-item" id="homeRent">
 							<span class="home-nav-tab-item-icon home-rent"></span>
@@ -115,8 +114,6 @@
 							<div class="home-news-content-item-line"></div>
 
 							<div class="home-news-content-item-left" id="{{ data.new_data[0].id}}">
-								<span class="span-new"></span>
-								<span class="span-new-content">新</span>
 								<img class="home-news-content-item-left-img" src="{{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[0].cover == null ? '../www/img/imgDefault.png' : data.new_data[0].cover}}" />
 								<div class="home-news-content-item-detail home-width-320">
 									<span class="home-news-content-item-detail-title">{{ data.new_data[0].title}}</span>
@@ -126,8 +123,6 @@
 								</div>
 							</div>
 							<div class="home-news-content-item-right" id="{{ data.new_data[1].id}}">
-								<span class="span-new"></span>
-								<span class="span-new-content">新</span>
 								<img class="home-news-content-item-right-img" src="{{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[1].cover == null ? '../www/img/imgDefault.png' : data.new_data[1].cover}}" />
 								<div class="home-news-content-item-detail home-width-180">
 									<span class="home-news-content-item-detail-title">{{ data.new_data[1].title}}</span>
@@ -135,8 +130,6 @@
 								</div>
 							</div>
 							<div class="home-news-content-item-right" id="{{ data.new_data[2].id}}">
-								<span class="span-new"></span>
-								<span class="span-new-content">新</span>
 								<img class="home-news-content-item-right-img" src="{{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[2].cover == null ? '../www/img/imgDefault.png' : data.new_data[2].cover}}" />
 								<div class="home-news-content-item-detail home-width-180">
 									<span class="home-news-content-item-detail-title">{{ data.new_data[2].title}}</span>
@@ -151,8 +144,24 @@
 							</div>
 							<div class="home-news-content-item-line"></div>
 							<div class="home-news-content-item-photo">
-								<div v-for="item in data.item_data" class="home-news-content-item-photo-list" style="background: url({{ data.baseImgUrl }}{{ item.cover }}); background-size: cover;" id="{{ item.id }}">
+								<!--<div v-for="item in data.item_data" class="home-news-content-item-photo-list" style="background: url({{ data.baseImgUrl }}{{ item.cover }}); background-size: cover;" id="{{ item.id }}">
 									<div class="home-news-content-item-photo-title">{{ item.title }}<em>{{ data.charPrice }}{{ item.price }}</em></div>
+								</div>-->
+								<!--直接改data.items-->
+								<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+									<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover;"></div>
+									<div class="shopping-list-item-title">
+										<span class="shopping-list-item-title-span">{{item.title}}</span>
+									</div>
+									<div class="shopping-list-item-store">
+										<div class="shopping-list-item-store-left">
+											<span class="shop-span"></span>
+											<span class="shopping-list-item-store-name">{{item.shop_name}}</span>
+										</div>
+										<div class="shopping-list-item-store-right">
+											<span class="shopping-list-item-store-price">&yen;<em>{{item.price}}</em></span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -185,8 +194,8 @@
 			var vueObj = new Vue({
 				el: "#home-container-all",
 				data: {
-					"data":{
-						"new_data":[{},{},{}]
+					"data": {
+						"new_data": [{}, {}, {}]
 					}
 				}
 			});

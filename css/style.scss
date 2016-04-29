@@ -205,9 +205,9 @@
 .home-news-content {
     @include px2rem(padding-top, 19px);
     @include px2rem(padding-bottom, 19px);
-    @include px2rem(padding-left, 28px);
-    @include px2rem(padding-right, 28px);
-    background-color: white;
+    @include px2rem(padding-left, 14px);
+    @include px2rem(padding-right, 14px);
+//  background-color: white;
 }
 //内容列表 标题 +  图片区域
 .home-news-content-item {
@@ -232,23 +232,21 @@
 // 最新推荐
 .home-news-content-item-left {
     @include px2rem(width, 350px);
-    @include px2rem(height, 332px);
-    background-color: rgb(245, 245, 245);
+    @include px2rem(height, 442px);
+    background-color: #FFFFFF;
     float: left;
-    //使图片居中
-    text-align: center;
     position: relative;
     display: inline-block;
     overflow: hidden;
 }
 .home-news-content-item-left-img {
-    @include px2rem(width, 325px);
-    @include px2rem(height, 167px);
-    @include px2rem(margin-top, 10px);
+    width: 100%;
+    @include px2rem(height, 264px);
+    background-color: #FFFFFF;
     display: inline-block;
 }
 .home-news-content-item-detail {
-    @include font-dpr(15px);
+    @include font-dpr(13px);
     color: #585858;
     @include px2rem(padding, (10px, 10px, 10px, 10px));
     vertical-align: top;
@@ -256,7 +254,7 @@
     overflow: hidden;
 }
 .home-news-content-item-detail-title {
-    @include px2rem(margin-bottom, 10px);
+    @include px2rem(margin-bottom, 20px);
     display: block;
     text-align: left;
     @include Nowrap;
@@ -280,47 +278,32 @@
     @include Nowrap;
 }
 .home-news-content-item-right {
-    @include px2rem(width, 330px);
-    @include px2rem(height, 160px);
-    @include px2rem(margin-bottom, 12px);
-    background-color: rgb(245, 245, 245);
+    @include px2rem(width, 350px);
+    @include px2rem(height, 213px);
+    @include px2rem(margin-bottom, 16px);
+    background-color: #FFFFFF;
     float: right;
     position: relative;
     display: inline-block;
 }
 .home-width-180 {
-    @include px2rem(width, 180px);
-    @include px2rem(height, 167px);
+    @include px2rem(width, 137px);
+    height: 100%;
+    @include px2rem(padding-top, 70px);
 }
 .home-width-320 {
-    @include px2rem(width, 320px);
-    @include px2rem(height, 150px);
+    width: 100%;
+    @include px2rem(height, 175px);
+    @include px2rem(padding-top, 18px);
 }
 .home-news-content-item-right-img {
-    @include px2rem(width, 103px);
-    @include px2rem(height, 135px);
-    @include px2rem(margin-left, 10px);
-    @include px2rem(margin-top, 10px);
+    @include px2rem(width, 212px);
+    height: 100%;
+    background-color: #FFFFFF;
+//  @include px2rem(height, 135px);
+//  @include px2rem(margin-left, 10px);
+//  @include px2rem(margin-top, 10px);
     display: inline-block;
-}
-.span-new {
-    width: 0;
-    height: 0; //  @include px2rem(padding, (3px, 3px, 0px, 0px));
-    @include px2rem(border-width, 28px);
-    border-style: solid;
-    border-color: transparent;
-    border-top-color: rgb(233, 58, 66);
-    border-right-color: rgb(233, 58, 66);
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-.span-new-content {
-    @include font-dpr(10px);
-    color: #FFFFFF;
-    position: absolute;
-    @include px2rem(top, 4px);
-    @include px2rem(right, 4px);
 }
 // 图片列表
 .home-news-content-item-photo {
@@ -841,45 +824,46 @@
 // 第一层容器
 .shopping-list-tab-container {
     width: 10rem;
-    background-color: #FFFFFF; //  @include px2rem(padding-bottom, 20px);
+//  background-color: #FFFFFF; 
     margin: 0 auto;
     font-size: 0;
 }
 .shopping-list-item {
-    @include px2rem(width, 337px);
-    @include px2rem(height, 404px);
+    @include px2rem(width, 348px);
+    @include px2rem(height, 420px);
     @include px2rem(margin-top, 28px);
-    border: $base-border;
+    background-color: #FFFFFF;
+//  border: $base-border;
     display: inline-block;
     overflow: hidden;
-    box-shadow: 2px 2px 4px 0 rgb(196, 196, 196);
+//  box-shadow: 2px 2px 4px 0 rgb(196, 196, 196);
 }
 .shopping-list-item:nth-of-type(odd) {
-    @include px2rem(margin-left, 28px);
+    @include px2rem(margin-left, 14px);
     @include px2rem(margin-right, 20px);
 }
 .shopping-list-item-bg {
-    @include px2rem(height, 225px);
+    @include px2rem(height, 282px);
 }
 .shopping-list-item-title {
-    @include px2rem(height, 112px);
+    @include px2rem(height, 68px);
+    @include px2rem(line-height, 68px);
     color: #282828;
-    border-bottom: $base-border;
     overflow: hidden;
 }
 .shopping-list-item-title-span {
-    //  @include px2rem(margin-top, 28px);
-    @include px2rem(margin-right, 10px);
-    @include px2rem(margin-left, 10px);
-    @include px2rem(line-height, 40px);
+    width: 100%;
+    @include px2rem(padding-right, 10px);
+    @include px2rem(padding-left, 10px);
+    vertical-align: middle;
     @include font-dpr(13px);
     font-weight: 500;
     display: inline-block;
+    @include Nowrap;
 }
 .shopping-list-item-store {
-    @include px2rem(height, 67px);
-    @include px2rem(line-height, 67px);
-    background-color: rgb(250, 250, 250);
+    @include px2rem(height, 70px);
+    @include px2rem(line-height, 70px);
     overflow: hidden;
     .shop-span {
         @include px2rem(margin-left, 12px);
@@ -2108,10 +2092,11 @@
     @include px2rem(border-radius, (6px, 6px));
 }
 .comu-content-main-title {
+    width: 100%;
     display: table;
 }
 .comu-content-main-user {
-    width: 100%;
+    width: 70%;
     display: table-cell;
     vertical-align: middle;
     span {
@@ -2119,6 +2104,13 @@
         vertical-align: middle;
     }
 }
+#delete-my-comu-content {
+    width: 30%;
+    @include font-dpr(16px);
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+} 
 //用户头像
 .comu-user-picture {
     @include px2rem(width, 93px);
@@ -2156,6 +2148,7 @@
     @include px2rem(margin-right, 8px);
     @include px2rem(margin-bottom, 8px);
     display: inline-block;
+    border: 1px solid rgb(250, 250, 250);
 }
 .comu-comment-control {
     text-align: right;
@@ -2267,7 +2260,8 @@
     color: rgb(124,124,124);
 }
 .promulgateForm-file {
-    margin-right: 5px;
+    margin-right: 6px;
+    margin-bottom: 6px;
     display: inline-block;
     font-size: 0;
     position: relative;
@@ -2280,12 +2274,13 @@
     z-index: 99;
 }
 .promulgateForm-Input {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: inline-block;
     vertical-align: top;
     position: absolute;
     left: 0;
+    bottom: 0;
     opacity: 0;
     z-index: 100;
 }
@@ -2303,21 +2298,22 @@
 }
 .comu-detail-praise-group {
     width: 100%;
-    @include px2rem(height, 94px);
-    @include px2rem(line-height, 94px);
+//  @include px2rem(height, 94px);
+//  @include px2rem(line-height, 94px);
     @include px2rem(padding-top, 12px);
     @include px2rem(padding-bottom, 12px);
     @include px2rem(padding-left, 33px);
-    @include px2rem(padding-right, 33px);
+//  @include px2rem(padding-right, 33px);
     background-color: white;
     @include px2rem(border-radius, (6px, 6px));
 }
-.comu-detail-praise-group-span {    
+.comu-detail-praise-group-span {
+    @include px2rem(margin-left, 60px);    
     line-height: inherit;
     vertical-align: top;
     @include font-dpr(14px);
     color: rgb(160, 160, 160);
-    display: inline-block;
+    display: inline-block;    
 }
 .comu-detail-praise-group-icon {
     line-height: inherit;
@@ -2335,7 +2331,43 @@
     @include px2rem(border-radius, (6px, 6px));
 }
 .comu-detail-comment-item {
-//  @include px2
+    @include px2rem(padding-top, 20px);
+    position: relative;    
+}
+.comu-detail-comment-img {
+    @include px2rem(width, 60px);
+    @include px2rem(height, 60px);
+    @include px2rem(margin-right, 10px);
+    display: inline-block;
+    border-radius: 50% 50%;
+//  position: absolute;
+}
+.comu-detail-comment-user {
+    display: inline-block;
+}
+.comu-detail-comment-name {
+    @include px2rem(margin-bottom, 5px);
+    @include font-dpr(13px);
+    display: block;
+}
+.comu-detail-comment-date {
+    @include font-dpr(13px);
+    color: rgb(96, 96, 96);
+    display: block;
+}
+.comu-detail-comment-content {
+    width: 100%;
+    @include px2rem(padding-top, 18px);
+    @include px2rem(padding-left, 70px);
+    @include px2rem(padding-bottom, 28px);
+    border-bottom: 1px solid #D3D3D3;
+    line-height: 135%;
+    @include font-dpr(16px);
+    color: rgb(96, 96, 96);
+    display: inline-block;
+}
+.comu-detail-comment-content-last {
+    border: none;
 }
 // 社区详情发送评论
 .comu-send-comment-group {
@@ -2928,9 +2960,9 @@ select {}
 .mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
     //  background-color: rgb(232,232,232);
 }
-.mui-fullscreen .mui-segmented-control~.mui-slider-group {
-    top: 50px;
-}
+//.mui-fullscreen .mui-segmented-control~.mui-slider-group {
+//  top: 50px;
+//}
 .mui-slider-indicator.mui-segmented-control {
     background-color: #FFFFFF;
 }
