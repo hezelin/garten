@@ -132,6 +132,7 @@
 							myBag.innerText = res.data.hongbao_num;
 							myCollect.innerText = res.data.collect_num;
 							myShopCar.innerText = res.data.cart_num;
+							console.log("红包"+res.data.hongbao_num+" 收藏"+res.data.collect_num+" 购物车"+res.data.cart_num);
 						}
 					},
 					error: function(xhr, type, errorThrown) {
@@ -293,7 +294,20 @@
 					});
 				});
 				//打开我的农场
-				document.getElementById("user-menu-group-myfarm").addEventListener("tap", function(e) {});
+				document.getElementById("user-menu-group-myfarm").addEventListener("tap", function(e) {
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
+					//订单窗口有头部导航
+					fnLoadPage(e.currentTarget, {
+						url: "webview-body.html",
+						top: 98,
+						bottom: 0
+					}, {
+						title: "我的农场"
+					});
+				});
 				//打开我的社区
 				document.getElementById("user-menu-group-myrequest").addEventListener("tap", function(e) {
 					if (!userLoginStatus()) {

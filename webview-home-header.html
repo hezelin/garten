@@ -64,6 +64,21 @@
 					styles: fnSetSubpageStyle(98, 0)
 				}]
 			});
+			document.querySelector(".header-control-right-btn").addEventListener("tap", function() {
+				mui.openWindow({
+					url: "secondlv/webview-search.html",
+					id: "secondlv/webview-search.html",
+					createNew: false,
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
 		</script>
 	</body>
 

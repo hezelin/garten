@@ -332,7 +332,8 @@
 					"secondlv/webview-comu-knowledge.html",
 					"secondlv/webview-comu-farm-introduce.html",
 					"crop.html",
-					"secondlv/webview-comu-detail.html"
+					"secondlv/webview-comu-detail.html",
+					"secondlv/webview-search.html"
 				],
 				"priority": 0
 			},
@@ -410,7 +411,8 @@
 					"webview-normal-list-header.html",
 					"webview-shopping-list-header.html",
 					"pullrefresh_with_tab.html",
-					"secondlv/webview-shopping-list.html"
+					"secondlv/webview-shopping-list.html",
+					"thirdlv/webview-trade-detail.html"
 				],
 				"priority": 0
 			},
@@ -481,7 +483,8 @@
 					"js/flexible.debug.js",
 					"css/style.css",
 					"img/fruitTree.png",
-					"img/plowLand.png"
+					"img/plowLand.png",
+					"js/vue.min.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -547,7 +550,8 @@
 					"secondlv/webview-comu-farm-introduce.html",
 					"crop.html",
 					"crop/crop.html",
-					"thirdlv/choiceAddress.html"
+					"thirdlv/choiceAddress.html",
+					"webview-body.html"
 				],
 				"refer": [
 					"secondlv/webview-comu-knowledge-list.html"
@@ -560,7 +564,9 @@
 					"js/md5.min.js",
 					"js/mui.min.js",
 					"js/public.js",
-					"js/flexible.debug.js"
+					"js/flexible.debug.js",
+					"css/mui.min.css",
+					"css/style.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -985,7 +991,9 @@
 					"js/flexible.debug.js",
 					"fonts/mui.ttf"
 				],
-				"refer": [],
+				"refer": [
+					"secondlv/webview-search.html"
+				],
 				"priority": 0
 			},
 			"webview-comu-header.html": {
@@ -1058,7 +1066,8 @@
 					"fonts/mui.ttf",
 					"js/mui.pullToRefresh.js",
 					"img/head-search.png",
-					"js/mui.pullToRefresh.material.js"
+					"js/mui.pullToRefresh.material.js",
+					"img/shop.png"
 				],
 				"refer": [
 					"thirdlv/webview-trade-detail.html"
@@ -1171,10 +1180,13 @@
 					"js/mui.min.js",
 					"img/head-left-black.png",
 					"css/mui.min.css",
-					"img/img2.png"
+					"img/img2.png",
+					"img/isCollect.png"
 				],
 				"refer": [
-					"thirdlv/webview-shop.html"
+					"thirdlv/webview-shop.html",
+					"thirdlv/webview-trade-order.html",
+					"login/login.html"
 				],
 				"priority": 0
 			},
@@ -1360,7 +1372,12 @@
 					"tiles/17/tile25640_5478.png",
 					"tiles/17/tile25639_5479.png",
 					"tiles/17/tile25641_5478.png",
-					"tiles/17/tile25639_5478.png"
+					"tiles/17/tile25639_5478.png",
+					"fonts/mui.ttf",
+					"tiles/17/tile25641_5483.png",
+					"tiles/17/tile25643_5484.png",
+					"tiles/17/tile25641_5484.png",
+					"tiles/17/tile25642_5484.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1389,7 +1406,10 @@
 					"img/shop-introduce-navigation.png",
 					"img/plowLand.png",
 					"img/plowLand2.png",
-					"img/shop-introduce-bg-test.png"
+					"img/shop-introduce-bg-test.png",
+					"img/head-three-point.png",
+					"img/head-search.png",
+					"img/img.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1452,6 +1472,22 @@
 					"css/style.css",
 					"js/vue.min.js",
 					"js/flexible.debug.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"thirdlv/webview-trade-order.html": {
+				"resources": [
+					"img/img.png",
+					"img/shop-detail.png",
+					"img/TradeLogo.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"secondlv/webview-search.html": {
+				"resources": [
+					"img/img.png"
 				],
 				"refer": [],
 				"priority": 0

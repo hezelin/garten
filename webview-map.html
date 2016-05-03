@@ -14,21 +14,62 @@
 		<script src="http://api.map.baidu.com/api?v=2.0&ak=iwvdqPIdPiGxdcqB2Tl28lLD"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
-		<title></title>
+		<title>地图，浏览器定位</title>
 		<style>
 			html,
 			body {
 				width: 100%;
 				height: 100%;
 			}
+			
+			.anchorBL {
+				display: none;
+			}
+			
+			#parkMap {
+				bottom: 10px;
+				left: 10px;
+				top: auto;
+				right: auto;
+				position: absolute;
+				z-index: 1100;
+				background: rgba(255, 255, 255, 0.95);
+				font-size: 16px;
+				height: 24px;
+				line-height: 24px;
+				padding: 0 3px;
+				border-radius: 3px;
+				color: rgb(84, 90, 96);
+			}
+			
+			#Myposition {
+				bottom: 50px;
+				left: 10px;
+				top: auto;
+				right: auto;
+				position: absolute;
+				z-index: 1100;
+				background: rgba(255, 255, 255, 0.95);
+				font-size: 16px;
+				height: 24px;
+				line-height: 24px;
+				padding: 0 3px;
+				border-radius: 3px;
+				color: rgb(84, 90, 96);
+			}
+			
+			.mui-icon {
+				font-size: 20px;
+				font-weight: 600;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div class="header-control header-control-greenBold head-tab-hide header-control-fixed">
+		<!--<div class="header-control header-control-greenBold head-tab-hide header-control-fixed">
 			<div class="header-control-left-btn">
 				<span class="header-control-left-btn-span"></span>
-				<!--<span class="white-arrow-big-span header-control-left-btn-span"></span>-->
+				<span class="header-control-left-btn-span"></span>
 			</div>
 			<div>
 				<span id="webview-head-title">地图</span>
@@ -36,11 +77,13 @@
 			<div class="header-control-right-btn">
 				<span class="header-control-right-btn-span white-three-point-span"></span>
 			</div>
-		</div>
+		</div>-->
 		<div id="map" style="width:100%;height: 100%; "></div>
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
 		</div>
+		<div id="parkMap">公园地图 <span class="mui-icon mui-icon-map"></span></div>
+		<div id="Myposition" data-switch="false">开启定位 <span class="mui-icon mui-icon-location"></span></div>
 		<script src="js/mui.min.js"></script>
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
@@ -52,62 +95,66 @@
 					mui.fire(plus.webview.getWebviewById("HBuilder"), "backHome", {});
 				}
 			};
-			//			var tileLayer = new BMap.TileLayer();
-			//			tileLayer.getTilesUrl = function(tileCoord, zoom) {
-			//				var x = tileCoord.x;
-			//				var y = tileCoord.y;
-			//				return 'tiles/' + zoom + '/tile' + x + '_' + y + '.png';
-			//			}
-			//			var map = new BMap.Map('map', {
-			//				minZoom: 12,
-			//				maxZoom: 17
-			//			});
-			//			map.addTileLayer(tileLayer);
-			//			map.addControl(new BMap.NavigationControl());
-			//			map.centerAndZoom(new BMap.Point(117.936414, 24.580618), 17);
-			// 分割线
-			//			var geolocation = new BMap.Geolocation();
-			//			geolocation.getCurrentPosition(function(r) {
-			//				if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-			//					var mk = new BMap.Marker(r.point);
-			//					map.addOverlay(mk);
-			//					map.panTo(r.point);
-			//					alert('您的位置：' + r.point.lng + ',' + r.point.lat);
-			//				} else {
-			//					alert('failed' + this.getStatus());
-			//				}
-			//			}, {
-			//				enableHighAccuracy: true
-			//			});
-			//关于状态码
-			//BMAP_STATUS_SUCCESS	检索成功。对应数值“0”。
-			//BMAP_STATUS_CITY_LIST	城市列表。对应数值“1”。
-			//BMAP_STATUS_UNKNOWN_LOCATION	位置结果未知。对应数值“2”。
-			//BMAP_STATUS_UNKNOWN_ROUTE	导航结果未知。对应数值“3”。
-			//BMAP_STATUS_INVALID_KEY	非法密钥。对应数值“4”。
-			//BMAP_STATUS_INVALID_REQUEST	非法请求。对应数值“5”。
-			//BMAP_STATUS_PERMISSION_DENIED	没有权限。对应数值“6”。(自 1.1 新增)
-			//BMAP_STATUS_SERVICE_UNAVAILABLE	服务不可用。对应数值“7”。(自 1.1 新增)
-			//BMAP_STATUS_TIMEOUT	超时。对应数值“8”。(自 1.1 新增)
+			var tileLayer = new BMap.TileLayer();
+			var initPoint = new BMap.Point(117.936414, 24.580618);
+			tileLayer.getTilesUrl = function(tileCoord, zoom) {
+				var x = tileCoord.x;
+				var y = tileCoord.y;
+				return 'tiles/' + zoom + '/tile' + x + '_' + y + '.png';
+			}
+			var bmap = new BMap.Map('map', {
+				minZoom: 12,
+				maxZoom: 17
+			});
+			bmap.addTileLayer(tileLayer);
+			bmap.addControl(new BMap.NavigationControl());
+			bmap.centerAndZoom(initPoint, 16);
+			document.getElementById("parkMap").addEventListener("tap", function() {
+				stopLocaltion();
+				bmap.panTo(initPoint);
+			});
 			mui.plusReady(function() {
-				document.querySelector(".white-three-point-span").addEventListener("tap", function() {
-					console.log("获取");
-					plus.geolocation.getCurrentPosition(function(p) {
-						alert("Geolocation\nLatitude:" + p.coords.latitude + "\nLongitude:" + p.coords.longitude + "\nAltitude:" + p.coords.altitude);
-						console.log(transform(p.coords.longitude, p.coords.latitude));
-					}, function(e) {
-						alert("Geolocation error: " + e.message);
-					});
-					//					var map = new plus.maps.Map("map");
-					//					map.getUserLocation(function(state, point) {
-					//						if (0 == state) {
-					//							alert(JSON.stringify(point));
-					//						} else {
-					//							alert("Failed!");
-					//						}
-					//					});
+				document.getElementById("Myposition").addEventListener("tap", function(e) {
+					if (this.getAttribute("data-switch") == "false") {
+						startLocation();
+					} else {
+						stopLocaltion();
+					}
 				});
 			});
+			var mapInterval = null;
+			var marketFirst = null;
+			var marker = null;
+			var elem = document.getElementById("Myposition");
+
+			function startLocation() {
+				marketFirst = true;
+				elem.innerHTML = "关闭定位 <span class='mui-icon mui-icon-location'></span>";
+				elem.setAttribute("data-switch", "true");
+				plus.geolocation.getCurrentPosition(function(p) {
+					//						alert("Geolocation\nLatitude:" + p.coords.latitude + "\nLongitude:" + p.coords.longitude + "\nAltitude:" + p.coords.altitude);
+					transform(p.coords.longitude, p.coords.latitude);
+				}, function(e) {
+					//						alert("Geolocation error: " + e.message);
+				});
+				mapInterval = window.setInterval(function() {
+					plus.geolocation.getCurrentPosition(function(p) {
+						//						alert("Geolocation\nLatitude:" + p.coords.latitude + "\nLongitude:" + p.coords.longitude + "\nAltitude:" + p.coords.altitude);
+						transform(p.coords.longitude, p.coords.latitude);
+					}, function(e) {
+						//						alert("Geolocation error: " + e.message);
+					});
+				}, 3000);
+			}
+
+			function stopLocaltion() {
+				marketFirst = false;
+				elem.innerHTML = "开启定位 <span class='mui-icon mui-icon-location'></span>";
+				elem.setAttribute("data-switch", "false");
+				if (mapInterval) {
+					window.clearInterval(mapInterval);
+				}
+			}
 
 			function transform(lon, lat) {
 				// 百度地图API功能
@@ -116,34 +163,30 @@
 				var y = lat;
 				var ggPoint = new BMap.Point(x, y);
 				//地图初始化
-				var bm = new BMap.Map("map");
-				bm.centerAndZoom(ggPoint, 15);
-				bm.addControl(new BMap.NavigationControl());
-				//添加谷歌marker和label
-				var markergg = new BMap.Marker(ggPoint);
-				bm.addOverlay(markergg); //添加谷歌marker
-				var labelgg = new BMap.Label("未转换的谷歌标注（错误）", {
-					offset: new BMap.Size(20, -10)
-				});
-				markergg.setLabel(labelgg); //添加谷歌label
-				//坐标转换完之后的回调函数
+				//				var bm = new BMap.Map("map");
+				//				bmap.centerAndZoom(ggPoint, 15);
+				bmap.addControl(new BMap.NavigationControl());
 				translateCallback = function(data) {
 					if (data.status === 0) {
-						var marker = new BMap.Marker(data.points[0]);
-						bm.addOverlay(marker);
-						var label = new BMap.Label("转换后的百度标注（正确）", {
-							offset: new BMap.Size(20, -10)
-						});
-						marker.setLabel(label); //添加百度label
-						bm.setCenter(data.points[0]);
+						if (marketFirst) {
+							marker = new BMap.Marker(data.points[0]);
+							bmap.addOverlay(marker);
+							marketFirst = false;
+							bmap.setCenter(data.points[0]);
+						} else {
+							marker.setPosition(data.points[0]);
+						}
+						//						var label = new BMap.Label("你的位置", {
+						//							offset: new BMap.Size(20, -10)
+						//						});
+						//						marker.setLabel(label); //添加百度label
+						
 					}
 				}
-				setTimeout(function() {
-					var convertor = new BMap.Convertor();
-					var pointArr = [];
-					pointArr.push(ggPoint);
-					convertor.translate(pointArr, 3, 5, translateCallback)
-				}, 1000);
+				var convertor = new BMap.Convertor();
+				var pointArr = [];
+				pointArr.push(ggPoint);
+				convertor.translate(pointArr, 3, 5, translateCallback)
 			}
 		</script>
 	</body>

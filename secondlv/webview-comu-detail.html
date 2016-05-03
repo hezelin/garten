@@ -226,7 +226,7 @@
 				// 请求完成时，根据这个最后的点赞值判断是否需要再发送请求。如果请求失败，回到上一次点赞的值。
 				var thisBtn = event.currentTarget;
 				if (!userLoginStatus()) {
-					openLogin(thisBtn);
+					openLogin(thisBtn, true);
 					return;
 				}
 				var index = thisBtn.getAttribute("data-index");

@@ -150,7 +150,7 @@
 				<span class="trade-foot-control-small-btn-logo" style="background: url(../img/shop.png); background-size: cover;"></span>
 				<span class="trade-foot-control-small-btn-title">店铺</span>
 			</div>
-			<div class="trade-foot-control-small-btn" id="addCollect">
+			<div class="trade-foot-control-small-btn" id="addCollect" data-isCollect="false">
 				<span class="trade-foot-control-small-btn-logo" style="background: url(../img/collect.png); background-size: cover;"></span>
 				<span class="trade-foot-control-small-btn-title">收藏</span>
 			</div>
@@ -195,7 +195,7 @@
 				</div>
 			</div>
 			<div class="buyDiv-btn">
-				<button id="btnPostBuy">完成</button>
+				<button id="btnPostBuy">加入购物车</button>
 			</div>
 		</div>
 		<div class="my-toast" id="myToast">
@@ -215,7 +215,12 @@
 				indicators: false, // 是否显示滚动条
 				deceleration: deceleration
 			});
+			// 商品id
 			var item_id = "";
+			// 商店名
+			var shopName = "";
+			// 商店id
+			var shopId = "";
 			var detailVue = new Vue({
 				el: "#detailScroll"
 			});
@@ -224,6 +229,7 @@
 				mui('.trade-header-container').on('tap', '.trade-header-nav', function() {
 					// 获取数据
 					if (this.getAttribute("data-first") == "true") {
+						// 如果这个tab是第一点击，那么处理它
 						handle(this);
 					}
 					// 更换滚动区域
@@ -285,7 +291,7 @@
 				// 确认订单，打开订单页
 				document.getElementById("openOrderForm").addEventListener("tap", function() {
 					if (!userLoginStatus()) {
-						openLogin(this);
+						openLogin(this, true);
 						return;
 					}
 					mui.openWindow({
@@ -351,6 +357,8 @@
 						res = JSON.parse(res);
 						if (res.success) {
 							btn.setAttribute("data-first", "false");
+							shopId = res.data.shop_id;
+							shopName = res.data.shop_name;
 							detailVue.$data = res.data;
 							detailVue.$nextTick(function() {
 								// DOM 现在更新了
@@ -417,15 +425,91 @@
 			}
 			// 添加到收藏
 			document.getElementById("addCollect").addEventListener("tap", function() {
-				
+				if (NetWorkStatus()) {
+					return;
+				}
+				if (!userLoginStatus()) {
+					openLogin(this, true);
+					return;
+				}
+				if (this.getAttribute("data-send")) {
+					return;
+				}
+				this.setAttribute("data-send", "true");
+				if (this.getAttribute("data-isCollect") == "false") {
+					handleCollect(this);
+				} else {
+					console.log(12345);
+					handleCancelCollect(this);
+				}
+			});
+
+			function handleCollect(thisBtn) {
+				var token = plus.storage.getItem("tokenValue");
+				var userId = plus.storage.getItem("userID");
+				var URL = "http://farm.rrzuji.com/v1/collect/create?" + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "POST",
+					dataType: "JSON",
+					data: {
+						user_id: userId,
+						shop_id: shopId,
+						item_id: item_id,
+						shop_name: shopName
+					},
+					success: function(res) {
+						res = JSON.parse(res);
+						if (res.success) {
+							console.log("收藏成功");
+							thisBtn.removeAttribute("data-send");
+							thisBtn.setAttribute("data-isCollect", "true");
+							var elem = thisBtn.querySelector(".trade-foot-control-small-btn-logo");
+							elem.style.background = "url(../img/isCollect.png)";
+							elem.style.backgroundSize = "cover";
+							thisBtn.querySelector(".trade-foot-control-small-btn-title").innerText = "已收藏";							
+						}
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				});
+			};
+
+			function handleCancelCollect(thisBtn) {		
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/collect/delete?" + fnCreateSign() + "&access-token=" + token + "&id=" + item_id;
+				mui.ajax(URL, {
+					type: "POST",
+					dataType: "JSON",						
+					success: function(res) {
+						console.log(res);
+						res = JSON.parse(res);						
+						if (res.success) {	
+							console.log("取消收藏成功");
+							thisBtn.removeAttribute("data-send");
+							thisBtn.setAttribute("data-isCollect", "false");
+							var elem = thisBtn.querySelector(".trade-foot-control-small-btn-logo");
+							elem.style.background = "url(../img/collect.png)";
+							elem.style.backgroundSize = "cover";
+							thisBtn.querySelector(".trade-foot-control-small-btn-title").innerText = "收藏";	
+						}
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				});
+			};
+			// 打开购物车 
+			document.querySelector(".header-control-right-btn").addEventListener("tap", function() {
+				console.log("打开购物车");
 			});
 			mui.plusReady(function() {
 				item_id = plus.webview.currentWebview().itemID
-				console.log(item_id);
+					// 添加tab切换监听
 				initSwitchTab();
+				// 触发第一个tab 切换事件
 				mui.trigger(document.getElementById('initScroll'), "tap");
 			});
-
 		</script>
 	</body>
 

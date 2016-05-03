@@ -229,6 +229,18 @@ body {
     @include px2rem(background-position-x,0px);
     @include px2rem(background-position-y,-279px);
 }
+.shop-span-small {
+    @include px2rem(width, 30px);
+    @include px2rem(height, 26px);
+    background: url(../img/shop.png);
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    @include px2rem(margin-left, 20px);
+    @include px2rem(margin-right, 8px);
+    vertical-align: bottom;
+}
 //店铺右边箭头
 .shop-arrow-span {
     @include px2rem(width,16px);

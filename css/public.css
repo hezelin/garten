@@ -128,6 +128,18 @@ body {
   background-position-x: 0rem;
   background-position-y: -3.72rem; }
 
+.shop-span-small {
+  width: 0.4rem;
+  height: 0.34667rem;
+  background: url(../img/shop.png);
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 0.26667rem;
+  margin-right: 0.10667rem;
+  vertical-align: bottom; }
+
 .shop-arrow-span {
   width: 0.21333rem;
   height: 0.37333rem;

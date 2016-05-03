@@ -127,7 +127,7 @@
 			mui.plusReady(function() {
 				document.getElementById("submitForm").addEventListener("tap", function() {
 					if (!userLoginStatus()) {
-						openLogin(this);
+						openLogin(this, true);
 						return;
 					}
 					var user_id = plus.storage.getItem("userID");

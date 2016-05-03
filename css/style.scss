@@ -144,7 +144,7 @@
     width: 100%;
     @include px2rem(height, 190px);
     @include px2rem(margin-top, 23px);
-    @include px2rem(margin-bottom, 23px); //  @include px2rem(padding-left, 28px);
+    @include px2rem(margin-bottom, 40px); //  @include px2rem(padding-left, 28px);
     //  @include px2rem(padding-right, 28px);
     background-color: white;
     display: table;
@@ -203,7 +203,7 @@
     margin: 0 auto;
 }
 .home-news-content {
-    @include px2rem(padding-top, 19px);
+//  @include px2rem(padding-top, 19px);
     @include px2rem(padding-bottom, 19px);
     @include px2rem(padding-left, 14px);
     @include px2rem(padding-right, 14px);
@@ -212,7 +212,8 @@
 //内容列表 标题 +  图片区域
 .home-news-content-item {
     @include px2rem(margin-bottom, 12px);
-    @include px2rem(padding-top, 30px);
+//  @include px2rem(padding-top, 30px);
+    
     clear: both;
     font-size: 0;
     text-align: justify;
@@ -248,7 +249,7 @@
 .home-news-content-item-detail {
     @include font-dpr(13px);
     color: #585858;
-    @include px2rem(padding, (10px, 10px, 10px, 10px));
+    @include px2rem(padding, (10px, 3px, 10px, 3px));
     vertical-align: top;
     display: inline-block;
     overflow: hidden;
@@ -416,6 +417,16 @@
     @include font-dpr(14px);
     @include Nowrap;
     display: block;
+}
+.home-list-item {
+    @include px2rem(width, 340px);
+    @include px2rem(height, 420px);
+//  @include px2rem(margin-top, 28px);
+    background-color: #FFFFFF;
+//  border: $base-border;
+    display: inline-block;
+    overflow: hidden;
+//  box-shadow: 2px 2px 4px 0 rgb(196, 196, 196);
 }
 /**
      * ******** ******** ******** ********
@@ -829,7 +840,7 @@
     font-size: 0;
 }
 .shopping-list-item {
-    @include px2rem(width, 348px);
+    @include px2rem(width, 340px);
     @include px2rem(height, 420px);
     @include px2rem(margin-top, 28px);
     background-color: #FFFFFF;
@@ -883,10 +894,10 @@
 }
 .shopping-list-item-store-name {
     @include px2rem(max-width, 180px);
-    @include font-dpr(15px);
+    @include font-dpr(12px);
     color: #737373;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: bottom;
     @include Nowrap;
 }
 .shopping-list-item-store-price {
@@ -1886,6 +1897,12 @@
         color: #ff2222;
     }
 }
+#collectNull {
+    @include px2rem(margin-top, 28px);
+    @include font-dpr(16px);
+    color: #737373;
+    text-align: center;    
+}
 /**
      * ******** ******** ******** ********
      * 我的订单
@@ -2489,6 +2506,20 @@
     bottom: 0;
     text-align: center;
     @include Nowrap;
+}
+.farm-introduce-title {
+    @include font-dpr(18px);
+    text-align: center;
+    @include px2rem(padding, (20px, 10px, 10px, 10px));
+}
+.farm-introduce-group-title {
+    @include font-dpr(15px);
+    color: #000000;
+}
+.farm-introduce-group {
+    @include px2rem(padding, (25px, 30px, 34px, 30px));
+    @include font-dpr(13px);
+    color: rgb(101, 101, 101);
 }
 /**
      * ******** ******** ******** ********

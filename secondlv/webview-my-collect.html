@@ -14,69 +14,33 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
 		<style>
+			[v-cloak] {
+				display: none;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div class="my-trader-item">
-			<div class="my-trader-title">
-				<div class="my-trader-title-logo">
-					<span class="shop-span">
-				</div>
-				<div class="my-trader-title-name">小铺<span class="shop-arrow-span"></span></div>
-				<div class="my-trader-title-right my-collect-time">1个小时前</div>
-			</div>
-			<div class="my-trader-content">
-				<div class="my-trader-content-img">
-					<img class="my-trader-content-img-hold" src="../img/plowLand.png">
-				</div>
-				<div class="my-trader-content-detail">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
+		<div id="collectNull" v-cloak>收藏夹为空</div>
+		<div id="vueContainer" v-cloak>
+			<div class="my-trader-item" v-for="item in data">
+				<div class="my-trader-title">
+					<div class="my-trader-title-logo">
+						<span class="shop-span"></span>
 					</div>
+					<div class="my-trader-title-name">{{item.shop_name}}<span class="shop-arrow-span"></span></div>
+					<div class="my-trader-title-right my-collect-time" v-on:tap.stop="deleteCollect" data-id="{{item.id}}" data-index="{{$index}}">删除</div>
 				</div>
-			</div>
-		</div>
-		<div class="my-trader-item">
-			<div class="my-trader-title">
-				<div class="my-trader-title-logo">
-					<span class="shop-span">
-				</div>
-				<div class="my-trader-title-name">小铺<span class="shop-arrow-span"></span></div>
-				<div class="my-trader-title-right my-collect-time">2016.01.28</div>
-			</div>
-			<div class="my-trader-content">
-				<div class="my-trader-content-img">
-					<img class="my-trader-content-img-hold" src="../img/fruitTree.png">
-				</div>
-				<div class="my-trader-content-detail">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">橘子树</span>
-						<span class="collect-order-trader-detail">认租一年，委托给农户管理</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;100<em>/棵</em></span>
+				<div class="my-trader-content">
+					<div class="my-trader-content-img">
+						<div class="my-trader-content-img-hold" style="background: url({{item.item_cover}}); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div class="my-trader-item">
-			<div class="my-trader-title">
-				<div class="my-trader-title-logo">
-					<span class="shop-span">
-				</div>
-				<div class="my-trader-title-name">小铺<span class="shop-arrow-span"></span></div>
-				<div class="my-trader-title-right my-collect-time">2016.01.20</div>
-			</div>
-			<div class="my-trader-content">
-				<div class="my-trader-content-img">
-					<img class="my-trader-content-img-hold" src="../img/fruitTree.png">
-				</div>
-				<div class="my-trader-content-detail">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">橘子树</span>
-						<span class="collect-order-trader-detail">认租二年，委托给农户管理</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;200<em>/棵</em></span>
+					<div class="my-trader-content-detail">
+						<div class="my-trader-content-detail-container">
+							<span class="collect-order-trader-name">{{item.item_title}}</span>
+							<span class="collect-order-trader-detail"></span>
+							<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;{{item.item_price}}</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -87,8 +51,64 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
+			var vueObj = null;
+			var collectData = null;
+			mui.plusReady(function() {
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/collect/index?" + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log(res);
+						res = JSON.parse(res);
+						if (res.success) {
+							console.log("获取完毕");
+							if (res.data.length == 0) {
+								document.querySelector("#collectNull").removeAttribute("v-cloak");
+							}
+							vueObj = new Vue({
+								el: "#vueContainer",
+								data: res,
+								methods: {
+									deleteCollect: function(event) {
+										handleDeleteCollect(event);
+									}
+								}
+							});
+						}
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				});
+			});
+
+			function handleDeleteCollect(event) {
+				var thisBtn = event.currentTarget;
+				var token = plus.storage.getItem("tokenValue");
+				var id = thisBtn.getAttribute("data-id");
+				var index = parseInt(thisBtn.getAttribute("data-index"));
+				var URL = "http://farm.rrzuji.com/v1/collect/delete?" + fnCreateSign() + "&access-token=" + token + "&id=" + id;
+				mui.ajax(URL, {
+					type: "POST",
+					dataType: "JSON",
+					success: function(res) {
+						console.log(res);
+						res = JSON.parse(res);
+						if (res.success) {
+							console.log("删除收藏成功");							
+							vueObj.data.$remove(vueObj.data[index]);
+						}
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				});
+			}
 		</script>
 	</body>
 

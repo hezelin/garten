@@ -158,7 +158,6 @@ function userLoginStatus() {
 	var tokenValue = plus.storage.getItem("tokenValue");
 	var tokenDate = plus.storage.getItem("tokenDate");
 	var newTime = new Date().getTime().toString().substring(0, 10);
-
 	if (tokenValue == null || tokenDate == null) {
 		result = false;
 	} else {
@@ -246,12 +245,14 @@ var timew = {
  * @description 打开登录页
  * @param {Object} 按钮
  */
-function openLogin(btn) {
+function openLogin(btn, path) {
 	if (btn.getAttribute("data-able") != null) {
 		return;
 	}
 	btn.setAttribute("data-able", "unable");
-	var loginView = plus.webview.create("login/login.html", "login.html");
+	var URL = "login/login.html";
+	path	 && (URL = "../login/login.html");
+	var loginView = plus.webview.create(URL, "login.html");
 	loginView.onloaded = function() {
 		loginView.show("pop-in", 300);
 		setTimeout(function() {

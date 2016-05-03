@@ -134,7 +134,13 @@
 							console.log("调试信息：" + (userLoginStatus() ? "已登录" : "未登录"));
 						};
 					} else {
-						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));
+						var sub;
+						if (subpages[i] == "webview-map.html") {
+							sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 0));
+						} else {
+							sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));				
+						}
+															
 						sub.onloaded = function() {
 							loadCount--;
 							fnCloseSplashScreen(loadCount);

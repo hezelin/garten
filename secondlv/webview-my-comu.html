@@ -408,7 +408,7 @@
 					// 请求完成时，根据这个最后的点赞值判断是否需要再发送请求。如果请求失败，回到上一次点赞的值。
 					var thisBtn = event.currentTarget;
 					if (!userLoginStatus()) {
-						openLogin(thisBtn);
+						openLogin(thisBtn, true);
 						return;
 					}
 					var index = thisBtn.getAttribute("data-index");
@@ -486,7 +486,7 @@
 				handleOpenComuDetail: function(event) {
 					// 打开社区详情
 					if (!userLoginStatus()) {
-						openLogin(this);
+						openLogin(this, true);
 						return;
 					}
 					var itemID = event.currentTarget.getAttribute("data-id");
@@ -516,7 +516,7 @@
 				},
 				handleDeleteComuContent: function(event) {
 					if (!userLoginStatus()) {
-						openLogin(this);
+						openLogin(this, true);
 						return;
 					}
 					var thisObj = this;
@@ -612,7 +612,6 @@
 			});
 			// 在详情页点赞评论触发 
 			window.addEventListener("handleDetailPraiseAndComment", function(e) {	
-				console.log(12);
 				var type = e.detail.type;
 				if (type == 1 && objArray[0]) {
 					objArray[0].handleDetailPraiseAndComment(e.detail.data);
