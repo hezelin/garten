@@ -1,0 +1,117 @@
+var mapPointList = [{
+	name: "杨厝中心广场",
+	point_lng: 117.934747,
+	point_lat: 24.579772
+}, {
+	name: "东孚商业街",
+	point_lng: 117.940122,
+	point_lat: 24.569719
+}, {
+	name: "洪塘广场",
+	point_lng: 117.952848,
+	point_lat: 24.575166
+}, {
+	name: "刘营（流连忘返)",
+	point_lng: 117.956569,
+	point_lat: 24.579662
+}, {
+	name: "赤土",
+	point_lng: 117.952924,
+	point_lat: 24.579156
+}, {
+	name: "老友石",
+	point_lng: 117.950101,
+	point_lat: 24.578233
+}, {
+	name: "西塘湿地",
+	point_lng: 117.953017,
+	point_lat: 24.578062
+}, {
+	name: "旅游服务中心",
+	point_lng: 117.941354,
+	point_lat: 24.574659
+}, {
+	name: "过坂观景台",
+	point_lng: 117.943579,
+	point_lat: 24.577395
+}, {
+	name: "杨昔路(缤纷绿道)",
+	point_lng: 117.939436,
+	point_lat: 24.576453
+}, {
+	name: "生态鱼塘养殖",
+	point_lng: 117.95521,
+	point_lat: 24.585239
+}, {
+	name: "天竺山森林公园东门",
+	point_lng: 117.947971,
+	point_lat: 24.588077
+}, {
+	name: "永久农田示范区",
+	point_lng: 117.947431,
+	point_lat: 24.583331
+}, {
+	name: "鳗鱼饭店",
+	point_lng: 117.946515,
+	point_lat: 24.582151
+}, {
+	name: "西塘水稻种植体验区",
+	point_lng: 117.947319,
+	point_lat: 24.580989
+}, {
+	name: "辣木园",
+	point_lng: 117.945939,
+	point_lat: 24.587666
+}, {
+	name: "薰衣草园",
+	point_lng: 117.943023,
+	point_lat: 24.585375
+}, {
+	name: "老六农场",
+	point_lng: 117.941265,
+	point_lat: 24.583375
+}, {
+	name: "花径绿道",
+	point_lng: 117.941265,
+	point_lat: 24.580845
+}, {
+	name: "后坑(清水祖韵)",
+	point_lng: 117.934687,
+	point_lat: 24.585665
+}, {
+	name: "西坂菜地",
+	point_lng: 117.937435,
+	point_lat: 24.583751
+}, {
+	name: "公园社区服务中心",
+	point_lng: 117.932817,
+	point_lat: 24.583477
+}, {
+	name: "集福堂",
+	point_lng: 117.933057,
+	point_lat: 24.581788
+}, {
+	name: "大溪头农村菜",
+	point_lng: 117.923099,
+	point_lat: 24.586896
+}, {
+	name: "西山家常饭店",
+	point_lng: 117.924416,
+	point_lat: 24.573932
+}, {
+	name: "西山(美丽西山)",
+	point_lng: 117.920389,
+	point_lat: 24.575653
+}, {
+	name: "西门口饭店",
+	point_lng: 117.917395,
+	point_lat: 24.582099
+}, {
+	name: "公园入口服务区",
+	point_lng: 117.918343,
+	point_lat: 24.58799
+}, {
+	name: "度外天竺驿",
+	point_lng: 117.913296,
+	point_lat: 24.585596
+}, ];

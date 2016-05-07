@@ -12,6 +12,7 @@
 		<script src="../js/flexible.debug.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/imgView.css" rel="stylesheet" />
 		<style>
 			.farm-display-none {
 				display: none;
@@ -51,7 +52,10 @@
 						{{text}}
 					</div>
 					<div class="comu-content-main-photo" v-cloak>
-						<span v-for="i in images" class="comu-content-main-photo-list" style="background: url({{i}}); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>
+						<!--<span v-for="i in images" class="comu-content-main-photo-list" style="background: url({{i}}); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>-->
+						<span class="comu-content-main-photo-list" v-for="img in images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: cover;">													
+							<img src="{{img}}"  style="display: block; width: 80px; height: 80px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="{{item.id}}" />
+						</span>
 					</div>
 					<div class="comu-comment-control">
 						<div class="comu-comment-control-left" v-on:tap.stop="tapPraise" data-id="{{id}}" data-index="{{$index}}" data-islike="{{is_like.toString()}}">
@@ -120,6 +124,8 @@
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
 		<script src="../js/vue.min.js"></script>
+		<script src="../js/mui.zoom.js"></script>
+		<script src="../js/mui.previewimage.js"></script>
 		<script>
 			var vueObj = new Vue({
 				el: "#comu-detail-container",
@@ -149,13 +155,16 @@
 							if (res.success) {
 								vueObj.$data = res.data;
 								articleType = res.data.type;
-								res.data.comment_num == 0 ? commentHandle = true :commentHandle = false;
+								res.data.comment_num == 0 ? commentHandle = true : commentHandle = false;
 								detailData = {
 									id: res.data.id,
 									comment_num: res.data.comment_num,
 									like_num: res.data.like_num,
 									is_like: res.data.is_like
 								}
+								vueObj.$nextTick(function() {
+									mui.previewImage();
+								});
 							}
 						},
 						error: function(xhr) {
@@ -191,9 +200,8 @@
 								if (commentHandle) {
 									vueObj.comment.$set(0, newComment(res.data));
 								} else {
-									vueObj.comment.push(newComment(res.data));	
+									vueObj.comment.push(newComment(res.data));
 								}
-								
 								// 3.修改评论数量
 								vueObj.comment_num = parseInt(vueObj.comment_num) + 1;
 								detailData.comment_num = detailData.comment_num + 1;
@@ -272,7 +280,7 @@
 						if (res.success) {
 							!praiseFirst ? console.log("已点赞") : console.log("已取消点赞");
 							btn.removeAttribute("data-send");
-							!praiseFirst ? detailData.like_num ++ :  detailData.like_num--;
+							!praiseFirst ? detailData.like_num++ : detailData.like_num--;
 							!praiseFirst ? detailData.is_like = true : detailData.is_like = false;
 							handlePraiseAndComment(detailData);
 						} else {

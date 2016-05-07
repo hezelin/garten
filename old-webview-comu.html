@@ -14,8 +14,8 @@
 		<script src="js/flexible.debug.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
+		<link href="css/imgView.css" rel="stylesheet" />
 		<style>
-			
 			[data-dpr="2"],
 			.mui-ios .mui-pull-caption {
 				font-size: 28px;
@@ -54,6 +54,7 @@
 				top: 50px;
 			}
 		</style>
+
 	</head>
 
 	<body>
@@ -94,14 +95,24 @@
 							{{item.text}}
 						</div>
 						<div class="comu-content-main-photo">
-							<img class="comu-content-main-photo-list" src="img/fruitTree.png">
+							<!--<img class="comu-content-main-photo-list" src="img/fruitTree.png">
 							<img class="comu-content-main-photo-list" src="img/fruitTree.png">
 							<img class="comu-content-main-photo-list" src="img/fruitTree.png">
 							<img class="comu-content-main-photo-list" src="img/fruitTree.png">
 							<span class="comu-content-main-photo-list" style="background: url(img/fruitTree.png); background-repeat: no-repeat;background-position: center; background-size: 120px;"></span>
 							<span class="comu-content-main-photo-list"></span>
 							<span class="comu-content-main-photo-list"></span>
-							<span class="comu-content-main-photo-list"></span>
+							<span class="comu-content-main-photo-list"></span>-->
+							<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url(img/crop.jpg); background-repeat: no-repeat;background-position: center; background-size: cover;">
+								<span style="display: block; width: 100%; height: 100%; opacity: 0.7; z-index: 999; color: #007EDF;"></span>
+							</span>
+							<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url(img/crop.jpg); background-repeat: no-repeat;background-position: center; background-size: cover;">
+								<img src="img/crop.jpg" v-for="img in item.images" style="display: block; width: 80px; height: 80px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="1" />
+							</span>
+							<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url(img/crop.jpg); background-repeat: no-repeat;background-position: center; background-size: cover;">
+								<img src="img/crop.jpg"  style="display: block; width: 80px; height: 80px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="1" />
+							</span>
+							
 						</div>
 						<div class="comu-comment-control">
 							<div class="comu-comment-control-left">
@@ -172,6 +183,9 @@
 		<script src="js/mui.min.js"></script>
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
+		<!---->
+		<script src="js/mui.zoom.js"></script>
+		<script src="js/mui.previewimage.js"></script>
 		<script>
 			mui.init({
 				pullRefresh: {
@@ -185,7 +199,7 @@
 					}
 				}
 			});
-
+			
 			function upCallback() {
 				window.setTimeout(function() {
 					// 还有更多数据就显示false，否则显示true
@@ -235,6 +249,7 @@
 					});
 				});
 			});
+			mui.previewImage();
 		</script>
 	</body>
 

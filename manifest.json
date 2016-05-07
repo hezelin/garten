@@ -98,7 +98,7 @@
 		},
 		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
-		"distribute": {"plugins":{"maps":{"baidu":{"appkey_ios":"sqtZGu9YGiFo2SCqzFZLT6hGHvE30iMC","appkey_android":"8IDMobYstONcps4a7awhxjBSWx04RSRM","appkey":"","description":""}}},
+		"distribute": {"plugins":{"maps":{"baidu":{"appkey_ios":"GfOMSw5ol8wWiuG8CX0Pk60GD20egjgK","appkey_android":"3PjgkG8ThtOgcgyM0joSic4nEHFKoPWe","appkey":"","description":""}}},
 			"apple": {
 				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
 				"mobileprovision": "",/*iOS应用打包配置文件*/
@@ -232,7 +232,8 @@
 					"webview-home-header.html",
 					"webview-comu-header.html",
 					"webview-comu-new.html",
-					"webview-map.html"
+					"webview-map.html",
+					null
 				],
 				"priority": 0
 			},
@@ -322,7 +323,10 @@
 					"img/comment.png",
 					"img/praise.png",
 					"img/ispraise.png",
-					"img/head.jpg"
+					"img/head.jpg",
+					"js/mui.zoom.js",
+					"css/imgView.css",
+					"js/mui.previewimage.js"
 				],
 				"refer": [
 					"webview-nav.html",
@@ -401,7 +405,8 @@
 					"img/img4.png",
 					"css/mui.css",
 					"img/imgDefault.png",
-					"js/vue.min.js"
+					"js/vue.min.js",
+					null
 				],
 				"refer": [
 					"webview-nav.html",
@@ -486,7 +491,10 @@
 					"img/plowLand.png",
 					"js/vue.min.js"
 				],
-				"refer": [],
+				"refer": [
+					"thirdlv/webview-trade-detail.html",
+					"thirdlv/webview-shop.html"
+				],
 				"priority": 0
 			},
 			"thirdlv/webview-my-userbag-amply.html": {
@@ -632,9 +640,13 @@
 					"css/mui.min.css",
 					"css/style.css",
 					"js/flexible.debug.js",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"js/vue.min.js",
+					"img/img3.png"
 				],
-				"refer": [],
+				"refer": [
+					"thirdlv/webview-trade-detail.html"
+				],
 				"priority": 0
 			},
 			"secondlv/webview-comu-knowledge-list.html": {
@@ -1152,7 +1164,10 @@
 					"img/head-search.png",
 					"js/vue.min.js",
 					"img/ispraise.png",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"js/mui.zoom.js",
+					"css/imgView.css",
+					"js/mui.previewimage.js"
 				],
 				"refer": [
 					"thirdlv/promulgateStative.html",
@@ -1186,7 +1201,8 @@
 				"refer": [
 					"thirdlv/webview-shop.html",
 					"thirdlv/webview-trade-order.html",
-					"login/login.html"
+					"login/login.html",
+					"secondlv/webview-my-shopcar.html"
 				],
 				"priority": 0
 			},
@@ -1377,9 +1393,23 @@
 					"tiles/17/tile25641_5483.png",
 					"tiles/17/tile25643_5484.png",
 					"tiles/17/tile25641_5484.png",
-					"tiles/17/tile25642_5484.png"
+					"tiles/17/tile25642_5484.png",
+					"tiles/17/tile25646_5479.png",
+					"tiles/17/tile25646_5480.png",
+					"tiles/17/tile25646_5478.png",
+					"tiles/17/tile25645_5484.png",
+					"tiles/17/tile25644_5484.png",
+					"img/outLineMap.jpg",
+					"css/imgView.css",
+					"js/mui.zoom.js",
+					"js/mui.previewimage.js",
+					"img/outLineMapMin.jpg",
+					"data/mapPoint.js",
+					null
 				],
-				"refer": [],
+				"refer": [
+					"secondlv/outLineMap.html"
+				],
 				"priority": 0
 			},
 			"thirdlv/promulgateStative.html": {
@@ -1409,9 +1439,20 @@
 					"img/shop-introduce-bg-test.png",
 					"img/head-three-point.png",
 					"img/head-search.png",
-					"img/img.png"
+					"img/img.png",
+					"img/img2.png",
+					"js/flexible_css.debug.js",
+					"js/md5.min.js",
+					"js/public.js",
+					"css/style.css",
+					"js/flexible.debug.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/vue.min.js"
 				],
-				"refer": [],
+				"refer": [
+					"thirdlv/webview-trade-detail.html"
+				],
 				"priority": 0
 			},
 			"thirdlv/webview-comu-knowledge-list.html": {
@@ -1454,7 +1495,10 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"fonts/mui.ttf",
-					"img/ispraise.png"
+					"img/ispraise.png",
+					"css/imgView.css",
+					"js/mui.zoom.js",
+					"js/mui.previewimage.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -1480,14 +1524,51 @@
 				"resources": [
 					"img/img.png",
 					"img/shop-detail.png",
-					"img/TradeLogo.png"
+					"img/TradeLogo.png",
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"img/img2.png",
+					"js/vue.min.js",
+					"js/flexible.debug.js",
+					"img/shop.png"
 				],
 				"refer": [],
 				"priority": 0
 			},
 			"secondlv/webview-search.html": {
 				"resources": [
-					"img/img.png"
+					"img/img.png",
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"img/head-search.png",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/flexible.debug.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"secondlv/outLineMap.html": {
+				"resources": [
+					"img/outLineMapMin.jpg",
+					"js/mui.min.js",
+					"js/public.js",
+					"secondlv/outLineMap2.html",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"secondlv/outLineMap2.html": {
+				"resources": [
+					"img/outLineMapMin.jpg"
 				],
 				"refer": [],
 				"priority": 0

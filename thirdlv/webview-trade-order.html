@@ -14,6 +14,7 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
 		<style>
+
 		</style>
 	</head>
 
@@ -35,52 +36,38 @@
 				<span class="black-nav-span"></span>
 			</div>
 			<div class="consignee-group-right">
-				<div class="consignee-name-phone-content">收货人：格子&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18825051395</div>
-				<div class="consignee-address-content">地址：广东省广州市越秀区东川路一街10号&nbsp;广东衡信资产评估有限公司</div>
+				<div class="consignee-name-phone-content">收货人：测试&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18825051395</div>
+				<div class="consignee-address-content">地址：广东省广州市越秀区东川路一街10号&nbsp;</div>
 			</div>
 			<div class="right-arrow-group">
 				<span class="black-arrow-span"></span>
 			</div>
 		</div>
-		<div id="orderForm">
-			<!--shop-id="{{shop_id}}"-->
-			<div class="home-rent-detail-shop" id="orderForm-shop">
-				<div class="home-rent-detail-shop-left">
-					<!--background: url({{shop_image}}); -->
-					<span class="home-rent-detail-shop-logo" style="background: url(../img/TradeLogo.png); background-size: cover;"></span>
+		<div class="orderForm">
+			<div class="home-rent-detail-shop" class="orderForm-shop">
+				<div class="home-rent-detail-shop-left">					
+					<span class="home-rent-detail-shop-logo" style="background: url(../img/TradeLogo.png); background-size: cover; background-position: center;"></span>
 				</div>
 				<div class="home-rent-detail-shop-middle">
-					<!--{{shop_name}}-->
 					<span class="home-rent-detail-shop-name">童游</span>
 				</div>
 			</div>
 			<!--商品区域-->
-			<div id="orderForm-detail">
+			<div class="orderForm-detail">
 				<div class="orderForm-detail-left">
 					<span class="orderForm-detail-img" style="background: url(../img/shop-detail.png); background-size: cover;"></span>
 				</div>
 				<div class="orderForm-detail-middle">
-					<span class="orderForm-detail-title">耕作地&nbsp;0.2亩/两个月</span>
+					<span class="orderForm-detail-title">耕作地</span>
+					<span class="orderForm-detail-content">0.2亩/两个月</span>
 					<span class="orderForm-detail-money">&yen;&nbsp;&nbsp;300</span>
 				</div>
 				<div class="orderTrade-detail-right">
-					x1
+					<span class="orderTrade-detail-right-span">x1</span>
 				</div>
 			</div>
-			<!--购买数量-->
-			<!--运费-->
-			<!--留言-->
-			<div id="orderForm-other">
-				<div class="orderForm-other-item">
-					<div class="other-item-left">购买数量</div>
-					<div class="other-item-right">
-						<div class="num-choice">
-							<span class="num-choice-left num-choice-item">-</span>
-							<span class="num-choice-mid num-choice-item">1</span>
-							<span class="num-choice-right num-choice-item">+</span>
-						</div>
-					</div>
-				</div>
+
+			<div class="orderForm-other">
 				<div class="orderForm-other-item">
 					<div class="other-item-left">运输方式</div>
 					<div class="other-item-right"><span>普通快递</span><span id="choseExpress" class="black-arrow-span"></span></div>
@@ -91,17 +78,26 @@
 						<input type="text" id="leaveMessage" placeholder="选填，可填写给商家的留言" />
 					</div>
 				</div>
+				<div class="orderForm-other-item">
+					<div class="other-item-left"></div>
+					<div class="other-item-right">
+						共1件商品&nbsp;&nbsp;&nbsp;&nbsp;合计:&nbsp;&yen;&nbsp;300
+					</div>
+				</div>
 			</div>
 		</div>
+		
+		<!--底部区域-->
 		<div id="coupon">
-			<div class="coupon-left">优惠</div>
-			<div class="coupon-middle">使用优惠券</div>
-			<div class="coupon-right">
-				<span class="black-arrow-span"></span>
+			<div style="width: 93%; margin: 0 auto;">
+				<div class="coupon-left">优惠</div>
+				<div class="coupon-middle">使用优惠券
+					<div class="coupon-right"><span class="black-arrow-span"></span></div>
+				</div>
 			</div>
 		</div>
 		<div id="totalPrice">
-			<span class="totalPrice-above">&yen;300.00&nbsp;+&nbsp;&yen;10.00运费</span><br /><span class="totalPrice-under">合计：&yen;300.00</span>
+			<span class="totalPrice-above">&yen;300.00&nbsp;+&nbsp;&yen;10.00运费</span><br /><span class="totalPrice-under">合计：&yen;310.00</span>
 		</div>
 		<div id="buttonGroup">
 			<div id="btnWeiXin" class="buttonGroup-pay">微信支付</div>
@@ -116,21 +112,21 @@
 		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
-			var chocieMID = document.querySelector(".num-choice-mid");
-			var choicePrice = document.querySelector(".buyDiv-money-count");
-			//				var basePrice = parseFloat(choicePrice.getAttribute("data-normal"));
-			document.querySelector(".num-choice-left").addEventListener("tap", function() {
-				var val = chocieMID.innerText;
-				if (val == "1") {
-					return;
-				}
-				chocieMID.innerText = parseInt(val) - 1;
-				//					choicePrice.innerText = parseFloat(choicePrice.innerText) - basePrice;
-			});
-			document.querySelector(".num-choice-right").addEventListener("tap", function() {
-				chocieMID.innerText = parseInt(chocieMID.innerText) + 1;
-				//					choicePrice.innerText = parseFloat(choicePrice.innerText) + basePrice;
-			});
+//			var chocieMID = document.querySelector(".num-choice-mid");
+//			var choicePrice = document.querySelector(".buyDiv-money-count");
+//			//				var basePrice = parseFloat(choicePrice.getAttribute("data-normal"));
+//			document.querySelector(".num-choice-left").addEventListener("tap", function() {
+//				var val = chocieMID.innerText;
+//				if (val == "1") {
+//					return;
+//				}
+//				chocieMID.innerText = parseInt(val) - 1;
+//				//					choicePrice.innerText = parseFloat(choicePrice.innerText) - basePrice;
+//			});
+//			document.querySelector(".num-choice-right").addEventListener("tap", function() {
+//				chocieMID.innerText = parseInt(chocieMID.innerText) + 1;
+//				//					choicePrice.innerText = parseFloat(choicePrice.innerText) + basePrice;
+//			});
 		</script>
 	</body>
 

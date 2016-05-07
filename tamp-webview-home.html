@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>农场首页</title>
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			[data-dpr="2"],
+			.mui-ios .mui-pull-caption {
+				font-size: 28px;
+			}
+			
+			[data-dpr="2"],
+			.mui-ios .mui.spinner {
+				font-size: 28px;
+			}
+			
+			[data-dpr="2"],
+			.mui-ios .mui-icon-pulldown {
+				font-size: 28px;
+			}
+			
+			[data-dpr="3"],
+			.mui-ios .mui-pull-caption {
+				font-size: 42px;
+			}
+			
+			[data-dpr="3"],
+			.mui-ios .mui.spinner {
+				font-size: 42px;
+			}
+			
+			[data-dpr="3"],
+			.mui-ios .mui-icon-pulldown {
+				font-size: 42px;
+			}
+			
+			.mui-ios .mui-pull-bottom-pocket {
+				height: 50px;
+			}
+			
+			.mui-android .mui-pull-top-pocket {
+				top: 50px;
+			}
+			
+			/*[v-cloak] {
+				display: none;
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<!--<div id="refreshContainer" class="mui-content mui-scroll-wrapper">-->
+			<!--<div class="mui-scroll">-->
+				<div class="container-globar" id="home-container-all">
+					<div id="slider" class="mui-slider">
+						<div class="mui-slider-group mui-slider-loop">
+							<!-- (循环轮播：第一个节点是最后一张图片) 节点数量等于轮播图片+1-->
+							<div class="mui-slider-item mui-slider-item-duplicate">
+								<a href="#">
+									<!--轮播图尺寸规定为750*350-->
+									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{data.images[data.images.length - 1]}}); background-size: cover;background-position: center;"></span>
+								</a>
+							</div>
+							<div class="mui-slider-item" v-for="img in data.images">
+								<a href="#">
+									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{img}}); background-size: cover;background-position: center;"></span>
+								</a>
+							</div>
+							<!--额外增加的一个节点(最后一个节点与“原”第一张图片相同)-->
+							<div class="mui-slider-item mui-slider-item-duplicate">
+								<a href="#">
+									<span class="span-cover-slider" style="background: url({{data.baseImgUrl}}{{data.images[0]}}); background-size: cover;background-position: center;"></span>
+								</a>
+							</div>
+						</div>
+						<div class="mui-slider-indicator mui-text-center">
+							<!--对应图片个数-->
+							<div class="mui-indicator mui-active home-slider-text-size"></div>
+							<div class="mui-indicator home-slider-text-size" v-for="n in data.images.length" v-if="n > 0"></div>
+						</div>
+					</div>
+					<div class="home-nav-tab">
+						<div class="home-nav-tab-item" id="homeLive">
+							<span class="home-nav-tab-item-icon home-live"></span>
+							<span class="home-nav-tab-item-title">亲子</span>
+						</div>
+						<div class="home-nav-tab-item" id="homeShop">
+							<span class="home-nav-tab-item-icon home-shop"></span>
+							<span class="home-nav-tab-item-title">农场</span>
+						</div>
+						<div class="home-nav-tab-item" id="homeRent">
+							<span class="home-nav-tab-item-icon home-rent"></span>
+							<span class="home-nav-tab-item-title">认租</span>
+						</div>
+						<div class="home-nav-tab-item" id="homeActivity">
+							<span class="home-nav-tab-item-icon home-activity"></span>
+							<span class="home-nav-tab-item-title">农家乐</span>
+						</div>
+						<div class="home-nav-tab-item" id="homeEat">
+							<span class="home-nav-tab-item-icon home-eat"></span>
+							<span class="home-nav-tab-item-title">民宿</span>
+						</div>
+					</div>
+					<div class="home-news-content">
+						<div class="home-news-content-item">
+							<div class="home-news-content-item-title">
+								<label class="home-news-content-item-title-name">最新活动</label>
+							</div>
+							<div class="home-news-content-item-line"></div>
+
+							<div class="home-news-content-item-left" data-id="{{ data.new_data[0].id}}" v-on:tap="openDetail">
+								<img class="home-news-content-item-left-img" src="img/fruitTree.png" />
+								<div class="home-news-content-item-detail home-width-320">
+									<span class="home-news-content-item-detail-title">测试1</span>
+									<!--<span class="home-news-content-item-detail-money">家长:<em>&yen;100&nbsp;</em>学生:<em>&yen;80</em></span>-->
+									<span class="home-news-content-item-detail-money"><em>120</em></span>
+									<!--<span class="home-news-content-item-detail-introduce">到访农业展馆，挑战游乐设施，欣赏露天剧场表演！欣赏露天剧场表演</span>-->
+								</div>
+							</div>
+							<div class="home-news-content-item-right" data-id="{{ data.new_data[1].id}}" v-on:tap="openDetail">
+								<img class="home-news-content-item-right-img" src="img/fruitTree.png" />
+								<div class="home-news-content-item-detail home-width-180">
+									<span class="home-news-content-item-detail-title">测试2</span>
+									<span class="home-news-content-item-detail-money"><em>120</em></span>
+								</div>
+							</div>
+							<div class="home-news-content-item-right" data-id="{{ data.new_data[2].id}}" v-on:tap="openDetail">
+								<img class="home-news-content-item-right-img" src="img/fruitTree.png" />
+								<div class="home-news-content-item-detail home-width-180">
+									<span class="home-news-content-item-detail-title">测试3</span>
+									<span class="home-news-content-item-detail-money"><em>120</em></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="home-news-content-item">
+							<div class="home-news-content-item-title">
+								<label class="home-news-content-item-title-name">商品推荐</label>
+							</div>
+							<div class="home-news-content-item-line"></div>
+							<div class="home-news-content-item-photo">
+								<!--<div v-for="item in data.item_data" class="home-news-content-item-photo-list" style="background: url({{ data.baseImgUrl }}{{ item.cover }}); background-size: cover;" id="{{ item.id }}">
+									<div class="home-news-content-item-photo-title">{{ item.title }}<em>{{ data.charPrice }}{{ item.price }}</em></div>
+								</div>-->
+								<!--直接改data.items-->
+								<div class="home-list-item"  v-for="item in data.item_data" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+									<div class="shopping-list-item-bg" style="background: url(img/fruitTree.png); background-size: cover;"></div>
+									<div class="shopping-list-item-title">
+										<span class="shopping-list-item-title-span">测试</span>
+									</div>
+									<div class="shopping-list-item-store">
+										<div class="shopping-list-item-store-left">
+											<span class="shopping-list-item-store-price">&yen;<em>120</em></span>
+										</div>
+									</div>
+								</div>
+								<div class="home-list-item"  v-for="item in data.item_data" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+									<div class="shopping-list-item-bg" style="background: url(img/fruitTree.png); background-size: cover;"></div>
+									<div class="shopping-list-item-title">
+										<span class="shopping-list-item-title-span">测试</span>
+									</div>
+									<div class="shopping-list-item-store">
+										<div class="shopping-list-item-store-left">
+											<span class="shopping-list-item-store-price">&yen;<em>120</em></span>
+										</div>
+									</div>
+								</div>
+								<div class="home-list-item"  v-for="item in data.item_data" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+									<div class="shopping-list-item-bg" style="background: url(img/fruitTree.png); background-size: cover;"></div>
+									<div class="shopping-list-item-title">
+										<span class="shopping-list-item-title-span">测试</span>
+									</div>
+									<div class="shopping-list-item-store">
+										<div class="shopping-list-item-store-left">
+											<span class="shopping-list-item-store-price">&yen;<em>120</em></span>
+										</div>
+									</div>
+								</div>
+								<div class="home-list-item"  v-for="item in data.item_data" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+									<div class="shopping-list-item-bg" style="background: url(img/fruitTree.png); background-size: cover;"></div>
+									<div class="shopping-list-item-title">
+										<span class="shopping-list-item-title-span">测试</span>
+									</div>
+									<div class="shopping-list-item-store">
+										<div class="shopping-list-item-store-left">
+											<span class="shopping-list-item-store-price">&yen;<em>120</em></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<!--</div>-->
+		</div>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/vue.min.js"></script>
+		<script src="js/public.js"></script>
+		<script>
+			mui.init();
+		</script>
+	</body>
+
+</html>

@@ -51,7 +51,7 @@
 		</div>
 		<!--<header class="mui-bar-nav"></header>
 		<div class="mui-content"></div>-->
-		
+
 		<!--<div class="loadingPage">
 			<div class="loadingPage-middle">
 				<div class="spinner">
@@ -158,7 +158,7 @@
 			}
 			mui.plusReady(function() {
 				//webview切换栏
-				mui(".header-control-tab").on("tap", ".header-control-tab-nav", function() {
+				mui(".header-control-tab").on("tap", ".header-control-tab-nav", function(e) {				
 					var thisBtn = this;
 					var sliderBar = document.getElementsByClassName("head-control-slider")[0];
 					var strValue = this.getAttribute("data-transform");
@@ -176,7 +176,9 @@
 					if (webviewHead.children().length > 0) {
 						webviewHead.children()[0].close();
 					}
-					var webviewBody = plus.webview.create(webviewBodyURL, webviewBodyURL, fnSetSubpageStyle(213, 0));
+					console.log(e.target.innerText);
+//					if (e.target.innerText == )
+					var webviewBody = plus.webview.create(webviewBodyURL, webviewBodyURL, fnSetSubpageStyle(217, 0), {});
 					webviewBody.onloaded = function() {
 						thisBtn.classList.remove("loading");
 						setTimeout(function() {
@@ -206,6 +208,12 @@
 							webviewBody.back();
 						} else {
 							initHeadPage();
+							if (webviewBody.id == "secondlv/webview-my-collect.html" || webviewBody.id == "secondlv/webview-my-shopcar.html") {
+								if (mui.os.plus) {
+									var w = plus.webview.getWebviewById("webview-my.html");
+									mui.fire(w, "setNum", {});
+								}
+							}
 							oldBack();
 						}
 					});

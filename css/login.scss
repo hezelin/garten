@@ -255,7 +255,12 @@ input::-webkit-input-placeholder {
     vertical-align: middle;
 }
 .reset-item-input {
+    @include font-dpr(16px);
     border: none;
+}
+
+.reset-item-input:focus {
+    outline: none;
 }
 .resetAuth {
     width: auto !important;

@@ -26,7 +26,10 @@
 			"img/comment.png",
 			"img/praise.png",
 			"img/ispraise.png",
-			"img/head.jpg"
+			"img/head.jpg",
+			"js/mui.zoom.js",
+			"css/imgView.css",
+			"js/mui.previewimage.js"
 		],
 		"refer": [
 			"secondlv/webview-comu-knowledge-list.html",
@@ -246,7 +249,10 @@
 			"css/style.css",
 			"js/vue.min.js"
 		],
-		"refer": []
+		"refer": [
+			"thirdlv/webview-trade-detail.html",
+			"thirdlv/webview-shop.html"
+		]
 	},
 	"secondlv/webview-my-order.html": {
 		"resources": [
@@ -276,9 +282,13 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"css/style.css",
-			"img/plowLand.png"
+			"img/plowLand.png",
+			"js/vue.min.js",
+			"img/img3.png"
 		],
-		"refer": []
+		"refer": [
+			"thirdlv/webview-trade-detail.html"
+		]
 	},
 	"secondlv/webview-my-userbag.html": {
 		"resources": [
@@ -802,7 +812,10 @@
 			"img/head-search.png",
 			"js/vue.min.js",
 			"img/ispraise.png",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"js/mui.zoom.js",
+			"css/imgView.css",
+			"js/mui.previewimage.js"
 		],
 		"refer": [
 			"thirdlv/promulgateStative.html",
@@ -835,7 +848,8 @@
 		"refer": [
 			"thirdlv/webview-shop.html",
 			"thirdlv/webview-trade-order.html",
-			"login/login.html"
+			"login/login.html",
+			"secondlv/webview-my-shopcar.html"
 		]
 	},
 	"webview-map.html": {
@@ -1025,9 +1039,22 @@
 			"tiles/17/tile25641_5483.png",
 			"tiles/17/tile25643_5484.png",
 			"tiles/17/tile25641_5484.png",
-			"tiles/17/tile25642_5484.png"
+			"tiles/17/tile25642_5484.png",
+			"tiles/17/tile25646_5479.png",
+			"tiles/17/tile25646_5480.png",
+			"tiles/17/tile25646_5478.png",
+			"tiles/17/tile25645_5484.png",
+			"tiles/17/tile25644_5484.png",
+			"img/outLineMap.jpg",
+			"css/imgView.css",
+			"js/mui.zoom.js",
+			"js/mui.previewimage.js",
+			"img/outLineMapMin.jpg",
+			"data/mapPoint.js"
 		],
-		"refer": []
+		"refer": [
+			"secondlv/outLineMap.html"
+		]
 	},
 	"thirdlv/promulgateStative.html": {
 		"resources": [
@@ -1055,9 +1082,20 @@
 			"img/shop-introduce-bg-test.png",
 			"img/head-three-point.png",
 			"img/head-search.png",
-			"img/img.png"
+			"img/img.png",
+			"img/img2.png",
+			"js/flexible_css.debug.js",
+			"js/md5.min.js",
+			"js/public.js",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/vue.min.js"
 		],
-		"refer": []
+		"refer": [
+			"thirdlv/webview-trade-detail.html"
+		]
 	},
 	"thirdlv/webview-comu-knowledge-list.html": {
 		"resources": [
@@ -1098,7 +1136,10 @@
 			"js/mui.min.js",
 			"css/mui.min.css",
 			"fonts/mui.ttf",
-			"img/ispraise.png"
+			"img/ispraise.png",
+			"css/imgView.css",
+			"js/mui.zoom.js",
+			"js/mui.previewimage.js"
 		],
 		"refer": []
 	},
@@ -1122,7 +1163,17 @@
 		"resources": [
 			"img/img.png",
 			"img/shop-detail.png",
-			"img/TradeLogo.png"
+			"img/TradeLogo.png",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"img/img2.png",
+			"js/vue.min.js",
+			"js/flexible.debug.js",
+			"img/shop.png"
 		]
 	},
 	"webview-body.html": {
@@ -1138,7 +1189,33 @@
 	},
 	"secondlv/webview-search.html": {
 		"resources": [
-			"img/img.png"
+			"img/img.png",
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/head-search.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/flexible.debug.js"
+		]
+	},
+	"secondlv/outLineMap.html": {
+		"resources": [
+			"img/outLineMapMin.jpg",
+			"js/mui.min.js",
+			"js/public.js",
+			"secondlv/outLineMap2.html",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"secondlv/outLineMap2.html"
+		]
+	},
+	"secondlv/outLineMap2.html": {
+		"resources": [
+			"img/outLineMapMin.jpg"
 		]
 	}
 }

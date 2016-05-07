@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>商铺模板页</title>
+		<title>商铺页</title>
 		<meta http-equiv="Access-Control-Allow-Origin" content="*">
 		<meta http-equiv="content-security-policy">
 		<meta content="yes" name="apple-mobile-web-app-capable">
@@ -55,17 +55,17 @@
 		<div id="scroll1" class="mui-scroll-wrapper trade-scroll-position scroll-hide scroll-active">
 			<div class="mui-scroll" id="introduceScroll">
 				<!--商铺头部-->
-				<div class="shop-head-detail" style="background: url(../img/shop-introduce-bg-test.png); background-size: cover;">
-					<span class="shop-head-logo"></span><br />
-					<span class="shop-head-title">某某商家</span>
+				<div class="shop-head-detail" style="background: url({{shop_image}}); background-position; center; background-size: cover;">
+					<span class="shop-head-logo" style="background: url({{header_image}}); background-position; center; background-size: cover;"></span><br />
+					<span class="shop-head-title">{{name}}</span>
 					<span class="shop-map">
 				<span class="navigation-span"></span>
 					</span>
 				</div>
-				<div class="home-rent-detail-shop-detail white-bg">
+				<div class="home-rent-detail-shop-detail white-bg" v-cloak>
 					<div class="home-rent-detail-shop-detail-btn">
 						<div class="home-rent-detail-shop-detail-content">
-							<span class="home-rent-detail-shop-detail-content-num">38</span>
+							<span class="home-rent-detail-shop-detail-content-num">{{item_num}}</span>
 							<div>
 								<span class="shop-wares-span"></span>
 								<span class="home-rent-detail-shop-detail-content-name">商品</span>
@@ -74,7 +74,7 @@
 					</div>
 					<div class="home-rent-detail-shop-detail-btn">
 						<div class="home-rent-detail-shop-detail-content">
-							<span class="home-rent-detail-shop-detail-content-num">6</span>
+							<span class="home-rent-detail-shop-detail-content-num">{{evaluate_num}}</span>
 							<div>
 								<span class="shop-wares-assess-span"></span>
 								<span class="home-rent-detail-shop-detail-content-name">评价</span>
@@ -83,7 +83,7 @@
 					</div>
 					<div class="home-rent-detail-shop-detail-btn">
 						<div class="home-rent-detail-shop-detail-content">
-							<span class="home-rent-detail-shop-detail-content-num">3</span>
+							<span class="home-rent-detail-shop-detail-content-num">{{share_num}}</span>
 							<div>
 								<span class="shop-wares-share-span"></span>
 								<span class="home-rent-detail-shop-detail-content-name">分享</span>
@@ -92,7 +92,7 @@
 					</div>
 				</div>
 				<div class="shop-home-page-container">
-					<div class="shop-home-page-hot-container">
+					<!--<div class="shop-home-page-hot-container">
 						<div class="shop-home-page-hot-item">
 							<div class="shop-home-page-hot-title">
 								<span>认租玉米地<em>&nbsp;&yen; 250</em>/亩</span>
@@ -101,86 +101,59 @@
 							<span class="span-new"></span>
 							<span class="span-new-content">热</span>
 						</div>
-					</div>
-					<div class="shop-home-page-list-container">
+					</div>-->
+					<div class="shop-home-page-list-container" v-cloak>
 						<div class="shop-home-page-list-title">
-							认租商品
+							推荐
 						</div>
 						<div class="shop-home-page-list-content">
-							<div class="shop-home-page-list-item">
-								<img class="shop-home-page-list-item-img" src="../img/fruitTree.png" />
-								<span class="shop-home-page-list-item-title">桔子树</span>
-								<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>
-							</div>
-							<div class="shop-home-page-list-item">
-								<img class="shop-home-page-list-item-img" src="../img/plowLand2.png" />
-								<span class="shop-home-page-list-item-title">玉米地</span>
-								<span class="shop-home-page-list-item-price"><em>&yen;250</em>/亩</span>
-							</div>
-							<div class="shop-home-page-list-item">
-								<img class="shop-home-page-list-item-img" src="../img/plowLand.png" />
-								<span class="shop-home-page-list-item-title">田地</span>
-								<span class="shop-home-page-list-item-price"><em>&yen;200</em>/亩</span>
-							</div>
-							<div class="shop-home-page-list-item">
-								<img class="shop-home-page-list-item-img" src="../img/fruitTree.png" />
-								<span class="shop-home-page-list-item-title">桔子树</span>
-								<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>
-							</div>
-							<div class="shop-home-page-list-item">
-								<img class="shop-home-page-list-item-img" src="../img/plowLand.png" />
-								<span class="shop-home-page-list-item-title">田地</span>
-								<span class="shop-home-page-list-item-price"><em>&yen;200</em>/亩</span>
-							</div>
-							<div class="shop-home-page-list-item">
-								<img class="shop-home-page-list-item-img" src="../img/plowLand2.png" />
-								<span class="shop-home-page-list-item-title">玉米地</span>
-								<span class="shop-home-page-list-item-price"><em>&yen;250</em>/亩</span>
-							</div>
-
+							<div class="shop-home-page-list-item  {{($index + 5) % 3 ? '':'shop-home-page-list-item-middle'}}"  v-for="item in recommend" v-on:tap.stop="openDetail" data-id="{{item.id}}"> 								
+								<div class="shop-home-page-list-item-img" style="background: url({{item.cover}}); background-position; center; background-size: cover;"></div>
+								<span class="shop-home-page-list-item-title">{{item.title}}</span>
+								<!--<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>-->
+								<span class="shop-home-page-list-item-price"><em>&yen;{{item.price}}</em></span>
+							</div>						
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div id="scroll2" class="mui-scroll-wrapper trade-scroll-position scroll-hide">
+		<div id="scroll2" class="mui-scroll-wrapper trade-scroll-position scroll-hide" v-cloak>
 			<div class="mui-scroll" id="introduceScroll">
 				<div class="shop-home-page-list-container">
 					<div class="shop-home-page-list-title">
-						菜地认租
+						全部商品
 					</div>
 					<div class="shop-home-page-list-content">
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/fruitTree.png" />
-							<span class="shop-home-page-list-item-title">桔子树</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>
+						<div class="shop-home-page-list-content">
+							<div class="shop-home-page-list-item  {{($index + 5) % 3 ? '':'shop-home-page-list-item-middle'}}" v-for="item in data" v-on:tap.stop="openDetail" data-id="{{item.id}}">								
+								<div class="shop-home-page-list-item-img" style="background: url({{item.cover}}); background-position; center; background-size: cover;"></div>
+								<span class="shop-home-page-list-item-title">{{item.title}}</span>
+								<!--<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>-->
+								<span class="shop-home-page-list-item-price"><em>&yen;{{item.price}}</em></span>
+							</div>						
 						</div>
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/plowLand2.png" />
-							<span class="shop-home-page-list-item-title">玉米地</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;250</em>/亩</span>
-						</div>
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/plowLand.png" />
-							<span class="shop-home-page-list-item-title">田地</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;200</em>/亩</span>
-						</div>
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/fruitTree.png" />
-							<span class="shop-home-page-list-item-title">桔子树</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>
-						</div>
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/plowLand.png" />
-							<span class="shop-home-page-list-item-title">田地</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;200</em>/亩</span>
-						</div>
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/plowLand2.png" />
-							<span class="shop-home-page-list-item-title">玉米地</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;250</em>/亩</span>
-						</div>
-
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="scroll4" class="mui-scroll-wrapper trade-scroll-position scroll-hide" v-cloak>
+			<div class="mui-scroll" id="introduceScroll">
+				<div class="shop-introduce-container">
+					<!--<div class="shop-introduce-item">
+						<span class="shop-introduce-item-left shop-introduce-title">商家介绍：</span>
+					</div>-->
+					<div class="shop-introduce-item">
+						<span class="shop-introduce-item-left">店铺介绍</span>
+						<span class="shop-introduce-item-right">{{introduce}}</span>
+					</div>
+					<div class="shop-introduce-item">
+						<span class="shop-introduce-item-left">商家电话</span>
+						<span class="shop-introduce-item-right">{{tell}}</span>
+					</div>
+					<div class="shop-introduce-item">
+						<span class="shop-introduce-item-left">开店日期</span>
+						<span class="shop-introduce-item-right">{{created_at}}</span>
 					</div>
 				</div>
 			</div>
@@ -227,40 +200,23 @@
 				</div>
 			</div>
 		</div>
-		<div id="scroll4" class="mui-scroll-wrapper trade-scroll-position scroll-hide">
-			<div class="mui-scroll" id="introduceScroll">
-				<div class="shop-introduce-container">
-					<div class="shop-introduce-item">
-						<span class="shop-introduce-item-left shop-introduce-title">商家介绍：</span>
-					</div>
-					<div class="shop-introduce-item">
-						<span class="shop-introduce-item-left">店铺介绍</span>
-						<span class="shop-introduce-item-right">出租田地、果树和果园，多种认租方案，任君选择。详情请联系本店客服，随时在候</span>
-					</div>
-					<div class="shop-introduce-item">
-						<span class="shop-introduce-item-left">商家电话</span>
-						<span class="shop-introduce-item-right">400-622-6688</span>
-					</div>
-					<div class="shop-introduce-item">
-						<span class="shop-introduce-item-left">开店日期</span>
-						<span class="shop-introduce-item-right">2016年01月15日</span>
-					</div>
-				</div>
-			</div>
-		</div>
+
 		<!--商铺模板底部-->
 		<div class="shop-foot-container">
-			<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll1">
-				<span class="shop-foot-content">商品推荐</span>
+			<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll1" data-first="false">
+				<span class="shop-foot-content">店铺首页</span>
 			</div>
-			<a class="shop-foot-item" href="#bottomPopover">
-				<span class="shop-foot-content shop-foot-content-border">商品分类</span>
-			</a>
-			<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll4">
+			<!--<a class="shop-foot-item" href="#bottomPopover">-->
+			<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll2" data-first="true">
+				<span class="shop-foot-content shop-foot-content-border">所有商品</span>
+				<!--</a>-->
+			</div>
+			<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll4" data-first="false">
 				<span class="shop-foot-content">店铺简介</span>
 			</div>
 		</div>
-		<div id="bottomPopover" class="mui-popover mui-popover-bottom">
+
+		<!--<div id="bottomPopover" class="mui-popover mui-popover-bottom">
 			<div class="mui-popover-arrow"></div>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell switchScrollBtn" data-scroll="#scroll2">
@@ -270,7 +226,7 @@
 					<a href="#" class="fixed-btn-item">果树</a>
 				</li>
 			</ul>
-		</div>
+		</div>-->
 
 		<!--<div class="loadingPage">
 			<div class="loadingPage-middle">
@@ -289,8 +245,10 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
+			var productListData = null;
 			// 阻尼系数
 			var deceleration = mui.os.ios ? 0.003 : 0.0009;
 			mui('.mui-scroll-wrapper').scroll({
@@ -310,24 +268,132 @@
 				}
 			});
 			document.querySelector("#shopSearch").addEventListener("blur", function() {
-					if (this.value == "") {
-						this.value = "搜索店铺内商品";
-					}
-				})
-				// 处理切换
+				if (this.value == "") {
+					this.value = "搜索店铺内商品";
+				}
+			});
+			// 处理切换
 			mui('body').on('tap', '.switchScrollBtn', function() {
-				// 获取数据
-				//				if (this.getAttribute("data-first") == "true") {
-				//					handle(this);
-				//				}
 				// 更换滚动区域
 				var elem = document.querySelector(".scroll-active").classList.remove("scroll-active");
-				document.querySelector(this.getAttribute("data-scroll")).classList.add("scroll-active");
-				// 更改按钮状态
-				//				if (!this.classList.contains("trade-header-nav-active")) {
-				//					document.querySelector(".trade-header-nav-active").classList.remove("trade-header-nav-active");
-				//					this.classList.add("trade-header-nav-active");
-				//				}
+				var thisScroll = this.getAttribute("data-scroll");
+				var first = this.getAttribute("data-first");
+				document.querySelector(thisScroll).classList.add("scroll-active");
+				if (first == "true") {
+					// 加载list
+					if (productListData) {
+						initProductVue(productListData);
+						this.setAttribute("data-first", "false");
+					}					
+				}
+			});
+
+			function initFirstVue(resData) {
+				new Vue({
+					el: "#scroll1",
+					data: resData,
+					methods: {
+						openDetail: function(event) {
+							handleOpenDetail(event);
+						}
+					}
+				});
+				new Vue({
+					el: "#scroll4",
+					data: resData
+				})
+			};
+	
+			function initProductVue(resData) {
+				new Vue({
+					el: "#scroll2",
+					data: resData,
+					methods: {
+						openDetail: function(event) {
+							handleOpenDetail(event);
+						}
+					}
+				});
+			};
+
+			function handleOpenDetail(event) {
+				var thisBtn = event.currentTarget;
+				var _id = thisBtn.getAttribute("data-id");
+				mui.openWindow({
+					url: "webview-trade-detail.html",
+					styles: fnSetSubpageStyle(0, 0),
+					createNew: false,
+					extras: {
+						itemID: _id
+					},
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: true
+					}
+				});
+			};
+
+			function initShopFirstPage(id) {
+				// 初始化首页
+				return new Promise(function(resolve, reject) {
+					var URL = "http://farm.rrzuji.com/v1/shop/index?" + fnCreateSign() + "&id=" + id;
+					mui.ajax(URL, {
+						type: "GET",
+						dataType: "JSON",
+						success: function(res) {
+							console.log("商铺首页" + res);
+							res = JSON.parse(res);
+							if (res.success) {
+								initFirstVue(res.data);
+								// 获取所有商品
+								for (var cId in res.data.category) {
+									resolve({
+										cId: cId,
+										iId: id
+									});
+									break;
+								}								
+							}
+						},
+						error: function(xhr) {
+							reject("error");
+							ajaxError(xhr);
+						}
+					});
+				});
+			};
+			
+			
+			function initTradeList(id, categoryId) {
+				// 初始化商品页列表
+				var URL = "http://farm.rrzuji.com/v1/shop/item?" + fnCreateSign() + "&shop_id=" + id + "&category_id=4";
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log("商铺商品" + res);
+						res = JSON.parse(res);
+						if (res.success) {
+							productListData = res;
+						}
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				});
+			};
+			mui.plusReady(function() {
+				var w = plus.webview.currentWebview();
+				var id = w.shopId;
+				if (id) {
+					initShopFirstPage(id).then(function(e) {
+						initTradeList(e.iId, e.cId);
+					});
+				}
 			});
 		</script>
 	</body>

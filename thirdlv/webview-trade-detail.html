@@ -30,6 +30,10 @@
 			.scroll-active {
 				display: block;
 			}
+			
+			.farm-display-none {
+				display: none;
+			}
 		</style>
 	</head>
 
@@ -157,14 +161,14 @@
 			<div class="trade-foot-control-btn" id="addToShopCar">
 				<span class="trade-foot-control-name">加入购物车</span>
 			</div>
-			<div class="trade-foot-control-btn bg-color-green" id="openOrderForm">
+			<div class="trade-foot-control-btn bg-color-green" id="buyNow">
 				<span class="trade-foot-control-name">立即购买</span>
 			</div>
 		</div>
 		<!--购买div，动画形式弹出-->
 		<div id="buyDiv" class="mutual-div">
 			<div class="buyDiv-title">
-				<span class="buyDiv-title-img" style="background: url({{images[0]}}); background-size: cover;"></span>
+				<span class="buyDiv-title-img" style="background: url({{images[0]}}); background-size: cover; background-position: center;"></span>
 				<span class="buyDiv-message">					
 					<span class="home-rent-detail-money">
 						<em>&yen;&nbsp;&nbsp;</em><label id="buyDiv-message-price">{{price}}-{{high_price}}</label>
@@ -195,7 +199,8 @@
 				</div>
 			</div>
 			<div class="buyDiv-btn">
-				<button id="btnPostBuy">加入购物车</button>
+				<button id="btnAdd" class="buyDiv-bottom-btn" style="display: none;">加入购物车</button>
+				<button id="btnBuy" class="buyDiv-bottom-btn" style="display: none;">完成</button>
 			</div>
 		</div>
 		<div class="my-toast" id="myToast">
@@ -215,12 +220,32 @@
 				indicators: false, // 是否显示滚动条
 				deceleration: deceleration
 			});
-			// 商品id
+			// 商品id，页面打开时赋值
 			var item_id = "";
-			// 商店名
+			// 用户id，页面打开时从本地获取
+			var userId = "";
+			// 商店名，获取数据时赋值
 			var shopName = "";
-			// 商店id
+			// 商店id,获取数据时赋值
 			var shopId = "";
+			// 商店图,获取数据时赋值
+			var shopImg = "";
+			// 商品名,获取数据时赋值
+			var itemName = "";
+			// 商品图,获取数据时赋值
+			var itemImg = "";
+			
+			var old_back = mui.back;
+			mui.back = function() {
+				if (mui.os.plus) {
+					var w = plus.webview.currentWebview();
+					if (w.id == "TradeDetail") {
+						var w2 = plus.webview.getWebviewById("../secondlv/webview-my-shopcar.html");
+						mui.fire(w2, "refreshShopCar", {});
+					}
+				}
+				old_back();
+			};
 			var detailVue = new Vue({
 				el: "#detailScroll"
 			});
@@ -248,7 +273,9 @@
 					el: "#buyDiv",
 					data: resData,
 					methods: {
+						// 点击套餐时
 						setBuyMessage: function(event) {
+							// 选择套餐
 							var itemElem = event.currentTarget;
 							var oldElem = document.querySelector(".buyDiv-items-active");
 							if (oldElem) {
@@ -263,7 +290,15 @@
 					}
 				})
 				document.querySelector("#addToShopCar").addEventListener("tap", function() {
+					var id = "#buyDiv";					
+					document.getElementById("btnAdd").style.display = "inline-block";
+					document.getElementById("btnBuy").style.display = "none"; 
+					fnOpenTargetDiv(id);
+				});
+				document.querySelector("#buyNow").addEventListener("tap", function() {
 					var id = "#buyDiv";
+					document.getElementById("btnAdd").style.display = "none";
+					document.getElementById("btnBuy").style.display = "inline-block"; 
 					fnOpenTargetDiv(id);
 				});
 				document.querySelector("#buyDivClose").addEventListener("tap", function() {
@@ -288,29 +323,6 @@
 					//					choicePrice.innerText = parseFloat(choicePrice.innerText) + basePrice;
 				});
 				// 数字选择器end	
-				// 确认订单，打开订单页
-				document.getElementById("openOrderForm").addEventListener("tap", function() {
-					if (!userLoginStatus()) {
-						openLogin(this, true);
-						return;
-					}
-					mui.openWindow({
-						url: "webview-trade-order.html",
-						styles: fnSetSubpageStyle(0, 0),
-						createNew: false,
-						extras: {
-							//							itemID: _id
-						},
-						show: {
-							autoShow: true,
-							aniShow: "pop-in",
-							duration: 300
-						},
-						waiting: {
-							autoShow: true
-						}
-					});
-				});
 			};
 
 			function initSlider() {
@@ -359,6 +371,9 @@
 							btn.setAttribute("data-first", "false");
 							shopId = res.data.shop_id;
 							shopName = res.data.shop_name;
+							shopImg = res.data.shop_image;
+							itemName = res.data.title;
+							itemImg = res.data.images[0];
 							detailVue.$data = res.data;
 							detailVue.$nextTick(function() {
 								// DOM 现在更新了
@@ -411,7 +426,7 @@
 					styles: fnSetSubpageStyle(0, 0),
 					createNew: false,
 					extras: {
-						//							itemID: _id
+						shopId: shopId
 					},
 					show: {
 						autoShow: true,
@@ -446,7 +461,6 @@
 
 			function handleCollect(thisBtn) {
 				var token = plus.storage.getItem("tokenValue");
-				var userId = plus.storage.getItem("userID");
 				var URL = "http://farm.rrzuji.com/v1/collect/create?" + fnCreateSign() + "&access-token=" + token;
 				mui.ajax(URL, {
 					type: "POST",
@@ -458,54 +472,170 @@
 						shop_name: shopName
 					},
 					success: function(res) {
+						console.log(res);
 						res = JSON.parse(res);
 						if (res.success) {
 							console.log("收藏成功");
 							thisBtn.removeAttribute("data-send");
 							thisBtn.setAttribute("data-isCollect", "true");
+							thisBtn.setAttribute("data-list-id", res.data.id);
 							var elem = thisBtn.querySelector(".trade-foot-control-small-btn-logo");
 							elem.style.background = "url(../img/isCollect.png)";
 							elem.style.backgroundSize = "cover";
-							thisBtn.querySelector(".trade-foot-control-small-btn-title").innerText = "已收藏";							
+							thisBtn.querySelector(".trade-foot-control-small-btn-title").innerText = "已收藏";
 						}
 					},
 					error: function(xhr) {
+						thisBtn.removeAttribute("data-send");
 						ajaxError(xhr);
 					}
 				});
 			};
 
-			function handleCancelCollect(thisBtn) {		
+			function handleCancelCollect(thisBtn) {
+				var id = thisBtn.getAttribute("data-list-id");
 				var token = plus.storage.getItem("tokenValue");
-				var URL = "http://farm.rrzuji.com/v1/collect/delete?" + fnCreateSign() + "&access-token=" + token + "&id=" + item_id;
+				var URL = "http://farm.rrzuji.com/v1/collect/delete?" + fnCreateSign() + "&access-token=" + token + "&id=" + id;
 				mui.ajax(URL, {
 					type: "POST",
-					dataType: "JSON",						
+					dataType: "JSON",
 					success: function(res) {
 						console.log(res);
-						res = JSON.parse(res);						
-						if (res.success) {	
+						res = JSON.parse(res);
+						if (res.success) {
 							console.log("取消收藏成功");
 							thisBtn.removeAttribute("data-send");
 							thisBtn.setAttribute("data-isCollect", "false");
 							var elem = thisBtn.querySelector(".trade-foot-control-small-btn-logo");
 							elem.style.background = "url(../img/collect.png)";
 							elem.style.backgroundSize = "cover";
-							thisBtn.querySelector(".trade-foot-control-small-btn-title").innerText = "收藏";	
+							thisBtn.querySelector(".trade-foot-control-small-btn-title").innerText = "收藏";
 						}
 					},
 					error: function(xhr) {
+						thisBtn.removeAttribute("data-send");
 						ajaxError(xhr);
 					}
 				});
 			};
 			// 打开购物车 
 			document.querySelector(".header-control-right-btn").addEventListener("tap", function() {
-				console.log("打开购物车");
+				if (NetWorkStatus()) {
+					return;
+				}
+				if (!userLoginStatus()) {
+					openLogin(this, true);
+					return;
+				}
+				fnLoadPage(this, {
+					url: "../secondlv/webview-my-shopcar.html",
+					top: 98,
+					bottom: 0
+				}, {
+					title: "购物车",
+					rightBtn: "<span class='header-control-right-btn-span' ></span>"
+				});
+			});
+			// 添加到购物车
+			document.getElementById("btnAdd").addEventListener("tap", function(e) {
+				if (NetWorkStatus()) {
+					return;
+				}
+				if (!userLoginStatus()) {
+					openLogin(this, true);
+					return;
+				}
+				var elem = document.querySelector(".buyDiv-items-active");
+				var thisBtn = e.currentTarget;
+				if (!elem) {
+					mui.toast("请选择套餐");
+					return;
+				}
+				if (thisBtn.getAttribute("data-send")) {
+					return;
+				}
+				thisBtn.setAttribute("data-send", "true");			
+				var standardId = elem.getAttribute("data-itemID");
+				var standardName = elem.innerText;
+				var itemNums = document.querySelector(".num-choice-mid").innerText;
+				console.log(standardId);
+				console.log(standardName);
+				console.log(itemNums);
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/cart/create?" + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "POST",
+					dataType: "JSON",
+					data: {
+						user_id: userId,
+						shop_id: shopId,
+						shop_name: shopName,
+						item_id: item_id,
+						item_nums: itemNums,
+						item_standard_id: standardId,
+						item_standard_name: standardName
+					},
+					success: function(res) {
+						console.log("购物车商品添加成功" + res);
+						res = JSON.parse(res);
+						if (res.success) {
+							mui.toast("商品已添加到购物车~");
+							// 关闭弹出层
+							fnCloseShade("#buyDiv");
+						}
+						thisBtn.removeAttribute("data-send");
+					},
+					error: function(xhr) {
+						thisBtn.removeAttribute("data-send");
+						ajaxError(xhr);
+					}
+				});
+			});
+			// 点击完成
+			document.getElementById("btnBuy").addEventListener("tap", function() {
+				// 需要传递给订单页的内容
+				// 商铺名shopName，商铺图shopImg
+				// 商品图地址itemImg，商品名itemName, 套餐standardName，单价itemPrice，数量itemNums				
+				if (!userLoginStatus()) {
+					openLogin(this, true);
+					return;
+				}
+				var elem = document.querySelector(".buyDiv-items-active");
+				if (!elem) {
+					mui.toast("请选择套餐");
+					return;
+				}
+//				var standardId = elem.getAttribute("data-itemID");
+				var itemPrice = elem.getAttribute("data-price");
+				var standardName = elem.innerText;
+				var itemNums = document.querySelector(".num-choice-mid").innerText;
+				mui.openWindow({
+					url: "webview-trade-order.html",
+					styles: fnSetSubpageStyle(0, 0),
+					createNew: false,
+					extras: {
+//						createData: {
+//							data: [
+//								[{
+//									
+//								}],	
+//							]
+//						}
+					},
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: true
+					}
+				});
 			});
 			mui.plusReady(function() {
 				item_id = plus.webview.currentWebview().itemID
-					// 添加tab切换监听
+				userId = plus.storage.getItem("userID");
+				// 添加tab切换监听
 				initSwitchTab();
 				// 触发第一个tab 切换事件
 				mui.trigger(document.getElementById('initScroll'), "tap");

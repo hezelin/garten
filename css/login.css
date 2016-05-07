@@ -655,7 +655,15 @@ input::-webkit-input-placeholder {
   vertical-align: middle; }
 
 .reset-item-input {
+  font-size: 16px;
   border: none; }
+  [data-dpr="2"] .reset-item-input {
+    font-size: 32px; }
+  [data-dpr="3"] .reset-item-input {
+    font-size: 48px; }
+
+.reset-item-input:focus {
+  outline: none; }
 
 .resetAuth {
   width: auto !important;

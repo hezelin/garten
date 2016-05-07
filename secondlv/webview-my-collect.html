@@ -23,13 +23,15 @@
 	<body>
 		<div id="collectNull" v-cloak>收藏夹为空</div>
 		<div id="vueContainer" v-cloak>
-			<div class="my-trader-item" v-for="item in data">
-				<div class="my-trader-title">
+			<div class="my-trader-item" v-for="item in data.items" v-on:tap="openTradeDetail" data-itemID="{{item.item_id}}">
+				<div class="my-trader-title" data-shop-id="{{item.shop_id}}" v-on:tap.stop="openShop">
 					<div class="my-trader-title-logo">
 						<span class="shop-span"></span>
 					</div>
 					<div class="my-trader-title-name">{{item.shop_name}}<span class="shop-arrow-span"></span></div>
-					<div class="my-trader-title-right my-collect-time" v-on:tap.stop="deleteCollect" data-id="{{item.id}}" data-index="{{$index}}">删除</div>
+					<div class="my-trader-title-right my-collect-time" v-on:tap.stop="deleteCollect" data-id="{{item.id}}" data-index="{{$index}}">
+						<span class="shop-delete-span"></span>
+					</div>
 				</div>
 				<div class="my-trader-content">
 					<div class="my-trader-content-img">
@@ -54,6 +56,14 @@
 		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
+			var old_back = mui.back;
+			mui.back = function() {
+				if (mui.os.plus) {
+					var w = plus.webview.getWebviewById("webview-my.html");
+					mui.fire(w, "setNum", {});
+				}
+				old_back();
+			};
 			var vueObj = null;
 			var collectData = null;
 			mui.plusReady(function() {
@@ -63,17 +73,38 @@
 					type: "GET",
 					dataType: "JSON",
 					success: function(res) {
-						console.log(res);
+						console.log("收藏列表" + res);
 						res = JSON.parse(res);
 						if (res.success) {
-							console.log("获取完毕");
-							if (res.data.length == 0) {
+							if (res.data.items.length == 0) {
 								document.querySelector("#collectNull").removeAttribute("v-cloak");
 							}
 							vueObj = new Vue({
 								el: "#vueContainer",
 								data: res,
 								methods: {
+									openTradeDetail: function(event) {
+										handleOpenTradeDetail(event);
+									},
+									openShop: function(event) {
+										var shopId = event.currentTarget.getAttribute("data-shop-id");
+										mui.openWindow({
+											url: "../thirdlv/webview-shop.html",
+											styles: fnSetSubpageStyle(0, 0),
+											createNew: false,
+											extras: {
+												shopId: shopId
+											},
+											show: {
+												autoShow: true,
+												aniShow: "pop-in",
+												duration: 300
+											},
+											waiting: {
+												autoShow: true
+											}
+										});
+									},
 									deleteCollect: function(event) {
 										handleDeleteCollect(event);
 									}
@@ -100,12 +131,32 @@
 						console.log(res);
 						res = JSON.parse(res);
 						if (res.success) {
-							console.log("删除收藏成功");							
-							vueObj.data.$remove(vueObj.data[index]);
+							console.log("删除收藏成功");
+							vueObj.data.items.$remove(vueObj.data.items[index]);
 						}
 					},
 					error: function(xhr) {
 						ajaxError(xhr);
+					}
+				});
+			}
+
+			function handleOpenTradeDetail(event) {
+				var thisBtn = event.currentTarget;
+				mui.openWindow({
+					url: "../thirdlv/webview-trade-detail.html",
+					styles: fnSetSubpageStyle(0, 0),
+					createNew: false,
+					extras: {
+						itemID: thisBtn.getAttribute("data-itemID")
+					},
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: false
 					}
 				});
 			}

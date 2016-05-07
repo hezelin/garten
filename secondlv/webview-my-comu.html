@@ -12,6 +12,7 @@
 		<script src="../js/flexible.debug.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/imgView.css" rel="stylesheet" />
 		<style>
 			.mui-pull-top-tips {
 				position: absolute;
@@ -143,7 +144,7 @@
 									<div class="bounce3"></div>
 								</div>
 								<div class="comu-list-tab-container" id="shareList">
-									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}">
+									<div class="comu-content" v-for="item in data.items" data-id="{{item.id}}" v-cloak>
 										<div class="comu-content-main">
 											<div class="comu-content-main-title">
 												<div class="comu-content-main-user" v-on:tap.stop="openUserDetail" data-user-id="{{item.user_id}}">
@@ -156,18 +157,20 @@
 													<span class="mui-icon mui-icon-trash"></span>
 												</div>
 											</div>
-											<div class="comu-content-main-article">
+											<div class="comu-content-main-article"  v-cloak v-on:tap="openComuDetail" data-id="{{item.id}}">
 												{{item.text}}
 											</div>
 											<div class="comu-content-main-photo">
-												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>
+												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: cover;">													
+													<img src="{{img}}"  style="display: block; width: 80px; height: 80px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="{{item.id}}" />
+												</span>												
 											</div>
 											<div class="comu-comment-control">
 												<div class="comu-comment-control-left" v-on:tap.stop="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
 													<span class="{{item.is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>
 													<span class="comu-comment-control-text">{{item.like_num}}</span>
 												</div>
-												<div class="comu-comment-control-right">
+												<div class="comu-comment-control-right" v-on:tap="openComuDetail" data-id="{{item.id}}">
 													<span class="comu-comment-control-logo-comu"></span>
 													<span class="comu-comment-control-text">{{item.comment_num}}</span>
 												</div>
@@ -187,7 +190,7 @@
 									<div class="bounce3"></div>
 								</div>
 								<div class="comu-list-tab-container" id="questionList">
-									<div class="comu-content" v-cloak v-on:tap="openComuDetail" v-for="item in data.items" data-id="{{item.id}}">
+									<div class="comu-content" v-cloak v-for="item in data.items" data-id="{{item.id}}">
 										<div class="comu-content-main">
 											<div class="comu-content-main-title">
 												<div class="comu-content-main-user" v-on:tap.stop="openUserDetail" data-user-id="{{item.user_id}}">
@@ -200,18 +203,21 @@
 													<span class="mui-icon mui-icon-trash"></span>
 												</div>
 											</div>
-											<div class="comu-content-main-article">
+											<div class="comu-content-main-article" v-on:tap="openComuDetail" data-id="{{item.id}}" v-cloak>
 												{{item.text}}
 											</div>
 											<div class="comu-content-main-photo">
-												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>
+												<!--<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: cover;"></span>-->
+												<span class="comu-content-main-photo-list" v-for="img in item.images" style="background: url({{img}}); background-repeat: no-repeat;background-position: center; background-size: cover;">													
+													<img src="{{img}}"  style="display: block; width: 80px; height: 80px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="{{item.id}}" />
+												</span>												
 											</div>
 											<div class="comu-comment-control">
 												<div class="comu-comment-control-left" v-on:tap.stop="tapPraise" data-id="{{item.id}}" data-index="{{$index}}" data-islike="{{item.is_like.toString()}}">
 													<span class="{{item.is_like?'comu-comment-praise-active':'comu-comment-praise-default'}}"></span>
 													<span class="comu-comment-control-text">{{item.like_num}}</span>
 												</div>
-												<div class="comu-comment-control-right">
+												<div class="comu-comment-control-right" v-on:tap="openComuDetail" data-id="{{item.id}}">
 													<span class="comu-comment-control-logo-comu"></span>
 													<span class="comu-comment-control-text">{{item.comment_num}}</span>
 												</div>
@@ -237,6 +243,8 @@
 		<script src="../js/vue.min.js"></script>
 		<script src="../js/mui.pullToRefresh.js"></script>
 		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<script src="../js/mui.zoom.js"></script>
+		<script src="../js/mui.previewimage.js"></script>
 		<script>
 			// 系统页面初始化
 			mui.init();
@@ -325,6 +333,9 @@
 								if (thisObj.first == "true") {
 									thisObj.dealFirst(res);
 									thisObj.itemData = res.data.items;
+									thisObj.vueObj.$nextTick(function() {
+										mui.previewImage();
+									});
 								} else {
 									// 不是第一次
 									if (thisObj.refreshSign == "up") {
@@ -573,7 +584,6 @@
 							break;
 						}
 					}
-					
 				}
 			};
 			// 存放分享、问答两个tab对象。
@@ -611,7 +621,7 @@
 				}
 			});
 			// 在详情页点赞评论触发 
-			window.addEventListener("handleDetailPraiseAndComment", function(e) {	
+			window.addEventListener("handleDetailPraiseAndComment", function(e) {
 				var type = e.detail.type;
 				if (type == 1 && objArray[0]) {
 					objArray[0].handleDetailPraiseAndComment(e.detail.data);

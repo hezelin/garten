@@ -156,8 +156,9 @@
 						if (xhr.readyState == 4) {
 							if (xhr.status == 200) {
 								console.log(xhr.responseText);
+								console.log(res);
 								res = JSON.parse(xhr.responseText);
-				
+								
 								if (!res.success) {
 									mui.toast("无法连接服务器，发布失败，请检查网络连接");
 									nwaiting.close();

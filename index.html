@@ -76,7 +76,7 @@
 				var btn = document.getElementById("home");
 				mui.trigger(btn, "tap");
 			});
-			mui.plusReady(function() {
+			mui.plusReady(function() {			
 				// 仅支持竖屏显示
 				plus.screen.lockOrientation("portrait-primary");
 				// 打开app时马上更新本地储存区
@@ -135,12 +135,12 @@
 						};
 					} else {
 						var sub;
+						
 						if (subpages[i] == "webview-map.html") {
 							sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 0));
 						} else {
-							sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));				
+							sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));
 						}
-															
 						sub.onloaded = function() {
 							loadCount--;
 							fnCloseSplashScreen(loadCount);

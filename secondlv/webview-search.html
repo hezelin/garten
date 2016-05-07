@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>商铺模板页</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+			
+			[v-cloak] {
+				display: none;
+			}
+			
+			.scroll-hide {
+				display: none;
+			}
+			
+			.scroll-active {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class="header-control-left-btn-span white-arrow-big-span"></span>
+			</div>
+			<div>
+				<div class="shop-search-container">
+					<div class="shop-search-div-left">
+						<input type="" name="" id="shopSearch" value="搜索" />
+					</div>
+					<div class="shop-search-div-right">
+						<span class="search-span"></span>
+					</div>
+				</div>
+			</div>
+			<div class="header-control-right-btn" style="width: 50px;">
+				<!--<span class="header-control-right-btn-span white-three-point-span"></span>-->
+			</div>
+		</div>
+		
+
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script>
+			mui.init();
+		</script>
+	</body>
+
+</html>

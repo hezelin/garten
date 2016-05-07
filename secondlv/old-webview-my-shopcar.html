@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的购物车未合并版本</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="collectNull" v-cloak>购物车为空</div>
+		<div id="vueContainer">
+			<div class="my-trader-item" v-for="item in data.items" v-if="item.item_price != 0" v-cloak id="item{{$index}}" data-listId="{{item.id}}" data-userId="{{item.user_id}}" data-shopId="{{item.shop_id}}" data-shopName="{{item.shop_name}}" data-itemId="{{item.item_id}}">
+				<div class="my-trader-title">
+					<div class="my-trader-title-logo" data-shop-id="{{item.shop_id}}" v-on:tap.stop="openShop">
+						<span class="shop-span"></span>
+					</div>
+					<div class="my-trader-title-name"><span>{{item.shop_name}}</span><span class="shop-arrow-span"></span></div>
+					<div class="my-trader-title-right" v-on:tap.stop="deleteTrade" data-id="{{item.id}}" data-index="{{$index}}">
+						<span class="shop-delete-span"></span>
+					</div>
+				</div>
+				<div class="my-trader-content my-order-content" data-itemID="{{item.item_id}}">
+					<div class="my-shop-car-check" v-on:tap.stop="checkOnTap">
+						<span class="radio-check-span radio-check-item" data-normal="{{item.item_price}}"></span>
+					</div>
+					<div class="my-trader-content-img" v-on:tap="openTradeDetail" data-itemId="{{item.item_id}}">
+						<div class="my-trader-content-img-hold" style="background: url({{item.item_cover}}); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
+					</div>
+					<div class="my-trader-content-detail" v-on:tap="openTradeDetail" data-itemId="{{item.item_id}}">
+						<div class="my-trader-content-detail-container ">
+							<span class="collect-order-trader-name ">{{item.item_title}}</span>
+							<span class="collect-order-trader-detail ">{{item.item_standard_name}}</span>
+							<span class="collect-order-trader-money ">&nbsp;&yen;&nbsp;<em>{{item.item_price}}</em></span>
+							<div class="num-choice shop-car-num-choice" data-normal="{{item.item_price}}">
+								<span class="num-choice-left num-choice-item" v-on:tap.stop="choiceLeft" data-index="{{$index}}">-</span>
+								<span class="num-choice-mid num-choice-item" v-on:tap.stop="">{{item.item_nums}}</span>
+								<span class="num-choice-right num-choice-item" v-on:tap.stop="choiceRight" data-index="{{$index}}">+</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="head-holder"></div>
+		<div id="head-holder"></div>
+		<div class="foot-control-bar">
+			<div class="my-shop-car-check" id="checkAll">
+				<span class="radio-check-span set-middle" id="checkAllCheck"></span>
+				<label class="set-middle">&nbsp;全选</label>
+			</div>
+			<div class="my-shop-car-pay">
+				<span>
+					合计&nbsp;
+					<em >&yen;</em>
+					<em class="allCount">0</em>
+				</span>&nbsp;
+			</div>
+			<div class="my-shop-car-pay-button my-shop-car-pay">
+				<button>结算</button>
+			</div>
+		</div>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="../js/mui.min.js "></script>
+		<script src="../js/md5.min.js "></script>
+		<script src="../js/public.js "></script>
+		<script src="../js/vue.min.js"></script>
+		<script>
+			mui.init();
+			var old_back = mui.back;
+			mui.back = function() {
+				if (mui.os.plus) {
+					var w = plus.webview.getWebviewById("webview-my.html");
+					mui.fire(w, "setNum", {});
+				}
+				old_back();
+			};
+			var vueObj = null;
+			var userId = "";
+			var shopId = "";
+			var shopName = "";
+			var itemId = "";
+			var listId = "";
+			// 单选按钮控制
+			var checkGroup = document.getElementsByClassName("radio-check-item"); // 列表单选按钮
+			var checkAllCheck = document.getElementById("checkAllCheck"); // 全选单选按钮
+			// 选择所有单选
+			function fnCheckAll() {
+				for (var i = 0; i < checkGroup.length; i++) {
+					checkGroup[i].classList.add("radio-check-active");
+				}
+			}
+			// 取消选择所有单选
+			function fnCancelCheckAll() {
+				for (var i = 0; i < checkGroup.length; i++) {
+					checkGroup[i].classList.remove("radio-check-active");
+				}
+			}
+			document.getElementById("checkAll").addEventListener("tap", function() {
+				if (checkAllCheck.classList.contains("radio-check-active")) {
+					checkAllCheck.classList.remove("radio-check-active");
+					fnCancelCheckAll();
+				} else {
+					checkAllCheck.classList.add("radio-check-active");
+					fnCheckAll();
+				}
+			});
+			mui(".my-shop-car-check").on("tap", ".radio-check-item", function() {
+				// 切换本按钮状态
+				fnToggleElemClass(this, "radio-check-active");
+				var chk = document.getElementsByClassName("radio-check-item");
+				var chk2 = document.getElementsByClassName("radio-check-active");
+				var tamp = 0;
+				if (checkAllCheck.classList.contains("radio-check-active")) {
+					tamp = 1;
+				}
+				if (chk.length != chk2.length - tamp) {
+					checkAllCheck.classList.remove("radio-check-active");
+				} else {
+					checkAllCheck.classList.add("radio-check-active");
+				}
+			});
+			// 单选按钮控制end
+		
+			function initVue(res) {
+				vueObj = new Vue({
+					el: "#vueContainer",
+					data: res,
+					methods: {
+						choiceLeft: function(event) {
+							handleChoiceLeft(event);
+						},
+						choiceRight: function(event) {
+							handleChoiceRight(event);
+						},
+						checkOnTap: function(event) {
+							// 点击列表项的单选按钮
+							fnToggleElemClass(event.currentTarget.querySelector(".radio-check-span"), "radio-check-active");
+						},
+						openTradeDetail: function(event) {
+							handleOpenTradeDetail(event);
+						},
+						openShop: function(event) {
+							handleOpenShop(event);
+						},
+						deleteTrade: function(event) {
+							// 删除商品
+							handleDeleteTrade(event);
+						}
+					}
+				});
+			};
+
+			function handleChoiceLeft(event) {
+				var chocieMID = event.currentTarget.parentNode.querySelector(".num-choice-mid");
+				var val = chocieMID.innerText;
+				if (val == "1") {
+					return;
+				}
+				var newNum = parseInt(val) - 1;
+				chocieMID.innerText = newNum;
+				updateArguments(event.currentTarget);
+				setNumOfShopCar(newNum);
+			}
+
+			function handleChoiceRight(event) {
+				var chocieMID = event.currentTarget.parentNode.querySelector(".num-choice-mid");
+				var newNum = parseInt(chocieMID.innerText) + 1;
+				chocieMID.innerText = newNum;
+				updateArguments(event.currentTarget);
+				setNumOfShopCar(newNum);
+			}
+			// 修改购物车数量
+			function setNumOfShopCar(num) {
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/cart/update?" + fnCreateSign() + "&access-token=" + token + "&id=" + listId;
+				mui.ajax(URL, {
+					type: "POST",
+					dataType: "JSON",
+					data: {
+						user_id: userId,
+						shop_id: shopId,
+						shop_name: shopName,
+						item_id: itemId,
+						item_nums: num
+					},
+					success: function(res) {
+						console.log("修改购物车数量成功" + res);
+						res = JSON.parse(res);
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				})
+			}
+
+			function updateArguments(thisBtn) {
+				var index = thisBtn.getAttribute("data-index");
+				var elem = document.getElementById("item" + index);
+				listId = elem.getAttribute("data-listId");
+				userId = elem.getAttribute("data-userId");
+				shopId = elem.getAttribute("data-shopId");
+				shopName = elem.getAttribute("data-shopName");
+				itemId = elem.getAttribute("data-itemId");
+			}
+
+			function handleDeleteTrade(event) {
+				var thisBtn = event.currentTarget;
+				var token = plus.storage.getItem("tokenValue");
+				var id = thisBtn.getAttribute("data-id");
+				var index = parseInt(thisBtn.getAttribute("data-index"));
+				var URL = "http://farm.rrzuji.com/v1/cart/delete?" + fnCreateSign() + "&access-token=" + token + "&id=" + id;
+				mui.ajax(URL, {
+					type: "POST",
+					dataType: "JSON",
+					success: function(res) {
+						console.log("删除购物车成功" + res);
+						res = JSON.parse(res);
+						if (res.success) {
+							vueObj.data.$remove(vueObj.data[index]);
+						}
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				});
+			};
+
+			function handleOpenShop(event) {
+				console.log("打开店铺");
+			};
+
+			function handleOpenTradeDetail(event) {
+				var thisBtn = event.currentTarget;
+				mui.openWindow({
+					url: "../thirdlv/webview-trade-detail.html",
+					id: "TradeDetail",
+					styles: fnSetSubpageStyle(0, 0),
+					createNew: false,
+					extras: {
+						itemID: thisBtn.getAttribute("data-itemID")
+					},
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			};
+
+			function getData(func) {
+				// 获取购物车内容
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/cart/index?" + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log("购物车列表" + res);
+						res = JSON.parse(res);
+						if (res.data.items.length == 0) {
+							document.querySelector("#collectNull").removeAttribute("v-cloak");
+						}
+						func(res);
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				})
+			};
+
+			function refreshVue(res) {
+				vueObj.$data = res;
+			}
+			window.addEventListener("refreshShopCar", function() {
+				if (mui.os.plus) {
+					console.log("从详情页返回到购物车");
+					getData(refreshVue);
+				}
+			});
+			mui.plusReady(function() {
+				getData(initVue);
+			});
+		</script>
+	</body>
+
+</html>
