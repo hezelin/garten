@@ -107,38 +107,36 @@
 						</div>
 					</div>
 					<div class="home-news-content">
-						<div class="home-news-content-item">
+						<div class="home-news-content-item" >
 							<div class="home-news-content-item-title">
+								<span ></span>
 								<label class="home-news-content-item-title-name">最新活动</label>
 							</div>
 							<div class="home-news-content-item-line"></div>
 
 							<div class="home-news-content-item-left" data-id="{{ data.new_data[0].id}}" v-on:tap="openDetail">
-								<img class="home-news-content-item-left-img" src="{{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[0].cover == null ? '../www/img/imgDefault.png' : data.new_data[0].cover}}" />
+								<div class="home-news-content-item-left-img" style="background: url({{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[0].cover == null ? '../www/img/imgDefault.png' : data.new_data[0].cover}});background-position: center; background-size: cover;"></div>
 								<div class="home-news-content-item-detail home-width-320">
 									<span class="home-news-content-item-detail-title">{{ data.new_data[0].title}}</span>
-									<!--<span class="home-news-content-item-detail-money">家长:<em>&yen;100&nbsp;</em>学生:<em>&yen;80</em></span>-->
-									<span class="home-news-content-item-detail-money"><em>{{ data.charPrice }}{{ data.new_data[0].price }}</em></span>
-									<!--<span class="home-news-content-item-detail-introduce">到访农业展馆，挑战游乐设施，欣赏露天剧场表演！欣赏露天剧场表演</span>-->
+									<span class="home-news-content-item-detail-money">{{data.charPrice}}<em>{{data.new_data[0].price}}</em></span>
 								</div>
 							</div>
 							<div class="home-news-content-item-right" data-id="{{ data.new_data[1].id}}" v-on:tap="openDetail">
-								<img class="home-news-content-item-right-img" src="{{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[1].cover == null ? '../www/img/imgDefault.png' : data.new_data[1].cover}}" />
+								<div class="home-news-content-item-right-img" style="background: url({{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[1].cover == null ? '../www/img/imgDefault.png' : data.new_data[1].cover}});background-position: center; background-size: cover;"></div>
 								<div class="home-news-content-item-detail home-width-180">
-									<span class="home-news-content-item-detail-title">{{ data.new_data[1].title}}</span>
-									<span class="home-news-content-item-detail-money"><em>{{ data.charPrice }}{{ data.new_data[1].price }}</em></span>
+									<span class="home-news-content-item-detail-title-new">{{data.new_data[1].title}}</span>
+									<span class="home-news-content-item-detail-money-new">{{data.charPrice}}<em>{{data.new_data[1].price}}</em></span>
 								</div>
 							</div>
 							<div class="home-news-content-item-right" data-id="{{ data.new_data[2].id}}" v-on:tap="openDetail">
-								<img class="home-news-content-item-right-img" src="{{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[2].cover == null ? '../www/img/imgDefault.png' : data.new_data[2].cover}}" />
+								<div class="home-news-content-item-right-img" style="background: url({{data.baseImgUrl == null ? '' : data.baseImgUrl}}{{data.new_data[2].cover == null ? '../www/img/imgDefault.png' : data.new_data[2].cover}});background-position: center; background-size: cover;"></div>
 								<div class="home-news-content-item-detail home-width-180">
-									<span class="home-news-content-item-detail-title">{{ data.new_data[2].title}}</span>
-									<span class="home-news-content-item-detail-money"><em>{{ data.charPrice }}{{ data.new_data[2].price }}</em></span>
+									<span class="home-news-content-item-detail-title-new">{{data.new_data[2].title}}</span>
+									<span class="home-news-content-item-detail-money-new">{{data.charPrice}}<em>{{data.new_data[2].price}}</em></span>
 								</div>
 							</div>
 						</div>
-
-						<div class="home-news-content-item">
+						<div class="home-news-content-item home-news-content-item-top home-news-content-item-after">
 							<div class="home-news-content-item-title">
 								<label class="home-news-content-item-title-name">商品推荐</label>
 							</div>
@@ -149,7 +147,7 @@
 								</div>-->
 								<!--直接改data.items-->
 								<div class="shopping-list-item" v-cloak v-for="item in data.item_data" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
-									<div class="shopping-list-item-bg" style="background: url({{data.baseImgUrl}}{{item.cover}}); background-size: cover;"></div>
+									<div class="shopping-list-item-bg" style="background: url({{data.baseImgUrl}}{{item.cover}}); background-position: center; background-size: cover;"></div>
 									<div class="shopping-list-item-title">
 										<span class="shopping-list-item-title-span">{{item.title}}</span>
 									</div>
@@ -194,9 +192,79 @@
 			});
 			var vueObj = new Vue({
 				el: "#home-container-all",
+				//				data: {
+				//					"data": {
+				//						"new_data": [{}, {}, {}]
+				//					}
+				//				},
 				data: {
+					"success": true,
 					"data": {
-						"new_data": [{}, {}, {}]
+						"images": [
+							"/images/app/1604/01/o/5mQEGTi56fe17c2d6bc6.png",
+							"/images/app/1604/01/o/PuGR3LC56fe17c6dd653.png",
+							"/images/app/1604/01/o/PEpveC956fe17cccdd87.png"
+						],
+						"new_title": "最新标题",
+						"new_data": [{
+							"id": "55",
+							"title": "童游专属福利】趣味亲子 “剑士团”，做优雅小…",
+							"cover": "/images/item/1605/07/m/vVEgNtj572dbaca9563a.jpg",
+							"price": "260.00",
+							"high_price": "26000",
+							"shop_id": "2",
+							"shop_name": "快活林烧烤店",
+							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+						}, {
+							"id": "56",
+							"title": "大曦山湿地公园开放…",
+							"cover": "/images/item/1605/07/m/WCdbHav572dbd6a083c9.jpg",
+							"price": "35.00",
+							"high_price": "3500",
+							"shop_id": "2",
+							"shop_name": "快活林烧烤店",
+							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+						}, {
+							"id": "57",
+							"title": "最好玩的滑行车课程",
+							"cover": "/images/item/1605/07/m/v9MhIl9572dbdd41cd10.jpg",
+							"price": "36.00",
+							"high_price": "3600",
+							"shop_id": "2",
+							"shop_name": "快活林烧烤店",
+							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+						}],
+						"item_title": "商品标题",
+						"item_data": [{
+							"id": "3",
+							"title": "宝苞农场 “现实版QQ农场”尊享私人定制套餐",
+							"cover": "/images/item/1601/21/m/4L0Tr5456a05a03241bc.jpg",
+							"price": "298.00",
+							"high_price": "96800",
+							"shop_id": "2",
+							"shop_name": "快活林烧烤店",
+							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+						}, {
+							"id": "5",
+							"title": "宝苞农场 标题3",
+							"cover": "/images/item/1601/21/m/4L0Tr5456a05a03241bc.jpg",
+							"price": "298.00",
+							"high_price": "96800",
+							"shop_id": "2",
+							"shop_name": "快活林烧烤店",
+							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+						}, {
+							"id": "11",
+							"title": "标题9，标题9",
+							"cover": "/images/item/1601/21/m/4L0Tr5456a05a03241bc.jpg",
+							"price": "298.00",
+							"high_price": "96800",
+							"shop_id": "2",
+							"shop_name": "快活林烧烤店",
+							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+						}],
+						"baseImgUrl": "http://farm.rrzuji.com",
+						"charPrice": "￥"
 					}
 				},
 				methods: {

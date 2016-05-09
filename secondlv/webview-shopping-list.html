@@ -64,7 +64,7 @@
 			
 			.mui-pull-bottom-tips {
 				text-align: center;
-				background-color: #efeff4;
+				background-color: #FFFFFF;
 				font-size: 15px;
 				line-height: 40px;
 				color: #777;
@@ -137,9 +137,10 @@
 									<div class="bounce2"></div>
 									<div class="bounce3"></div>
 								</div>
-								<div class="shopping-list-tab-container" id="hotSaleList">
-									<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
-										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover;"></div>
+								<div class="shopping-list-item-holder"></div>
+								<div class="shopping-list-tab-container" v-cloak id="hotSaleList">
+									<div class="shopping-list-item shopping-list-item-new" v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
 										<div class="shopping-list-item-title">
 											<span class="shopping-list-item-title-span">{{item.title}}</span>
 										</div>
@@ -165,9 +166,25 @@
 									<div class="bounce2"></div>
 									<div class="bounce3"></div>
 								</div>
+								<div class="shopping-list-item-holder"></div>
 								<div class="shopping-list-tab-container" id="flowerList">
-									<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
-										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover;"></div>
+									<!--<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">{{item.title}}</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span-small"></span>
+												<span class="shopping-list-item-store-name">{{item.shop_name}}</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>{{item.price}}</em></span>
+											</div>
+										</div>
+									</div>-->
+									<div class="shopping-list-item shopping-list-item-new" v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
 										<div class="shopping-list-item-title">
 											<span class="shopping-list-item-title-span">{{item.title}}</span>
 										</div>
@@ -193,9 +210,25 @@
 									<div class="bounce2"></div>
 									<div class="bounce3"></div>
 								</div>
+								<div class="shopping-list-item-holder"></div>
 								<div class="shopping-list-tab-container" id="vegetableList">
-									<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
-										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover;"></div>
+									<!--<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">{{item.title}}</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span-small"></span>
+												<span class="shopping-list-item-store-name">{{item.shop_name}}</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>{{item.price}}</em></span>
+											</div>
+										</div>
+									</div>-->
+									<div class="shopping-list-item shopping-list-item-new" v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
 										<div class="shopping-list-item-title">
 											<span class="shopping-list-item-title-span">{{item.title}}</span>
 										</div>
@@ -221,9 +254,25 @@
 									<div class="bounce2"></div>
 									<div class="bounce3"></div>
 								</div>
+								<div class="shopping-list-item-holder"></div>
 								<div class="shopping-list-tab-container" id="fruitList">
-									<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
-										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover;"></div>
+									<!--<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">{{item.title}}</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span-small"></span>
+												<span class="shopping-list-item-store-name">{{item.shop_name}}</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>{{item.price}}</em></span>
+											</div>
+										</div>
+									</div>-->
+									<div class="shopping-list-item shopping-list-item-new" v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
 										<div class="shopping-list-item-title">
 											<span class="shopping-list-item-title-span">{{item.title}}</span>
 										</div>
@@ -249,9 +298,25 @@
 									<div class="bounce2"></div>
 									<div class="bounce3"></div>
 								</div>
+								<div class="shopping-list-item-holder"></div>
 								<div class="shopping-list-tab-container" id="meatList">
-									<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
-										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover;"></div>
+									<!--<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">{{item.title}}</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span-small"></span>
+												<span class="shopping-list-item-store-name">{{item.shop_name}}</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>{{item.price}}</em></span>
+											</div>
+										</div>
+									</div>-->
+									<div class="shopping-list-item shopping-list-item-new" v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
 										<div class="shopping-list-item-title">
 											<span class="shopping-list-item-title-span">{{item.title}}</span>
 										</div>
@@ -277,9 +342,25 @@
 									<div class="bounce2"></div>
 									<div class="bounce3"></div>
 								</div>
+								<div class="shopping-list-item-holder"></div>
 								<div class="shopping-list-tab-container" id="otherList">
-									<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
-										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover;"></div>
+									<!--<div class="shopping-list-item" v-cloak v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
+										<div class="shopping-list-item-title">
+											<span class="shopping-list-item-title-span">{{item.title}}</span>
+										</div>
+										<div class="shopping-list-item-store">
+											<div class="shopping-list-item-store-left">
+												<span class="shop-span-small"></span>
+												<span class="shopping-list-item-store-name">{{item.shop_name}}</span>
+											</div>
+											<div class="shopping-list-item-store-right">
+												<span class="shopping-list-item-store-price">&yen;<em>{{item.price}}</em></span>
+											</div>
+										</div>
+									</div>-->
+									<div class="shopping-list-item shopping-list-item-new" v-for="item in data.items" data-id="{{item.id}}" data-shop-id="item.shop_id" v-on:tap="openDetail">
+										<div class="shopping-list-item-bg" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></div>
 										<div class="shopping-list-item-title">
 											<span class="shopping-list-item-title-span">{{item.title}}</span>
 										</div>
@@ -430,7 +511,6 @@
 				},
 				noMore: function(res) {
 					var thisObj = this;
-					console.log(JSON.stringify(res));
 					if (res.data._meta.currentPage == res.data._meta.pageCount || res.data._meta.pageCount == 0) {
 						thisObj.refreshContainer.pullToRefresh().endPullUpToRefresh(true);
 						return true;

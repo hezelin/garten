@@ -107,12 +107,12 @@
 							推荐
 						</div>
 						<div class="shop-home-page-list-content">
-							<div class="shop-home-page-list-item  {{($index + 5) % 3 ? '':'shop-home-page-list-item-middle'}}"  v-for="item in recommend" v-on:tap.stop="openDetail" data-id="{{item.id}}"> 								
+							<div class="shop-home-page-list-item  {{$index % 2 ? '':'shop-home-page-list-item-left'}}" v-for="item in recommend" v-on:tap.stop="openDetail" data-id="{{item.id}}">
 								<div class="shop-home-page-list-item-img" style="background: url({{item.cover}}); background-position; center; background-size: cover;"></div>
 								<span class="shop-home-page-list-item-title">{{item.title}}</span>
 								<!--<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>-->
 								<span class="shop-home-page-list-item-price"><em>&yen;{{item.price}}</em></span>
-							</div>						
+							</div>
 						</div>
 					</div>
 				</div>
@@ -126,12 +126,12 @@
 					</div>
 					<div class="shop-home-page-list-content">
 						<div class="shop-home-page-list-content">
-							<div class="shop-home-page-list-item  {{($index + 5) % 3 ? '':'shop-home-page-list-item-middle'}}" v-for="item in data" v-on:tap.stop="openDetail" data-id="{{item.id}}">								
+							<div class="shop-home-page-list-item  {{$index % 2 ? '':'shop-home-page-list-item-left'}}" v-for="item in data" v-on:tap.stop="openDetail" data-id="{{item.id}}">
 								<div class="shop-home-page-list-item-img" style="background: url({{item.cover}}); background-position; center; background-size: cover;"></div>
 								<span class="shop-home-page-list-item-title">{{item.title}}</span>
 								<!--<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>-->
 								<span class="shop-home-page-list-item-price"><em>&yen;{{item.price}}</em></span>
-							</div>						
+							</div>
 						</div>
 					</div>
 				</div>
@@ -247,6 +247,7 @@
 		<script src="../js/public.js"></script>
 		<script src="../js/vue.min.js"></script>
 		<script>
+		   
 			mui.init();
 			var productListData = null;
 			// 阻尼系数
@@ -284,7 +285,7 @@
 					if (productListData) {
 						initProductVue(productListData);
 						this.setAttribute("data-first", "false");
-					}					
+					}
 				}
 			});
 
@@ -303,11 +304,11 @@
 					data: resData
 				})
 			};
-	
+
 			function initProductVue(resData) {
 				new Vue({
 					el: "#scroll2",
-					data: resData,
+					data: resData,					
 					methods: {
 						openDetail: function(event) {
 							handleOpenDetail(event);
@@ -356,7 +357,7 @@
 										iId: id
 									});
 									break;
-								}								
+								}
 							}
 						},
 						error: function(xhr) {
@@ -366,8 +367,7 @@
 					});
 				});
 			};
-			
-			
+
 			function initTradeList(id, categoryId) {
 				// 初始化商品页列表
 				var URL = "http://farm.rrzuji.com/v1/shop/item?" + fnCreateSign() + "&shop_id=" + id + "&category_id=4";

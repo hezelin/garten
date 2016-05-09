@@ -231,15 +231,15 @@ body {
 }
 .shop-span-small {
     @include px2rem(width, 30px);
-    @include px2rem(height, 26px);
+    @include px2rem(height, 28px);
     background: url(../img/shop.png);
     display: inline-block;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    @include px2rem(margin-left, 20px);
+//  @include px2rem(margin-left, 20px);
     @include px2rem(margin-right, 8px);
-    vertical-align: bottom;
+    vertical-align: middle;
 }
 //店铺右边箭头
 .shop-arrow-span {

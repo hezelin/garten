@@ -143,8 +143,8 @@
 .home-nav-tab {
     width: 100%;
     @include px2rem(height, 190px);
-    @include px2rem(margin-top, 23px);
-    @include px2rem(margin-bottom, 40px); //  @include px2rem(padding-left, 28px);
+    @include px2rem(margin-top, 20px);
+    @include px2rem(margin-bottom, 20px); //  @include px2rem(padding-left, 28px);
     //  @include px2rem(padding-right, 28px);
     background-color: white;
     display: table;
@@ -192,8 +192,8 @@
 }
 //按钮文字
 .home-nav-tab-item-title {
-    @include font-dpr(16px);
-    color: #000000;
+    @include font-dpr(15px);
+    color: #282828;
     display: block;
 }
 //推荐内容
@@ -203,37 +203,65 @@
     margin: 0 auto;
 }
 .home-news-content {
-//  @include px2rem(padding-top, 19px);
+    @include px2rem(padding-top, 23px);
     @include px2rem(padding-bottom, 19px);
-    @include px2rem(padding-left, 14px);
-    @include px2rem(padding-right, 14px);
-//  background-color: white;
+    @include px2rem(padding-left, 17px);
+    @include px2rem(padding-right, 17px);
+    background-color: white;
 }
 //内容列表 标题 +  图片区域
 .home-news-content-item {
     @include px2rem(margin-bottom, 12px);
-//  @include px2rem(padding-top, 30px);
-    
     clear: both;
     font-size: 0;
-    text-align: justify;
+    position: relative;
+}
+.home-news-content-item-top {
+    @include px2rem(padding-top, 23px);    
+    clear: both;
+    font-size: 0;
+    position: relative;
+}
+.home-news-content-item-after:after {
+    content: "";    
+    width: 10rem;
+    @include px2rem(height, 22px);
+    background-color: #F7F7F7;    
+    position: absolute;
+    @include px2rem(top, -22px);
+    @include px2rem(left, -17px);
 }
 //标题格式
+.home-news-content-item-title {    
+    @include px2rem(padding-left, 11px);   
+    position: relative; 
+}
+.home-news-content-item-title:after {
+    content: "";
+    display: inline-block;
+    @include px2rem(width, 6px);
+    background-color: $green-color;
+    height: 90%;
+    position: absolute;
+    top: 5%;
+    left: 0;
+}
 .home-news-content-item-title-name {
+    @include px2rem(margin-left, 11px);
     @include font-dpr(16px);
-    color: rgb(70, 70, 70);
+    color: #282828;
 }
 // 横线
 .home-news-content-item-line {
     height: 1px;
-    @include px2rem(margin-top, 12px);
-    @include px2rem(margin-bottom, 12px);
+    @include px2rem(margin-top, 16px);
+    @include px2rem(margin-bottom, 16px);
     border-bottom: $base-border;
 }
 // 最新推荐
 .home-news-content-item-left {
     @include px2rem(width, 350px);
-    @include px2rem(height, 442px);
+    @include px2rem(height, 537px);
     background-color: #FFFFFF;
     float: left;
     position: relative;
@@ -242,32 +270,48 @@
 }
 .home-news-content-item-left-img {
     width: 100%;
-    @include px2rem(height, 264px);
-    background-color: #FFFFFF;
+    @include px2rem(height, 308px);
     display: inline-block;
 }
 .home-news-content-item-detail {
-    @include font-dpr(13px);
+    @include font-dpr(14px);
     color: #585858;
-    @include px2rem(padding, (10px, 3px, 10px, 3px));
     vertical-align: top;
     display: inline-block;
     overflow: hidden;
 }
 .home-news-content-item-detail-title {
-    @include px2rem(margin-bottom, 20px);
+    @include px2rem(margin-bottom, 22px);
     display: block;
     text-align: left;
+//  @include Nowrap;
+}
+.home-news-content-item-detail-title-new {
+    @include px2rem(width, 200px);
+    vertical-align: middle;
+    @include font-dpr(12px);
+    color: #585858;
+    display: inline-block;
     @include Nowrap;
 }
 .home-news-content-item-detail-money {
-    @include px2rem(margin-bottom, 10px);
-    @include font-dpr(12px);
-    color: #737373;
+    @include font-dpr(13px);
     display: block;
     text-align: left;
+    color: #f24949;
     em {
-        color: #f24949;
+        @include font-dpr(18px);
+    }
+}
+.home-news-content-item-detail-money-new {
+    @include px2rem(width, 60px);
+    vertical-align: middle;
+    @include font-dpr(10px);
+    display: inline-block;
+    text-align: left;
+    color: #f24949;
+    em {
+        @include font-dpr(12px);
     }
 }
 .home-news-content-item-detail-introduce {
@@ -280,26 +324,33 @@
 }
 .home-news-content-item-right {
     @include px2rem(width, 350px);
-    @include px2rem(height, 213px);
-    @include px2rem(margin-bottom, 16px);
+//  @include px2rem(height, 213px);
+//  @include px2rem(margin-bottom, 16px);
     background-color: #FFFFFF;
     float: right;
     position: relative;
     display: inline-block;
 }
 .home-width-180 {
-    @include px2rem(width, 137px);
-    height: 100%;
-    @include px2rem(padding-top, 70px);
+    width: 100%;
+    @include px2rem(height, 77px);
+    @include px2rem(padding-left, 18px);
+    @include px2rem(padding-right, 18px);
+    @include px2rem(padding-top, 14px);
+//  @include px2rem(width, 137px);
+//  height: 100%;
+//  @include px2rem(padding-top, 70px);
 }
 .home-width-320 {
     width: 100%;
-    @include px2rem(height, 175px);
-    @include px2rem(padding-top, 18px);
+    @include px2rem(height, 210px);
+    @include px2rem(padding-top, 25px);
+    @include px2rem(padding-left, 11px);
+    @include px2rem(padding-right, 11px);
 }
 .home-news-content-item-right-img {
-    @include px2rem(width, 212px);
-    height: 100%;
+    width: 100%;
+    @include px2rem(height, 178px);
     background-color: #FFFFFF;
 //  @include px2rem(height, 135px);
 //  @include px2rem(margin-left, 10px);
@@ -349,7 +400,7 @@
     //      -webkit-box-shadow: 0px -60px 60px -20px rgba(0, 0, 0, 0.7) inset;       
 }
 .home-rent-bg-cover {
-    width: 100%;
+    @include px2rem(width, 150px);
     @include px2rem(height, 70px);
     position: absolute;
     bottom: 0;
@@ -373,14 +424,17 @@
 }
 //金额内容
 .home-rent-money-content {
+    @include px2rem(width, 150px);
     @include px2rem(height, 70px);
     @include px2rem(line-height, 70px);
-    @include font-dpr(15px);
+    @include font-dpr(16px);
     color: #FFFFFF;
     display: inline-block;
     position: absolute;
-    @include px2rem(left, 3px);
+    @include px2rem(left, 0px);    
     @include px2rem(bottom, 0px);
+    text-align: center;
+    vertical-align: middle;
     em {
         @include font-dpr(20px);
     }
@@ -412,9 +466,13 @@
     bottom: 0;
 }
 .home-rent-context {
-    @include px2rem(margin-left, 27px);
+    width: 100%;
+//  @include px2rem(margin-left, 27px);
     @include px2rem(margin-top, 18px);
-    @include font-dpr(14px);
+    @include px2rem(padding-left, 28px);
+    @include px2rem(padding-right, 28px);
+    @include font-dpr(16px);
+    color: #282828;
     @include Nowrap;
     display: block;
 }
@@ -475,7 +533,7 @@
     text-align: center;
     border-radius: 50% 50%;
     background-color: rgba(0, 0, 0, .3);
-    @include font-dpr(20px);
+    @include font-dpr(16px);
     color: #FFFFFF;
     position: absolute;
     @include px2rem(right, 28px);
@@ -494,8 +552,8 @@
 .home-rent-detail-name {
     @include px2rem(margin-bottom, 21px);
     display: block;
-    @include font-dpr(20px);
-    color: #000000;
+    @include font-dpr(18px);
+    color: #282828;
 }
 //商品价格
 .home-rent-detail-money {
@@ -524,7 +582,7 @@
     height: 100%;
     @include px2rem(line-height, 96px);
     display: inline-block;
-    color: #848484;
+    color: #787878;
     text-align: left;
     @include Nowrap;
 }
@@ -533,7 +591,7 @@
     height: 100%;
     @include px2rem(line-height, 96px);
     display: inline-block;
-    color: #282828;
+    color: #585858;
     text-align: left;
     @include Nowrap;
 }
@@ -589,13 +647,13 @@
 }
 //数量
 .home-rent-detail-shop-detail-content-num {
-    @include font-dpr(21px);
-    color: #000000;
+    @include font-dpr(18px);
+    color: #585858;
 }
 //标题
 .home-rent-detail-shop-detail-content-name {
-    @include font-dpr(15px);
-    color: #737373;
+    @include font-dpr(12px);
+    color: #787878;
     vertical-align: middle;
 }
 //商品详情页面底部的商品按钮
@@ -836,46 +894,48 @@
 // 第一层容器
 .shopping-list-tab-container {
     width: 10rem;
-//  background-color: #FFFFFF; 
+    @include px2rem(padding, (26px, 17px, 26px, 17px));
+    background-color: #FFFFFF; 
     margin: 0 auto;
     font-size: 0;
 }
+.shopping-list-item-holder {
+    @include px2rem(height, 22px);
+    background-color: #F7F7F7;
+}
 .shopping-list-item {
-    @include px2rem(width, 340px);
-    @include px2rem(height, 420px);
-    @include px2rem(margin-top, 28px);
+    @include px2rem(width, 350px);
+    @include px2rem(height, 450px);
     background-color: #FFFFFF;
-//  border: $base-border;
     display: inline-block;
     overflow: hidden;
-//  box-shadow: 2px 2px 4px 0 rgb(196, 196, 196);
+}
+.shopping-list-item-new {
+    @include px2rem(height, 480px);
 }
 .shopping-list-item:nth-of-type(odd) {
-    @include px2rem(margin-left, 14px);
-    @include px2rem(margin-right, 20px);
+    @include px2rem(margin-right, 15px);
 }
 .shopping-list-item-bg {
-    @include px2rem(height, 282px);
+    @include px2rem(height, 288px);
+    @include px2rem(margin-bottom, 24px);
 }
 .shopping-list-item-title {
-    @include px2rem(height, 68px);
-    @include px2rem(line-height, 68px);
-    color: #282828;
+    @include px2rem(margin-bottom, 27px);
     overflow: hidden;
 }
 .shopping-list-item-title-span {
     width: 100%;
-    @include px2rem(padding-right, 10px);
-    @include px2rem(padding-left, 10px);
+    @include px2rem(padding-right, 11px);
+    @include px2rem(padding-left, 11px);
     vertical-align: middle;
-    @include font-dpr(13px);
-    font-weight: 500;
+    @include font-dpr(14px);
+    color: #282828;
     display: inline-block;
     @include Nowrap;
 }
 .shopping-list-item-store {
-    @include px2rem(height, 70px);
-    @include px2rem(line-height, 70px);
+    @include px2rem(padding-left, 11px);
     overflow: hidden;
     .shop-span {
         @include px2rem(margin-left, 12px);
@@ -884,11 +944,13 @@
     }
 }
 .shopping-list-item-store-left {
-    width: 75%;
+    @include px2rem(width, 220px);
+    line-height: 1;
+    vertical-align: bottom;
     display: inline-block;
 }
 .shopping-list-item-store-right {
-    width: 25%;
+    @include px2rem(width, 110px);
     @include px2rem(padding-right, 18px);
     display: inline-block;
     text-align: right;
@@ -896,13 +958,13 @@
 .shopping-list-item-store-name {
     @include px2rem(max-width, 180px);
     @include font-dpr(12px);
-    color: #737373;
+    color: #585858;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: middle;
     @include Nowrap;
 }
 .shopping-list-item-store-price {
-    @include font-dpr(12px);
+    @include font-dpr(13px);
     color: #F24949;
     display: inline-block;
     vertical-align: middle;
@@ -910,6 +972,7 @@
         @include font-dpr(18px);
     }
 }
+
 .shop-list-hide {
     display: none;
 }
@@ -1245,14 +1308,15 @@
     display: inline-block;
 }
 .shop-home-page-list-container {
-    @include px2rem(padding-left, 28px);
-    @include px2rem(padding-right, 28px);
+    @include px2rem(padding-left, 18px);
+    @include px2rem(padding-right, 18px);
     @include px2rem(padding-bottom, 20px);
     background-color: #FFFFFF;
 }
 .shop-home-page-list-title {
     @include px2rem(height, 73px);
     @include px2rem(line-height, 73px);
+    @include px2rem(padding-left, 10px);
     text-align: left;
     @include font-dpr(16px);
     color: #434343;
@@ -1267,37 +1331,39 @@
     @include setJustify;
 }
 .shop-home-page-list-item {
-    @include px2rem(width, 213px);
-    @include px2rem(height, 240px);
-    @include px2rem(margin-bottom, 10px);
+    @include px2rem(width, 347px);
+    @include px2rem(height, 438px); 
     display: inline-block;
-    @include font-dpr(12px);
-    color: #000000;
 }
-.shop-home-page-list-item-middle {
-    @include px2rem(margin-left, 24px);
-    @include px2rem(margin-right, 24px);
+.shop-home-page-list-item-left {
+    @include px2rem(margin-right, 15px);
 }
 
 .shop-home-page-list-item-img {
-    @include px2rem(width, 213px);
-    @include px2rem(height, 155px);
-    @include px2rem(border-radius, 10px);
+    @include px2rem(width, 347px);
+    @include px2rem(height, 283px);
+    @include px2rem(margin-bottom, 22px);
+//  @include px2rem(border-radius, 10px);
     box-sizing: content-box;
     display: inline-block;
 }
 .shop-home-page-list-item-title {
-    @include Nowrap;
-    @include px2rem(margin-top, 5px);
-    @include px2rem(margin-bottom, 7px);
+    width: 100%;
+    @include px2rem(padding-left, 10px);
+    @include px2rem(padding-bottom, 14px);
+    @include font-dpr(14px);
+    color: #585858;
+    @include Nowrap;    
     display: block;
 }
 .shop-home-page-list-item-price {
+    @include px2rem(padding-left, 10px);
     @include Nowrap;
     display: block;
+    color: #f05353;
+    @include font-dpr(12px);
     em {
-        @include font-dpr(14px);
-        color: #f05353;
+        @include font-dpr(18px);        
     }
 }
 /**
@@ -3039,3 +3105,4 @@ select {}
 .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
     background-color: $green-color;
 }
+
