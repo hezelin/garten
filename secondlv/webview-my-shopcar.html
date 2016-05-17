@@ -17,25 +17,37 @@
 			[v-cloak] {
 				display: none;
 			}
+			
+			.span-hide {
+				display: none;
+			}
 		</style>
 	</head>
 
 	<body>
 		<div id="collectNull" v-cloak>购物车为空</div>
 		<div id="vueContainer">
-			<div class="my-trader-item" v-for="item in data.items" v-cloak>
+			<div class="spinner" style="display: block;">
+				<div class="bounce1"></div>
+				<div class="bounce2"></div>
+				<div class="bounce3"></div>
+			</div>
+			<div class="my-trader-item" v-for="item in data.items" v-cloak v-if="item.carts.length > 0">
 				<div class="my-trader-title">
 					<div class="my-trader-title-logo" data-shop-id="{{item.shop_id}}" v-on:tap.stop="openShop">
 						<span class="shop-span"></span>
 					</div>
-					<div class="my-trader-title-name"><span>{{item.shop_name}}</span><span class="shop-arrow-span"></span></div>
+					<div class="my-trader-title-name">{{item.shop_name}}</div>
 					<!--<div class="my-trader-title-right" v-on:tap.stop="deleteTrade" data-id="{{item.id}}" data-index="{{$index}}">
 						<span class="shop-delete-span"></span>
 					</div>-->
 				</div>
 				<div class="my-trader-content my-order-content" v-for="i in item.carts" v-if="i.item_price != 0" v-cloak>
-					<div class="my-shop-car-check" v-on:tap.stop="checkOnTap">
-						<span class="radio-check-span radio-check-item" data-normal="{{i.item_price}}"></span>
+					<!--<div class="my-shop-car-check" v-on:tap.stop="checkOnTap">-->
+					<div class="my-shop-car-check">
+						<span class="radio-check-span radio-check-item" id="check{{i.id}}" data-base-price="{{i.item_price}}" data-price="{{i.item_price * i.item_nums}}">
+							<span class="span-hide" data-carId="{{i.id}}" data-shopId="{{item.shop_id}}" data-shopImg="{{i.shop_image}}" data-shopName="{{item.shop_name}}" data-itemImg="{{i.item_cover}}" data-itemName="{{i.item_title}}" data-standardName="{{i.item_standard_name}}" data-Price="{{i.item_price}}" data-Num="{{i.item_nums}}">隐藏域，用来储存订单表单信息</span>
+						</span>
 					</div>
 					<div class="my-trader-content-img" v-on:tap="openTradeDetail" data-itemId="{{i.item_id}}">
 						<div class="my-trader-content-img-hold" style="background: url({{i.item_cover}}); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
@@ -43,38 +55,39 @@
 					<div class="my-trader-content-detail" v-on:tap="openTradeDetail" data-itemId="{{i.item_id}}">
 						<div class="my-trader-content-detail-container ">
 							<span class="collect-order-trader-name">{{i.item_title}}</span>
-							<span class="collect-order-trader-detail ">{{i.item_standard_name}}</span>
-							<span class="collect-order-trader-money ">&nbsp;&yen;&nbsp;<em>{{i.item_price}}</em></span>
-							<div class="num-choice shop-car-num-choice" data-normal="{{i.item_price}}">
-								<span class="num-choice-left num-choice-item" v-on:tap.stop="choiceLeft" data-index="{{$index}}">-</span>
+							<span class="shop-delete-span-small" v-on:tap.stop="deleteTrade" data-id="{{i.id}}" data-index="{{$index}}" data-shopId="{{item.shop_id}}"></span>
+							<span class="collect-order-trader-detail">{{i.item_standard_name}}</span>
+							<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;<em>{{i.item_price}}</em></span>
+							<div class="num-choice shop-car-num-choice" data-normal="{{i.item_price}}" data-listId="{{i.id}}" data-itemId="{{i.item_id}}" data-shopId="{{item.shop_id}}" data-shopName="{{item.shop_name}}">
+								<span class="num-choice-left num-choice-item" v-on:tap.stop="choiceLeft" data-listId="{{i.id}}">-</span>
 								<span class="num-choice-mid num-choice-item" v-on:tap.stop="">{{i.item_nums}}</span>
-								<span class="num-choice-right num-choice-item" v-on:tap.stop="choiceRight" data-index="{{$index}}">+</span>
+								<span class="num-choice-right num-choice-item" v-on:tap.stop="choiceRight" data-listId="{{i.id}}">+</span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-		</div>
-
-		<div id="head-holder"></div>
-		<div id="head-holder"></div>
-		<div class="foot-control-bar">
-			<div class="my-shop-car-check" id="checkAll">
-				<span class="radio-check-span set-middle" id="checkAllCheck"></span>
-				<label class="set-middle">&nbsp;全选</label>
-			</div>
-			<div class="my-shop-car-pay">
-				<span>
-					合计&nbsp;
-					<em >&yen;</em>
-					<em class="allCount">0</em>
+			<div class="foot-control-bar">
+				<div class="my-shop-car-check" id="checkAll">
+					<span class="radio-check-span set-middle" id="checkAllCheck"></span>
+					<label class="set-middle">&nbsp;全选</label>
+				</div>
+				<div class="my-shop-car-pay">
+					<span>
+					合计&nbsp;			
+					<em class="allCount-red">&yen;&nbsp;</em>
+					<em class="allCount-red" id="allCount">0</em>
 				</span>&nbsp;
-			</div>
-			<div class="my-shop-car-pay-button my-shop-car-pay">
-				<button>结算</button>
+				</div>
+				<div class="my-shop-car-pay-button my-shop-car-pay">
+					<button id="createForm">结算</button>
+				</div>
 			</div>
 		</div>
+
+		<div id="head-holder"></div>
+		<div id="head-holder"></div>
+
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
 		</div>
@@ -93,52 +106,232 @@
 				old_back();
 			};
 			var vueObj = null;
-			var userId = "";
 			var shopId = "";
 			var shopName = "";
+			// 商品真实id
 			var itemId = "";
+			// 列表id
 			var listId = "";
+			// 每一次获取到的购物车数据
+			var shopCatData = null;
 			// 单选按钮控制
-			var checkGroup = document.getElementsByClassName("radio-check-item"); // 列表单选按钮
-			var checkAllCheck = document.getElementById("checkAllCheck"); // 全选单选按钮
-			// 选择所有单选
-			function fnCheckAll() {
-				for (var i = 0; i < checkGroup.length; i++) {
-					checkGroup[i].classList.add("radio-check-active");
+			var checkControl = {
+				allCount: document.getElementById("allCount"),
+				checkGroup: null,
+				checkAllCheck: null,
+				first: true,
+				handleCheckAll: function() {
+					var checkGroup = this.checkGroup;
+					for (var i = 0; i < checkGroup.length; i++) {
+						if (checkGroup[i]) {
+							checkGroup[i].classList.add("radio-check-active");
+						}
+					}
+				},
+				handleCheckAllCount: function() {
+					var checkGroup = this.checkGroup;
+					var allCount = 0;
+					for (var i = 0; i < checkGroup.length; i++) {
+						if (checkGroup[i]) {
+							allCount = (parseFloat(allCount) + parseFloat(checkGroup[i].getAttribute("data-price"))).toFixed(1);
+						}
+					}
+					this.allCount.innerText = allCount;
+				},
+				handleCancelCheckAll: function() {
+					var checkGroup = this.checkGroup;
+					for (var i = 0; i < checkGroup.length; i++) {
+						if (checkGroup[i]) {
+							checkGroup[i].classList.remove("radio-check-active");
+						}
+					}
+				},
+				handleCheckOne: function(btn) {
+					if (btn.classList.contains("radio-check-active")) {
+						this.allCount.innerText = (parseFloat(this.allCount.innerText) - parseFloat(btn.getAttribute("data-price"))).toFixed(1);
+					} else {
+						this.allCount.innerText = (parseFloat(this.allCount.innerText) + parseFloat(btn.getAttribute("data-price"))).toFixed(1);
+					}
+					fnToggleElemClass(btn, "radio-check-active");
+					// 对全选做处理
+					var chk = document.getElementsByClassName("radio-check-item");
+					var chk2 = document.getElementsByClassName("radio-check-active");
+					var tamp = 0;
+					if (this.checkAllCheck.classList.contains("radio-check-active")) {
+						tamp = 1;
+					}
+					if (chk.length != chk2.length - tamp) {
+						this.checkAllCheck.classList.remove("radio-check-active");
+					} else {
+						this.checkAllCheck.classList.add("radio-check-active");
+					}
+				},
+				addCheckOneEventListen: function(btn) {
+					var thisObj = this;
+					btn.parentNode.addEventListener("tap", function(e) {
+						thisObj.handleCheckOne(btn);
+					});
+				},
+				handleDelete: function(id) {
+					// 删除某一项 
+					var btn = document.getElementById("check" + id);
+					if (btn.classList.contains("radio-check-active")) {
+						this.allCount.innerText = (parseFloat(this.allCount.innerText) - parseFloat(btn.getAttribute("data-price"))).toFixed(1);
+					}
+				},
+				handleAddNum: function(id) {
+					// 选定状态下加1
+					var btn = document.getElementById("check" + id);
+					if (btn.classList.contains("radio-check-active")) {
+						var basePrice = btn.getAttribute("data-base-price");
+						this.allCount.innerText = (parseFloat(this.allCount.innerText) + parseFloat(basePrice)).toFixed(1);
+					}
+				},
+				handleReduceNum: function(id) {
+					// 选定状态下减1
+					var btn = document.getElementById("check" + id);
+					if (btn.classList.contains("radio-check-active")) {
+						var basePrice = btn.getAttribute("data-base-price");
+						this.allCount.innerText = (parseFloat(this.allCount.innerText) - parseFloat(basePrice)).toFixed(1);
+					}
+				},
+				initCheckGroup: function() {
+					var checkGroup = document.getElementsByClassName("radio-check-item");
+					for (var i = 0; i < checkGroup.length; i++) {
+						this.addCheckOneEventListen(checkGroup[i]);
+					}
+					this.checkGroup = checkGroup;
+					if (this.first) {
+						this.initCheck();
+						this.orderForm();
+						this.first = false;
+					}
+				},
+				initCheck: function() {
+					// 全选，取消全选
+					var thisObj = this;
+					this.checkAllCheck = document.getElementById("checkAllCheck");
+					document.getElementById("checkAll").addEventListener("tap", function() {
+						if (thisObj.checkAllCheck.classList.contains("radio-check-active")) {
+							thisObj.checkAllCheck.classList.remove("radio-check-active");
+							thisObj.handleCancelCheckAll();
+							thisObj.allCount.innerText = 0;
+						} else {
+							thisObj.checkAllCheck.classList.add("radio-check-active");
+							thisObj.handleCheckAll();
+							thisObj.handleCheckAllCount();
+						}
+					});
+				},
+				orderForm: function() {
+					// 结算
+					var thisObj = this;
+					var btn = document.getElementById("createForm");
+					btn.addEventListener("tap", function() {
+						if (!userLoginStatus()) {
+							openLogin(this, true);
+							return;
+						}
+						var checkGroup = document.querySelectorAll(".radio-check-active .span-hide");
+						if (checkGroup.length == 0) {
+							return;
+						}
+						var data = thisObj.createFormData(checkGroup);
+						mui.openWindow({
+							url: "../thirdlv/webview-trade-order.html",
+							id: "webview-trade-order.html",
+							styles: fnSetSubpageStyle(0, 0),
+							createNew: false,
+							extras: {
+								data: data
+							},
+							show: {
+								autoShow: true,
+								aniShow: "pop-in",
+								duration: 300
+							},
+							waiting: {
+								autoShow: true
+							}
+						});
+						console.log(JSON.stringify(data));
+					});
+				},
+				createFormData: function(checkGroup) {
+					var allNum = 0;
+					var allCount = 0;
+					var shopIdPrev = 0,
+						shopIdCurrent = 0;
+					var first = true;
+					var data = {
+						shopItems: [],
+						dataPost: {
+							cart_id: []
+						}
+					};
+					var shopIndex = 0;
+					for (var i = 0; i < checkGroup.length; i++) {
+						var shopId = checkGroup[i].getAttribute("data-shopId");
+						if (first) {
+							shopIdCurrent = shopId;
+							shopIdPrev = shopId;
+							first = false;
+							var tamp = {
+								shopImg: checkGroup[i].getAttribute("data-shopImg"),
+								shopName: checkGroup[i].getAttribute("data-shopName"),
+								items: [{
+									itemImg: checkGroup[i].getAttribute("data-itemImg"),
+									itemName: checkGroup[i].getAttribute("data-itemName"),
+									standardName: checkGroup[i].getAttribute("data-standardName"),
+									itemPrice: checkGroup[i].getAttribute("data-price"),
+									itemNums: checkGroup[i].getAttribute("data-Num")
+								}]
+							}
+							data.shopItems.push(tamp);
+							console.log("创建了一个商铺");
+						} else {
+							shopIdCurrent = shopId;
+							if (shopIdPrev != shopIdCurrent) {
+								shopIdPrev = shopIdCurrent;
+								shopIndex++;
+								var tamp = {
+									shopImg: checkGroup[i].getAttribute("data-shopImg"),
+									shopName: checkGroup[i].getAttribute("data-shopName"),
+									items: [{
+										itemImg: checkGroup[i].getAttribute("data-itemImg"),
+										itemName: checkGroup[i].getAttribute("data-itemName"),
+										standardName: checkGroup[i].getAttribute("data-standardName"),
+										itemPrice: checkGroup[i].getAttribute("data-price"),
+										itemNums: checkGroup[i].getAttribute("data-Num")
+									}]
+								}
+								data.shopItems.push(tamp);
+								console.log("创建了一个商铺");
+							} else {
+								var tamp = {
+									itemImg: checkGroup[i].getAttribute("data-itemImg"),
+									itemName: checkGroup[i].getAttribute("data-itemName"),
+									standardName: checkGroup[i].getAttribute("data-standardName"),
+									itemPrice: checkGroup[i].getAttribute("data-price"),
+									itemNums: checkGroup[i].getAttribute("data-Num")
+								}
+								data.shopItems[shopIndex].items.push(tamp);
+							}
+						}
+						data.dataPost.cart_id.push(checkGroup[i].getAttribute("data-carId"));
+						allNum = parseInt(allNum) + parseInt(checkGroup[i].getAttribute("data-Num"));
+						allCount = parseFloat(parseFloat(checkGroup[i].getAttribute("data-price")) * parseInt(checkGroup[i].getAttribute("data-Num")) + parseFloat(allCount)).toFixed(1);
+					}
+//					data.isShopCar = data.shopItems.length > 1 ?  true : false;
+//					console.log(data.shopItems.length);
+//					console.log(data.isShopCar);
+					data.isShopCar = true;
+					data.allCount = allCount;
+					data.allNum = allNum;
+					return data;
 				}
-			}
-			// 取消选择所有单选
-			function fnCancelCheckAll() {
-				for (var i = 0; i < checkGroup.length; i++) {
-					checkGroup[i].classList.remove("radio-check-active");
-				}
-			}
-			document.getElementById("checkAll").addEventListener("tap", function() {
-				if (checkAllCheck.classList.contains("radio-check-active")) {
-					checkAllCheck.classList.remove("radio-check-active");
-					fnCancelCheckAll();
-				} else {
-					checkAllCheck.classList.add("radio-check-active");
-					fnCheckAll();
-				}
-			});
-			mui(".my-shop-car-check").on("tap", ".radio-check-item", function() {
-				// 切换本按钮状态
-				fnToggleElemClass(this, "radio-check-active");
-				var chk = document.getElementsByClassName("radio-check-item");
-				var chk2 = document.getElementsByClassName("radio-check-active");
-				var tamp = 0;
-				if (checkAllCheck.classList.contains("radio-check-active")) {
-					tamp = 1;
-				}
-				if (chk.length != chk2.length - tamp) {
-					checkAllCheck.classList.remove("radio-check-active");
-				} else {
-					checkAllCheck.classList.add("radio-check-active");
-				}
-			});
-			// 单选按钮控制end
-		
+			};
+
 			function initVue(res) {
 				vueObj = new Vue({
 					el: "#vueContainer",
@@ -149,10 +342,6 @@
 						},
 						choiceRight: function(event) {
 							handleChoiceRight(event);
-						},
-						checkOnTap: function(event) {
-							// 点击列表项的单选按钮
-							fnToggleElemClass(event.currentTarget.querySelector(".radio-check-span"), "radio-check-active");
 						},
 						openTradeDetail: function(event) {
 							handleOpenTradeDetail(event);
@@ -166,30 +355,56 @@
 						}
 					}
 				});
+				vueObj.$nextTick(function() {
+					console.log("绑定点击事件");
+					checkControl.initCheckGroup();
+					document.querySelector(".spinner").style.display = "none";
+				});
 			};
-
+			// 减号
 			function handleChoiceLeft(event) {
-				var chocieMID = event.currentTarget.parentNode.querySelector(".num-choice-mid");
-				var val = chocieMID.innerText;
-				if (val == "1") {
-					return;
+				var id = event.currentTarget.getAttribute("data-listId");
+				for (var i in shopCatData) {
+					for (var j in shopCatData[i].carts) {
+						if (shopCatData[i].carts[j].id == id) {
+							if (shopCatData[i].carts[j].item_nums > 1) {
+								shopCatData[i].carts[j].item_nums--;
+								// 更新提交的资料
+								updateArguments(event.currentTarget);
+								// 提交
+								setNumOfShopCar(shopCatData[i].carts[j].item_nums);
+								checkControl.handleReduceNum(id);
+								return;
+							}
+						}
+					}
 				}
-				var newNum = parseInt(val) - 1;
-				chocieMID.innerText = newNum;
-				updateArguments(event.currentTarget);
-				setNumOfShopCar(newNum);
 			}
-
+			// 加号
 			function handleChoiceRight(event) {
-				var chocieMID = event.currentTarget.parentNode.querySelector(".num-choice-mid");
-				var newNum = parseInt(chocieMID.innerText) + 1;
-				chocieMID.innerText = newNum;
-				updateArguments(event.currentTarget);
-				setNumOfShopCar(newNum);
+				var id = event.currentTarget.getAttribute("data-listId");
+				for (var i in shopCatData) {
+					for (var j in shopCatData[i].carts) {
+						if (shopCatData[i].carts[j].id == id) {
+							shopCatData[i].carts[j].item_nums++;
+							// 更新提交的资料
+							updateArguments(event.currentTarget);
+							// 提交 
+							setNumOfShopCar(shopCatData[i].carts[j].item_nums);
+							checkControl.handleAddNum(id);
+							return;
+						}
+					}
+				}
 			}
 			// 修改购物车数量
-			function setNumOfShopCar(num) {
+			function setNumOfShopCar(newNum) {
 				var token = plus.storage.getItem("tokenValue");
+				var userId = plus.storage.getItem("userID");
+				if (token == null || userId == null) {
+					mui.toast("用户信息过期，请重新登录");
+					return;
+				}
 				var URL = "http://farm.rrzuji.com/v1/cart/update?" + fnCreateSign() + "&access-token=" + token + "&id=" + listId;
 				mui.ajax(URL, {
 					type: "POST",
@@ -199,7 +414,7 @@
 						shop_id: shopId,
 						shop_name: shopName,
 						item_id: itemId,
-						item_nums: num
+						item_nums: newNum
 					},
 					success: function(res) {
 						console.log("修改购物车数量成功" + res);
@@ -212,10 +427,8 @@
 			}
 
 			function updateArguments(thisBtn) {
-				var index = thisBtn.getAttribute("data-index");
-				var elem = document.getElementById("item" + index);
+				var elem = thisBtn.parentNode;
 				listId = elem.getAttribute("data-listId");
-				userId = elem.getAttribute("data-userId");
 				shopId = elem.getAttribute("data-shopId");
 				shopName = elem.getAttribute("data-shopName");
 				itemId = elem.getAttribute("data-itemId");
@@ -225,7 +438,8 @@
 				var thisBtn = event.currentTarget;
 				var token = plus.storage.getItem("tokenValue");
 				var id = thisBtn.getAttribute("data-id");
-				var index = parseInt(thisBtn.getAttribute("data-index"));
+				var index = thisBtn.getAttribute("data-index");
+				var shopId = thisBtn.getAttribute("data-shopId");
 				var URL = "http://farm.rrzuji.com/v1/cart/delete?" + fnCreateSign() + "&access-token=" + token + "&id=" + id;
 				mui.ajax(URL, {
 					type: "POST",
@@ -234,7 +448,17 @@
 						console.log("删除购物车成功" + res);
 						res = JSON.parse(res);
 						if (res.success) {
-							vueObj.data.$remove(vueObj.data[index]);
+							checkControl.handleDelete(id);
+							for (var i in shopCatData) {
+								if (shopCatData[i].shop_id == shopId) {
+									for (var j in shopCatData[i].carts) {
+										if (shopCatData[i].carts[j].id == id) {
+											shopCatData[i].carts.splice(j, 1);
+											return;
+										}
+									}
+								}
+							}
 						}
 					},
 					error: function(xhr) {
@@ -251,9 +475,9 @@
 				var thisBtn = event.currentTarget;
 				mui.openWindow({
 					url: "../thirdlv/webview-trade-detail.html",
-					id: "TradeDetail",
+					id: "webview-trade-detail.html",
 					styles: fnSetSubpageStyle(0, 0),
-					createNew: false,
+					createNew: true,
 					extras: {
 						itemID: thisBtn.getAttribute("data-itemID")
 					},
@@ -278,7 +502,22 @@
 					success: function(res) {
 						console.log("购物车列表" + res);
 						res = JSON.parse(res);
-						if (res.data.items.length == 0) {
+						shopCatData = res.data.items;
+						// 去无效字段
+						var count = 0;
+						for (var i in shopCatData) {
+							var newArray = [];
+							for (var j in shopCatData[i].carts) {
+								if (shopCatData[i].carts[j].item_price) {
+									newArray.push(shopCatData[i].carts[j]);
+								}
+							}
+							shopCatData[i].carts = newArray;
+							if (newArray.length == 0) {
+								count++;
+							}
+						}
+						if (res.data.items.length == count) {
 							document.querySelector("#collectNull").removeAttribute("v-cloak");
 						}
 						func(res);
@@ -288,10 +527,16 @@
 					}
 				})
 			};
-
+			// 详情页回到购物车页时刷新一下
 			function refreshVue(res) {
 				vueObj.$data = res;
-			}
+				vueObj.$nextTick(function() {
+					console.log("绑定点击事件");
+					checkControl.initCheckGroup();
+					document.getElementById("allCount").innerText = 0;
+					document.getElementById("checkAllCheck").classList.remove("radio-check-active");
+				});
+			};
 			window.addEventListener("refreshShopCar", function() {
 				if (mui.os.plus) {
 					console.log("从详情页返回到购物车");

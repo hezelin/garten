@@ -131,7 +131,7 @@ body {
 .shop-span-small {
   width: 0.4rem;
   height: 0.37333rem;
-  background: url(../img/shop.png);
+  background: url("../img/shop.png");
   display: inline-block;
   background-size: cover;
   background-position: center;
@@ -155,6 +155,18 @@ body {
   vertical-align: middle;
   background-position-x: 0rem;
   background-position-y: -2.24rem; }
+
+.shop-delete-span-small {
+  width: 0.8rem;
+  height: 0.8rem;
+  display: inline-block;
+  background: url("../img/delete-span-small.png");
+  background-repeat: no-repeat;
+  background-size: 0.42667rem 0.42667rem;
+  background-position: top right;
+  position: absolute;
+  right: 0;
+  top: 0; }
 
 .radio-check-span {
   width: 0.61333rem;
@@ -210,15 +222,12 @@ body {
   vertical-align: middle;
   text-align: center; }
 
-.header-control-color {
-  background-color: #434343 !important; }
-
 .header-control-left-btn {
   width: 1.73333rem;
   text-align: left !important; }
 
 .header-control-right-btn {
-  width: 2.13333rem;
+  width: 1.73333rem;
   text-align: right !important; }
 
 .header-control-left-btn-span {
@@ -251,18 +260,18 @@ body {
     font-size: 60px; }
 
 #getAuthCode {
-  width: 2.4rem;
-  height: 1.06667rem;
-  font-size: 12px;
+  width: 2.2rem;
+  height: 0.73333rem;
+  font-size: 10px;
   background-color: #3d8f52;
   border-radius: 0.13333rem;
   border: none;
   color: #FFFFFF;
   vertical-align: middle; }
   [data-dpr="2"] #getAuthCode {
-    font-size: 24px; }
+    font-size: 20px; }
   [data-dpr="3"] #getAuthCode {
-    font-size: 36px; }
+    font-size: 30px; }
 
 .reSendAuthCode {
   background-color: #ebebeb !important;
@@ -367,9 +376,50 @@ body {
   display: block; }
 
 .trade-span-cover-slider {
-  width: 10rem;
   height: 6.53333rem;
   display: block; }
+
+.farm-span-cover-slider {
+  height: 5.57333rem;
+  display: block; }
+
+#searchDataNull, #farmNull {
+  font-size: 12px;
+  text-align: center; }
+  [data-dpr="2"] #searchDataNull, [data-dpr="2"] #farmNull {
+    font-size: 24px; }
+  [data-dpr="3"] #searchDataNull, [data-dpr="3"] #farmNull {
+    font-size: 36px; }
+
+#searchBigHover {
+  position: absolute;
+  width: 1.6rem;
+  height: 1.33333rem;
+  top: -0.4rem;
+  left: 0px; }
+
+.line-weight-half-bottom:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: -100%;
+  bottom: -100%;
+  border-bottom: 1px solid #dfdfdf;
+  transform: scale(0.5);
+  transform-origin: 0 0; }
+
+.line-weight-half-top:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: -100%;
+  border-bottom: 1px solid #dfdfdf;
+  transform: scale(0.5);
+  transform-origin: 0 0; }
 
 .input-group {
   margin-top: 0.58667rem;
@@ -394,14 +444,15 @@ input::-webkit-input-placeholder {
   height: 1.2rem;
   padding-left: 0.37333rem;
   padding-right: 0.37333rem;
-  font-size: 16px;
+  font-size: 14px;
   color: #787878;
   border: none;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  outline: none; }
   [data-dpr="2"] .login-input {
-    font-size: 32px; }
+    font-size: 28px; }
   [data-dpr="3"] .login-input {
-    font-size: 48px; }
+    font-size: 42px; }
 
 #input-phone {
   border-left: 1px solid #D4D4D4;
@@ -419,16 +470,16 @@ input::-webkit-input-placeholder {
   width: 9.10667rem;
   height: 1.2rem;
   margin-top: 0.53333rem;
-  font-size: 19px;
+  font-size: 18px;
   border: none;
   border-radius: 0.08rem;
   background-color: #3d8f52;
   color: #FFFFFF;
   transition: all 0.4s; }
   [data-dpr="2"] .login-btn {
-    font-size: 38px; }
+    font-size: 36px; }
   [data-dpr="3"] .login-btn {
-    font-size: 57px; }
+    font-size: 54px; }
 
 .forgetPWD-span {
   width: 8.62667rem;
@@ -438,13 +489,13 @@ input::-webkit-input-placeholder {
 #forgetPWD {
   height: 1.2rem;
   line-height: 1.2rem;
-  font-size: 15px;
+  font-size: 12px;
   color: #787878;
   display: inline-block; }
   [data-dpr="2"] #forgetPWD {
-    font-size: 30px; }
+    font-size: 24px; }
   [data-dpr="3"] #forgetPWD {
-    font-size: 45px; }
+    font-size: 36px; }
 
 .other-way {
   height: 1.33333rem;
@@ -460,7 +511,7 @@ input::-webkit-input-placeholder {
   margin-left: -36px;
   margin-top: -6px;
   font-size: 12px;
-  color: #D4D4D4;
+  color: #787878;
   background-color: #F7F7F7;
   z-index: 10; }
   [data-dpr="2"] .other-way-text {
@@ -538,19 +589,19 @@ input::-webkit-input-placeholder {
 .register-input {
   width: 8.41333rem;
   height: 1.2rem;
-  padding-left: 0.33333rem;
-  padding-right: 0.33333rem;
+  padding: 0rem 0.33333rem;
   margin-bottom: 0.37333rem;
   display: inline-block;
-  font-size: 19px;
+  font-size: 14px;
   color: #9a9a9a;
   background-color: white;
   border: 1px solid #dfdfdf;
-  border-radius: 0.08rem; }
+  border-radius: 0.08rem;
+  outline: none; }
   [data-dpr="2"] .register-input {
-    font-size: 38px; }
+    font-size: 28px; }
   [data-dpr="3"] .register-input {
-    font-size: 57px; }
+    font-size: 42px; }
 
 .register-btn {
   width: 9.08rem;
@@ -560,13 +611,13 @@ input::-webkit-input-placeholder {
   border-radius: 0.08rem;
   border: none;
   background-color: #3d8f52;
-  font-size: 19px;
+  font-size: 18px;
   color: #FFFFFF;
   text-align: center; }
   [data-dpr="2"] .register-btn {
-    font-size: 38px; }
+    font-size: 36px; }
   [data-dpr="3"] .register-btn {
-    font-size: 57px; }
+    font-size: 54px; }
 
 .authCode-group {
   width: 8.74667rem;
@@ -582,14 +633,15 @@ input::-webkit-input-placeholder {
 #authCode {
   width: 5.86667rem;
   height: 1.2rem;
-  font-size: 19px;
+  font-size: 14px;
   color: #9a9a9a;
   border: none;
-  vertical-align: middle; }
+  padding: 0;
+  outline: none; }
   [data-dpr="2"] #authCode {
-    font-size: 38px; }
+    font-size: 28px; }
   [data-dpr="3"] #authCode {
-    font-size: 57px; }
+    font-size: 42px; }
 
 .span-agreement {
   width: 9.06667rem;
@@ -665,8 +717,6 @@ input::-webkit-input-placeholder {
   outline: none; }
 
 .resetAuth {
-  width: auto !important;
-  padding-left: 0.06667rem;
-  padding-right: 0.06667rem; }
+  width: auto !important; }
 
 /*# sourceMappingURL=login.css.map */

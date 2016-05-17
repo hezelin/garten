@@ -14,288 +14,175 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
 		<style>
+			[v-cloak] {
+				display: none;
+			}
+			
+			.display-block {
+				display: block;
+			}
+			
+			.display-none {
+				display: none;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div class="my-trader-item">
-			<div class="my-trader-title">
-				<div class="my-trader-title-logo">
-					<span class="shop-span">
+		<div id="vueContainer">
+			<div id="searchDataNull" v-cloak class="{{data.length == 0 ? 'display-block' : 'display-none'}}" style="text-align: center; color: #000000;">订单列表为空</div>
+			<div class="my-trader-item" v-for="item in data" v-cloak v-if="item.item_num > 0" v-on:tap="openOrderDetail" data-orderId="{{item.id}}">
+
+				<div class="my-trader-title">
+					<div class="my-trader-title-logo">
+						<span class="shop-span"></span>
+					</div>
+					<div class="my-trader-title-name">
+						<span>{{item.shop_name}}</span>
+					</div>
+					<div class="my-trader-title-right my-order-title-status">{{item.status == 1 ? "进行中" : "已完成"}}</div>
 				</div>
-				<div class="my-trader-title-name"></span><span>小铺</span><span class="shop-arrow-span"></span></div>
-				<div class="my-trader-title-right my-order-title-status">交易成功</div>
-			</div>
-			<div class="my-trader-content my-order-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/plowLand.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-order-count">x1</span>
+		
+				<div class="my-trader-content my-order-content" v-for="i in item.order_data">
+					<div class="my-trader-content-img my-order-content-bottom-border">
+						<div class="my-trader-content-img-hold" style="background: url({{i.cover}}); background-size: cover; background-position: center"></div>
+					</div>
+					<div class="my-trader-content-detail my-order-content-bottom-border">
+						<div class="my-trader-content-detail-container">
+							<span class="collect-order-trader-name">{{i.title}}</span>
+							<span class="collect-order-trader-detail">{{i.standard_name}}</span>
+							<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;{{i.price}}</span>
+							<span class="collect-order-trader-count my-order-count">x{{i.num}}</span>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="my-trader-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/plowLand2.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">玉米耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-order-count">x1</span>
+				<!--尾部-->
+				<div class="my-order-total">
+					<div class="my-order-total-btn">
+						<button id="delete-my-order" v-on:tap="deleteOrder" data-id="{{item.id}}" data-index="{{$index}}">删除订单</button>
 					</div>
-				</div>
-			</div>
-			<!--尾部-->
-			<div class="my-order-total">
-				<div class="my-order-total-btn">
-					<button id="delete-my-order">删除订单</button>
-				</div>
-				<div class="my-order-total-detail">
-					<span>共
-						<em>2</em>件商品&nbsp;&nbsp;合计&nbsp;&yen;
-						<em>600</em>
-					</span>
+					<div class="my-order-total-detail">
+						<span>
+							共<em>{{item.item_num}}</em>件商品&nbsp;&nbsp;合计&nbsp;&yen;<em>{{item.pay_money}}</em>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
-<!---->
-		<div class="my-trader-item">
-			<div class="my-trader-title">
-				<div class="my-trader-title-logo">
-					<span class="shop-span">
-				</div>
-				<div class="my-trader-title-name"></span><span>小铺</span><span class="shop-arrow-span"></span></div>
-				<div class="my-trader-title-right my-order-title-status">交易成功</div>
-			</div>
-			<div class="my-trader-content my-order-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/plowLand.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-order-count">x1</span>
-					</div>
-				</div>
-			</div>
-			<div class="my-trader-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/plowLand2.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">玉米耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-order-count">x1</span>
-					</div>
-				</div>
-			</div>
-			<!--尾部-->
-			<div class="my-order-total">
-				<div class="my-order-total-btn">
-					<button id="delete-my-order">删除订单</button>
-				</div>
-				<div class="my-order-total-detail">
-					<span>共
-						<em>2</em>件商品&nbsp;&nbsp;合计&nbsp;&yen;
-						<em>600</em>
-					</span>
-				</div>
-			</div>
-		</div>
-		<div class="my-trader-item">
-			<div class="my-trader-title">
-				<div class="my-trader-title-logo">
-					<span class="shop-span">
-				</div>
-				<div class="my-trader-title-name"></span><span>小铺</span><span class="shop-arrow-span"></span></div>
-				<div class="my-trader-title-right my-order-title-status">交易成功</div>
-			</div>
-			<div class="my-trader-content my-order-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/plowLand.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-order-count">x1</span>
-					</div>
-				</div>
-			</div>
-			<div class="my-trader-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/plowLand2.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">玉米耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-order-count">x1</span>
-					</div>
-				</div>
-			</div>
-			<!--尾部-->
-			<div class="my-order-total">
-				<div class="my-order-total-btn">
-					<button id="delete-my-order">删除订单</button>
-				</div>
-				<div class="my-order-total-detail">
-					<span>共
-						<em>2</em>件商品&nbsp;&nbsp;合计&nbsp;&yen;
-						<em>600</em>
-					</span>
-				</div>
-			</div>
-		</div>
-		<div class="my-trader-item">
-			<div class="my-trader-title">
-				<div class="my-trader-title-logo">
-					<span class="shop-span">
-				</div>
-				<div class="my-trader-title-name"></span><span>小铺</span><span class="shop-arrow-span"></span></div>
-				<div class="my-trader-title-right my-order-title-status">交易成功</div>
-			</div>
-			<div class="my-trader-content my-order-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/plowLand.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-order-count">x1</span>
-					</div>
-				</div>
-			</div>
-			<div class="my-trader-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/plowLand2.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">玉米耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-order-count">x1</span>
-					</div>
-				</div>
-			</div>
-			<!--尾部-->
-			<div class="my-order-total">
-				<div class="my-order-total-btn">
-					<button id="delete-my-order">删除订单</button>
-				</div>
-				<div class="my-order-total-detail">
-					<span>共
-						<em>2</em>件商品&nbsp;&nbsp;合计&nbsp;&yen;
-						<em>600</em>
-					</span>
-				</div>
-			</div>
-		</div>
-		<div class="my-trader-item">
-			<div class="my-trader-title">
-				<div class="my-trader-title-logo">
-					<span class="shop-span">
-				</div>
-				<div class="my-trader-title-name"></span><span>小铺</span><span class="shop-arrow-span"></span></div>
-				<div class="my-trader-title-right my-order-title-status">交易成功</div>
-			</div>
-			<div class="my-trader-content my-order-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/plowLand.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-order-count">x1</span>
-					</div>
-				</div>
-			</div>
-			<div class="my-trader-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/plowLand2.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">玉米耕作地</span>
-						<span class="collect-order-trader-detail">认租一年，自主耕种</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;300<em>/亩</em></span>
-						<span class="collect-order-trader-count my-order-count">x1</span>
-					</div>
-				</div>
-			</div>
-			<!--尾部-->
-			<div class="my-order-total">
-				<div class="my-order-total-btn">
-					<button id="delete-my-order">删除订单</button>
-				</div>
-				<div class="my-order-total-detail">
-					<span>共
-						<em>2</em>件商品&nbsp;&nbsp;合计&nbsp;&yen;
-						<em>600</em>
-					</span>
-				</div>
-			</div>
-		</div>
-<!---->
-		<div class="my-trader-item">
-			<div class="my-trader-title">
-				<div class="my-trader-title-logo">
-					<span class="shop-span">
-				</div>
-				<div class="my-trader-title-name"><span>小铺</span><span class="shop-arrow-span"></span></div>
-				<div class="my-trader-title-right .my-order-title-status">待付款</div>
-			</div>
-			<div class="my-trader-content my-order-content">
-				<div class="my-trader-content-img my-order-content-bottom-border">
-					<img class="my-trader-content-img-hold" src="../img/fruitTree.png">
-				</div>
-				<div class="my-trader-content-detail my-order-content-bottom-border">
-					<div class="my-trader-content-detail-container">
-						<span class="collect-order-trader-name">橘子树</span>
-						<span class="collect-order-trader-detail">认租二年，委托给农户管理</span>
-						<span class="collect-order-trader-money">&nbsp;&yen;&nbsp;200<em>/棵</em></span>
-						<span class="collect-order-trader-count my-order-count">x2</span>
-					</div>
-				</div>
-			</div>
-			<div class="my-order-total">
-				<div class="my-order-total-btn">
-					<button id="delete-my-order">删除订单</button>
-				</div>
-				<div class="my-order-total-detail">
-					<span>
-						共<em>1</em>件商品&nbsp;&nbsp;合计&nbsp;&yen;
-						<em>200</em>
-					</span>
-				</div>
-			</div>
-		</div>
+
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
+			var vueObj = null;
+
+			function initVue(data) {
+				vueObj = new Vue({
+					el: "#vueContainer",
+					data: data,
+					methods: {
+						deleteOrder: function(event) {
+							handleDelete(event);
+						},
+						openOrderDetail: function(event) {
+							var _id = event.currentTarget.getAttribute("data-orderId");
+							openOrderDetail(_id);
+						}
+					}
+				});
+			};
+			// 打开订单详情页
+			function openOrderDetail(orderId) {
+				mui.openWindow({
+					url: "../thirdlv/webview-trade-order-detail.html",
+					id: "webview-trade-order-detail.html",
+					styles: fnSetSubpageStyle(0, 0),
+					createNew: false,
+					extras: {
+						data: {
+							title: "订单详情",
+							orderId: orderId
+						}
+					},
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: true
+					}
+				});
+			};
+
+			function handleDelete(event) {
+				if (!userLoginStatus()) {
+					openLogin(this, true);
+					return;
+				}
+				if (!userLoginStatus()) {
+					openLogin(this, true);
+					return;
+				}
+				var id = event.currentTarget.getAttribute("data-id");
+				var index = event.currentTarget.getAttribute("data-index");
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/order/delete?" + fnCreateSign() + "&access-token=" + token + "&id=" + id;
+				mui.ajax(URL, {
+					type: "POST",
+					dataType: "JSON",
+					success: function(res) {
+						console.log("订单删除成功" + res);
+						res = JSON.parse(res);
+						if (res.success) {
+							vueObj.data.$remove(vueObj.data[index]);
+						}
+					},
+					error: function(xhr) {
+						ajaxError();
+					}
+				});
+			}
+
+			function initData(status) {
+				if (!userLoginStatus()) {
+					openLogin(this, true);
+					return;
+				}
+				if (!userLoginStatus()) {
+					openLogin(this, true);
+					return;
+				}
+				var token = plus.storage.getItem("tokenValue");
+				var str = "";
+				if (parseInt(status) == 1 || parseInt(status) == 10) {
+					str = "&status=" + status;
+				}
+				var URL = "http://farm.rrzuji.com/v1/order/index?" + fnCreateSign() + "&access-token=" + token + str;
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log("获取到订单数据" + res);
+						res = JSON.parse(res);
+						initVue(res);
+					},
+					error: function(xhr) {
+						ajaxError();
+					}
+				});
+			};
+			window.addEventListener("getData", function(e) {
+				initData(e.detail.status);
+			});
+			mui.plusReady(function() {
+				initData();
+			});
 		</script>
 	</body>
 

@@ -53,9 +53,14 @@ function galleryImg() {
 				}, function(file) { // 在doc目录下打开文件headTamp.jpg,create:false表示不重新创建
 					// 存在，则删除文件
 					file.remove(function() {
+						console.log("删除文件");
+						
 						console.log("file remove success");
 						entry.copyTo(root, 'headTamp.jpg', function(e) { // 将选中的a:enpry的文件拷贝到doc:root，并重新命名为headTamp 
+								// ios bug
+								console.log("复制文件");
 								fnPhotoOperate(e.fullPath + "?verson=" + new Date().getTime());
+//								fnPhotoOperate(e.fullPath);								
 							},
 							function(e) {
 								console.log('copy image fail:' + e.message);
@@ -66,6 +71,7 @@ function galleryImg() {
 				}, function() {
 					//打开失败，文件不存在，直接复制
 					entry.copyTo(root, 'headTamp.jpg', function(e) {
+							console.log("复制文件");
 							fnPhotoOperate(e.fullPath + "?verson=" + new Date().getTime());
 						},
 						function(e) {
@@ -100,14 +106,15 @@ function fnPhotoOperate(url) {
 	imgElem.setAttribute("id", "loadContainer");
 	imgElem.onload = function() {
 		EXIF.getData(imgElem, function() {
+			console.log("旋转图片前图片地址"+ url);
 			var orientation = EXIF.getTag(this, 'Orientation');
 			if (!isNaN(orientation)) {
 				console.log("旋转方向" + orientation);
 				switch (orientation) {
 					case 6:
 						plus.zip.compressImage({
-								src: url,
-								dst: url,
+								src: '_doc/headTamp.jpg',
+								dst: '_doc/headTamp.jpg',
 								quality: 100,
 								overwrite: true,
 								rotate: 90 // 旋转90度
@@ -121,8 +128,8 @@ function fnPhotoOperate(url) {
 						break;
 					case 8:
 						plus.zip.compressImage({
-								src: url,
-								dst: url,
+								src: '_doc/headTamp.jpg',
+								dst: '_doc/headTamp.jpg',
 								quality: 100,
 								overwrite: true,
 								rotate: 270 // 旋转270度
@@ -136,8 +143,8 @@ function fnPhotoOperate(url) {
 						break;
 					case 1:
 						plus.zip.compressImage({
-								src: url,
-								dst: url,
+								src: '_doc/headTamp.jpg',
+								dst: '_doc/headTamp.jpg',
 								quality: 100,
 								overwrite: true,
 								rotate: 0
@@ -151,8 +158,10 @@ function fnPhotoOperate(url) {
 						break;
 					case 3: //180度
 						plus.zip.compressImage({
-								src: url,
-								dst: url,
+//								src: url,
+//								dst: url,
+								src: '_doc/headTamp.jpg',
+								dst: '_doc/headTamp.jpg',
 								quality: 100,
 								overwrite: true,
 								rotate: 180
@@ -166,6 +175,7 @@ function fnPhotoOperate(url) {
 						break;
 				}
 			} else {
+				console.log("不需要旋转");
 				cropIMG(url);
 			}
 		});

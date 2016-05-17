@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的种植</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/imgView.css" rel="stylesheet" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="farmNull" v-cloak>没有种植作物，快去认租吧</div>
+		<!--轮播图-->
+		<div id="slider" class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+				<!-- (循环轮播：第一个节点是最后一张图片) 节点数量等于轮播图片+1-->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<span class="trade-span-cover-slider farm-span-cover-slider" style="background: url(../img/test/test-slider3.png); background-size: cover;background-position: center;"></span>
+					</a>
+				</div>
+				<div class="mui-slider-item" <a href="#">
+					<span class="trade-span-cover-slider farm-span-cover-slider" style="background: url(../img/test/test-slider.png); background-size: cover;background-position: center;"></span>
+					</a>
+				</div>
+				<div class="mui-slider-item" <a href="#">
+					<span class="trade-span-cover-slider farm-span-cover-slider" style="background: url(../img/test/test-slider2.png); background-size: cover;background-position: center;"></span>
+					</a>
+				</div>
+				<div class="mui-slider-item" <a href="#">
+					<span class="trade-span-cover-slider farm-span-cover-slider" style="background: url(../img/test/test-slider3.png); background-size: cover;background-position: center;"></span>
+					</a>
+				</div>
+				<!--额外增加的一个节点(最后一个节点与“原”第一张图片相同)-->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<span class="trade-span-cover-slider farm-span-cover-slider" style="background: url(../img/test/test-slider.png); background-size: cover;background-position: center;"></span>
+					</a>
+				</div>
+			</div>
+			<div class="pageIndex pageIndex-farm">
+			</div>
+			<div class="my-farm-photo-date">
+				<span class="mui-icon mui-icon-camera"></span> 2016-5-15
+			</div>
+			<div class="mui-slider-indicator mui-text-center" style="display: none;">
+				<!--对应图片个数-->
+				<div class="mui-indicator mui-active home-slider-text-size"></div>
+				<div class="mui-indicator home-slider-text-size" v-for="n in images.length" v-if="n > 0"></div>
+			</div>
+		</div>
+		<!--介绍-->
+		<div class="my-farm-introduce-group">
+			<div class="my-farm-introduce-item line-weight-half-bottom">
+				<div class="my-farm-introduce-item-left">土地面积</div>
+				<div class="my-farm-introduce-item-right">0.3亩</div>
+			</div>
+			<div class="my-farm-introduce-item line-weight-half-bottom">
+				<div class="my-farm-introduce-item-left">种植天数</div>
+				<div class="my-farm-introduce-item-right">18天</div>
+			</div>
+			<div class="my-farm-introduce-item">
+				<div class="my-farm-introduce-item-left">当前气温</div>
+				<div class="my-farm-introduce-item-right">18摄氏度</div>
+			</div>
+		</div>
+		<!--虫害-->
+		<div class="my-farm-photo-group">
+			<div class="my-farm-photo-group-header line-weight-half-bottom">
+				<div class="my-farm-photo-group-header-item-left">
+					<span class="icon-insect"></span> 虫害
+				</div>
+				<div class="my-farm-photo-group-header-item-right">
+					2016-02-16
+				</div>
+			</div>
+			<div class="my-farm-photo-group-textcontent">
+				叶子长虫，需要杀虫叶子长虫，需要杀虫叶子长虫， 需要杀虫叶子长虫，需要杀虫叶子长虫，需要杀虫叶子长虫，需要杀虫叶子长虫，需要杀虫叶子长虫，需要杀
+
+			</div>
+			<div class="my-farm-photo-group-imgcontent">
+				<span class="comu-content-main-photo-list" style="background: url(../img/test/test-slider.png); background-repeat: no-repeat;background-position: center; background-size: cover; width: 90px; height: 73px;">													
+					<img src="../img/test/test-slider.png"  style="display: block; width: 90px; height: 73px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="123" />
+				</span>
+				<span class="comu-content-main-photo-list" style="background: url(../img/test/test-slider3.png); background-repeat: no-repeat;background-position: center; background-size: cover; width: 90px; height: 73px;">													
+					<img src="../img/test/test-slider3.png"  style="display: block; width: 90px; height: 73px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="123" />
+				</span>
+				<span class="comu-content-main-photo-list" style="background: url(../img/test/test-slider2.png); background-repeat: no-repeat;background-position: center; background-size: cover; width: 90px; height: 73px;">													
+					<img src="../img/test/test-slider2.png"  style="display: block; width: 90px; height: 73px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="123" />
+				</span>
+			</div>
+		</div>
+		<!--施肥-->
+		<div class="my-farm-photo-group">
+			<div class="my-farm-photo-group-header line-weight-half-bottom">
+				<div class="my-farm-photo-group-header-item-left">
+					<span class="icon-spread"></span> 施肥
+				</div>
+				<div class="my-farm-photo-group-header-item-right">
+					2016-02-16
+				</div>
+			</div>
+			<div class="my-farm-photo-group-textcontent">
+				叶子长虫，需要杀虫叶子长虫，需要杀虫叶子长虫， 需要杀虫叶子长虫，需要杀虫叶子长虫，需要杀虫叶子长虫，需要杀虫叶子长虫，需要杀虫叶子长虫，需要杀
+
+			</div>
+			<div class="my-farm-photo-group-imgcontent">
+				<span class="comu-content-main-photo-list" style="background: url(../img/test/test-slider.png); background-repeat: no-repeat;background-position: center; background-size: cover; width: 90px; height: 73px;">													
+					<img src="../img/test/test-slider.png"  style="display: block; width: 90px; height: 73px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="123" />
+				</span>
+				<span class="comu-content-main-photo-list" style="background: url(../img/test/test-slider3.png); background-repeat: no-repeat;background-position: center; background-size: cover; width: 90px; height: 73px;">													
+					<img src="../img/test/test-slider3.png"  style="display: block; width: 90px; height: 73px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="123" />
+				</span>
+				<span class="comu-content-main-photo-list" style="background: url(../img/test/test-slider2.png); background-repeat: no-repeat;background-position: center; background-size: cover; width: 90px; height: 73px;">													
+					<img src="../img/test/test-slider2.png"  style="display: block; width: 90px; height: 73px; opacity: 0; z-index: 999;" data-preview-src="" data-preview-group="123" />
+				</span>
+			</div>
+		</div>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/mui.zoom.js"></script>
+		<script src="../js/mui.previewimage.js"></script>
+		<script>
+			mui.init();
+			console.log("我的农场");
+			(function initSlider() {
+				document.querySelector(".pageIndex").innerText = 1 + "/" + (document.querySelectorAll(".mui-slider-item").length - 2);
+				mui(".mui-slider").on("dragend", ".mui-slider-group", function() {
+					setTimeout(function() {
+						var nodeElem = document.querySelectorAll(".mui-indicator");
+						var count = 1;
+						for (var i = 0; i < nodeElem.length; i++) {
+							if (nodeElem[i].classList.contains("mui-active")) {
+								break;
+							}
+							count++;
+						}
+						document.querySelector(".pageIndex").innerHTML = count + "/" + nodeElem.length;
+					}, 600);
+				});
+			}());
+			
+			mui.plusReady(function() {
+				// 天气
+				var weaterURL = "http://api.map.baidu.com/telematics/v3/weather?location=117.936414,24.580618&output=json&output=json&ak=CXsQGhFNpqY0aKM5PID4hiTU8jrNgw7L";
+				mui.ajax(weaterURL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log(res);
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				});
+			});
+			mui.previewImage();
+		</script>
+	</body>
+
+</html>

@@ -17,6 +17,7 @@
 			.mui-content {
 				background-color: #FFFFFF;
 			}
+			
 			[v-cloak] {
 				display: none;
 			}
@@ -70,12 +71,10 @@
 					<div class="bounce3"></div>
 				</div>
 				<!--<ul class="mui-table-view mui-table-view-chevron">-->
-				<div class="home-rent-container" id="trade-list">
-					<!--v-cloak-->
+				<div class="home-rent-container" id="trade-list" v-cloak>					
 					<div class="home-rent-item" v-for="item in data.items" data-id="{{ item.id }}" data-shop-id="{{ item.shop_id }}" v-on:tap="openDetail">
 						<div class="home-rent-bg" style="background: url({{item.cover}}); background-position: center; background-size: cover;">
-							<div class="home-rent-bg-cover"></div>
-							<!--<div class="home-rent-money-bg"></div>-->
+							<div class="home-rent-bg-cover"></div>							
 							<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>{{ item.price}}</em></div>
 							<div class="home-rent-name">
 								{{ item.shop_name }}
@@ -102,80 +101,81 @@
 			var title = "";
 			// 第一页
 			var page = 1;
+			var pageAll = "";
 			var categoryID = "";
 			// 初始化vue
-			//			var resData = {
-			//				sucess: 'true',
-			//				data: []
-			//			};
 			var resData = {
-				"success": true,
-				"data": {
-					"items": [{
-						"id": 52,
-						"shop_id": 2,
-						"shop_name": "快活林烧烤店",
-						"shop_image": "http://farm.rrzuji.com/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png",
-						"title": "预售测试444444",
-						"cover": "http://farm.rrzuji.com/images/item/1601/21/s/4L0Tr5456a05a03241bc.jpg",
-						"price": 298,
-						"high_price": 968
-					}, {
-						"id": 47,
-						"shop_id": 2,
-						"shop_name": "快活林烧烤店",
-						"shop_image": "http://farm.rrzuji.com/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png",
-						"title": "宝苞农场 标题2",
-						"cover": "http://farm.rrzuji.com/images/item/1601/21/s/4L0Tr5456a05a03241bc.jpg",
-						"price": 298,
-						"high_price": 968
-					}, {
-						"id": 46,
-						"shop_id": 2,
-						"shop_name": "快活林烧烤店",
-						"shop_image": "http://farm.rrzuji.com/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png",
-						"title": "（赠送有机蔬菜）户外活动2，体验生活，亲近自然",
-						"cover": "http://farm.rrzuji.com/images/item/1601/21/s/pDURBxy56a05fff65e62.jpg",
-						"price": 100,
-						"high_price": 1600
-					}, {
-						"id": 45,
-						"shop_id": 2,
-						"shop_name": "快活林烧烤店",
-						"shop_image": "http://farm.rrzuji.com/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png",
-						"title": "宝苞农场 标题3",
-						"cover": "http://farm.rrzuji.com/images/item/1601/21/s/4L0Tr5456a05a03241bc.jpg",
-						"price": 298,
-						"high_price": 968
-					}, {
-						"id": 44,
-						"shop_id": 2,
-						"shop_name": "快活林烧烤店",
-						"shop_image": "http://farm.rrzuji.com/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png",
-						"title": "标题6，标题6",
-						"cover": "http://farm.rrzuji.com/images/item/1601/21/s/4L0Tr5456a05a03241bc.jpg",
-						"price": 298,
-						"high_price": 968
-					}],
-					"_links": {
-						"self": {
-							"href": "http://farm.rrzuji.com/v1/items?category=20&fields=id%2Cshop_id%2Cshop_name%2Cshop_image%2Ctitle%2Ccover%2Cprice%2Chigh_price&page=1&signature=41cf6a2bfeb85f62c588091b2f15f6c8&nonce=zDTMGeSWVl&timestamp=1462614956"
-						},
-						"next": {
-							"href": "http://farm.rrzuji.com/v1/items?category=20&fields=id%2Cshop_id%2Cshop_name%2Cshop_image%2Ctitle%2Ccover%2Cprice%2Chigh_price&page=2&signature=41cf6a2bfeb85f62c588091b2f15f6c8&nonce=zDTMGeSWVl&timestamp=1462614956"
-						},
-						"last": {
-							"href": "http://farm.rrzuji.com/v1/items?category=20&fields=id%2Cshop_id%2Cshop_name%2Cshop_image%2Ctitle%2Ccover%2Cprice%2Chigh_price&page=2&signature=41cf6a2bfeb85f62c588091b2f15f6c8&nonce=zDTMGeSWVl&timestamp=1462614956"
-						}
-					},
-					"_meta": {
-						"totalCount": 8,
-						"pageCount": 2,
-						"currentPage": 1,
-						"perPage": 5
-					}
-				}
+				sucess: 'true',
+				data: []
 			};
+			//						var resData = {
+			//							"success": true,
+			//							"data": {
+			//								"items": [{
+			//									"id": 52,
+			//									"shop_id": 2,
+			//									"shop_name": "快活林烧烤店",
+			//									"shop_image": "http://farm.rrzuji.com/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png",
+			//									"title": "预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试预售测试",
+			//									"cover": "http://farm.rrzuji.com/images/item/1601/21/s/4L0Tr5456a05a03241bc.jpg",
+			//									"price": 298,
+			//									"high_price": 968
+			//								}, {
+			//									"id": 47,
+			//									"shop_id": 2,
+			//									"shop_name": "快活林烧烤店",
+			//									"shop_image": "http://farm.rrzuji.com/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png",
+			//									"title": "宝苞农场 标题2",
+			//									"cover": "http://farm.rrzuji.com/images/item/1601/21/s/4L0Tr5456a05a03241bc.jpg",
+			//									"price": 298,
+			//									"high_price": 968
+			//								}, {
+			//									"id": 46,
+			//									"shop_id": 2,
+			//									"shop_name": "快活林烧烤店",
+			//									"shop_image": "http://farm.rrzuji.com/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png",
+			//									"title": "（赠送有机蔬菜）户外活动2，体验生活，亲近自然",
+			//									"cover": "http://farm.rrzuji.com/images/item/1601/21/s/pDURBxy56a05fff65e62.jpg",
+			//									"price": 100,
+			//									"high_price": 1600
+			//								}, {
+			//									"id": 45,
+			//									"shop_id": 2,
+			//									"shop_name": "快活林烧烤店",
+			//									"shop_image": "http://farm.rrzuji.com/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png",
+			//									"title": "宝苞农场 标题3",
+			//									"cover": "http://farm.rrzuji.com/images/item/1601/21/s/4L0Tr5456a05a03241bc.jpg",
+			//									"price": 298,
+			//									"high_price": 968
+			//								}, {
+			//									"id": 44,
+			//									"shop_id": 2,
+			//									"shop_name": "快活林烧烤店",
+			//									"shop_image": "http://farm.rrzuji.com/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png",
+			//									"title": "标题6，标题6",
+			//									"cover": "http://farm.rrzuji.com/images/item/1601/21/s/4L0Tr5456a05a03241bc.jpg",
+			//									"price": 298,
+			//									"high_price": 968
+			//								}],
+			//								"_links": {
+			//									"self": {
+			//										"href": "http://farm.rrzuji.com/v1/items?category=20&fields=id%2Cshop_id%2Cshop_name%2Cshop_image%2Ctitle%2Ccover%2Cprice%2Chigh_price&page=1&signature=41cf6a2bfeb85f62c588091b2f15f6c8&nonce=zDTMGeSWVl&timestamp=1462614956"
+			//									},
+			//									"next": {
+			//										"href": "http://farm.rrzuji.com/v1/items?category=20&fields=id%2Cshop_id%2Cshop_name%2Cshop_image%2Ctitle%2Ccover%2Cprice%2Chigh_price&page=2&signature=41cf6a2bfeb85f62c588091b2f15f6c8&nonce=zDTMGeSWVl&timestamp=1462614956"
+			//									},
+			//									"last": {
+			//										"href": "http://farm.rrzuji.com/v1/items?category=20&fields=id%2Cshop_id%2Cshop_name%2Cshop_image%2Ctitle%2Ccover%2Cprice%2Chigh_price&page=2&signature=41cf6a2bfeb85f62c588091b2f15f6c8&nonce=zDTMGeSWVl&timestamp=1462614956"
+			//									}
+			//								},
+			//								"_meta": {
+			//									"totalCount": 8,
+			//									"pageCount": 2,
+			//									"currentPage": 1,
+			//									"perPage": 5
+			//								}
+			//							}
+			//						};
 			var vueObj = new Vue({
 				el: "#trade-list",
 				data: resData,
@@ -227,7 +227,7 @@
 					return;
 				}
 				URL = URL + "&page=" + page + "&" + fnCreateSign();
-				console.log(URL);
+				console.log(title+"地址"+URL);
 				mui.ajax(URL, {
 					type: "GET",
 					dataType: "JSON",
@@ -236,6 +236,10 @@
 						console.log("获取" + title + "列表成功" + res);
 						res = JSON.parse(res);
 						if (res.success) {
+							pageAll = res.data._meta.pageCount;
+							if (res.data._meta.totalCount == 0) {
+								mui.toast("商品列表为空！");
+							}
 							if (firstLoad) {
 								// 整体更换
 								console.log("第一次刷新");
@@ -244,11 +248,9 @@
 								bugReset = true;
 								document.querySelector("#spinnerDiv").style.display = "none";
 								mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
-								if (res.data._meta.currentPage == res.data._meta.pageCount) {
+								if (res.data._meta.currentPage == res.data._meta.pageCount || res.data._meta.pageCount == 0) {
 									mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
-									return;
 								}
-								return;
 							} else {
 								if (up) {
 									for (var i = 0; i < res.data.items.length; i++) {
@@ -256,11 +258,13 @@
 									}
 									if (res.data._meta.currentPage == res.data._meta.pageCount || res.data._meta.pageCount == 0) {
 										mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
-										return;
 									}
 								} else {
 									vueObj.$data = res;
-									// 重新启动上拉加载									
+									// 重新启动上拉加载		
+									if (res.data._meta.currentPage == res.data._meta.pageCount || res.data._meta.pageCount == 0) {
+										mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
+									}
 									mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
 									mui('#refreshContainer').pullRefresh().refresh(true);
 									return;
@@ -291,17 +295,21 @@
 			 * 上拉加载业务实现 
 			 */
 			function upCallback() {
-				console.log("触发上拉加载" + page);
+				console.log("触发上拉加载第" + page);
 				page = page + 1;
-				getData(categoryURL[categoryID].url, title, true);
+				if (page > pageAll) {
+					mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
+					return;
+				}
+				getData(categoryURL[categoryID].url, categoryURL[categoryID].title, true);
 			};
 			/**
 			 * 下拉刷新业务实现 
 			 */
 			function downCallBack() {
-				console.log("触发下拉刷新" + page);
+				console.log("触发下拉刷新第" + page);
 				page = 1;
-				getData(categoryURL[categoryID].url, title, false);
+				getData(categoryURL[categoryID].url, categoryURL[categoryID].title, false);
 			};
 			/**
 			 * 打开商品详情页
@@ -337,6 +345,7 @@
 				var _id = thisBtn.getAttribute("data-id");
 				mui.openWindow({
 					url: "../thirdlv/webview-trade-detail.html",
+					id: "webview-trade-detail.html",
 					styles: fnSetSubpageStyle(0, 0),
 					createNew: false,
 					extras: {
@@ -351,7 +360,8 @@
 						autoShow: true
 					}
 				});
-			}
+			};
+			
 			mui.plusReady(function() {
 				categoryID = plus.webview.currentWebview().category;
 				setTimeout(function() {

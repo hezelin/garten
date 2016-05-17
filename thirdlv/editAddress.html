@@ -1,0 +1,178 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>设置地址</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/feedback-page.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<style>
+
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control header-control-fixed mui-navbar-inner">
+			<div class="header-control-left-btn mui-action-back">
+				<span class="white-arrow-big-span header-control-left-btn-span"></span>
+			</div>
+			<div>
+				<span id="webview-head-title">修改收件地址</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span">
+					<button id="saveAddress" class="my-setting-save">保存</button>
+				</span>
+			</div>
+		</div>
+		<div id="head-holder"></div>
+		<a class="my-setting-item my-setting-item-margin-top">
+			<div class="my-setting-left my-setting-border">
+				<label class="my-setting-left-text">收件人</label>
+			</div>
+			<div class="my-setting-middle my-setting-border my-setting-middle-left">
+				<input type="text" class="my-setting-middle-input" id="addressName" placeholder="请输入姓名" value="" />
+			</div>
+			<div class="my-setting-right my-setting-border">
+			</div>
+		</a>
+		<a class="my-setting-item">
+			<div class="my-setting-left my-setting-border">
+				<label class="my-setting-left-text">联系电话</label>
+			</div>
+			<div class="my-setting-middle my-setting-border my-setting-middle-left">
+				<input type="number" class="my-setting-middle-input" id="addressPhone" placeholder="请输入联系电话" value="" />
+			</div>
+			<div class="my-setting-right my-setting-border">
+			</div>
+		</a>
+		<a class="my-setting-item">
+			<div class="my-setting-left my-setting-border">
+				<label class="my-setting-left-text">所在城市</label>
+			</div>
+			<div class="my-setting-middle my-setting-border my-setting-middle-left" id="choiceAddress">
+				<label class="my-setting-middle-text" id="addressCity">请选择所在城市</label>
+			</div>
+			<div class="my-setting-right my-setting-border">
+				<span class="black-arrow-span"></span>
+			</div>
+		</a>
+		<a class="my-setting-item">
+			<div class="my-setting-left">
+				<label class="my-setting-left-text">收货地址</label>
+			</div>
+			<div class="my-setting-middle my-setting-middle-left">
+				<input type="text" class="my-setting-middle-input" id="addressDetail" placeholder="请输入详细地址" value="" />
+			</div>
+			<div class="my-setting-right">
+			</div>
+		</a>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="../js/mui.min.js "></script>
+		<script src="../js/mui.view.js "></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script>
+			window.addEventListener("changeAddress", function(e) {
+				document.getElementById("addressCity").innerText = plus.storage.getItem("cityName");
+			});
+			document.getElementById("choiceAddress").addEventListener("tap", function(e) {
+				fnLoadPage(this, {
+					url: "choiceAddress.html",
+					top: 98,
+					bottom: 0
+				}, {
+					title: "请选择所在城市",
+					rightBtn: '<span id="saveCity" class="header-control-right-btn-span">确定</span>'
+				});
+				mui.fire(plus.webview.getWebviewById("webview-header"), "setCity", {});
+			});
+			document.getElementById("saveAddress").addEventListener("tap", function() {
+				var elemName = document.getElementById("addressName");
+				var elemPhone = document.getElementById("addressPhone");
+				var elemCity = document.getElementById("addressCity");
+				var elemDetail = document.getElementById("addressDetail");
+				if (elemName.value.length == 0 || elemName.value.length > 50) {
+					plus.nativeUI.alert("请输入收件人姓名!");
+					return;
+				}
+				if (elemPhone.value.length == 0 || elemPhone.value.length > 11 || parseInt(elemPhone.value).toString().length != elemPhone.value.length) {
+					plus.nativeUI.alert("请输入收件人11位数字联系方式!");
+					return;
+				}
+				if (elemCity.innerText == "请选择所在城市") {
+					plus.nativeUI.alert("选择所在城市");
+					return;
+				}
+				if (elemDetail.value.length == 0 || elemDetail.value.length > 50) {
+					plus.nativeUI.alert("请输入详细地址!");
+					return;
+				}
+				if (NetWorkStatus()) {
+					return;
+				}
+				var btn = this;
+				btn.disable = true;
+				var userID = plus.storage.getItem("userID");
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/address-add/update?" + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "POST",
+					dataType: "JSON",
+					data: {
+						"user_id": userID,
+						"city_id": plus.storage.getItem("cityNum"),
+						"city_name": plus.storage.getItem("cityName"),
+						"name": elemName.value,
+						"phone": elemPhone.value,
+						"address": elemDetail.value
+					},
+					success: function(res) {
+						console.log(res);
+						res = JSON.parse(res);
+						if (res.success) {							
+							plus.storage.setItem("addressName", res.data.name);
+							plus.storage.setItem("addressPhone", res.data.phone);
+							plus.storage.setItem("addressCity", res.data.city_name);
+							plus.storage.setItem("addressDetail", res.data.address);
+							mui.fire(plus.webview.getWebviewById(webviewId), "refreshAddress", {});
+							window.setTimeout(function() {
+								mui.back();
+							}, 500);
+						} else {
+							mui.toast(res.data.message);
+						}
+						setTimeout(function() {
+							btn.disable = false;
+						}, 150);
+					},
+					error: function(xhr, error, thrownError) {
+						mui.toast("保存地址失败");
+						ajaxError(xhr);
+					}
+				});
+			});
+			var webviewId = "";
+			mui.plusReady(function() {
+				document.getElementById("addressName").value = plus.storage.getItem("addressName");
+				document.getElementById("addressPhone").value = plus.storage.getItem("addressPhone");
+				if (plus.storage.getItem("addressCity")) {
+					document.getElementById("addressCity").innerText = plus.storage.getItem("addressCity");	
+				}				
+				document.getElementById("addressDetail").value = plus.storage.getItem("addressDetail");
+				webviewId = plus.webview.currentWebview().wId;
+				console.log(webviewId);
+			});
+		</script>
+	</body>
+
+</html>

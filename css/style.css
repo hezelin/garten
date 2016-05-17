@@ -131,7 +131,7 @@ body {
 .shop-span-small {
   width: 0.4rem;
   height: 0.37333rem;
-  background: url(../img/shop.png);
+  background: url("../img/shop.png");
   display: inline-block;
   background-size: cover;
   background-position: center;
@@ -155,6 +155,18 @@ body {
   vertical-align: middle;
   background-position-x: 0rem;
   background-position-y: -2.24rem; }
+
+.shop-delete-span-small {
+  width: 0.8rem;
+  height: 0.8rem;
+  display: inline-block;
+  background: url("../img/delete-span-small.png");
+  background-repeat: no-repeat;
+  background-size: 0.42667rem 0.42667rem;
+  background-position: top right;
+  position: absolute;
+  right: 0;
+  top: 0; }
 
 .radio-check-span {
   width: 0.61333rem;
@@ -210,15 +222,12 @@ body {
   vertical-align: middle;
   text-align: center; }
 
-.header-control-color {
-  background-color: #434343 !important; }
-
 .header-control-left-btn {
   width: 1.73333rem;
   text-align: left !important; }
 
 .header-control-right-btn {
-  width: 2.13333rem;
+  width: 1.73333rem;
   text-align: right !important; }
 
 .header-control-left-btn-span {
@@ -251,18 +260,18 @@ body {
     font-size: 60px; }
 
 #getAuthCode {
-  width: 2.4rem;
-  height: 1.06667rem;
-  font-size: 12px;
+  width: 2.2rem;
+  height: 0.73333rem;
+  font-size: 10px;
   background-color: #3d8f52;
   border-radius: 0.13333rem;
   border: none;
   color: #FFFFFF;
   vertical-align: middle; }
   [data-dpr="2"] #getAuthCode {
-    font-size: 24px; }
+    font-size: 20px; }
   [data-dpr="3"] #getAuthCode {
-    font-size: 36px; }
+    font-size: 30px; }
 
 .reSendAuthCode {
   background-color: #ebebeb !important;
@@ -367,9 +376,50 @@ body {
   display: block; }
 
 .trade-span-cover-slider {
-  width: 10rem;
   height: 6.53333rem;
   display: block; }
+
+.farm-span-cover-slider {
+  height: 5.57333rem;
+  display: block; }
+
+#searchDataNull, #farmNull {
+  font-size: 12px;
+  text-align: center; }
+  [data-dpr="2"] #searchDataNull, [data-dpr="2"] #farmNull {
+    font-size: 24px; }
+  [data-dpr="3"] #searchDataNull, [data-dpr="3"] #farmNull {
+    font-size: 36px; }
+
+#searchBigHover {
+  position: absolute;
+  width: 1.6rem;
+  height: 1.33333rem;
+  top: -0.4rem;
+  left: 0px; }
+
+.line-weight-half-bottom:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: -100%;
+  bottom: -100%;
+  border-bottom: 1px solid #dfdfdf;
+  transform: scale(0.5);
+  transform-origin: 0 0; }
+
+.line-weight-half-top:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: -100%;
+  border-bottom: 1px solid #dfdfdf;
+  transform: scale(0.5);
+  transform-origin: 0 0; }
 
 /**
      * ******** ******** ******** ********
@@ -385,17 +435,6 @@ body {
   position: fixed;
   left: 0;
   bottom: 0; }
-
-#index-bar-tab::before {
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: -1px;
-  height: 1px;
-  content: '';
-  -webkit-transform: scaleY(0.5);
-  transform: scaleY(0.5);
-  background-color: #c8c7cc; }
 
 .index-tab-item {
   width: 25%;
@@ -475,7 +514,7 @@ body {
 #home-header-control .header-control-left-btn {
   width: 1.30667rem; }
 #home-header-control .header-control-right-btn {
-  width: 50%; }
+  width: 30%; }
 
 .header-control-greenBold {
   background-color: #3d8f52 !important; }
@@ -579,6 +618,7 @@ body {
 
 .home-news-content-item {
   margin-bottom: 0.16rem;
+  padding-bottom: 0.13333rem;
   clear: both;
   font-size: 0;
   position: relative; }
@@ -655,7 +695,11 @@ body {
 .home-news-content-item-detail-title {
   margin-bottom: 0.29333rem;
   display: block;
-  text-align: left; }
+  text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; }
 
 .home-news-content-item-detail-title-new {
   width: 2.66667rem;
@@ -788,9 +832,6 @@ body {
      * webview-home-rent
      * 认租商城活动农家乐民宿列表
  */
-.home-rent-item {
-  height: 6.48rem; }
-
 .home-rent-bg {
   height: 5.06667rem;
   position: relative; }
@@ -871,15 +912,15 @@ body {
 .home-rent-context {
   width: 100%;
   margin-top: 0.24rem;
+  margin-bottom: 0.66667rem;
   padding-left: 0.37333rem;
   padding-right: 0.37333rem;
   font-size: 16px;
   color: #282828;
-  word-break: keep-all;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: block; }
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; }
   [data-dpr="2"] .home-rent-context {
     font-size: 32px; }
   [data-dpr="3"] .home-rent-context {
@@ -947,6 +988,9 @@ body {
   [data-dpr="3"] .pageIndex {
     font-size: 48px; }
 
+.pageIndex-farm {
+  bottom: 0.30667rem; }
+
 .detail-price {
   padding-top: 0.24rem;
   padding-left: 0.37333rem;
@@ -958,7 +1002,11 @@ body {
   margin-bottom: 0.28rem;
   display: block;
   font-size: 18px;
-  color: #282828; }
+  color: #282828;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; }
   [data-dpr="2"] .home-rent-detail-name {
     font-size: 36px; }
   [data-dpr="3"] .home-rent-detail-name {
@@ -987,20 +1035,22 @@ body {
   width: 94%;
   margin: 0 auto;
   height: 1.28rem;
-  font-size: 16px;
-  border-bottom: 1px solid #dfdfdf; }
+  font-size: 16px; }
   [data-dpr="2"] .home-rent-detail-suit-item {
     font-size: 32px; }
   [data-dpr="3"] .home-rent-detail-suit-item {
     font-size: 48px; }
+
+.home-rent-detail-suit-item-border {
+  border-bottom: 1px solid #dfdfdf; }
 
 .home-rent-detail-suit-item-left {
   width: 44%;
   height: 100%;
   line-height: 1.28rem;
   display: inline-block;
-  color: #787878;
   text-align: left;
+  color: #787878;
   word-break: keep-all;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -1011,8 +1061,8 @@ body {
   height: 100%;
   line-height: 1.28rem;
   display: inline-block;
-  color: #585858;
   text-align: left;
+  color: #585858;
   word-break: keep-all;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -1021,8 +1071,9 @@ body {
 .home-rent-detail-shop {
   width: 100%;
   height: 1.28rem;
-  padding-left: 3.5%;
+  padding-left: 0.37333rem;
   background-color: #FFFFFF;
+  border-bottom: 1px solid #dfdfdf;
   display: table; }
 
 .home-rent-detail-shop-left {
@@ -1068,6 +1119,9 @@ body {
 .home-rent-detail-shop-detail-content {
   border-right: 1px solid #dfdfdf;
   text-align: center; }
+
+.home-rent-detail-shop-detail-border-none {
+  border: none; }
 
 .home-rent-detail-shop-detail-content-num {
   font-size: 18px;
@@ -1575,12 +1629,12 @@ body {
   background-position-y: -6.89333rem;
   position: absolute;
   top: 0.53333rem;
-  right: 0.41333rem; }
+  right: 0.37333rem; }
 
 .buyDiv-item {
   padding-top: 0.53333rem;
   padding-bottom: 0.4rem;
-  padding-left: 0.50667rem;
+  padding-left: 0.37333rem;
   padding-right: 0.37333rem;
   border-bottom: 1px solid #dfdfdf;
   font-size: 0; }
@@ -1596,7 +1650,7 @@ body {
     font-size: 54px; }
 
 .buyDiv-items {
-  margin: 0.13333rem;
+  margin: 0.13333rem 0.24rem 0.13333rem 0rem;
   padding: 0.13333rem 0.13333rem;
   border-radius: 0.26667rem;
   background-color: #f5f5f0;
@@ -1611,6 +1665,10 @@ body {
   background-color: #3d8f52;
   color: #FFFFFF; }
 
+.buyDiv-items-disabled {
+  background-color: #D3D3D3;
+  color: #6D6D72; }
+
 .buyDiv-count {
   height: 1.73333rem;
   border-bottom: 1px solid #dfdfdf;
@@ -1618,7 +1676,7 @@ body {
   position: relative; }
 
 .buyDiv-count-title {
-  margin-left: 0.50667rem;
+  margin-left: 0.37333rem;
   margin-top: 0.53333rem;
   display: inline-block;
   font-size: 18px;
@@ -1631,7 +1689,7 @@ body {
 .buyDiv-count-right {
   height: 100%;
   position: absolute;
-  right: 0.41333rem;
+  right: 0.37333rem;
   display: inline-block;
   padding-top: 0.48rem;
   text-align: right; }
@@ -1641,7 +1699,7 @@ body {
   text-align: center; }
 
 .buyDiv-bottom-btn {
-  width: 90%;
+  width: 92%;
   height: 62%;
   border: none;
   margin-top: 0.37333rem;
@@ -1939,16 +1997,17 @@ body {
   background-color: #FFFFFF; }
 
 .consignee-group-left {
-  width: 0.66667rem;
+  width: 0.86667rem;
   height: 100%;
-  display: inline-block;
-  text-align: center; }
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle; }
 
 .consignee-group-right {
-  width: 8rem;
+  width: 8.13333rem;
   height: 100%;
   vertical-align: middle;
-  display: inline-block; }
+  display: table-cell; }
 
 .consignee-name-phone-content {
   font-size: 16px;
@@ -1958,6 +2017,8 @@ body {
     font-size: 32px; }
   [data-dpr="3"] .consignee-name-phone-content {
     font-size: 48px; }
+  .consignee-name-phone-content span {
+    padding-right: 0.26667rem; }
 
 .consignee-address-content {
   font-size: 14px;
@@ -1968,13 +2029,14 @@ body {
     font-size: 42px; }
 
 .right-arrow-group {
-  width: 0.4rem;
+  width: 0.53333rem;
   height: 100%;
-  display: inline-block;
-  text-align: right; }
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle; }
 
 .orderForm {
-  margin-bottom: 0.26667rem;
+  margin-bottom: 0.33333rem;
   background-color: #FFFFFF; }
 
 .orderForm-shop {
@@ -1982,12 +2044,24 @@ body {
   margin: 0 auto; }
 
 .orderForm-detail {
-  width: 93%;
   height: 2.8rem;
   line-height: 2.8rem;
   border-top: 1px solid #dfdfdf;
-  margin: 0 auto;
-  font-size: 0; }
+  margin: 0rem 0.37333rem;
+  font-size: 0;
+  position: relative; }
+
+.orderForm-detail-bottom {
+  margin-bottom: 0.33333rem; }
+
+.orderForm-detail-bottom:after {
+  content: '';
+  width: 10rem;
+  height: 0.33333rem;
+  background-color: #F7F7F7;
+  position: absolute;
+  left: -0.37333rem;
+  bottom: -0.33333rem; }
 
 .orderForm-detail-left {
   width: 2.26667rem;
@@ -2024,19 +2098,29 @@ body {
     font-size: 48px; }
 
 .orderForm-detail-title {
+  width: 5.46667rem;
   margin-bottom: 0.26667rem;
   display: block;
-  font-size: 14px;
-  color: #606060; }
+  font-size: 16px;
+  color: #282828;
+  word-break: keep-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
   [data-dpr="2"] .orderForm-detail-title {
-    font-size: 28px; }
+    font-size: 32px; }
   [data-dpr="3"] .orderForm-detail-title {
-    font-size: 42px; }
+    font-size: 48px; }
 
 .orderForm-detail-content {
+  width: 5.46667rem;
   display: block;
   font-size: 14px;
-  color: #606060; }
+  color: #606060;
+  word-break: keep-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
   [data-dpr="2"] .orderForm-detail-content {
     font-size: 28px; }
   [data-dpr="3"] .orderForm-detail-content {
@@ -2061,11 +2145,12 @@ body {
   display: inline-block; }
 
 .orderForm-other-item {
-  width: 93%;
   height: 1.36rem;
   line-height: 1.37333rem;
   font-size: 0;
-  margin: 0 auto;
+  margin: 0rem 0.37333rem; }
+
+.orderForm-other-item-top {
   border-top: 1px solid #dfdfdf; }
 
 .other-item-left {
@@ -2115,8 +2200,7 @@ body {
   background-color: #FFFFFF; }
 
 .coupon-container {
-  width: 93%;
-  margin: 0 auto; }
+  margin: 0rem 0.37333rem; }
 
 .coupon-left {
   width: 22%;
@@ -2183,10 +2267,12 @@ body {
   height: 1.06667rem;
   line-height: 1.06667rem;
   border-radius: 0.13333rem;
+  padding: 0;
   font-size: 16px;
   text-align: center;
   color: #FFFFFF;
-  background-color: #3d8f52; }
+  background-color: #3d8f52;
+  border: none; }
   [data-dpr="2"] .buttonGroup-pay {
     font-size: 32px; }
   [data-dpr="3"] .buttonGroup-pay {
@@ -2258,13 +2344,13 @@ body {
   right: 0.37333rem; }
 
 .user-bg-phone {
-  font-size: 14px;
+  font-size: 12px;
   color: #fff;
   margin-bottom: 0.70667rem; }
   [data-dpr="2"] .user-bg-phone {
-    font-size: 28px; }
+    font-size: 24px; }
   [data-dpr="3"] .user-bg-phone {
-    font-size: 42px; }
+    font-size: 36px; }
 
 .user-bg-nav {
   width: 100%;
@@ -2277,16 +2363,16 @@ body {
   font-size: 0; }
   .user-bg-nav a {
     width: 30%;
-    font-size: 15px;
+    font-size: 16px;
     color: #fff;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
     text-decoration: none; }
     [data-dpr="2"] .user-bg-nav a {
-      font-size: 30px; }
+      font-size: 32px; }
     [data-dpr="3"] .user-bg-nav a {
-      font-size: 45px; }
+      font-size: 48px; }
     .user-bg-nav a span {
       display: inline-block; }
   .user-bg-nav .short-line {
@@ -2312,7 +2398,9 @@ body {
 
 .user-menu-group {
   width: 100%;
-  height: 1.34667rem;
+  height: 1.46667rem;
+  padding-left: 0.37333rem;
+  padding-right: 0.37333rem;
   font-size: 16px;
   color: #000000;
   background-color: #FFFFFF;
@@ -2323,13 +2411,14 @@ body {
     font-size: 48px; }
 
 .user-menu-icon {
-  width: 1.74667rem;
+  width: 1.41333rem;
   display: table-cell;
   vertical-align: middle;
-  text-align: center;
+  text-align: left;
   font-size: 0;
   letter-spacing: -4px;
-  word-spacing: -4px; }
+  word-spacing: -4px;
+  position: relative; }
   .user-menu-icon span {
     width: 0.97333rem;
     height: 0.97333rem;
@@ -2356,11 +2445,12 @@ body {
   background-position-x: -14.4rem; }
 
 .user-menu-group-describle {
+  position: relative;
   display: table-cell;
   vertical-align: middle; }
 
 .user-menu-group-describle-right {
-  padding-right: 0.37333rem;
+  position: relative;
   display: table-cell;
   vertical-align: middle;
   text-align: right; }
@@ -2368,14 +2458,6 @@ body {
 .user-menu-group:nth-child(1),
 .user-menu-group:nth-child(4) {
   margin-top: 0.30667rem; }
-
-.user-menu-group:nth-child(2) > .user-menu-group-describle {
-  border-top: 1px solid #dfdfdf;
-  border-bottom: 1px solid #dfdfdf; }
-
-.user-menu-group:nth-child(2) > .user-menu-group-describle-right {
-  border-top: 1px solid #dfdfdf;
-  border-bottom: 1px solid #dfdfdf; }
 
 /**
      * ******** ******** ******** ********
@@ -2521,14 +2603,14 @@ body {
   vertical-align: middle; }
 
 .my-trader-title-name {
-  font-size: 14px;
+  font-size: 15px;
   color: #595959;
   display: table-cell;
   vertical-align: middle; }
   [data-dpr="2"] .my-trader-title-name {
-    font-size: 28px; }
+    font-size: 30px; }
   [data-dpr="3"] .my-trader-title-name {
-    font-size: 42px; }
+    font-size: 45px; }
   .my-trader-title-name span {
     vertical-align: middle; }
 
@@ -2569,22 +2651,22 @@ body {
     display: block; }
 
 .collect-order-trader-name {
-  width: 6rem;
-  font-size: 19px;
+  width: 5.33333rem;
+  font-size: 16px;
   color: #000000;
   word-break: keep-all;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden; }
   [data-dpr="2"] .collect-order-trader-name {
-    font-size: 38px; }
+    font-size: 32px; }
   [data-dpr="3"] .collect-order-trader-name {
-    font-size: 57px; }
+    font-size: 48px; }
 
 .collect-order-trader-detail {
   width: 6rem;
   font-size: 15px;
-  color: #727272;
+  color: #787878;
   word-break: keep-all;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -2684,6 +2766,132 @@ body {
 
 /**
      * ******** ******** ******** ********
+     * 我的种植
+     * webview-my-farm
+ */
+.my-farm-photo-date {
+  width: 3.6rem;
+  height: 0.73333rem;
+  line-height: 0.73333rem;
+  position: absolute;
+  bottom: 0.44rem;
+  left: 0rem;
+  display: inline-block;
+  font-size: 14px;
+  color: #FFFFFF;
+  background-color: rgba(0, 0, 0, 0.3); }
+  .my-farm-photo-date span {
+    margin-left: 0.37333rem;
+    font-weight: bold; }
+
+.my-farm-introduce-group {
+  margin-top: 0.30667rem;
+  background-color: #FFFFFF; }
+
+.my-farm-introduce-item {
+  height: 1.36rem;
+  line-height: 1.36rem;
+  position: relative;
+  font-size: 0; }
+
+.my-farm-introduce-item-left {
+  width: 50%;
+  text-align: left;
+  display: inline-block;
+  font-size: 18px;
+  color: #282828;
+  padding-left: 0.37333rem;
+  vertical-align: middle; }
+  [data-dpr="2"] .my-farm-introduce-item-left {
+    font-size: 36px; }
+  [data-dpr="3"] .my-farm-introduce-item-left {
+    font-size: 54px; }
+
+.my-farm-introduce-item-right {
+  width: 50%;
+  text-align: right;
+  display: inline-block;
+  font-size: 16px;
+  color: #787878;
+  padding-right: 0.37333rem;
+  vertical-align: middle; }
+  [data-dpr="2"] .my-farm-introduce-item-right {
+    font-size: 32px; }
+  [data-dpr="3"] .my-farm-introduce-item-right {
+    font-size: 48px; }
+
+.my-farm-photo-group {
+  margin-top: 0.30667rem;
+  background-color: #FFFFFF; }
+
+.my-farm-photo-group-header {
+  height: 1rem;
+  line-height: 1rem;
+  position: relative;
+  font-size: 0; }
+
+.my-farm-photo-group-header-item-left {
+  width: 50%;
+  height: 100%;
+  line-height: inherit;
+  padding-left: 0.37333rem;
+  display: inline-block;
+  font-size: 16px;
+  color: #282828; }
+  [data-dpr="2"] .my-farm-photo-group-header-item-left {
+    font-size: 32px; }
+  [data-dpr="3"] .my-farm-photo-group-header-item-left {
+    font-size: 48px; }
+
+.my-farm-photo-group-header-item-right {
+  width: 50%;
+  height: 100%;
+  line-height: inherit;
+  padding-right: 0.37333rem;
+  display: inline-block;
+  font-size: 16px;
+  color: #7f7f7f;
+  text-align: right; }
+  [data-dpr="2"] .my-farm-photo-group-header-item-right {
+    font-size: 32px; }
+  [data-dpr="3"] .my-farm-photo-group-header-item-right {
+    font-size: 48px; }
+
+.icon-insect {
+  width: 0.50667rem;
+  height: 0.53333rem;
+  display: inline-block;
+  background: url(../img/my-farm-insect.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  vertical-align: middle; }
+
+.icon-spread {
+  width: 0.6rem;
+  height: 0.56rem;
+  display: inline-block;
+  background: url(../img/my-farm-spread.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  vertical-align: middle; }
+
+.my-farm-photo-group-textcontent {
+  padding: 0.45333rem 0.37333rem 0.26667rem 0.37333rem;
+  line-height: 1.15;
+  font-size: 14px;
+  color: #282828; }
+  [data-dpr="2"] .my-farm-photo-group-textcontent {
+    font-size: 28px; }
+  [data-dpr="3"] .my-farm-photo-group-textcontent {
+    font-size: 42px; }
+
+.my-farm-photo-group-imgcontent {
+  padding: 0rem 0.37333rem 0.93333rem 0.37333rem; }
+
+/**
+     * ******** ******** ******** ********
      * 我的购物车
      * webview-my-shopcar
  */
@@ -2717,20 +2925,20 @@ body {
   vertical-align: middle;
   text-align: right; }
 
-.allCount {
+.allCount-red {
   color: #FF2222; }
 
 .my-shop-car-pay-button {
-  width: 2.26667rem;
-  padding-right: 0.37333rem; }
+  width: 2.93333rem; }
   .my-shop-car-pay-button button {
     width: 100%;
-    height: 0.85333rem;
+    height: 100%;
     padding: 0;
     color: white;
     background-color: #FF2222;
     font-size: 18px;
-    border: none; }
+    border: none;
+    border-radius: initial; }
     [data-dpr="2"] .my-shop-car-pay-button button {
       font-size: 36px; }
     [data-dpr="3"] .my-shop-car-pay-button button {
@@ -3316,7 +3524,7 @@ body {
  */
 .my-setting-item {
   width: 100%;
-  height: 1.33333rem;
+  height: 1.46667rem;
   padding-left: 0.37333rem;
   padding-right: 0.37333rem;
   background-color: white;
@@ -3381,7 +3589,7 @@ body {
   border-bottom: 1px solid #dfdfdf; }
 
 #my-setting-loginout {
-  height: 1.30667rem;
+  height: 1.46667rem;
   padding-left: 0.37333rem;
   line-height: 1.30667rem;
   display: block;
@@ -3411,11 +3619,13 @@ body {
   background-color: #3d8f52; }
 
 .input-name-container {
-  width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 0.8rem;
-  margin-bottom: 0.8rem; }
+  width: 100%;
+  margin-top: 0.13333rem;
+  height: 1.2rem;
+  border: none;
+  border-radius: 3px;
+  background-color: #fff;
+  display: inline-block; }
 
 #inputNickName {
   width: 90%; }
@@ -3423,13 +3633,6 @@ body {
 #clearNickName {
   width: 9%;
   color: #c9c9c9; }
-
-.input-name-container {
-  height: 1.2rem;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  background-color: #fff;
-  display: inline-block; }
 
 #inputNickName {
   height: 1.13333rem;
@@ -3489,14 +3692,14 @@ body {
   margin-top: -2.85333rem;
   margin-left: -40%;
   width: 80%;
-  height: 5.69333rem;
+  height: 4.13333rem;
   z-index: 999;
   background-color: white;
   border-radius: 8px; }
 
 .sexList-item-group {
   width: 90%;
-  height: 2.28rem;
+  height: 1.4rem;
   margin-left: 5%;
   margin-right: 5%;
   display: table; }
@@ -3522,18 +3725,17 @@ body {
   border-bottom: 1px solid #dfdfdf; }
 
 #postSexChoose {
-  height: 1.06667rem;
+  height: 1.24rem;
   line-height: 1.06667rem;
-  font-size: 18px;
+  font-size: 14px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  color: #FFFFFF;
-  background-color: #3d8f52;
-  text-align: center; }
+  text-align: center;
+  border-bottom: 1px solid #dfdfdf; }
   [data-dpr="2"] #postSexChoose {
-    font-size: 36px; }
+    font-size: 28px; }
   [data-dpr="3"] #postSexChoose {
-    font-size: 54px; }
+    font-size: 42px; }
 
 .sex-man-span {
   width: 1rem;
@@ -3612,8 +3814,7 @@ body {
   height: 1.06667rem; }
 
 .mui-navbar {
-  height: 1.46667rem;
-  background-color: #434343; }
+  height: 1.32rem; }
 
 .mui-pages {
   top: 1.46667rem; }

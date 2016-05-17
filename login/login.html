@@ -48,7 +48,7 @@
 					<a id="forgetPWD">忘记密码</a>
 				</span>
 			</div>
-			<div class="other-way">
+			<!--<div class="other-way">
 				<span class="other-way-text">其他登录方式</span>
 				<span class="other-way-line"></span>
 			</div>
@@ -67,7 +67,7 @@
 					<span class="other-btn-logo logo-weibo"></span>
 					<span class="other-btn-title">微博</span>
 				</div>
-			</div>
+			</div>-->
 		</div>
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
@@ -162,8 +162,11 @@
 							plus.storage.setItem("tokenDate", res.data.access_token.substring(40, 50));
 							// 读取本地存储信息更新目标页面面板资料
 							mui.fire(plus.webview.getWebviewById("webview-my.html"), "changeInfoLogin", {});
-							var w = plus.webview.currentWebview();
-							w.hide();														
+							window.setTimeout(function() {
+								var w = plus.webview.currentWebview();
+								w.hide();		
+							}, 100);
+																			
 						} else {
 							mui.toast(res.data.message || res.data.error || "服务器错误");
 						}

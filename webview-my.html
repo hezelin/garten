@@ -60,13 +60,13 @@
 				</div>
 			</div>
 			<div class="user-menu-group" id="user-menu-group-myfarm">
-				<div class="user-menu-icon">
+				<div class="user-menu-icon line-weight-half-top line-weight-half-bottom">
 					<span class="my-farm "></span>
 				</div>
-				<div class="user-menu-group-describle">
-					<span>我的农场</span>
+				<div class="user-menu-group-describle line-weight-half-top line-weight-half-bottom">
+					<span>我的种植</span>
 				</div>
-				<div class="user-menu-group-describle-right">
+				<div class="user-menu-group-describle-right line-weight-half-top line-weight-half-bottom">
 					<span class="black-arrow-span"></span>
 				</div>
 			</div>
@@ -229,15 +229,20 @@
 					setNum();
 					getNoice();
 				}
-				document.querySelector(".user-bg-name").addEventListener("tap", function() {
+				document.querySelector(".user-bg").addEventListener("tap", function() {
 					if (!userLoginStatus()) {
 						openLogin(this);
 					}
 				});
+//				document.querySelector(".user-bg-name").addEventListener("tap", function() {
+//					if (!userLoginStatus()) {
+//						openLogin(this);
+//					}
+//				});
 				//打开我的红包
 				document.getElementById("user-bag").addEventListener("tap", function(e) {
 					if (!userLoginStatus()) {
-						openLogin(this);
+//						openLogin(this);
 						return;
 					}
 					fnLoadPage(e.currentTarget, {
@@ -251,7 +256,7 @@
 				//打开收藏
 				document.getElementById("user-collect").addEventListener("tap", function(e) {
 					if (!userLoginStatus()) {
-						openLogin(this);
+//						openLogin(this);
 						return;
 					}
 					fnLoadPage(e.currentTarget, {
@@ -265,7 +270,7 @@
 				//打开购物车
 				document.getElementById("user-shop-car").addEventListener("tap", function(e) {
 					if (!userLoginStatus()) {
-						openLogin(this);
+//						openLogin(this);
 						return;
 					}
 					fnLoadPage(e.currentTarget, {
@@ -301,7 +306,7 @@
 					}
 					//订单窗口有头部导航
 					fnLoadPage(e.currentTarget, {
-						url: "webview-body.html",
+						url: "secondlv/webview-my-farm.html",
 						top: 98,
 						bottom: 0
 					}, {

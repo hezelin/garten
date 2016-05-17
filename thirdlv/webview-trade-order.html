@@ -14,7 +14,14 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
 		<style>
-
+			body {
+				width: 10rem;
+				margin: 0 auto;
+			}
+			
+			[v-cloak] {
+				display: none;
+			}
 		</style>
 	</head>
 
@@ -36,72 +43,77 @@
 				<span class="black-nav-span"></span>
 			</div>
 			<div class="consignee-group-right">
-				<div class="consignee-name-phone-content">收货人：测试&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18825051395</div>
-				<div class="consignee-address-content">地址：广东省广州市越秀区东川路一街10号&nbsp;</div>
+				<div class="consignee-name-phone-content"></div>
+				<div class="consignee-address-content"></div>
 			</div>
 			<div class="right-arrow-group">
 				<span class="black-arrow-span"></span>
 			</div>
 		</div>
-		<div class="orderForm">
-			<div class="home-rent-detail-shop" class="orderForm-shop">
-				<div class="home-rent-detail-shop-left">					
-					<span class="home-rent-detail-shop-logo" style="background: url(../img/TradeLogo.png); background-size: cover; background-position: center;"></span>
+		<div id="vueContainer">
+			<div class="orderForm">
+				<div class="orderForm-group-item" v-for="sitem in shopItems">
+					<div class="home-rent-detail-shop" class="orderForm-shop" v-cloak style="border: none;">
+						<div class="home-rent-detail-shop-left">
+							<span class="home-rent-detail-shop-logo" style="background: url({{sitem.shopImg}}); background-size: cover; background-position: center;"></span>
+						</div>
+						<div class="home-rent-detail-shop-middle">
+							<span class="home-rent-detail-shop-name">{{sitem.shopName}}</span>
+						</div>
+					</div>
+					<!--商品区域-->
+					<!--orderForm-detail-bottom-->
+					<div class="orderForm-detail {{$index == sitem.items.length - 1 ? 'orderForm-detail-bottom' : ''}}" v-for="item in sitem.items" v-cloak>
+						<div class="orderForm-detail-left">
+							<span class="orderForm-detail-img" style="background: url({{item.itemImg}}); background-size: cover;"></span>
+						</div>
+						<div class="orderForm-detail-middle">
+							<span class="orderForm-detail-title">{{item.itemName}}</span>
+							<span class="orderForm-detail-content">{{item.standardName}}</span>
+							<span class="orderForm-detail-money">&yen;&nbsp;&nbsp;{{item.itemPrice}}</span>
+						</div>
+						<div class="orderTrade-detail-right">
+							<span class="orderTrade-detail-right-span">x{{item.itemNums}}</span>
+						</div>
+					</div>
 				</div>
-				<div class="home-rent-detail-shop-middle">
-					<span class="home-rent-detail-shop-name">童游</span>
-				</div>
-			</div>
-			<!--商品区域-->
-			<div class="orderForm-detail">
-				<div class="orderForm-detail-left">
-					<span class="orderForm-detail-img" style="background: url(../img/shop-detail.png); background-size: cover;"></span>
-				</div>
-				<div class="orderForm-detail-middle">
-					<span class="orderForm-detail-title">耕作地</span>
-					<span class="orderForm-detail-content">0.2亩/两个月</span>
-					<span class="orderForm-detail-money">&yen;&nbsp;&nbsp;300</span>
-				</div>
-				<div class="orderTrade-detail-right">
-					<span class="orderTrade-detail-right-span">x1</span>
-				</div>
-			</div>
-
-			<div class="orderForm-other">
-				<div class="orderForm-other-item">
-					<div class="other-item-left">运输方式</div>
-					<div class="other-item-right"><span>普通快递</span><span id="choseExpress" class="black-arrow-span"></span></div>
-				</div>
-				<div class="orderForm-other-item">
+				<div class="orderForm-other">
+					<div class="orderForm-other-item">
+						<div class="other-item-left">运输方式</div>
+						<div class="other-item-right"><span>普通快递</span><span id="choseExpress" class="black-arrow-span"></span></div>
+					</div>
+					<!--<div class="orderForm-other-item">
 					<div class="other-item-left">买家留言:</div>
 					<div class="other-item-right">
 						<input type="text" id="leaveMessage" placeholder="选填，可填写给商家的留言" />
 					</div>
-				</div>
-				<div class="orderForm-other-item">
-					<div class="other-item-left"></div>
-					<div class="other-item-right">
-						共1件商品&nbsp;&nbsp;&nbsp;&nbsp;合计:&nbsp;&yen;&nbsp;300
+				</div>-->
+					<div class="orderForm-other-item orderForm-other-item-top" v-cloak>
+						<div class="other-item-left"></div>
+						<div class="other-item-right">
+							共{{allNum}}件商品&nbsp;&nbsp;&nbsp;&nbsp;合计:&nbsp;&yen;&nbsp;{{allCount}}
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<!--底部区域-->
-		<div id="coupon">
-			<div style="width: 93%; margin: 0 auto;">
-				<div class="coupon-left">优惠</div>
-				<div class="coupon-middle">使用优惠券
-					<div class="coupon-right"><span class="black-arrow-span"></span></div>
+
+			<!--底部区域-->
+			<div id="coupon">
+				<div class="coupon-container">
+					<div class="coupon-left">优惠</div>
+					<div class="coupon-middle">使用优惠券
+						<div class="coupon-right"><span class="black-arrow-span"></span></div>
+					</div>
 				</div>
 			</div>
+			<div id="totalPrice" v-cloak>
+				<span class="totalPrice-above">&yen;{{allCount}}&nbsp;+&nbsp;&yen;10.0运费</span><br /><span class="totalPrice-under">合计：&yen;{{(parseFloat(allCount) + parseFloat(10)).toFixed(1)}}</span>
+			</div>
 		</div>
-		<div id="totalPrice">
-			<span class="totalPrice-above">&yen;300.00&nbsp;+&nbsp;&yen;10.00运费</span><br /><span class="totalPrice-under">合计：&yen;310.00</span>
-		</div>
-		<div id="buttonGroup">
-			<div id="btnWeiXin" class="buttonGroup-pay">微信支付</div>
-			<div id="btnZhiFuBao" class="buttonGroup-pay">支付宝支付</div>
+		<div id="buttonGroup" style="height: 2.2rem;">
+			<!--<button id="btnWeiXin" class="buttonGroup-pay">微信支付</button>-->
+			<!--<button id="btnZhiFuBao" class="buttonGroup-pay">支付宝支付</button>-->
+			<button class="buttonGroup-pay">提交订单</button>
 		</div>
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
@@ -112,21 +124,177 @@
 		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
-//			var chocieMID = document.querySelector(".num-choice-mid");
-//			var choicePrice = document.querySelector(".buyDiv-money-count");
-//			//				var basePrice = parseFloat(choicePrice.getAttribute("data-normal"));
-//			document.querySelector(".num-choice-left").addEventListener("tap", function() {
-//				var val = chocieMID.innerText;
-//				if (val == "1") {
-//					return;
-//				}
-//				chocieMID.innerText = parseInt(val) - 1;
-//				//					choicePrice.innerText = parseFloat(choicePrice.innerText) - basePrice;
-//			});
-//			document.querySelector(".num-choice-right").addEventListener("tap", function() {
-//				chocieMID.innerText = parseInt(chocieMID.innerText) + 1;
-//				//					choicePrice.innerText = parseFloat(choicePrice.innerText) + basePrice;
-//			});
+			// 单项提交
+			// shop_id shop_name item_id item_num standard_id (pay_hongbao_id)
+			// 多项提交
+			// cart_id[]
+			var newData = null;
+			var addressData = null;
+			window.addEventListener("refreshAddress", function(e) {
+				mui.toast("地址已更新");
+				document.querySelector(".consignee-name-phone-content").innerHTML = '<span>' + plus.storage.getItem("addressName") + '</span>' + plus.storage.getItem("addressPhone");
+				document.querySelector(".consignee-address-content").innerHTML = '<span>地址:</span>' + plus.storage.getItem("addressCity") + plus.storage.getItem("addressDetail");
+			});
+
+			function getAddress() {
+				// 获取地址
+				if (NetWorkStatus()) {
+					return;
+				}
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/address-add/view?" + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log(res);
+						res = JSON.parse(res);
+						if (res.success) {
+							// 无地址
+							if (!res.data) {
+								document.querySelector(".consignee-name-phone-content").innerHTML = '<span>收件地址为空，请添加地址</span>';
+							} else {
+								// 刷新数据
+								document.querySelector(".consignee-name-phone-content").innerHTML = '<span>收货人：' + res.data.name + '</span>联系方式：' + res.data.phone;
+								document.querySelector(".consignee-address-content").innerHTML = '<span>收货地址：</span>' + res.data.city_name + res.data.address;
+								plus.storage.setItem("addressName", res.data.name);
+								plus.storage.setItem("addressPhone", res.data.phone);
+								plus.storage.setItem("addressCity", res.data.city_name);
+								plus.storage.setItem("addressDetail", res.data.address);
+								addressData = res;
+							}
+						}
+					},
+					error: function(xhr, error, thrownError) {
+						ajaxError(xhr);
+					}
+				});
+			};
+			document.getElementById("consignee").addEventListener("tap", function() {
+				mui.openWindow({
+					url: "editAddress.html",
+					id: "editAddress.html",
+					styles: fnSetSubpageStyle(0, 0),
+					createNew: false,
+					extras: {
+						wId: "webview-trade-order.html"
+					},
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+
+			function createVue(Data) {
+				new Vue({
+					el: "#vueContainer",
+					data: Data
+				});
+			}
+
+			function handlePostOrderForm(postData, isShopCar) {
+				console.log(JSON.stringify(postData));
+				document.getElementById("buttonGroup").addEventListener("tap", function(e) {
+					if (NetWorkStatus()) {
+						return;
+					}
+					if (!userLoginStatus()) {
+						openLogin(this, true);
+						return;
+					}
+					var btn = this;
+					btn.setAttribute("disabled", "true");
+					var token = plus.storage.getItem("tokenValue");
+					var str = isShopCar ?  "order/create-by-cart?" : "order/create?";
+					var URL = "http://farm.rrzuji.com/v1/" + str + fnCreateSign() + "&access-token=" + token;
+					console.log(URL);
+					mui.ajax(URL, {
+						type: "POST",
+						dataType: "JSON",
+						data: postData,
+						success: function(res) {
+							console.log("提交订单" + res);
+							res = JSON.parse(res);
+							if (res.success) {
+								mui.fire(plus.webview.getWebviewById("webview-trade-detail.html"), "alertOrderMsg", {});
+								setTimeout(function() {
+									if (isShopCar) {
+										// 打开订单列表
+										openOrderList(btn);
+									} else {
+										// 打开订单详情
+										openOrderDetail(res.data.id);
+										window.setTimeout(function() {
+											var w = plus.webview.getWebviewById("webview-trade-order.html");
+											w.hide();
+											w.close();
+										}, 600);
+									}
+								}, 100);
+							} else {
+								alert(res.data.message);
+							}
+							btn.removeAttribute("disabled");
+						},
+						error: function(xhr) {
+							btn.removeAttribute("disabled");
+							ajaxError(xhr);
+						}
+					});
+				});
+			};
+			// 打开订单详情页
+			function openOrderDetail(orderId) {
+				var tampData = newData.shopItems[0];
+				mui.openWindow({
+					url: "webview-trade-order-detail.html",
+					id: "webview-trade-order-detail.html",
+					styles: fnSetSubpageStyle(0, 0),
+					createNew: false,
+					extras: {
+						data: {
+							title: "提交订单成功",
+							orderId: orderId
+						}
+					},
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: true
+					}
+				});
+			};
+			// 打开订单列表页
+			function openOrderList(btn) {
+				if (!userLoginStatus()) {
+					openLogin(this);
+					return;
+				}
+				//订单窗口有头部导航
+				fnLoadPage(btn, {
+					url: "../secondlv/webview-my-order.html",
+					top: 213,
+					bottom: 0
+				}, {
+					title: "我的订单",
+					hasControlTab: true
+				});
+			};
+			mui.plusReady(function() {
+				getAddress();
+				var w = plus.webview.currentWebview();
+				newData = w.data;
+				createVue(w.data);
+				handlePostOrderForm(w.data.dataPost, w.data.isShopCar);
+			});
 		</script>
 	</body>
 

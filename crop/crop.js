@@ -4,11 +4,13 @@ window.addEventListener("loadFileCrop", function(e) {
 		return;
 	}
 	// 有url进来 e.detail.fileFullPath
-	console.log(e.detail.fileFullPath);
+	console.log("图片进来，图片"+e.detail.fileFullPath);
 	handleFiles(e.detail.fileFullPath);
 	imgURL = e.detail.fileFullPath;
 });
+var nwaiting;
 window.addEventListener("saveCropAtCrop", function(e) {
+	nwaiting = plus.nativeUI.showWaiting("正在上传");
 	handIMG();
 });
 //添加图片，获取文件
@@ -147,18 +149,18 @@ function handIMG() {
 			y = y * oldToNewScaleH;
 			cutWidth = cutWidth * oldToNewScaleW;
 			cutHeight = cutHeight * oldToNewScaleH;
-
+			console.log("压缩前，图片地址"+imgURL);
 			try {
 				var clipData = {
 					top: y,
 					left: x,
 					width: cutWidth,
 					height: cutHeight
-				}
+				};
 				if (mui.os.plus) {
 					plus.zip.compressImage({
-							src: imgURL,
-							dst: imgURL,
+							src: '_doc/headTamp.jpg',
+							dst: '_doc/headTamp.jpg',
 							quality: 100,
 							overwrite: true,
 							rotate: 0,
@@ -167,10 +169,11 @@ function handIMG() {
 						function() {
 							createUpload();
 							fileLoadBool = true;
-							console.log("图片保存成功");
+							console.log("截取图片压缩保存成功");
 						},
 						function(error) {
 							console.log("Compress error!" + error.message);
+							console.log("压缩出错");
 							fileLoadBool = true;
 						});
 				}
@@ -223,6 +226,7 @@ function handleFiles(filePath) {
 	// 初始化滑动条
 	btnRange.value = 1;
 	img.src = filePath;
+	console.log("图片装载地址" + filePath);
 };
 
 function drawcover() {
@@ -385,11 +389,14 @@ function saveFile() {
 					file.remove(function() {
 						entry.copyTo(root, 'head.jpg', function(e) {
 								console.log("本地头像文件更新成功");
-								updateAvatar(e.fullPath);
-								mui.toast("更新头像成功");
+								updateAvatar(e.fullPath);								
 								var w = plus.webview.getWebviewById("webview-header");
 								mui.fire(w, "initHeadTemplate", {});
-								w.hide();
+								nwaiting.close();	
+								mui.toast("更新头像成功");
+								window.setTimeout(function() {
+									w.hide();
+								}, 200);								
 							},
 							function(e) {
 								console.log('copy image fail:' + e.message);
@@ -403,6 +410,7 @@ function saveFile() {
 							console.log("本地头像文件更新成功");
 							updateAvatar(e.fullPath);
 							mui.toast("更新头像成功");
+							nwaiting.close();	
 							var w = plus.webview.getWebviewById("webview-header");
 							mui.fire(w, "initHeadTemplate", {});
 							w.hide();

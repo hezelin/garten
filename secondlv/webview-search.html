@@ -23,28 +23,26 @@
 				display: none;
 			}
 			
-			.scroll-hide {
-				display: none;
+			.head-holder10 {
+				height: 10px;
 			}
-			
-			.scroll-active {
-				display: block;
-			}
+					
 		</style>
 	</head>
 
 	<body>
-		<div class="header-control">
+		<div class="header-control header-control-fixed">
 			<div class="header-control-left-btn  mui-action-back">
 				<span class="header-control-left-btn-span white-arrow-big-span"></span>
 			</div>
 			<div>
 				<div class="shop-search-container">
 					<div class="shop-search-div-left">
-						<input type="" name="" id="shopSearch" value="搜索" />
+						<input type="text" name="" id="shopSearch" value="搜索" style="margin-bottom: 0;" />
 					</div>
-					<div class="shop-search-div-right">
+					<div class="shop-search-div-right" style="position: relative;">
 						<span class="search-span"></span>
+						<span id="searchBigHover" style="position: absolute;"></span>
 					</div>
 				</div>
 			</div>
@@ -52,16 +50,147 @@
 				<!--<span class="header-control-right-btn-span white-three-point-span"></span>-->
 			</div>
 		</div>
-		
-
+		<div class="head-holder10"></div>
+		<div id="head-holder"></div>
+		<div id="searchDataNull" style="display: none; text-align: center;">很抱歉，没有找到</div>
+		<div id="vueContainer" v-cloak>
+			<div class="home-rent-container" id="trade-list" v-cloak>
+				<div class="home-rent-item" v-for="item in data" data-id="{{ item.id }}" v-on:tap="openDetail">
+					<div class="home-rent-bg" style="background: url({{item.cover}}); background-position: center; background-size: cover;">
+						<div class="home-rent-bg-cover"></div>
+						<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>{{ item.price}}</em></div>
+					</div>
+					<label class="home-rent-context">{{ item.title }}</label>
+				</div>
+			</div>
+		</div>
+		<div id="vueContainerForShop" v-cloak>
+			<div class="shop-home-page-list-container" v-cloak>
+				<div class="shop-home-page-list-content" v-cloak>
+					<div class="shop-home-page-list-item  {{$index % 2 ? '':'shop-home-page-list-item-left'}}" v-for="item in data" v-on:tap.stop="openDetail" data-id="{{item.id}}">
+						<div class="shop-home-page-list-item-img" style="background: url({{item.cover}}); background-position; center; background-size: cover;"></div>
+						<span class="shop-home-page-list-item-title">{{item.title}}</span>
+						<span class="shop-home-page-list-item-price"><em>&yen;{{item.price}}</em></span>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/md5.min.js"></script>
 		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
+			var elemTip = document.getElementById("searchDataNull");
+			var _shopId = null;
+			var first = true;
+			var vueObj = null;
+
+			function initVue(target) {
+				vueObj = new Vue({
+					el: "#" + target,
+					methods: {
+						openDetail: function(event) {
+							openDetail(event);
+						}
+					}
+				});
+			};
+
+			function openDetail(event) {
+				var thisBtn = event.currentTarget;
+				var _id = thisBtn.getAttribute("data-id");
+				mui.openWindow({
+					url: "../thirdlv/webview-trade-detail.html",
+					id: "webview-trade-detail.html",
+					styles: fnSetSubpageStyle(0, 0),
+					createNew: false,
+					extras: {
+						itemID: _id
+					},
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: true
+					}
+				});
+			};
+			document.getElementById("shopSearch").addEventListener("focus", function(e) {
+				if (this.value == "搜索" || this.value == "搜索店铺内商品") {
+					this.value = "";
+				}
+			});
+			document.getElementById("shopSearch").addEventListener("blur", function(e) {
+				if (this.value == "") {
+					_shopId ? this.value = "搜索店铺内商品" : this.value = "搜索";
+				}
+			});
+
+			function handleBtn() {
+				document.querySelector("#searchBigHover").addEventListener("tap", function() {
+					var val = document.getElementById("shopSearch").value;
+					if (val.length == 0) {
+						mui.toast("请输入搜索关键字");
+						return;
+					}
+					elemTip.style.display = "none";
+					getData(val);
+				});
+			};
+
+			function getData(sValue) {
+				var str = "";
+				str = _shopId ? "&shop_id=" + _shopId : "";
+				var URL = "http://farm.rrzuji.com/v1/search/item?" + fnCreateSign() + "&q=" + sValue + str;
+				if (first) {
+					if (_shopId) {
+						initVue("vueContainerForShop");
+					} else {
+						initVue("vueContainer");
+					}
+					first = false;
+				}
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log(res);
+						res = JSON.parse(res);
+						if (res.data.length == 0) {
+							document.querySelector(".shop-home-page-list-container").style.display = "none";
+							elemTip.innerText = "很抱歉，没有找到与“" + sValue + "”相关商品或活动";
+							elemTip.style.display = "block";
+							vueObj.$data = {};
+						} else {
+							document.querySelector(".shop-home-page-list-container").style.display = "block";
+							vueObj.$data = res;
+						}
+					},
+					error: function(xhr) {
+						document.querySelector(".shop-home-page-list-container").style.display = "none";
+						vueObj.$data = {};
+						elemTip.innerText = "服务器出现了一点问题";
+						elemTip.style.display = "block";
+						ajaxError(xhr);
+					}
+				});
+			}
+			mui.plusReady(function() {
+				var w = plus.webview.currentWebview();
+				if (w.shopId) {
+					_shopId = w.shopId;
+					document.getElementById("shopSearch").value = "搜索店铺内商品";
+				} else {
+					document.querySelector(".head-holder10").style.display = "none";
+				}
+				handleBtn();
+			});
 		</script>
 	</body>
 

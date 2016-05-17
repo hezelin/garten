@@ -538,6 +538,7 @@
 								var _id = thisBtn.getAttribute("data-id");
 								mui.openWindow({
 									url: "../thirdlv/webview-trade-detail.html",
+									id: "webview-trade-detail.html",
 									styles: fnSetSubpageStyle(0, 0),
 									createNew: false,
 									extras: {
@@ -556,7 +557,28 @@
 						}
 					})
 				}
-			}
+			};
+			// 打开搜索页
+			document.querySelector(".header-control-right-btn").addEventListener("tap", function() {
+				mui.openWindow({
+					url: "../secondlv/webview-search.html",
+					id: "../secondlv/webview-search.html",
+					createNew: false,
+					styles: {
+						render: "always",
+						popGesture: "none",
+						hardwareAccelerated: true
+					},
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
 			mui.plusReady(function() {
 				// 第一个标签手动设置				
 				new tabObj("hotSaleList", "hotSaleScroll", "true");

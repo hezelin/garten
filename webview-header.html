@@ -36,13 +36,13 @@
 
 		<div class="header-control-tab-fixed" style="display: none;">
 			<div class="header-control-tab">
-				<div class="header-control-tab-nav header-control-tab-nav-active" data-transform="none">
+				<div class="header-control-tab-nav header-control-tab-nav-active" data-transform="none" data-status="none">
 					全部
 				</div>
-				<div class="header-control-tab-nav header-control-tab-nav-lay" data-transform="translateX(100%)">
+				<div class="header-control-tab-nav header-control-tab-nav-lay" data-transform="translateX(100%)" data-status="1">
 					进行中
 				</div>
-				<div class="header-control-tab-nav header-control-tab-nav-lay" data-transform="translateX(200%)">
+				<div class="header-control-tab-nav header-control-tab-nav-lay" data-transform="translateX(200%)" data-status="10">
 					已结束
 				</div>
 			</div>
@@ -52,16 +52,15 @@
 		<!--<header class="mui-bar-nav"></header>
 		<div class="mui-content"></div>-->
 
-		<!--<div class="loadingPage">
+		<div class="loadingPage">
 			<div class="loadingPage-middle">
 				<div class="spinner">
 					<div class="bounce1"></div>
 					<div class="bounce2"></div>
 					<div class="bounce3"></div>
 				</div>
-				<span class="loadingPage-text">努力加载中...</span>
 			</div>
-		</div>-->
+		</div>
 
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
@@ -97,8 +96,8 @@
 			});
 			window.addEventListener("avatarCrop", function(e) {
 				document.getElementById("saveCrop").addEventListener("tap", function() {
-					this.innerText = "保存中";
-					mui.fire(plus.webview.getWebviewById("../crop/crop.html"), "saveCropAtCrop", {});
+					this.innerText = "···";					
+					mui.fire(plus.webview.getWebviewById("../crop/crop.html"), "saveCropAtCrop", {});					
 				});
 			});
 			window.addEventListener("avatarCropError", function(e) {
@@ -106,9 +105,9 @@
 					this.innerText = "保存";
 				});
 			});
-			window.addEventListener("setCity", function(e) {
+			window.addEventListener("setCity", function(e) {				
 				document.getElementById("saveCity").addEventListener("tap", function() {
-					mui.fire(plus.webview.getWebviewById("../thirdlv/choiceAddress.html"), "saveCity", {});
+					mui.fire(plus.webview.getWebviewById("choiceAddress.html"), "saveCity", {});					
 				});
 			});
 			// 将模板页设为初始状态
@@ -155,10 +154,11 @@
 					thisBtn.classList.add("header-control-tab-nav-active");
 					thisBtn.classList.remove("header-control-tab-nav-lay");
 				}
-			}
-			mui.plusReady(function() {
+			};
+						
+			mui.plusReady(function() {		
 				//webview切换栏
-				mui(".header-control-tab").on("tap", ".header-control-tab-nav", function(e) {				
+				mui(".header-control-tab").on("tap", ".header-control-tab-nav", function(e) {								
 					var thisBtn = this;
 					var sliderBar = document.getElementsByClassName("head-control-slider")[0];
 					var strValue = this.getAttribute("data-transform");
@@ -178,8 +178,9 @@
 					}
 					console.log(e.target.innerText);
 //					if (e.target.innerText == )
-					var webviewBody = plus.webview.create(webviewBodyURL, webviewBodyURL, fnSetSubpageStyle(217, 0), {});
+					var webviewBody = plus.webview.create(webviewBodyURL, webviewBodyURL, fnSetSubpageStyle(217, 0), {});					
 					webviewBody.onloaded = function() {
+						mui.fire(webviewBody, "getData", {status: thisBtn.getAttribute("data-status")});
 						thisBtn.classList.remove("loading");
 						setTimeout(function() {
 							webviewHead.append(webviewBody);
@@ -196,6 +197,13 @@
 				//处理返回键事件
 				var oldBack = mui.back;
 				mui.back = function() {
+					// 用以关闭订单页
+					var w = plus.webview.getWebviewById("webview-trade-order.html");
+					if (w) {
+						w.hide("none");
+						w.close();
+						console.log(JSON.stringify(plus.webview.all()));
+					}
 					var webviewBody = plus.webview.currentWebview().children()[0];
 					if (!webviewBody) {
 						initHeadPage();

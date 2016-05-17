@@ -107,9 +107,8 @@
 						</div>
 					</div>
 					<div class="home-news-content">
-						<div class="home-news-content-item" >
-							<div class="home-news-content-item-title">
-								<span ></span>
+						<div class="home-news-content-item" >							
+							<div class="home-news-content-item-title">								
 								<label class="home-news-content-item-title-name">最新活动</label>
 							</div>
 							<div class="home-news-content-item-line"></div>
@@ -273,6 +272,7 @@
 						var _id = thisBtn.getAttribute("data-id");
 						mui.openWindow({
 							url: "thirdlv/webview-trade-detail.html",
+							id: "webview-trade-detail.html",
 							styles: fnSetSubpageStyle(0, 0),
 							createNew: false,
 							extras: {
@@ -380,7 +380,7 @@
 				document.querySelector("#homeActivity").addEventListener("tap", function(e) {
 					fnOpenWindow({
 						title: "农家乐",
-						category: "2"
+						category: "3"
 					});
 				});
 				document.querySelector("#homeShop").addEventListener("tap", function(e) {

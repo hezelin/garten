@@ -39,17 +39,21 @@
 				<span class="header-control-left-btn-span white-arrow-big-span"></span>
 			</div>
 			<div>
-				<div class="shop-search-container">
+				<!--<div class="shop-search-container">
 					<div class="shop-search-div-left">
 						<input type="" name="" id="shopSearch" value="搜索店铺内商品" />
 					</div>
 					<div class="shop-search-div-right">
 						<span class="search-span"></span>
 					</div>
-				</div>
+				</div>-->
 			</div>
-			<div class="header-control-right-btn">
+			<!--<div class="header-control-right-btn">
 				<span class="header-control-right-btn-span white-three-point-span"></span>
+			</div>-->
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span search-span"></span>
+				<!--<span class="header-control-right-btn-span white-three-point-span"></span>-->
 			</div>
 		</div>
 		<div id="scroll1" class="mui-scroll-wrapper trade-scroll-position scroll-hide scroll-active">
@@ -59,10 +63,10 @@
 					<span class="shop-head-logo" style="background: url({{header_image}}); background-position; center; background-size: cover;"></span><br />
 					<span class="shop-head-title">{{name}}</span>
 					<span class="shop-map">
-				<span class="navigation-span"></span>
+						<span class="navigation-span"></span>
 					</span>
 				</div>
-				<div class="home-rent-detail-shop-detail white-bg" v-cloak>
+				<div class="home-rent-detail-shop-detail white-bg" v-cloak style="display: none;">
 					<div class="home-rent-detail-shop-detail-btn">
 						<div class="home-rent-detail-shop-detail-content">
 							<span class="home-rent-detail-shop-detail-content-num">{{item_num}}</span>
@@ -120,25 +124,6 @@
 		</div>
 		<div id="scroll2" class="mui-scroll-wrapper trade-scroll-position scroll-hide" v-cloak>
 			<div class="mui-scroll" id="introduceScroll">
-				<div class="shop-home-page-list-container">
-					<div class="shop-home-page-list-title">
-						全部商品
-					</div>
-					<div class="shop-home-page-list-content">
-						<div class="shop-home-page-list-content">
-							<div class="shop-home-page-list-item  {{$index % 2 ? '':'shop-home-page-list-item-left'}}" v-for="item in data" v-on:tap.stop="openDetail" data-id="{{item.id}}">
-								<div class="shop-home-page-list-item-img" style="background: url({{item.cover}}); background-position; center; background-size: cover;"></div>
-								<span class="shop-home-page-list-item-title">{{item.title}}</span>
-								<!--<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>-->
-								<span class="shop-home-page-list-item-price"><em>&yen;{{item.price}}</em></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="scroll4" class="mui-scroll-wrapper trade-scroll-position scroll-hide" v-cloak>
-			<div class="mui-scroll" id="introduceScroll">
 				<div class="shop-introduce-container">
 					<!--<div class="shop-introduce-item">
 						<span class="shop-introduce-item-left shop-introduce-title">商家介绍：</span>
@@ -158,44 +143,21 @@
 				</div>
 			</div>
 		</div>
-		<div id="scroll3" class="mui-scroll-wrapper trade-scroll-position scroll-hide">
+		<div id="scroll3" class="mui-scroll-wrapper trade-scroll-position scroll-hide" v-cloak>
 			<div class="mui-scroll" id="introduceScroll">
 				<div class="shop-home-page-list-container">
 					<div class="shop-home-page-list-title">
-						果树认租
+						全部商品
 					</div>
 					<div class="shop-home-page-list-content">
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/fruitTree.png" />
-							<span class="shop-home-page-list-item-title">桔子树</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>
+						<div class="shop-home-page-list-content">
+							<div class="shop-home-page-list-item  {{$index % 2 ? '':'shop-home-page-list-item-left'}}" v-for="item in data" v-on:tap.stop="openDetail" data-id="{{item.id}}">
+								<div class="shop-home-page-list-item-img" style="background: url({{item.cover}}); background-position; center; background-size: cover;"></div>
+								<span class="shop-home-page-list-item-title">{{item.title}}</span>
+								<!--<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>-->
+								<span class="shop-home-page-list-item-price"><em>&yen;{{item.price}}</em></span>
+							</div>
 						</div>
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/plowLand2.png" />
-							<span class="shop-home-page-list-item-title">玉米地</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;250</em>/亩</span>
-						</div>
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/plowLand.png" />
-							<span class="shop-home-page-list-item-title">田地</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;200</em>/亩</span>
-						</div>
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/fruitTree.png" />
-							<span class="shop-home-page-list-item-title">桔子树</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;20~40</em>/棵</span>
-						</div>
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/plowLand.png" />
-							<span class="shop-home-page-list-item-title">田地</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;200</em>/亩</span>
-						</div>
-						<div class="shop-home-page-list-item">
-							<img class="shop-home-page-list-item-img" src="../img/plowLand2.png" />
-							<span class="shop-home-page-list-item-title">玉米地</span>
-							<span class="shop-home-page-list-item-price"><em>&yen;250</em>/亩</span>
-						</div>
-
 					</div>
 				</div>
 			</div>
@@ -206,27 +168,23 @@
 			<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll1" data-first="false">
 				<span class="shop-foot-content">店铺首页</span>
 			</div>
-			<!--<a class="shop-foot-item" href="#bottomPopover">-->
-			<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll2" data-first="true">
+			<!--<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll2" data-first="true">
 				<span class="shop-foot-content shop-foot-content-border">所有商品</span>
-				<!--</a>-->
-			</div>
-			<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll4" data-first="false">
+			</div>-->
+			<a class="shop-foot-item" href="#bottomPopover">
+				<span class="shop-foot-content shop-foot-content-border">所有商品</span>
+			</a>
+			<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll2" data-first="false">
 				<span class="shop-foot-content">店铺简介</span>
 			</div>
 		</div>
 
-		<!--<div id="bottomPopover" class="mui-popover mui-popover-bottom">
+		<div id="bottomPopover" class="mui-popover mui-popover-bottom">
 			<div class="mui-popover-arrow"></div>
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell switchScrollBtn" data-scroll="#scroll2">
-					<a href="#" class="fixed-btn-item">菜地</a>
-				</li>
-				<li class="mui-table-view-cell switchScrollBtn" data-scroll="#scroll3">
-					<a href="#" class="fixed-btn-item">果树</a>
-				</li>
+
 			</ul>
-		</div>-->
+		</div>
 
 		<!--<div class="loadingPage">
 			<div class="loadingPage-middle">
@@ -247,15 +205,17 @@
 		<script src="../js/public.js"></script>
 		<script src="../js/vue.min.js"></script>
 		<script>
-		   
 			mui.init();
-			var productListData = null;
 			// 阻尼系数
 			var deceleration = mui.os.ios ? 0.003 : 0.0009;
+			var id = null; // 商品id
 			mui('.mui-scroll-wrapper').scroll({
 				bounce: false,
 				indicators: false, // 是否显示滚动条
 				deceleration: deceleration
+			});
+			document.querySelector(".shop-map").addEventListener("tap", function() {
+				mui.toast("该商铺未在地图录入!");
 			});
 			window.addEventListener("initPage", function() {
 				var shophead = plus.webview.getWebviewById("webview-shop-header");
@@ -263,18 +223,19 @@
 			mui(".mui-table-view").on("tap", ".mui-table-view-cell", function() {
 				mui('#bottomPopover').popover('toggle');
 			});
-			document.querySelector("#shopSearch").addEventListener("focus", function() {
-				if (this.value == "搜索店铺内商品") {
-					this.value = "";
-				}
-			});
-			document.querySelector("#shopSearch").addEventListener("blur", function() {
-				if (this.value == "") {
-					this.value = "搜索店铺内商品";
-				}
-			});
+			//			document.querySelector("#shopSearch").addEventListener("focus", function() {
+			//				if (this.value == "搜索店铺内商品") {
+			//					this.value = "";
+			//				}
+			//			});
+			//			document.querySelector("#shopSearch").addEventListener("blur", function() {
+			//				if (this.value == "") {
+			//					this.value = "搜索店铺内商品";
+			//				}
+			//			});
 			// 处理切换
 			mui('body').on('tap', '.switchScrollBtn', function() {
+				//				document.querySelector("#shopSearch").blur();
 				// 更换滚动区域
 				var elem = document.querySelector(".scroll-active").classList.remove("scroll-active");
 				var thisScroll = this.getAttribute("data-scroll");
@@ -282,10 +243,8 @@
 				document.querySelector(thisScroll).classList.add("scroll-active");
 				if (first == "true") {
 					// 加载list
-					if (productListData) {
-						initProductVue(productListData);
-						this.setAttribute("data-first", "false");
-					}
+					this.setAttribute("data-first", "false");
+					initTradeList(this.getAttribute("data-cid"), thisScroll);
 				}
 			});
 
@@ -300,28 +259,27 @@
 					}
 				});
 				new Vue({
-					el: "#scroll4",
+					el: "#scroll2",
 					data: resData
 				})
 			};
-
-			function initProductVue(resData) {
-				new Vue({
-					el: "#scroll2",
-					data: resData,					
-					methods: {
-						openDetail: function(event) {
-							handleOpenDetail(event);
-						}
-					}
-				});
-			};
-
+			//			function initProductVue(resData) {
+			//				new Vue({
+			//					el: "#scroll2",
+			//					data: resData,
+			//					methods: {
+			//						openDetail: function(event) {
+			//							handleOpenDetail(event);
+			//						}
+			//					}
+			//				});
+			//			};
 			function handleOpenDetail(event) {
 				var thisBtn = event.currentTarget;
 				var _id = thisBtn.getAttribute("data-id");
 				mui.openWindow({
 					url: "webview-trade-detail.html",
+					id: "webview-trade-detail.html",
 					styles: fnSetSubpageStyle(0, 0),
 					createNew: false,
 					extras: {
@@ -338,7 +296,7 @@
 				});
 			};
 
-			function initShopFirstPage(id) {
+			function initShopFirstPage() {
 				// 初始化首页
 				return new Promise(function(resolve, reject) {
 					var URL = "http://farm.rrzuji.com/v1/shop/index?" + fnCreateSign() + "&id=" + id;
@@ -350,14 +308,15 @@
 							res = JSON.parse(res);
 							if (res.success) {
 								initFirstVue(res.data);
+								var detail = [];
 								// 获取所有商品
-								for (var cId in res.data.category) {
-									resolve({
-										cId: cId,
-										iId: id
+								for (var Key in res.data.category) {
+									detail.push({
+										categoryName: res.data.category[Key],
+										categoryId: Key,
 									});
-									break;
 								}
+								resolve(detail);
 							}
 						},
 						error: function(xhr) {
@@ -368,17 +327,17 @@
 				});
 			};
 
-			function initTradeList(id, categoryId) {
-				// 初始化商品页列表
-				var URL = "http://farm.rrzuji.com/v1/shop/item?" + fnCreateSign() + "&shop_id=" + id + "&category_id=4";
+			function initTradeList(categoryId, scrollId) {
+				// 初始化某一个商品列表
+				var URL = "http://farm.rrzuji.com/v1/shop/item?" + fnCreateSign() + "&shop_id=" + id + "&category_id=" + categoryId;
 				mui.ajax(URL, {
 					type: "GET",
 					dataType: "JSON",
 					success: function(res) {
-						console.log("商铺商品" + res);
+						console.log("商铺某分类商品" + res);
 						res = JSON.parse(res);
 						if (res.success) {
-							productListData = res;
+							initCatetoryVue(scrollId, res);
 						}
 					},
 					error: function(xhr) {
@@ -386,14 +345,84 @@
 					}
 				});
 			};
+			//  生成分类按钮
+			function initCategory(data) {
+				var container = document.querySelector("#bottomPopover .mui-table-view");
+				var dElem = document.createDocumentFragment();
+				for (var i in data) {
+					var li = document.createElement("li");
+					li.setAttribute("class", "mui-table-view-cell switchScrollBtn");
+					li.setAttribute("data-scroll", "#scroll" + 1 + i);
+					li.setAttribute("data-first", "true");
+					li.setAttribute("data-cid", data[i].categoryId);
+					var a = document.createElement("a");
+					a.setAttribute("href", "#");
+					a.setAttribute("class", "fixed-btn-item");
+					a.innerText = data[i].categoryName;
+					li.appendChild(a);
+					dElem.appendChild(li);
+					createScroll(1 + i, data[i].categoryName);
+				}
+				container.appendChild(dElem);
+			}
+			// 生成分类列表
+			function createScroll(snum, categoryname) {
+				var elem = document.createElement("div");
+				elem.setAttribute("id", "scroll" + snum);
+				elem.setAttribute("v-cloak", "");
+				elem.setAttribute("class", "mui-scroll-wrapper trade-scroll-position scroll-hide");
+				elem.innerHTML = '<div class="mui-scroll">' +
+					'<div class="shop-home-page-list-container">' +
+					'<div class="shop-home-page-list-title">' + categoryname + '</div>' +
+					'<div class="shop-home-page-list-content">' +
+					'<div class="shop-home-page-list-content">' +
+					'<div class="shop-home-page-list-item  {{$index % 2 ? \'\':\'shop-home-page-list-item-left\'}}" v-for="item in data" v-on:tap.stop="openDetail" data-id="{{item.id}}">' +
+					'<div class="shop-home-page-list-item-img" style="background: url({{item.cover}}); background-position; center; background-size: cover;"></div>' +
+					'<span class="shop-home-page-list-item-title" v-cloak>{{item.title}}</span>' +
+					'<span class="shop-home-page-list-item-price" v-cloak><em>&yen;{{item.price}}</em></span>' +
+					'</div></div></div></div></div>';
+				document.body.appendChild(elem);
+			}
+			// 渲染某一个分类列表
+			function initCatetoryVue(scrollId, res) {
+				new Vue({
+					el: scrollId,
+					data: res
+				});
+			}
 			mui.plusReady(function() {
 				var w = plus.webview.currentWebview();
-				var id = w.shopId;
+				id = w.shopId;
 				if (id) {
-					initShopFirstPage(id).then(function(e) {
-						initTradeList(e.iId, e.cId);
+					initShopFirstPage().then(function(e) {
+						console.log(JSON.stringify(e));
+						// 生成分类列表						
+						initCategory(e);
 					});
 				}
+				document.querySelector(".header-control-right-btn").addEventListener("tap", function() {
+					mui.openWindow({
+						url: "../secondlv/webview-search.html",
+						id: "../secondlv/webview-search.html",
+						createNew: false,
+						styles: {
+							render: "always",
+							popGesture: "none",
+							hardwareAccelerated: true
+						},
+						extras: {
+							shopId: id
+						},
+						show: {
+							autoShow: true,
+							aniShow: "pop-in",
+							duration: 300
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				});
 			});
 		</script>
 	</body>

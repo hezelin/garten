@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Hello MUI</title>
+		<title>选择所在城市</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -64,6 +64,7 @@
 			var cityName = "";
 				
 			for (var key in province) {
+				console.log(key);
 				html.push('<a class="mui-control-item" href="#content' + key + '">' + province[key] + '</a>');
 				i++;
 			}
@@ -90,11 +91,17 @@
 				cityName = obj.innerText;
 			}
 			
-			window.addEventListener("saveCity", function() {
+			window.addEventListener("saveCity", function() {		
+				if (cityName.length == 0) {
+					alert("请选择城市");
+					return;
+				}
 				plus.storage.setItem("cityNum", cityNum);
 				plus.storage.setItem("cityName", cityName);
-				mui.fire(plus.webview.getWebviewById("secondlv/webview-my-setting.html"), "changeAddress", {});
-				plus.webview.getWebviewById("webview-header").hide();
+				mui.fire(plus.webview.getWebviewById("editAddress.html"), "changeAddress", {});			
+				window.setTimeout(function() {
+					plus.webview.getWebviewById("webview-header").hide();				
+				}, 100);				
 			});
 		</script>
 

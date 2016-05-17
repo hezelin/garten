@@ -23,12 +23,12 @@
 	<body>
 		<div id="collectNull" v-cloak>收藏夹为空</div>
 		<div id="vueContainer" v-cloak>
-			<div class="my-trader-item" v-for="item in data.items" v-on:tap="openTradeDetail" data-itemID="{{item.item_id}}">
+			<div class="my-trader-item" v-for="item in data.items" v-on:tap="openTradeDetail" data-itemID="{{item.item_id}}" v-if="item.item_price">
 				<div class="my-trader-title" data-shop-id="{{item.shop_id}}" v-on:tap.stop="openShop">
 					<div class="my-trader-title-logo">
 						<span class="shop-span"></span>
 					</div>
-					<div class="my-trader-title-name">{{item.shop_name}}<span class="shop-arrow-span"></span></div>
+					<div class="my-trader-title-name">{{item.shop_name}}</div>
 					<div class="my-trader-title-right my-collect-time" v-on:tap.stop="deleteCollect" data-id="{{item.id}}" data-index="{{$index}}">
 						<span class="shop-delete-span"></span>
 					</div>
@@ -76,7 +76,13 @@
 						console.log("收藏列表" + res);
 						res = JSON.parse(res);
 						if (res.success) {
-							if (res.data.items.length == 0) {
+							var count = 0;
+							for (var i in res.data.items) {
+								if (res.data.items[i].item_price == null || res.data.items[i].item_price == '') {
+									count ++;
+								}
+							}
+							if (res.data.items.length == count) {
 								document.querySelector("#collectNull").removeAttribute("v-cloak");
 							}
 							vueObj = new Vue({
@@ -145,6 +151,7 @@
 				var thisBtn = event.currentTarget;
 				mui.openWindow({
 					url: "../thirdlv/webview-trade-detail.html",
+					id: "webview-trade-detail.html",
 					styles: fnSetSubpageStyle(0, 0),
 					createNew: false,
 					extras: {

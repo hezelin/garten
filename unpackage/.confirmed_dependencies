@@ -38,7 +38,8 @@
 			"secondlv/webview-comu-farm-introduce.html",
 			"crop.html",
 			"secondlv/webview-comu-detail.html",
-			"secondlv/webview-search.html"
+			"secondlv/webview-search.html",
+			"thirdlv/webview-comu-promulgate.html"
 		]
 	},
 	"index.html": {
@@ -103,7 +104,8 @@
 			"login/login.html",
 			"thirdlv/webview-my-userbag-amply.html",
 			"secondlv/webview-my-comu.html",
-			"webview-body.html"
+			"webview-body.html",
+			"secondlv/webview-my-farm.html"
 		]
 	},
 	"webview-home.html": {
@@ -175,7 +177,8 @@
 			"secondlv/webview-comu-farm-introduce.html",
 			"crop/crop.html",
 			"thirdlv/choiceAddress.html",
-			"webview-body.html"
+			"webview-body.html",
+			"secondlv/webview-my-farm.html"
 		],
 		"refer": [
 			"secondlv/webview-my-collect.html",
@@ -189,7 +192,8 @@
 			"crop.html",
 			"crop/crop.html",
 			"thirdlv/choiceAddress.html",
-			"webview-body.html"
+			"webview-body.html",
+			"secondlv/webview-my-farm.html"
 		]
 	},
 	"secondlv/webview-my-setting.html": {
@@ -213,11 +217,13 @@
 			"img/img3.png",
 			"js/md5.min.js",
 			"crop/crop.js",
-			"crop/action.js"
+			"crop/action.js",
+			"img/img2.png"
 		],
 		"refer": [
 			"crop/crop.html",
-			"thirdlv/choiceAddress.html"
+			"thirdlv/choiceAddress.html",
+			"thirdlv/editAddress.html"
 		]
 	},
 	"webview-nav.html": {
@@ -266,9 +272,12 @@
 			"img/plowLand2.png",
 			"img/img.png",
 			"css/mui.min.css",
-			"css/style.css"
+			"css/style.css",
+			"js/vue.min.js"
 		],
-		"refer": []
+		"refer": [
+			"thirdlv/webview-trade-order-detail.html"
+		]
 	},
 	"secondlv/webview-my-shopcar.html": {
 		"resources": [
@@ -284,10 +293,12 @@
 			"css/style.css",
 			"img/plowLand.png",
 			"js/vue.min.js",
-			"img/img3.png"
+			"img/img3.png",
+			"img/delete-span-small.png"
 		],
 		"refer": [
-			"thirdlv/webview-trade-detail.html"
+			"thirdlv/webview-trade-detail.html",
+			"thirdlv/webview-trade-order.html"
 		]
 	},
 	"secondlv/webview-my-userbag.html": {
@@ -691,7 +702,8 @@
 			"img/head-search.png"
 		],
 		"refer": [
-			"secondlv/webview-home-rent.html"
+			"secondlv/webview-home-rent.html",
+			"secondlv/webview-search.html"
 		]
 	},
 	"webview-shopping-list-header.html": {
@@ -736,7 +748,8 @@
 			"img/shop.png"
 		],
 		"refer": [
-			"thirdlv/webview-trade-detail.html"
+			"thirdlv/webview-trade-detail.html",
+			"secondlv/webview-search.html"
 		]
 	},
 	"pullrefresh_with_tab.html": {
@@ -1094,7 +1107,8 @@
 			"js/vue.min.js"
 		],
 		"refer": [
-			"thirdlv/webview-trade-detail.html"
+			"thirdlv/webview-trade-detail.html",
+			"secondlv/webview-search.html"
 		]
 	},
 	"thirdlv/webview-comu-knowledge-list.html": {
@@ -1174,6 +1188,11 @@
 			"js/vue.min.js",
 			"js/flexible.debug.js",
 			"img/shop.png"
+		],
+		"refer": [
+			"thirdlv/editAddress.html",
+			"secondlv/webview-my-order.html",
+			"thirdlv/webview-trade-order-detail.html"
 		]
 	},
 	"webview-body.html": {
@@ -1185,7 +1204,8 @@
 			"css/mui.min.css",
 			"css/style.css",
 			"js/flexible.debug.js"
-		]
+		],
+		"refer": []
 	},
 	"secondlv/webview-search.html": {
 		"resources": [
@@ -1197,7 +1217,11 @@
 			"js/public.js",
 			"css/mui.min.css",
 			"css/style.css",
-			"js/flexible.debug.js"
+			"js/flexible.debug.js",
+			"js/vue.min.js"
+		],
+		"refer": [
+			"thirdlv/webview-trade-detail.html"
 		]
 	},
 	"secondlv/outLineMap.html": {
@@ -1216,6 +1240,55 @@
 	"secondlv/outLineMap2.html": {
 		"resources": [
 			"img/outLineMapMin.jpg"
+		],
+		"refer": []
+	},
+	"thirdlv/editAddress.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"img/img.png",
+			"js/public.js",
+			"css/style.css",
+			"js/flexible.debug.js",
+			"css/feedback-page.css",
+			"js/mui.view.js",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"thirdlv/choiceAddress.html"
+		]
+	},
+	"thirdlv/webview-trade-order-detail.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/vue.min.js",
+			"js/flexible.debug.js",
+			"img/img.png",
+			"img/img2.png"
+		]
+	},
+	"secondlv/webview-my-farm.html": {
+		"resources": [
+			"js/md5.min.js",
+			"js/flexible_css.debug.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/vue.min.js",
+			"js/flexible.debug.js",
+			"img/test/test-slider2.png",
+			"img/test/test-slider.png",
+			"img/test/test-slider3.png",
+			"img/my-farm-spread.png",
+			"img/my-farm-insect.png"
 		]
 	}
 }

@@ -9,29 +9,42 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
 		<style>
-			[data-dpr="2"], .mui-ios .mui-pull-caption {
+			[data-dpr="2"],
+			.mui-ios .mui-pull-caption {
 				font-size: 28px;
 			}
-			[data-dpr="2"], .mui-ios .mui.spinner {
+			
+			[data-dpr="2"],
+			.mui-ios .mui.spinner {
 				font-size: 28px;
 			}
-			[data-dpr="2"], .mui-ios .mui-icon-pulldown{
+			
+			[data-dpr="2"],
+			.mui-ios .mui-icon-pulldown {
 				font-size: 28px;
 			}
-			[data-dpr="3"], .mui-ios .mui-pull-caption {
+			
+			[data-dpr="3"],
+			.mui-ios .mui-pull-caption {
 				font-size: 42px;
 			}
-			[data-dpr="3"], .mui-ios .mui.spinner {
+			
+			[data-dpr="3"],
+			.mui-ios .mui.spinner {
 				font-size: 42px;
 			}
-			[data-dpr="3"], .mui-ios .mui-icon-pulldown{
+			
+			[data-dpr="3"],
+			.mui-ios .mui-icon-pulldown {
 				font-size: 42px;
 			}
-			.mui-ios .mui-pull-bottom-pocket{
+			
+			.mui-ios .mui-pull-bottom-pocket {
 				height: 50px;
-			}			
-			.mui-android .mui-pull-top-pocket{
-				 top: 50px;
+			}
+			
+			.mui-android .mui-pull-top-pocket {
+				top: 50px;
 			}
 		</style>
 	</head>
@@ -42,11 +55,11 @@
 				<span class="app-log-span header-control-left-btn-span"></span>
 			</div>
 			<div class="header-control-app-name">
-				<span id="webview-head-title">大曦山公园</span>
+				<span id="webview-head-title">大曦山休闲旅游公园</span>
 			</div>
 			<div class="header-control-right-btn">
 				<span class="header-control-right-btn-span search-span"></span>
-				<span class="header-control-right-btn-span white-three-point-span"></span>
+				<!--<span class="header-control-right-btn-span white-three-point-span"></span>-->
 			</div>
 		</div>
 
@@ -64,11 +77,17 @@
 					styles: fnSetSubpageStyle(98, 0)
 				}]
 			});
+			// 打开搜索页
 			document.querySelector(".header-control-right-btn").addEventListener("tap", function() {
 				mui.openWindow({
 					url: "secondlv/webview-search.html",
 					id: "secondlv/webview-search.html",
 					createNew: false,
+					styles: {
+						render: "always",
+						popGesture: "none",
+						hardwareAccelerated: true
+					},
 					show: {
 						autoShow: true,
 						aniShow: "pop-in",

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>订单详情</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			body {
+				width: 10rem;
+				margin: 0 auto;
+			}
+			
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control header-control-fixed">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class="white-arrow-big-span header-control-left-btn-span"></span>
+			</div>
+			<div>
+				<span id="webview-head-title"></span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span"></span>
+			</div>
+		</div>
+		<div id="head-holder"></div>
+		<div id="vueContainer" v-cloak>
+			<div id="consignee" v-cloak>
+				<div class="consignee-group-left">
+					<span class="black-nav-span"></span>
+				</div>
+				<div class="consignee-group-right">
+					<div class="consignee-name-phone-content"><span>收货人：{{address_data.name}}</span>联系方式：{{address_data.phone}}</div>
+					<div class="consignee-address-content"><span>收货地址：</span>{{address_data.city_name}}&nbsp;{{address_data.address}}</div>
+				</div>
+				<div class="right-arrow-group">
+				</div>
+			</div>
+
+			<div class="orderForm">
+				<div class="orderForm-group-item">
+					<div class="home-rent-detail-shop" class="orderForm-shop" v-cloak style="border: none;">
+						<div class="home-rent-detail-shop-left">
+							<!--<span class="home-rent-detail-shop-logo" style="background: url({{shopImg}}); background-size: cover; background-position: center;"></span>-->
+							<span class="shop-span"></span>
+						</div>
+						<div class="home-rent-detail-shop-middle">
+							<span class="home-rent-detail-shop-name">{{shop_name}}</span>
+						</div>
+					</div>
+					<!--商品区域-->
+					<!--orderForm-detail-bottom-->
+					<div class="orderForm-detail {{$index == order_data.length - 1 ? 'orderForm-detail-bottom' : ''}}" v-for="item in order_data" v-cloak>
+						<div class="orderForm-detail-left">
+							<span class="orderForm-detail-img" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></span>
+						</div>
+						<div class="orderForm-detail-middle">
+							<span class="orderForm-detail-title">{{item.title}}</span>
+							<span class="orderForm-detail-content">{{item.standard_name}}</span>
+							<span class="orderForm-detail-money">&yen;&nbsp;&nbsp;{{item.price}}</span>
+						</div>
+						<div class="orderTrade-detail-right">
+							<span class="orderTrade-detail-right-span">x{{item.num}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="orderForm-other">
+					<div class="orderForm-other-item" v-cloak>
+						<div class="other-item-left"></div>
+						<div class="other-item-right">
+							共{{item_num}}件商品&nbsp;&nbsp;&nbsp;&nbsp;合计:&nbsp;&yen;&nbsp;{{pay_money}}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="totalPrice" v-cloak>
+				<span class="totalPrice-above">&yen;{{pay_money}}&nbsp;+&nbsp;&yen;10.0运费</span><br /><span class="totalPrice-under">合计：&yen;{{(parseFloat(pay_money) + parseFloat(10)).toFixed(1)}}</span>
+			</div>
+			<div id="buttonGroup">
+				<button id="btnWeiXin" class="buttonGroup-pay">微信支付</button>
+				<button id="btnZhiFuBao" class="buttonGroup-pay">支付宝支付</button>
+			</div>
+		</div>
+
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script>
+			mui.init();
+			var vueObj = null;
+
+			function initVue(orderData) {
+				vueObj = new Vue({
+					el: "#vueContainer",
+					data: orderData
+				});
+			};
+
+			function getData(orderId) {
+				if (!userLoginStatus()) {
+					openLogin(this, true);
+					return;
+				}
+				var token = plus.storage.getItem("tokenValue");
+				var URL = "http://farm.rrzuji.com/v1/order/view?" + fnCreateSign() + "&access-token=" + token + "&id=" + orderId;
+				console.log(URL);
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log("订单详情" + res);
+						res = JSON.parse(res);
+						if (res.success) {
+							initVue(res.data);
+						}
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				});
+			};
+			mui.plusReady(function() {
+				var w = plus.webview.currentWebview();
+				console.log("订单详情表单数据" + JSON.stringify(w.data));
+				//				initVue(w.data);
+				document.getElementById("webview-head-title").innerText = w.data.title;
+				getData(w.data.orderId);
+			});
+		</script>
+	</body>
+
+</html>

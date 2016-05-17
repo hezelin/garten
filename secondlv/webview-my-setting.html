@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="../css/feedback-page.css">
 		<link rel="stylesheet" href="../css/style.css">
 		<style>
+
 		</style>
 	</head>
 
@@ -66,7 +67,7 @@
 							</div>
 						</a>
 						<!--提示声音-->
-						<a class="my-setting-item">
+						<!--<a class="my-setting-item">
 							<div class="my-setting-left my-setting-border">
 								<label class="my-setting-left-text">提示声音</label>
 							</div>
@@ -75,22 +76,19 @@
 									<div class="mui-switch-handle"></div>
 								</div>
 							</div>
-						</a>
+						</a>-->
 						<!--意见反馈-->
-						<a class="my-setting-item" id="feedback-btn" href="#feedback">
-							<!--左边内容区域-->
+						<!--<a class="my-setting-item" id="feedback-btn" href="#feedback">							
 							<div class="my-setting-left my-setting-border">
 								<label class="my-setting-left-text">意见反馈</label>
-							</div>
-							<!--中间内容区域-->
+							</div>							
 							<div class="my-setting-middle my-setting-border">
 								<label class="my-setting-middle-text"></label>
-							</div>
-							<!--右边内容区域-->
+							</div>							
 							<div class="my-setting-right my-setting-border">
 								<span class="black-arrow-span"></span>
 							</div>
-						</a>
+						</a>-->
 						<!--关于我们-->
 						<a class="my-setting-item" href="#about">
 							<!--左边内容区域-->
@@ -129,7 +127,7 @@
 							</div>
 							<!--中间内容区域-->
 							<div class="my-setting-middle my-setting-middle-right my-setting-border">
-								<label class="my-setting-middle-text">020-86481132</label>
+								<label class="my-setting-middle-text">888-88888888</label>
 							</div>
 							<!--右边内容区域-->
 							<div class="my-setting-right my-setting-border">
@@ -246,15 +244,15 @@
 						<!--性别-->
 						<a class="my-setting-item" id="setSex">
 							<!--左边内容区域-->
-							<div class="my-setting-left my-setting-border">
+							<div class="my-setting-left">
 								<label class="my-setting-left-text">性别</label>
 							</div>
 							<!--中间内容区域-->
-							<div class="my-setting-middle my-setting-middle-right my-setting-border">
+							<div class="my-setting-middle my-setting-middle-right">
 								<label class="my-setting-middle-text" id="genderText">保密</label>
 							</div>
 							<!--右边内容区域-->
-							<div class="my-setting-right my-setting-border">
+							<div class="my-setting-right">
 								<span class="black-arrow-span"></span>
 							</div>
 						</a>
@@ -296,7 +294,7 @@
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<div class="input-name-container">
-							<input id="inputNickName" class="mui-input-clear" placeholder="输入昵称" type="text" />
+							<input id="inputNickName" class="mui-input-clear" placeholder="请输入你的昵称" type="text" />
 							<!--<span id="clearNickName" class="mui-icon-clear mui-icon"></span>-->
 						</div>
 					</div>
@@ -315,54 +313,22 @@
 				</div>
 				<div class="header-control-right-btn">
 					<span class="header-control-right-btn-span">
-						<button id="saveAddress" class="my-setting-save">保存</button>
+						<button id="saveAddress" class="my-setting-save">修改</button>
 					</span>
 				</div>
 			</div>
 			<div class="mui-page-content">
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
-						<a class="my-setting-item my-setting-item-margin-top">
-							<div class="my-setting-left my-setting-border">
-								<label class="my-setting-left-text">收件人</label>
+						<div id="consignee" class="my-setting-item-margin-top">
+							<div class="consignee-group-left">
+								<span class="black-nav-span"></span>
 							</div>
-							<div class="my-setting-middle my-setting-border my-setting-middle-left">
-								<input type="text" class="my-setting-middle-input" id="addressName" placeholder="请输入姓名" value="" />
+							<div class="consignee-group-right">
+								<div class="consignee-name-phone-content"></div>
+								<div class="consignee-address-content"></div>
 							</div>
-							<div class="my-setting-right my-setting-border">
-							</div>
-						</a>
-						<a class="my-setting-item">
-							<div class="my-setting-left my-setting-border">
-								<label class="my-setting-left-text">联系电话</label>
-							</div>
-							<div class="my-setting-middle my-setting-border my-setting-middle-left">
-								<input type="text" class="my-setting-middle-input" id="addressPhone" placeholder="请输入联系电话" value="" />
-							</div>
-							<div class="my-setting-right my-setting-border">
-							</div>
-						</a>
-						<a class="my-setting-item">
-							<div class="my-setting-left my-setting-border">
-								<label class="my-setting-left-text">所在城市</label>
-							</div>
-							<div class="my-setting-middle my-setting-border my-setting-middle-left" id="choiceAddress">
-								<label class="my-setting-middle-text" id="addressCity">请选择所在城市</label>
-							</div>
-							<div class="my-setting-right my-setting-border">
-								<span class="black-arrow-span"></span>
-							</div>
-						</a>
-						<a class="my-setting-item">
-							<div class="my-setting-left">
-								<label class="my-setting-left-text">收货地址</label>
-							</div>
-							<div class="my-setting-middle my-setting-middle-left">
-								<input type="text" class="my-setting-middle-input" id="addressDetail" placeholder="请输入详细地址" value="" />
-							</div>
-							<div class="my-setting-right">
-							</div>
-						</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -471,21 +437,21 @@
 
 		<!--选择性别-->
 		<div id="sexList-item" class="mutual-div">
-			<div id="postSexChoose">性别</div>
+			<div id="postSexChoose">请选择性别</div>
 			<div class="sexList-item-group" id="setSexMan" data-tap="false">
-				<div class="sexList-item-content">
+				<!--<div class="sexList-item-content">
 					<span class="sex-man-span"></span>
-				</div>
-				<span class="sexList-item-content">男</span>
+				</div>-->
+				<span class="sexList-item-content" style="width: 100%;">男</span>
 				<div class="sexList-item-content">
 					<span class="radio-check-span"></span>
 				</div>
 			</div>
 			<div class="sexList-item-group" id="setSexFemale" data-tap="false">
-				<div class="sexList-item-content">
+				<!--<div class="sexList-item-content">
 					<span class="sex-female-span"></span>
-				</div>
-				<span class="sexList-item-content">女</span>
+				</div>-->
+				<span class="sexList-item-content" style="width: 100%;">女</span>
 				<div class="sexList-item-content">
 					<span class="radio-check-span"></span>
 				</div>
@@ -511,8 +477,10 @@
 				defaultImg("settingUserIMG", "../../www/img/head.jpg");
 				document.querySelector("#__mui-imageview__group .mui-slider-item img").src = e.detail.url + "?version=" + new Date().getTime();
 			});
-			window.addEventListener("changeAddress", function(e) {
-				document.getElementById("addressCity").innerText = plus.storage.getItem("cityName");
+			window.addEventListener("refreshAddress", function(e) {
+				mui.toast("地址已更新");
+				document.querySelector(".consignee-name-phone-content").innerHTML = '<span>收货人：' + plus.storage.getItem("addressName") + '</span>联系方式：' + plus.storage.getItem("addressPhone");
+				document.querySelector(".consignee-address-content").innerHTML = '<span>收货地址：</span>' + plus.storage.getItem("addressCity") + plus.storage.getItem("addressDetail");
 			});
 			// 页面启动时
 			mui.plusReady(function() {
@@ -531,6 +499,7 @@
 				}
 				// 初始化验证码获取
 				timew.start();
+				// 获取地址			
 				getAddress();
 			});
 			//初始化单页view
@@ -913,21 +882,8 @@
 			/**
 			 * 修改地址start 
 			 */
-			// 选择城市
-			document.getElementById("choiceAddress").addEventListener("tap", function(e) {
-				fnLoadPage(this, {
-					url: "../thirdlv/choiceAddress.html",
-					top: 98,
-					bottom: 0
-				}, {
-					title: "选择所在城市",
-					rightBtn: '<span id="saveCity" class="header-control-right-btn-span">确定</span>'
-				});
-				mui.fire(plus.webview.getWebviewById("webview-header"), "setCity", {});
-			});
-			// 选择城市end
-			// 查看地址
 			function getAddress() {
+				// 获取地址
 				if (NetWorkStatus()) {
 					return;
 				}
@@ -942,76 +898,39 @@
 						if (res.success) {
 							// 无地址
 							if (!res.data) {
-								console.log("无收件地址");
+								document.querySelector(".consignee-name-phone-content").innerHTML = '<span>收件地址为空，请添加地址</span>';
 							} else {
-								// 更新面板
-								document.getElementById("addressName").value = res.data.name;
-								document.getElementById("addressPhone").value = res.data.phone;
-								document.getElementById("addressCity").innerText = res.data.city_name;
-								document.getElementById("addressDetail").value = res.data.address;
+								// 刷新数据
+								document.querySelector(".consignee-name-phone-content").innerHTML = '<span>收货人：' + res.data.name + '</span>联系方式：' + res.data.phone;
+								document.querySelector(".consignee-address-content").innerHTML = '<span>收货地址：</span>' + res.data.city_name + res.data.address;
+								plus.storage.setItem("addressName", res.data.name);
+								plus.storage.setItem("addressPhone", res.data.phone);
+								plus.storage.setItem("addressCity", res.data.city_name);
+								plus.storage.setItem("addressDetail", res.data.address);
 							}
 						}
 					},
 					error: function(xhr, error, thrownError) {
-						btn.disable = false;
 						ajaxError(xhr);
 					}
 				});
 			}
 			document.getElementById("saveAddress").addEventListener("tap", function() {
-				var elemName = document.getElementById("addressName");
-				var elemPhone = document.getElementById("addressPhone");
-				var elemCity = document.getElementById("addressCity");
-				var elemDetail = document.getElementById("addressDetail");
-				if (elemName.value.length == 0 || elemName.value.length > 50) {
-					plus.nativeUI.alert("请输入收件人姓名!");
-					return;
-				}
-				if (elemPhone.value.length == 0 || elemPhone.value.length > 50) {
-					plus.nativeUI.alert("请输入收件人联系方式!");
-					return;
-				}
-				if (elemCity.innerText == "请选择所在城市") {
-					plus.nativeUI.alert("选择所在城市");
-					return;
-				}
-				if (elemDetail.value.length == 0 || elemDetail.value.length > 50) {
-					plus.nativeUI.alert("请输入详细地址!");
-					return;
-				}
-				if (NetWorkStatus()) {
-					return;
-				}
-				var btn = this;
-				btn.disable = true;
-				var userID = plus.storage.getItem("userID");
-				var token = plus.storage.getItem("tokenValue");
-				var URL = "http://farm.rrzuji.com/v1/address-add/update?" + fnCreateSign() + "&access-token=" + token;
-				mui.ajax(URL, {
-					type: "POST",
-					dataType: "JSON",
-					data: {
-						"user_id": userID,
-						"city_id": plus.storage.getItem("cityNum"),
-						"city_name": plus.storage.getItem("cityName"),
-						"name": elemName.value,
-						"phone": elemPhone.value,
-						"address": elemDetail.value
+				mui.openWindow({
+					url: "../thirdlv/editAddress.html",
+					id: "editAddress.html",
+					styles: fnSetSubpageStyle(0, 0),
+					createNew: false,
+					extras: {
+						wId: "secondlv/webview-my-setting.html"	
 					},
-					success: function(res) {
-						res = JSON.parse(res);
-						if (res.success) {
-							mui.toast("成功保存地址");
-							console.log(JSON.stringify(res));
-							mui.back();
-						}
-						setTimeout(function() {
-							btn.disable = false;
-						}, 150);
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
 					},
-					error: function(xhr, error, thrownError) {
-						btn.disable = false;
-						ajaxError(xhr);
+					waiting: {
+						autoShow: false
 					}
 				});
 			});

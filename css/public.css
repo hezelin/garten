@@ -131,7 +131,7 @@ body {
 .shop-span-small {
   width: 0.4rem;
   height: 0.37333rem;
-  background: url(../img/shop.png);
+  background: url("../img/shop.png");
   display: inline-block;
   background-size: cover;
   background-position: center;
@@ -155,6 +155,18 @@ body {
   vertical-align: middle;
   background-position-x: 0rem;
   background-position-y: -2.24rem; }
+
+.shop-delete-span-small {
+  width: 0.8rem;
+  height: 0.8rem;
+  display: inline-block;
+  background: url("../img/delete-span-small.png");
+  background-repeat: no-repeat;
+  background-size: 0.42667rem 0.42667rem;
+  background-position: top right;
+  position: absolute;
+  right: 0;
+  top: 0; }
 
 .radio-check-span {
   width: 0.61333rem;
@@ -210,15 +222,12 @@ body {
   vertical-align: middle;
   text-align: center; }
 
-.header-control-color {
-  background-color: #434343 !important; }
-
 .header-control-left-btn {
   width: 1.73333rem;
   text-align: left !important; }
 
 .header-control-right-btn {
-  width: 2.13333rem;
+  width: 1.73333rem;
   text-align: right !important; }
 
 .header-control-left-btn-span {
@@ -251,18 +260,18 @@ body {
     font-size: 60px; }
 
 #getAuthCode {
-  width: 2.4rem;
-  height: 1.06667rem;
-  font-size: 12px;
+  width: 2.2rem;
+  height: 0.73333rem;
+  font-size: 10px;
   background-color: #3d8f52;
   border-radius: 0.13333rem;
   border: none;
   color: #FFFFFF;
   vertical-align: middle; }
   [data-dpr="2"] #getAuthCode {
-    font-size: 24px; }
+    font-size: 20px; }
   [data-dpr="3"] #getAuthCode {
-    font-size: 36px; }
+    font-size: 30px; }
 
 .reSendAuthCode {
   background-color: #ebebeb !important;
@@ -367,8 +376,49 @@ body {
   display: block; }
 
 .trade-span-cover-slider {
-  width: 10rem;
   height: 6.53333rem;
   display: block; }
+
+.farm-span-cover-slider {
+  height: 5.57333rem;
+  display: block; }
+
+#searchDataNull, #farmNull {
+  font-size: 12px;
+  text-align: center; }
+  [data-dpr="2"] #searchDataNull, [data-dpr="2"] #farmNull {
+    font-size: 24px; }
+  [data-dpr="3"] #searchDataNull, [data-dpr="3"] #farmNull {
+    font-size: 36px; }
+
+#searchBigHover {
+  position: absolute;
+  width: 1.6rem;
+  height: 1.33333rem;
+  top: -0.4rem;
+  left: 0px; }
+
+.line-weight-half-bottom:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: -100%;
+  bottom: -100%;
+  border-bottom: 1px solid #dfdfdf;
+  transform: scale(0.5);
+  transform-origin: 0 0; }
+
+.line-weight-half-top:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: -100%;
+  border-bottom: 1px solid #dfdfdf;
+  transform: scale(0.5);
+  transform-origin: 0 0; }
 
 /*# sourceMappingURL=public.css.map */

@@ -159,7 +159,7 @@
 								</div>
 								<div class="mui-button-row">
 									<button id="searchBtn" class="mui-btn mui-btn-primary" type="button" >确认</button>&nbsp;&nbsp;
-									<button class="mui-btn mui-btn-primary" type="button" >取消</button>
+									<!--<button class="mui-btn mui-btn-primary" type="button" >取消</button>-->
 								</div>
 							</form>
 						</div>
@@ -201,14 +201,15 @@
 			mui.init();
 			var first = null;
 			mui.back = function() {
-				if (mui.os.plus) {
-					mui.fire(plus.webview.getWebviewById("HBuilder"), "backHome", {});
+//				mui.fire(plus.webview.getWebviewById("H5E72D2E4"), "backHome", {});
+				var w = plus.webview.getWebviewById("HBuilder");
+				if (!w) {
+					w = plus.webview.getWebviewById("H5E72D2E4");
 				}
+				mui.fire(w, "backHome", {});
 			};
 			document.getElementById("backFirsPage").addEventListener("tap", function() {
-				if (mui.os.plus) {
-					mui.back();
-				}
+				mui.back();
 			});
 			(function($, window) {
 				var bmap = null;
@@ -237,7 +238,7 @@
 							return 'tiles/' + zoom + '/tile' + x + '_' + y + '.png';
 						}
 						bmap = new BMap.Map('map', {
-							minZoom: 12,
+							minZoom: 13,
 							maxZoom: 17
 						});
 						bmap.addTileLayer(tileLayer);
@@ -284,7 +285,8 @@
 							elem.addEventListener("tap", function() {								
 								elem.style.backgroundColor = "#d3d3d3";											
 								window.setTimeout(function() {
-									bmap.setCenter(new BMap.Point(point.point_lng, point.point_lat));
+									bmap.setCenter(new BMap.Point(point.point_lng, point.point_lat));		
+									bmap.setZoom(17);
 									document.getElementById("mui-card-container").style.display = "none";
 									elem.style.backgroundColor = "transparent";		
 								}, 300);
@@ -331,18 +333,19 @@
 							bmap.panTo(initPoint);
 						});
 					},
-					openLoaction: function() {
+					openLoaction: function() {						
 						var thisMap = this;
 						document.getElementById("getLocation").addEventListener("tap", function(event) {
+							
 							var elem = event.currentTarget.childNodes[0];
-							if (!thisMap.Location) {
+							if (!thisMap.Location) {								
 								// 未开启定位
-								if (mui.os.plus) {
+								if (mui.os.plus) {									
 									plus.geolocation.getCurrentPosition(function(p) {
 										thisMap.LocationMarker = new BMap.Marker(new BMap.Point(p.coords.longitude, p.coords.latitude));
 										bmap.addOverlay(thisMap.LocationMarker);
 										bmap.setCenter(new BMap.Point(p.coords.longitude, p.coords.latitude));																				
-										thisMap.Location = true;
+										thisMap.Location = true;							
 										thisMap.startLocation();
 										elem.style.color = "rgb(81, 153, 218)";
 										mui.toast("已开启定位");
@@ -357,20 +360,21 @@
 								elem.style.color = "rgb(84, 90, 96)";
 								thisMap.Location = false;
 								thisMap.clearLocation();
+								bmap.removeOverlay(thisMap.LocationMarker);
 							}
 						});
 					},
 					startLocation: function() {
 						var thisMap = this;
-						if (this.LocationInterval) {
+						if (typeof this.LocationInterval == "number") {							
 							thisMap.clearLocation();
 						}
 						thisMap.LocationInterval = window.setInterval(function() {
-							if (mui.os.plus) {
+							if (mui.os.plus) {								
 								bmap.removeOverlay(thisMap.LocationMarker);
 								plus.geolocation.getCurrentPosition(function(p) {
 									thisMap.LocationMarker = new BMap.Marker(new BMap.Point(p.coords.longitude, p.coords.latitude));
-									bmap.addOverlay(this.LocationMarker);
+									bmap.addOverlay(thisMap.LocationMarker);
 									bmap.setCenter(new BMap.Point(p.coords.longitude, p.coords.latitude));
 								}, function(e) {
 									mui.toast("网络状态不稳定，无法定位！6秒后重试...");
@@ -382,8 +386,7 @@
 					},
 					clearLocation: function() {
 						if (typeof this.LocationInterval == "number") {
-							window.clearInterval(this.LocationInterval);
-							bmap.removeOverlay(this.LocationMarker);
+							window.clearInterval(this.LocationInterval);							
 						}
 					}
 				}

@@ -1,4 +1,3 @@
-
 // px转rem
 // 设计稿元素尺寸/(设计稿宽度/10)*页面html.fontsize = 适应后的元素大小
 @mixin px2rem($property, $px-values, $important: false, $baseline-px:75px, $support-for-ie:false) {
@@ -77,6 +76,13 @@
     white-space: nowrap;
     //超出行内容
     text-overflow: ellipsis;
+    overflow: hidden;
+}
+// 双行不换行处理
+@mixin Nowrap2line {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 //去除两端对齐限制，用于容器的after上
@@ -232,12 +238,11 @@ body {
 .shop-span-small {
     @include px2rem(width, 30px);
     @include px2rem(height, 28px);
-    background: url(../img/shop.png);
+    background: url("../img/shop.png");
     display: inline-block;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-//  @include px2rem(margin-left, 20px);
+    background-repeat: no-repeat; //  @include px2rem(margin-left, 20px);
     @include px2rem(margin-right, 8px);
     vertical-align: middle;
 }
@@ -257,6 +262,19 @@ body {
     vertical-align: middle;
     @include px2rem(background-position-x,0px);
     @include px2rem(background-position-y,-168px);
+}
+// 垃圾桶图标-小  购物车
+.shop-delete-span-small {
+    @include px2rem(width, 60px);
+    @include px2rem(height, 60px);
+    display: inline-block;
+    background: url("../img/delete-span-small.png");
+    background-repeat: no-repeat;
+    @include px2rem(background-size, (32px, 32px));
+    background-position: top right;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 //单选按钮默认不选中 
 .radio-check-span {
@@ -319,7 +337,7 @@ body {
     text-align: center;
 }
 .header-control-color {
-    background-color: rgb(67, 67, 67) !important;
+//  background-color: rgb(67, 67, 67) !important;
 }
 //左右两边按钮大小，图标样式。头部分左中右三部分，中间宽度自动
 .header-control-left-btn {
@@ -327,7 +345,7 @@ body {
     text-align: left !important;
 }
 .header-control-right-btn {
-    @include px2rem(width,160px);
+    @include px2rem(width,130px);
     text-align: right !important;
 }
 .header-control-left-btn-span {
@@ -349,9 +367,11 @@ body {
 }
 //验证码按钮
 #getAuthCode {
-    @include px2rem(width, 180px);
-    @include px2rem(height, 80px);
-    @include font-dpr(12px);
+    //  @include px2rem(width, 180px);
+    //  @include px2rem(height, 80px);
+    @include px2rem(width, 165px);
+    @include px2rem(height, 55px);
+    @include font-dpr(10px);
     background-color: $green-color;
     @include px2rem(border-radius, 10px);
     border: none;
@@ -464,8 +484,55 @@ body {
     display: block;
 }
 // 商品详情轮播图
-.trade-span-cover-slider {
-    @include px2rem(width, 750px);
+.trade-span-cover-slider {    
     @include px2rem(height, 490px);
     display: block;
+}
+
+// 农场轮播图详情
+.farm-span-cover-slider {
+    @include px2rem(height, 418px);
+    display: block;
+}
+
+// 搜索
+#searchDataNull, #farmNull{
+    @include font-dpr(12px);
+    text-align: center;
+}
+
+#searchBigHover {
+    position: absolute;
+    @include px2rem(width, 120px);
+    @include px2rem(height, 100px);
+
+    @include px2rem(top, -30px);
+    left: 0px;
+}
+
+// 0.5px的底线
+.line-weight-half-bottom:before {
+    content: "";    
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: -100%;
+    bottom: -100%;
+    border-bottom: $base-border;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+}
+
+// 0.5px的顶部线
+.line-weight-half-top:after {
+    content: "";    
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: -100%;
+    border-bottom: $base-border;
+    transform: scale(0.5);
+    transform-origin: 0 0;
 }

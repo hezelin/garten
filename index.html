@@ -42,7 +42,7 @@
 
 	<body>
 		<!--底部nav栏-->
-		<div id="index-bar-tab">
+		<div id="index-bar-tab" class="line-weight-half-top">
 			<div id="home" class="index-tab-item index-tab-active" data-href="webview-home-header.html">
 				<span class="icon-index icon-index-home"></span>
 				<span class="icon-label">首页</span>
@@ -126,7 +126,7 @@
 						//						plus.webview.currentWebview().onloaded = function() {
 						//					plus.navigator.closeSplashscreen();
 						//				}
-						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 101));
+						var sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 100));
 						sub.onloaded = function() {
 							loadCount--;
 							fnCloseSplashScreen(loadCount);
@@ -139,7 +139,8 @@
 						if (subpages[i] == "webview-map.html") {
 							sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 0));
 						} else {
-							sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 102));
+							// 101
+							sub = plus.webview.create(subpages[i], subpages[i], fnSetSubpageStyle(0, 99));
 						}
 						sub.onloaded = function() {
 							loadCount--;

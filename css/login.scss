@@ -24,10 +24,11 @@ input::-webkit-input-placeholder {
     @include px2rem(height, 90px);
     @include px2rem(padding-left, 28px);
     @include px2rem(padding-right, 28px);
-    @include font-dpr(16px);
+    @include font-dpr(14px);
     color: #787878;
     border: none;
     box-sizing: border-box;
+    outline: none;
 }
 #input-phone {
     border-left: 1px solid #D4D4D4;
@@ -45,7 +46,7 @@ input::-webkit-input-placeholder {
     @include px2rem(width, 683px);
     @include px2rem(height, 90px);
     @include px2rem(margin-top, 40px);
-    @include font-dpr(19px);
+    @include font-dpr(18px);
     border: none;
     @include px2rem(border-radius, 6px);
     background-color: $green-color;
@@ -60,7 +61,7 @@ input::-webkit-input-placeholder {
 #forgetPWD {
     @include px2rem(height, 90px);
     @include px2rem(line-height, 90px);
-    @include font-dpr(15px);
+    @include font-dpr(12px);
     color: #787878;
     display: inline-block;
 }
@@ -91,7 +92,7 @@ input::-webkit-input-placeholder {
         margin-top: -18px;
     }
     @include font-dpr(12px);
-    color: #D4D4D4;
+    color: #787878;
     background-color: #F7F7F7;
     z-index: 10;
 }
@@ -151,15 +152,15 @@ input::-webkit-input-placeholder {
 .register-input {
     @include px2rem(width, 631px);
     @include px2rem(height, 90px);
-    @include px2rem(padding-left, 25px);
-    @include px2rem(padding-right, 25px);
+    @include px2rem(padding, (0px, 25px));
     @include px2rem(margin-bottom, 28px);
     display: inline-block;
-    @include font-dpr(19px);
+    @include font-dpr(14px);
     color: #9a9a9a;
     background-color: rgb(255, 255, 255);
     border: $base-border;
     @include px2rem(border-radius, 6px);
+    outline: none;
 }
 .register-input:nth-child(1) {
     //  @include px2rem(margin-top, 80px);
@@ -172,7 +173,7 @@ input::-webkit-input-placeholder {
     @include px2rem(border-radius, 6px);
     border: none;
     background-color: $green-color;
-    @include font-dpr(19px);
+    @include font-dpr(18px);
     color: #FFFFFF;
     text-align: center;
 }
@@ -192,10 +193,12 @@ input::-webkit-input-placeholder {
 #authCode {
     @include px2rem(width, 440px);
     @include px2rem(height, 90px);
-    @include font-dpr(19px);
+    @include font-dpr(14px);
     color: #9a9a9a;
     border: none;
-    vertical-align: middle;
+//  vertical-align: middle;
+    padding: 0;
+    outline: none;
 }
 //注册页面二
 .span-agreement {
@@ -264,6 +267,6 @@ input::-webkit-input-placeholder {
 }
 .resetAuth {
     width: auto !important;
-    @include px2rem(padding-left, 5px);
-    @include px2rem(padding-right, 5px);
+//  @include px2rem(padding-left, 5px);
+//  @include px2rem(padding-right, 5px);
 }
