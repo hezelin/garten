@@ -8,6 +8,7 @@
 		<meta http-equiv="content-security-policy">
 		<meta content="yes" name="apple-mobile-web-app-capable">
 		<meta content="yes" name="apple-touch-fullscreen">
+		<!--<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
 		<meta content="telephone=no,email=no" name="format-detection">
 		<script src="js/flexible_css.debug.js"></script>
 		<script src="js/flexible.debug.js"></script>
@@ -15,6 +16,7 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
 		<style>
+
 		</style>
 	</head>
 
@@ -49,24 +51,24 @@
 		</div>
 		<div class="user-menu">
 			<div class="user-menu-group" id="user-menu-group-orderform">
-				<div class="user-menu-icon">
+				<div class="user-menu-icon line-weight-half-bottom">
 					<span class="my-orderform"></span>
 				</div>
-				<div class="user-menu-group-describle">
+				<div class="user-menu-group-describle line-weight-half-bottom">
 					<span>我的订单</span>
 				</div>
-				<div class="user-menu-group-describle-right">
+				<div class="user-menu-group-describle-right line-weight-half-bottom">
 					<span class="black-arrow-span"></span>
 				</div>
 			</div>
 			<div class="user-menu-group" id="user-menu-group-myfarm">
-				<div class="user-menu-icon line-weight-half-top line-weight-half-bottom">
+				<div class="user-menu-icon line-weight-half-bottom">
 					<span class="my-farm "></span>
 				</div>
-				<div class="user-menu-group-describle line-weight-half-top line-weight-half-bottom">
-					<span>我的种植</span>
+				<div class="user-menu-group-describle line-weight-half-bottom">
+					<span>我的农场</span>
 				</div>
-				<div class="user-menu-group-describle-right line-weight-half-top line-weight-half-bottom">
+				<div class="user-menu-group-describle-right line-weight-half-bottom">
 					<span class="black-arrow-span"></span>
 				</div>
 			</div>
@@ -108,6 +110,7 @@
 					mui.fire(plus.webview.getWebviewById("HBuilder"), "backHome", {});
 				}
 			};
+			console.log(window.navigator);
 			//  获取红包、收藏、购物车数量，并更新面板
 			var myBag = document.getElementById("myBag");
 			var myCollect = document.getElementById("myCollect");
@@ -123,6 +126,7 @@
 					return;
 				}
 				var URL = "http://farm.rrzuji.com/v1/user/num?" + fnCreateSign() + "&access-token=" + token;
+				console.log(URL);  
 				mui.ajax(URL, {
 					type: "GET",
 					dataType: "JSON",
@@ -132,7 +136,7 @@
 							myBag.innerText = res.data.hongbao_num;
 							myCollect.innerText = res.data.collect_num;
 							myShopCar.innerText = res.data.cart_num;
-							console.log("红包"+res.data.hongbao_num+" 收藏"+res.data.collect_num+" 购物车"+res.data.cart_num);
+							console.log("红包" + res.data.hongbao_num + " 收藏" + res.data.collect_num + " 购物车" + res.data.cart_num);
 						}
 					},
 					error: function(xhr, type, errorThrown) {
@@ -234,15 +238,38 @@
 						openLogin(this);
 					}
 				});
-//				document.querySelector(".user-bg-name").addEventListener("tap", function() {
-//					if (!userLoginStatus()) {
-//						openLogin(this);
-//					}
-//				});
+				// 点击头像打开个人资料
+				document.querySelector("#userIMG").addEventListener("tap", function(e) {
+					e.stopPropagation();
+					if (!userLoginStatus()) {
+						openLogin(this);
+						return;
+					}
+					var btn = this;
+					if (btn.classList.contains("loading")) {
+						return;
+					}
+					this.classList.add("loading");
+					var webviewSpa = plus.webview.create("secondlv/webview-my-setting.html", "secondlv/webview-my-setting.html", {
+						hardwareAccelerated: true
+					});
+					webviewSpa.onloaded = function() {
+
+						mui.fire(webviewSpa, "openUserInfo", {})
+						webviewSpa.show("pop-in", "300", function() {
+							btn.classList.remove("loading");
+						});						
+					};
+				});
+				//				document.querySelector(".user-bg-name").addEventListener("tap", function() {
+				//					if (!userLoginStatus()) {
+				//						openLogin(this);
+				//					}
+				//				});
 				//打开我的红包
 				document.getElementById("user-bag").addEventListener("tap", function(e) {
 					if (!userLoginStatus()) {
-//						openLogin(this);
+						//						openLogin(this);
 						return;
 					}
 					fnLoadPage(e.currentTarget, {
@@ -256,7 +283,7 @@
 				//打开收藏
 				document.getElementById("user-collect").addEventListener("tap", function(e) {
 					if (!userLoginStatus()) {
-//						openLogin(this);
+						//						openLogin(this);
 						return;
 					}
 					fnLoadPage(e.currentTarget, {
@@ -270,7 +297,7 @@
 				//打开购物车
 				document.getElementById("user-shop-car").addEventListener("tap", function(e) {
 					if (!userLoginStatus()) {
-//						openLogin(this);
+						//						openLogin(this);
 						return;
 					}
 					fnLoadPage(e.currentTarget, {
@@ -288,15 +315,12 @@
 						openLogin(this);
 						return;
 					}
-					//订单窗口有头部导航
-					fnLoadPage(e.currentTarget, {
-						url: "secondlv/webview-my-order.html",
-						top: 213,
-						bottom: 0
-					}, {
-						title: "我的订单",
-						hasControlTab: true
-					});
+					var w = plus.webview.getWebviewById("webview-header");
+					for (var i in w.children()) {
+						w.children()[i].close();
+					}
+					mui.fire(w, "openMyOrder", {});
+					w.show();
 				});
 				//打开我的农场
 				document.getElementById("user-menu-group-myfarm").addEventListener("tap", function(e) {
@@ -304,13 +328,26 @@
 						openLogin(this);
 						return;
 					}
-					//订单窗口有头部导航
-					fnLoadPage(e.currentTarget, {
-						url: "secondlv/webview-my-farm.html",
-						top: 98,
-						bottom: 0
-					}, {
-						title: "我的农场"
+//					fnLoadPage(e.currentTarget, {
+//						url: "secondlv/webview-my-farm-list.html",
+//						top: 98,
+//						bottom: 0
+//					}, {
+//						title: "我的农场"
+//					});
+					mui.openWindow({
+						url: "secondlv/webview-my-farm-list.html",
+						id: "secondlv/webview-my-farm-list.html",
+						styles: fnSetSubpageStyle(0, 0),
+						createNew: false,						
+						show: {
+							autoShow: true,
+							aniShow: "pop-in",
+							duration: 300
+						},
+						waiting: {
+							autoShow: false
+						}
 					});
 				});
 				//打开我的社区

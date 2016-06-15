@@ -16,30 +16,28 @@
 			html,
 			body {
 				width: 100%;
-				height: 100%;
-				background-color: rgb(245, 245, 245);
-				/*background-color: #efeff4;*/
+				height: 100%;							
 			}
 		</style>
 	</head>
 
 	<body>
-		<div class="login-container">
+		<div class="login-container" style="background: url(../img/login-bg.png);background-size: 100% 100%;	">
 			<div class="header-control header-control-greenBold">
 				<div class="header-control-left-btn  mui-action-back">
 					<span class="white-arrow-big-span header-control-left-btn-span"></span>
 				</div>
 				<div>
-					<span id="webview-head-title"></span>
+					<span id="webview-head-title">登录</span>
 				</div>
 				<div class="header-control-right-btn" id="register">
 					<span class="header-control-right-btn-span">注册</span>
 				</div>
 			</div>
 			<div class="input-group">
-				<input id="input-phone" class="login-input" type="text" placeholder="手机号" />
+				<input id="input-phone" class="login-input input-holder" type="text" placeholder="请输入手机号" />
 				<br />
-				<input id="input-pwd" class="login-input" type="password" placeholder="请输入密码"/>
+				<input id="input-pwd" class="login-input input-holder" type="password" placeholder="请输入密码"/>
 
 				<br />
 				<button id="login" class="login-btn btnUnable">登录</button>

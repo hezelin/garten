@@ -30,6 +30,10 @@
 			.scroll-active {
 				display: block;
 			}
+			
+			.mui-popover .mui-table-view {
+				max-height: none;
+			}
 		</style>
 	</head>
 
@@ -39,21 +43,18 @@
 				<span class="header-control-left-btn-span white-arrow-big-span"></span>
 			</div>
 			<div>
-				<!--<div class="shop-search-container">
+				<div class="shop-search-container">
 					<div class="shop-search-div-left">
-						<input type="" name="" id="shopSearch" value="搜索店铺内商品" />
+						<!--< type="" name="" id="shopSearch" value="搜索店铺内商品" />-->
+						<span id="shopSearch" style="display: inline-block; line-height: 0.8rem;">搜索店铺内商品</span>
 					</div>
 					<div class="shop-search-div-right">
 						<span class="search-span"></span>
 					</div>
-				</div>-->
+				</div>
 			</div>
-			<!--<div class="header-control-right-btn">
-				<span class="header-control-right-btn-span white-three-point-span"></span>
-			</div>-->
 			<div class="header-control-right-btn">
-				<span class="header-control-right-btn-span search-span"></span>
-				<!--<span class="header-control-right-btn-span white-three-point-span"></span>-->
+				<span class="header-control-right-btn-span"></span>
 			</div>
 		</div>
 		<div id="scroll1" class="mui-scroll-wrapper trade-scroll-position scroll-hide scroll-active">
@@ -172,7 +173,7 @@
 				<span class="shop-foot-content shop-foot-content-border">所有商品</span>
 			</div>-->
 			<a class="shop-foot-item" href="#bottomPopover">
-				<span class="shop-foot-content shop-foot-content-border">所有商品</span>
+				<span class="shop-foot-content shop-foot-content-border">商品分类</span>
 			</a>
 			<div class="shop-foot-item switchScrollBtn" data-scroll="#scroll2" data-first="false">
 				<span class="shop-foot-content">店铺简介</span>
@@ -248,13 +249,13 @@
 				}
 			});
 
-			function initFirstVue(resData) {
+			function initFirstVue(resData) {				
 				new Vue({
 					el: "#scroll1",
 					data: resData,
 					methods: {
 						openDetail: function(event) {
-							handleOpenDetail(event);
+							handleOpenDetail(event);							
 						}
 					}
 				});
@@ -281,7 +282,7 @@
 					url: "webview-trade-detail.html",
 					id: "webview-trade-detail.html",
 					styles: fnSetSubpageStyle(0, 0),
-					createNew: false,
+					createNew: true,
 					extras: {
 						itemID: _id
 					},
@@ -337,6 +338,7 @@
 						console.log("商铺某分类商品" + res);
 						res = JSON.parse(res);
 						if (res.success) {
+							console.log('开始渲染');
 							initCatetoryVue(scrollId, res);
 						}
 					},
@@ -361,7 +363,9 @@
 					a.innerText = data[i].categoryName;
 					li.appendChild(a);
 					dElem.appendChild(li);
+					// 生成分类列表
 					createScroll(1 + i, data[i].categoryName);
+					console.log('生成列表');
 				}
 				container.appendChild(dElem);
 			}
@@ -369,6 +373,7 @@
 			function createScroll(snum, categoryname) {
 				var elem = document.createElement("div");
 				elem.setAttribute("id", "scroll" + snum);
+				console.log('scroll' + snum);
 				elem.setAttribute("v-cloak", "");
 				elem.setAttribute("class", "mui-scroll-wrapper trade-scroll-position scroll-hide");
 				elem.innerHTML = '<div class="mui-scroll">' +
@@ -385,9 +390,15 @@
 			}
 			// 渲染某一个分类列表
 			function initCatetoryVue(scrollId, res) {
+				console.log("开始渲染" + scrollId);
 				new Vue({
 					el: scrollId,
-					data: res
+					data: res,
+					methods: {
+						openDetail: function(event) {
+							handleOpenDetail(event);							
+						}
+					}
 				});
 			}
 			mui.plusReady(function() {
@@ -400,7 +411,7 @@
 						initCategory(e);
 					});
 				}
-				document.querySelector(".header-control-right-btn").addEventListener("tap", function() {
+				document.querySelector(".shop-search-container").addEventListener("tap", function() {
 					mui.openWindow({
 						url: "../secondlv/webview-search.html",
 						id: "../secondlv/webview-search.html",

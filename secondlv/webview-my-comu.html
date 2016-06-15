@@ -342,11 +342,7 @@
 										console.log("上拉刷新");
 										var _items = res.data.items;
 										thisObj.itemData = thisObj.itemData.concat(_items);
-										thisObj.vueObj.data.items = thisObj.vueObj.data.items.concat(_items);
-										//										for (var i = 0; i < _items.length; i++) {			
-										//											// 如果把thisObj.itemData的处理放在这里，会出错
-										//											thisObj.vueObj.data.items.push(_items[i]);//											
-										//										}
+										thisObj.vueObj.data.items = thisObj.vueObj.data.items.concat(_items);				
 										if (thisObj.noMore(res)) {
 											return;
 										};
@@ -497,7 +493,7 @@
 				handleOpenComuDetail: function(event) {
 					// 打开社区详情
 					if (!userLoginStatus()) {
-						openLogin(this, true);
+						openLogin(event.currentTarget, true);
 						return;
 					}
 					var itemID = event.currentTarget.getAttribute("data-id");
@@ -567,7 +563,7 @@
 								}
 							});
 						}
-					}, "退出", ["确定", "取消"])
+					}, "提示", ["确定", "取消"])
 				},
 				addNewArticle: function(data) {
 					this.itemData.unshift(data);

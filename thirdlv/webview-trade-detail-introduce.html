@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>商品介绍</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			[v-cloak] {
+				display: none;
+			}
+			
+			.scroll-hide {
+				display: none;
+			}
+			
+			.scroll-active {
+				display: block;
+			}
+			
+			.farm-display-none {
+				display: none;
+			}
+			
+			/*商品介绍*/
+			
+			#introduce-container-innerhtml {
+				background-color: #FFFFFF;
+			}
+			
+			#introduce-container-innerhtml {
+				width: 96%;
+				margin-left: 2%;
+			}
+			
+			#introduce-container-innerhtml img {
+				width: 100% !important;
+				height: auto !important;
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="introduce-container-innerhtml">			
+		</div>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script>
+			mui.plusReady(function() {
+				var _cw = plus.webview.currentWebview();
+				document.getElementById("introduce-container-innerhtml").innerHTML = _cw.htmlData;
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,4 +1,10 @@
 @import 'public';
+input {
+    -webkit-user-select: initial;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
 .input-group {
     @include px2rem(margin-top, 44px);
     @include px2rem(margin-bottom, 350px);
@@ -22,31 +28,33 @@ input::-webkit-input-placeholder {
 .login-input {
     @include px2rem(width, 683px);
     @include px2rem(height, 90px);
-    @include px2rem(padding-left, 28px);
+//  @include px2rem(padding-left, 28px);
     @include px2rem(padding-right, 28px);
     @include font-dpr(14px);
+    background-color: transparent;
     color: #787878;
     border: none;
     box-sizing: border-box;
     outline: none;
 }
+.input-holder::-webkit-input-placeholder {
+    color: #787878;
+}
 #input-phone {
-    border-left: 1px solid #D4D4D4;
-    border-right: 1px solid #D4D4D4;
-    border-top: 1px solid #D4D4D4;
-    @include px2rem(border-top-left-radius, 6px);
-    @include px2rem(border-top-right-radius, 6px);
+    border-bottom: 1px solid #D4D4D4;
+//  @include px2rem(border-top-left-radius, 6px);
+//  @include px2rem(border-top-right-radius, 6px);
 }
 #input-pwd {
-    border: 1px solid #D4D4D4;
-    @include px2rem(border-bottom-left-radius, 6px);
-    @include px2rem(border-bottom-right-radius, 6px);
+    border-bottom: 1px solid #D4D4D4;
+//  @include px2rem(border-bottom-left-radius, 6px);
+//  @include px2rem(border-bottom-right-radius, 6px);
 }
 .login-btn {
     @include px2rem(width, 683px);
     @include px2rem(height, 90px);
     @include px2rem(margin-top, 40px);
-    @include font-dpr(18px);
+    @include font-dpr(16px);
     border: none;
     @include px2rem(border-radius, 6px);
     background-color: $green-color;
@@ -54,13 +62,15 @@ input::-webkit-input-placeholder {
     transition: all 0.4s;
 }
 .forgetPWD-span {
-    @include px2rem(width, 647px);
-    @include px2rem(height, 90px);
+    @include px2rem(width, 683px);
+    @include px2rem(height, 110px);
     display: inline-block;
+    @include px2rem(padding-right, 20px);
+    text-align: right;
 }
 #forgetPWD {
-    @include px2rem(height, 90px);
-    @include px2rem(line-height, 90px);
+    @include px2rem(height, 110px);
+    @include px2rem(line-height, 110px);
     @include font-dpr(12px);
     color: #787878;
     display: inline-block;
@@ -150,17 +160,16 @@ input::-webkit-input-placeholder {
 }
 //注册页面共用部分
 .register-input {
-    @include px2rem(width, 631px);
+    @include px2rem(width, 681px);
     @include px2rem(height, 90px);
-    @include px2rem(padding, (0px, 25px));
     @include px2rem(margin-bottom, 28px);
     display: inline-block;
     @include font-dpr(14px);
-    color: #9a9a9a;
-    background-color: rgb(255, 255, 255);
-    border: $base-border;
-    @include px2rem(border-radius, 6px);
+    color: #787878;
+    background-color: transparent;
     outline: none;
+    border: none;
+    border-bottom: $base-border;
 }
 .register-input:nth-child(1) {
     //  @include px2rem(margin-top, 80px);
@@ -173,21 +182,21 @@ input::-webkit-input-placeholder {
     @include px2rem(border-radius, 6px);
     border: none;
     background-color: $green-color;
-    @include font-dpr(18px);
+    @include font-dpr(16px);
     color: #FFFFFF;
     text-align: center;
 }
 //注册页面一
 .authCode-group {
-    @include px2rem(width, 656px);
+    @include px2rem(width, 681px);
     @include px2rem(height, 90px);
-    @include px2rem(padding-left, 25px);
-    display: inline-block;
-    border: $base-border;
+    @include px2rem(line-height, 90px);      
+    display: inline-block;    
     @include px2rem(border-radius, 6px);
     overflow: hidden;
-    text-align: justify;
-    background-color: #FFFFFF;
+    border-bottom: $base-border;    
+    text-align: right;
+
 }
 //验证码输入
 #authCode {
@@ -199,6 +208,8 @@ input::-webkit-input-placeholder {
 //  vertical-align: middle;
     padding: 0;
     outline: none;
+    background-color: transparent;
+    float: left;
 }
 //注册页面二
 .span-agreement {
@@ -219,7 +230,7 @@ input::-webkit-input-placeholder {
     @include px2rem(width, 648px);
     @include px2rem(height, 94px);
     @include px2rem(border-radius, 6px);
-    @include font-dpr(18px);
+    @include font-dpr(16px);
     color: #FFFFFF;
     background-color: $green-color;
     border: none;
@@ -243,7 +254,7 @@ input::-webkit-input-placeholder {
     @include px2rem(height, 94px);
     display: table;
     text-align: left;
-    @include font-dpr(18px);
+    @include font-dpr(16px);
     color: #000000;
     border-bottom: $base-border;
 }
@@ -266,7 +277,7 @@ input::-webkit-input-placeholder {
     outline: none;
 }
 .resetAuth {
-    width: auto !important;
+//  width: auto !important;
 //  @include px2rem(padding-left, 5px);
 //  @include px2rem(padding-right, 5px);
 }

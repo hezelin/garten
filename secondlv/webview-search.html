@@ -52,7 +52,7 @@
 		</div>
 		<div class="head-holder10"></div>
 		<div id="head-holder"></div>
-		<div id="searchDataNull" style="display: none; text-align: center;">很抱歉，没有找到</div>
+		<div id="searchDataNull" style="text-align: center;">输入关键字，搜索活动或商品</div>
 		<div id="vueContainer" v-cloak>
 			<div class="home-rent-container" id="trade-list" v-cloak>
 				<div class="home-rent-item" v-for="item in data" data-id="{{ item.id }}" v-on:tap="openDetail">
@@ -107,7 +107,7 @@
 					url: "../thirdlv/webview-trade-detail.html",
 					id: "webview-trade-detail.html",
 					styles: fnSetSubpageStyle(0, 0),
-					createNew: false,
+					createNew: true,
 					extras: {
 						itemID: _id
 					},

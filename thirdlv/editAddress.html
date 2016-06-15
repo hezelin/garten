@@ -125,12 +125,13 @@
 				var userID = plus.storage.getItem("userID");
 				var token = plus.storage.getItem("tokenValue");
 				var URL = "http://farm.rrzuji.com/v1/address-add/update?" + fnCreateSign() + "&access-token=" + token;
+				console.log(plus.storage.getItem("cityNum"));
 				mui.ajax(URL, {
 					type: "POST",
 					dataType: "JSON",
 					data: {
 						"user_id": userID,
-						"city_id": plus.storage.getItem("cityNum"),
+						"city_id": parseInt(plus.storage.getItem("cityNum")),
 						"city_name": plus.storage.getItem("cityName"),
 						"name": elemName.value,
 						"phone": elemPhone.value,
@@ -139,7 +140,8 @@
 					success: function(res) {
 						console.log(res);
 						res = JSON.parse(res);
-						if (res.success) {							
+						if (res.success) {		
+							plus.storage.setItem("hasAddress", "true");
 							plus.storage.setItem("addressName", res.data.name);
 							plus.storage.setItem("addressPhone", res.data.phone);
 							plus.storage.setItem("addressCity", res.data.city_name);

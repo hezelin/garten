@@ -337,7 +337,7 @@ body {
     text-align: center;
 }
 .header-control-color {
-//  background-color: rgb(67, 67, 67) !important;
+    //  background-color: rgb(67, 67, 67) !important;
 }
 //左右两边按钮大小，图标样式。头部分左中右三部分，中间宽度自动
 .header-control-left-btn {
@@ -362,7 +362,7 @@ body {
 }
 #webview-head-title {
     display: inline-block;
-    @include font-dpr(20px);
+    @include font-dpr(18px);
     color: #FFFFFF;
 }
 //验证码按钮
@@ -484,35 +484,31 @@ body {
     display: block;
 }
 // 商品详情轮播图
-.trade-span-cover-slider {    
+.trade-span-cover-slider {
     @include px2rem(height, 490px);
     display: block;
 }
-
 // 农场轮播图详情
 .farm-span-cover-slider {
     @include px2rem(height, 418px);
     display: block;
 }
-
 // 搜索
-#searchDataNull, #farmNull{
+#searchDataNull,
+#farmNull {
     @include font-dpr(12px);
     text-align: center;
 }
-
 #searchBigHover {
     position: absolute;
     @include px2rem(width, 120px);
     @include px2rem(height, 100px);
-
     @include px2rem(top, -30px);
-    left: 0px;
+    left: 0;
 }
-
 // 0.5px的底线
 .line-weight-half-bottom:before {
-    content: "";    
+    content: "";
     position: absolute;
     display: block;
     top: 0;
@@ -522,11 +518,12 @@ body {
     border-bottom: $base-border;
     transform: scale(0.5);
     transform-origin: 0 0;
+    -webkit-transform: scale(0.5);
+    -webkit-transform-origin: 0 0;
 }
-
 // 0.5px的顶部线
 .line-weight-half-top:after {
-    content: "";    
+    content: "";
     position: absolute;
     display: block;
     top: 0;
@@ -535,4 +532,37 @@ body {
     border-bottom: $base-border;
     transform: scale(0.5);
     transform-origin: 0 0;
+    -webkit-transform: scale(0.5);
+    -webkit-transform-origin: 0 0;
+}
+// 添加地图模块的字体图标
+@font-face {
+    font-family: "iconfont";
+    src: url('../fonts/iconfont.eot?t=1463970014');
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    /* chrome, firefox */
+    /* IE6-IE8 */
+    /* IE9*/
+    src: url('../fonts/iconfont.eot?t=1463970014#iefix') format('embedded-opentype'),url('../fonts/iconfont.woff?t=1463970014') format('woff'),url('../fonts/iconfont.ttf?t=1463970014') format('truetype'),url('../fonts/iconfont.svg?t=1463970014#iconfont') format('svg');
+    /* iOS 4.1- */
+}
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-sousuo:before {
+    content: "\e60b";
+}
+.icon-ditu8:before {
+    content: "\f0018";
+}
+.icon-dingwei:before {
+    content: "\e616";
+}
+.icon-fanhui:before {
+    content: "\e7d5";
 }

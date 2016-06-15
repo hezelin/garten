@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 
 	<head>
@@ -132,8 +131,8 @@
 			var addressData = null;
 			window.addEventListener("refreshAddress", function(e) {
 				mui.toast("地址已更新");
-				document.querySelector(".consignee-name-phone-content").innerHTML = '<span>' + plus.storage.getItem("addressName") + '</span>' + plus.storage.getItem("addressPhone");
-				document.querySelector(".consignee-address-content").innerHTML = '<span>地址:</span>' + plus.storage.getItem("addressCity") + plus.storage.getItem("addressDetail");
+				document.querySelector(".consignee-name-phone-content").innerHTML = '<span>收货人：' + plus.storage.getItem("addressName") + '</span></br>联系方式：' + plus.storage.getItem("addressPhone");
+				document.querySelector(".consignee-address-content").innerHTML = '<span>收货地址：</span>' + plus.storage.getItem("addressCity") + plus.storage.getItem("addressDetail");
 			});
 
 			function getAddress() {
@@ -154,13 +153,15 @@
 							if (!res.data) {
 								document.querySelector(".consignee-name-phone-content").innerHTML = '<span>收件地址为空，请添加地址</span>';
 							} else {
+								plus.storage.setItem("hasAddress", "true");
 								// 刷新数据
-								document.querySelector(".consignee-name-phone-content").innerHTML = '<span>收货人：' + res.data.name + '</span>联系方式：' + res.data.phone;
+								document.querySelector(".consignee-name-phone-content").innerHTML = '<span>收货人：' + res.data.name + '</span></br>联系方式：' + res.data.phone;
 								document.querySelector(".consignee-address-content").innerHTML = '<span>收货地址：</span>' + res.data.city_name + res.data.address;
 								plus.storage.setItem("addressName", res.data.name);
 								plus.storage.setItem("addressPhone", res.data.phone);
 								plus.storage.setItem("addressCity", res.data.city_name);
 								plus.storage.setItem("addressDetail", res.data.address);
+								plus.storage.setItem("cityNum", (res.data.city_id).toString());
 								addressData = res;
 							}
 						}
@@ -198,8 +199,15 @@
 			}
 
 			function handlePostOrderForm(postData, isShopCar) {
-				console.log(JSON.stringify(postData));
 				document.getElementById("buttonGroup").addEventListener("tap", function(e) {
+					if (plus.storage.getItem("hasAddress") != "true") {
+						plus.nativeUI.alert("请添加收货地址", function() {
+							console.log("User pressed!");
+						}, "地址为空", "ok");
+						return;
+					} else {
+						console.log("具有地址");
+					}
 					if (NetWorkStatus()) {
 						return;
 					}
@@ -210,15 +218,16 @@
 					var btn = this;
 					btn.setAttribute("disabled", "true");
 					var token = plus.storage.getItem("tokenValue");
-					var str = isShopCar ?  "order/create-by-cart?" : "order/create?";
+					var str = isShopCar ? "order/create-by-cart?" : "order/create?";
 					var URL = "http://farm.rrzuji.com/v1/" + str + fnCreateSign() + "&access-token=" + token;
-					console.log(URL);
+					console.log("提交订单url  " + URL);
+					console.log("提交的数据 " + JSON.stringify(postData));
 					mui.ajax(URL, {
 						type: "POST",
 						dataType: "JSON",
 						data: postData,
 						success: function(res) {
-							console.log("提交订单" + res);
+							console.log("提交订单后返回" + res);
 							res = JSON.parse(res);
 							if (res.success) {
 								mui.fire(plus.webview.getWebviewById("webview-trade-detail.html"), "alertOrderMsg", {});
@@ -229,13 +238,9 @@
 									} else {
 										// 打开订单详情
 										openOrderDetail(res.data.id);
-										window.setTimeout(function() {
-											var w = plus.webview.getWebviewById("webview-trade-order.html");
-											w.hide();
-											w.close();
-										}, 600);
 									}
 								}, 100);
+
 							} else {
 								alert(res.data.message);
 							}
@@ -271,6 +276,10 @@
 						autoShow: true
 					}
 				});
+				window.setTimeout(function() {
+					var w = plus.webview.getWebviewById("webview-trade-order.html");
+					w.close("none");
+				}, 500);
 			};
 			// 打开订单列表页
 			function openOrderList(btn) {
@@ -278,15 +287,17 @@
 					openLogin(this);
 					return;
 				}
-				//订单窗口有头部导航
-				fnLoadPage(btn, {
-					url: "../secondlv/webview-my-order.html",
-					top: 213,
-					bottom: 0
-				}, {
-					title: "我的订单",
-					hasControlTab: true
-				});
+				var w = plus.webview.getWebviewById("webview-header");
+				for (var i in w.children()) {
+					w.children()[i].hide("none");
+					w.children()[i].close();
+				}
+				mui.fire(w, "openMyOrder", {});
+				w.show();
+				window.setTimeout(function() {
+					var w = plus.webview.getWebviewById("webview-trade-order.html");
+					w.close("none");
+				}, 500);
 			};
 			mui.plusReady(function() {
 				getAddress();

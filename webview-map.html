@@ -86,16 +86,18 @@
 				box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
 			}
 			
+			#openList {
+				bottom: 190px;
+				/*bottom: 130px;*/
+			}
+			
 			#seeParkMap {
 				bottom: 130px;
+				/*bottom: 70px;*/
 			}
 			
 			#getLocation {
 				bottom: 70px;
-			}
-			
-			#openList {
-				bottom: 190px;
 			}
 			
 			#backFirsPage {
@@ -155,10 +157,10 @@
 							<form class="mui-input-group">
 								<div class="mui-input-row">
 									<label>搜索</label>
-									<input  id="searchInput" type="text" placeholder="请输入关键字">
+									<input id="searchInput" type="text" placeholder="请输入关键字">
 								</div>
 								<div class="mui-button-row">
-									<button id="searchBtn" class="mui-btn mui-btn-primary" type="button" >确认</button>&nbsp;&nbsp;
+									<button id="searchBtn" class="mui-btn mui-btn-primary" type="button">确认</button>&nbsp;&nbsp;
 									<!--<button class="mui-btn mui-btn-primary" type="button" >取消</button>-->
 								</div>
 							</form>
@@ -166,7 +168,7 @@
 						<div id="mapResultContent" class="mui-collapse-content" style="overflow: scroll; max-height: 250px;">
 							<p style="text-align: center;">没有找到数据</p>
 						</div>
-					</li>				
+					</li>
 					<li class="mui-table-view-cell mui-collapse">
 						<a class="mui-navigate-right" href="#">景点列表</a>
 						<div id="mapListContent" class="mui-collapse-content" style="overflow: scroll; height: 250px;">
@@ -186,13 +188,14 @@
 		<div class="my-toast" id="myToast">
 			<span class="my-toast-content"></span>
 		</div>
-		<div class="map-control" id="seeParkMap"><span class="mui-icon mui-icon-map"></span></div>
-		<div class="map-control" id="getLocation"><span class="mui-icon mui-icon-location"></span></div>
+		<div class="map-control" id="seeParkMap">
+			<span class="mui-icon mui-icon-map"></span>
+			<!--<i class="icon iconfont">&#xe60b;</i>
+			 <i class="icon iconfont">&#xf0018;</i>-->
+		</div>
+		<div class="map-control" id="getLocation"><span id="getLocation-icon" class="mui-icon mui-icon-location"></span></div>
 		<div class="map-control" id="openList"><span class="mui-icon mui-icon-list"></span></div>
 		<div class="map-control" id="backFirsPage"><span class="mui-icon mui-icon-undo"></span></div>
-		<!--<div id="parkMap">公园地图 <span class="mui-icon mui-icon-map"></span></div>-->
-		<!--<div id="Myposition" data-switch="false">开启定位 <span class="mui-icon mui-icon-location"></span></div>-->
-		<!--<div id="returnFirstPage"><span class="mui-icon mui-icon-undo"></span></div>-->
 		<script src="js/mui.min.js"></script>
 		<script src="js/md5.min.js"></script>
 		<script src="js/public.js"></script>
@@ -201,7 +204,7 @@
 			mui.init();
 			var first = null;
 			mui.back = function() {
-//				mui.fire(plus.webview.getWebviewById("H5E72D2E4"), "backHome", {});
+				//				mui.fire(plus.webview.getWebviewById("H5E72D2E4"), "backHome", {});
 				var w = plus.webview.getWebviewById("HBuilder");
 				if (!w) {
 					w = plus.webview.getWebviewById("H5E72D2E4");
@@ -211,18 +214,20 @@
 			document.getElementById("backFirsPage").addEventListener("tap", function() {
 				mui.back();
 			});
-			(function($, window) {
+			var initMap = function() {
 				var bmap = null;
 				var initPoint;
 				var farmMap = function creataMap() {
 					this.LocationMarker = null;
 					this.Location = false;
 					this.LocationInterval = null;
+					this.watchPositionID = null;
+					this.btnIconLocation = document.getElementById("getLocation-icon");
 					this.init();
 					this.createPoint();
 					this.initList("mapListContent", mapPointList);
-					// 添加监听
-					this.openLoaction();
+					// 添加按钮事件监听
+					this.getLocationBtn();
 					this.returnInitPark();
 					this.mapSearch();
 				}
@@ -266,8 +271,7 @@
 									infoWindow.redraw();
 								}
 							});
-						};																		
-						
+						};
 						for (var i = 0; i < mapPointList.length; i++) {
 							var _P = mapPointList[i];
 							var marker = new BMap.Marker(new BMap.Point(_P.point_lng, _P.point_lat));
@@ -276,19 +280,20 @@
 						}
 					},
 					initList: function(id, arrayList) {
-						var targetElem = document.getElementById(id);		
+						var targetElem = document.getElementById(id);
 						while (targetElem.childNodes.length > 0) {
 							targetElem.removeChild(targetElem.firstChild);
 						}
-						var elemArray = document.createDocumentFragment();	
+						var elemArray = document.createDocumentFragment();
+
 						function addClickHandler(point, elem) {
-							elem.addEventListener("tap", function() {								
-								elem.style.backgroundColor = "#d3d3d3";											
+							elem.addEventListener("tap", function() {
+								elem.style.backgroundColor = "#d3d3d3";
 								window.setTimeout(function() {
-									bmap.setCenter(new BMap.Point(point.point_lng, point.point_lat));		
+									bmap.setCenter(new BMap.Point(point.point_lng, point.point_lat));
 									bmap.setZoom(17);
 									document.getElementById("mui-card-container").style.display = "none";
-									elem.style.backgroundColor = "transparent";		
+									elem.style.backgroundColor = "transparent";
 								}, 300);
 							});
 						}
@@ -308,12 +313,12 @@
 						var btn = document.getElementById("searchBtn");
 						var inputText = document.getElementById("searchInput");
 						btn.addEventListener("tap", function() {
-							var val = inputText.value; 
+							var val = inputText.value;
 							var newList = [];
 							if (val.length == 0) {
 								alert("请输入关键字搜索");
 							} else {
-								for (var i = 0; i < mapPointList.length; i ++) {
+								for (var i = 0; i < mapPointList.length; i++) {
 									var nPos = mapPointList[i].name.indexOf(val);
 									if (nPos >= 0) {
 										newList[newList.length] = mapPointList[i];
@@ -329,64 +334,58 @@
 					},
 					returnInitPark: function() {
 						// 回到地图初始页
+						
 						document.getElementById("seeParkMap").addEventListener("tap", function() {
-							bmap.panTo(initPoint);
-						});
+							bmap.panTo(initPoint);		
+							this.clearWatchPosition();
+						}.bind(this));
 					},
-					openLoaction: function() {						
+					getLocationBtn: function() {
 						var thisMap = this;
+						// 定位函数添加监听
+						// this.location true表示已开始定位， false未开始定位
+						// this.locationMarker是坐标红点
 						document.getElementById("getLocation").addEventListener("tap", function(event) {
-							
-							var elem = event.currentTarget.childNodes[0];
-							if (!thisMap.Location) {								
-								// 未开启定位
-								if (mui.os.plus) {									
-									plus.geolocation.getCurrentPosition(function(p) {
-										thisMap.LocationMarker = new BMap.Marker(new BMap.Point(p.coords.longitude, p.coords.latitude));
-										bmap.addOverlay(thisMap.LocationMarker);
-										bmap.setCenter(new BMap.Point(p.coords.longitude, p.coords.latitude));																				
-										thisMap.Location = true;							
-										thisMap.startLocation();
-										elem.style.color = "rgb(81, 153, 218)";
-										mui.toast("已开启定位");
-									}, function(e) {
-										alert("网络状态不稳定，无法定位！");
-									}, {
-										provider: 'baidu'
-									});
-								}
+							if (!mui.os.plus) {
+								return;
+							}
+							if (!thisMap.Location) {
+								thisMap.startWatchPosition();
 							} else {
-								mui.toast("关闭定位");
-								elem.style.color = "rgb(84, 90, 96)";
-								thisMap.Location = false;
-								thisMap.clearLocation();
-								bmap.removeOverlay(thisMap.LocationMarker);
+								thisMap.clearWatchPosition();
 							}
 						});
 					},
-					startLocation: function() {
-						var thisMap = this;
-						if (typeof this.LocationInterval == "number") {							
-							thisMap.clearLocation();
-						}
-						thisMap.LocationInterval = window.setInterval(function() {
-							if (mui.os.plus) {								
+					startWatchPosition: function() {
+						// 添加监听
+						mui.toast("开启定位");						
+						var thisMap = this;						
+						thisMap.watchPositionID = plus.geolocation.watchPosition(function(p) {
+							if (thisMap.LocationMarker) {
 								bmap.removeOverlay(thisMap.LocationMarker);
-								plus.geolocation.getCurrentPosition(function(p) {
-									thisMap.LocationMarker = new BMap.Marker(new BMap.Point(p.coords.longitude, p.coords.latitude));
-									bmap.addOverlay(thisMap.LocationMarker);
-									bmap.setCenter(new BMap.Point(p.coords.longitude, p.coords.latitude));
-								}, function(e) {
-									mui.toast("网络状态不稳定，无法定位！6秒后重试...");
-								}, {
-									provider: 'baidu'
-								});
 							}
-						}, 6000);
+							thisMap.LocationMarker = new BMap.Marker(new BMap.Point(p.coords.longitude, p.coords.latitude));
+							bmap.addOverlay(thisMap.LocationMarker);
+							bmap.setCenter(new BMap.Point(p.coords.longitude, p.coords.latitude));
+							thisMap.Location = true;
+							thisMap.btnIconLocation.style.color = "rgb(81, 153, 218)";
+						}, function(e) {
+							mui.toast("网络状态不稳定，无法获取位置信息");
+						}, {
+							// 官方有bug
+							provider: 'baidu'
+						});
 					},
-					clearLocation: function() {
-						if (typeof this.LocationInterval == "number") {
-							window.clearInterval(this.LocationInterval);							
+					clearWatchPosition: function() {						
+						// 关闭位置监听
+						if (this.watchPositionID) {
+							mui.toast("关闭定位");
+							this.Location = false;
+							plus.geolocation.clearWatch(this.watchPositionID);
+							this.btnIconLocation.style.color = "rgb(84, 90, 96)";
+							bmap.removeOverlay(this.LocationMarker);
+							this.LocationMarker = null;
+							this.watchPositionID = null;
 						}
 					}
 				}
@@ -394,6 +393,7 @@
 					new farmMap();
 					console.log("地图初始化");
 				} catch (e) {
+					console.log("地图初始化出错" + e.error);
 					var elem = document.getElementById("errorMap");
 					elem.style.display = "block";
 					elem.addEventListener("tap", function() {
@@ -403,14 +403,14 @@
 						}
 					});
 				}
-			})(mui, window);
+			};
 			var cardContainer = document.getElementById("mui-card-container");
 			document.getElementById("openList").addEventListener("tap", function(e) {
 				e.stopPropagation();
 				cardContainer.style.display = "block";
 			});
 			cardContainer.addEventListener("tap", function(e) {
-				var elem = document.querySelector(".mui-card");	
+				var elem = document.querySelector(".mui-card");
 
 				function isSonOf(a, b) {
 					// b是否a的父元素
@@ -439,6 +439,9 @@
 						autoShow: false
 					}
 				});
+			});
+			window.addEventListener("initMap", function() {
+				initMap();
 			});
 			// 点选坐标
 			//			bmap.addEventListener("click", function(e) {

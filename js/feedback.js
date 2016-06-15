@@ -23,7 +23,7 @@
 	 * 获取用户，如果在本地存储中已有用户则直接返回。
 	 * 否则，注册新的用户
 	 **/
-	feedback.getUser = function(callback) {
+	feedback.getUser = function(callback) {		
 		var storeUserText = localStorage.getItem(LOCAL_STORE_KEY);
 		if (storeUserText) {
 			if (callback) callback(JSON.parse(storeUserText));

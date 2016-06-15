@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="js/flexible_css.debug.js"></script>
+		<script src="js/flexible.debug.js"></script>
+		<script src="http://api.map.baidu.com/api?v=2.0&ak=CXsQGhFNpqY0aKM5PID4hiTU8jrNgw7L"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<title>地图，sdk定位</title>
+		<style>
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.mui-preview-image.mui-fullscreen {
+				background-color: #000;
+			}
+			
+			.mui-collapse-content {}
+			
+			.mui-card {
+				margin-top: 20px;
+			}
+			
+			.outlineMap {
+				width: 100%;
+			}
+			
+			.anchorBL {
+				display: none;
+			}
+			
+			#parkMap {
+				bottom: 10px;
+				left: 10px;
+				top: auto;
+				right: auto;
+				position: absolute;
+				z-index: 1100;
+				background: rgba(255, 255, 255, 0.95);
+				font-size: 16px;
+				height: 24px;
+				line-height: 24px;
+				padding: 0 3px;
+				border-radius: 3px;
+				color: rgb(84, 90, 96);
+			}
+			
+			#Myposition {
+				bottom: 10px;
+				right: 10px;
+				top: auto;
+				left: auto;
+				position: absolute;
+				z-index: 1100;
+				background: rgba(255, 255, 255, 0.95);
+				font-size: 16px;
+				height: 24px;
+				line-height: 24px;
+				padding: 0 3px;
+				border-radius: 3px;
+				color: rgb(84, 90, 96);
+			}
+			
+			.map-control {
+				width: 50px;
+				height: 50px;
+				display: inline-block;
+				border-radius: 25px;
+				background-color: rgba(255, 255, 255, 0.8);
+				border: 1px solid #ddd;
+				position: absolute;
+				left: 10px;
+				text-align: center;
+				background-clip: padding-box;
+				box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+			}												
+			
+			#openList {
+				bottom: 190px;
+				/*bottom: 130px;*/
+			}
+			
+			#seeParkMap {
+				bottom: 130px;
+				/*bottom: 70px;*/
+			}
+			
+			#getLocation {
+				bottom: 70px;
+			}
+			
+			#backFirsPage {
+				bottom: 10px;
+			}
+			
+			.mui-icon {
+				color: rgb(84, 90, 96);
+				margin-top: 12px;
+				font-family: Muiicons;
+				font-size: 24px;
+				font-weight: 400;
+				font-style: normal;
+				line-height: 1;
+				display: inline-block;
+				text-decoration: none;
+				-webkit-font-smoothing: antialiased;
+			}
+			
+			#mui-card-container {
+				position: fixed;
+				z-index: 99;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				background-color: rgba(0, 0, 0, 0.6);
+			}
+			
+			h4 {
+				padding: 5px;
+				color: rgb(90, 90, 90);
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<div class="header-control header-control-greenBold head-tab-hide header-control-fixed">
+			<div class="header-control-left-btn">
+				<span class="header-control-left-btn-span"></span>
+				<span class="header-control-left-btn-span"></span>
+			</div>
+			<div>
+				<span id="webview-head-title">地图</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span white-three-point-span"></span>
+			</div>
+		</div>-->
+		<div id="errorMap" style="display: none; text-align: center; font-size: 14px;;">点击此处刷新重试<span class="mui-icon mui-icon-refresh"></span>，或查看离线地图</div>
+		<div id="map" style="width:100%;height: 100%; "></div>
+		<div id="mui-card-container" style="display: none;">
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">搜索景点 </a>
+						<div class="mui-collapse-content">
+							<form class="mui-input-group">
+								<div class="mui-input-row">
+									<label>搜索</label>
+									<input id="searchInput" type="text" placeholder="请输入关键字">
+								</div>
+								<div class="mui-button-row">
+									<button id="searchBtn" class="mui-btn mui-btn-primary" type="button">确认</button>&nbsp;&nbsp;
+									<!--<button class="mui-btn mui-btn-primary" type="button" >取消</button>-->
+								</div>
+							</form>
+						</div>
+						<div id="mapResultContent" class="mui-collapse-content" style="overflow: scroll; max-height: 250px;">
+							<p style="text-align: center;">没有找到数据</p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">景点列表</a>
+						<div id="mapListContent" class="mui-collapse-content" style="overflow: scroll; height: 250px;">
+							<p style="text-align: center;">地图数据加载失败</p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">离线地图</a>
+						<div class="mui-collapse-content">
+							<img src="img/outLineMapMin.jpg" class="outlineMap" data-preview-src="" data-preview-group="1" />
+						</div>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<div class="map-control" id="seeParkMap"><span class="mui-icon mui-icon-map"></span></div>
+		<div class="map-control" id="getLocation"><span class="mui-icon mui-icon-location"></span></div>
+		<div class="map-control" id="openList"><span class="mui-icon mui-icon-list"></span></div>
+		<div class="map-control" id="backFirsPage"><span class="mui-icon mui-icon-undo"></span></div>
+		<!--<div id="parkMap">公园地图 <span class="mui-icon mui-icon-map"></span></div>-->
+		<!--<div id="Myposition" data-switch="false">开启定位 <span class="mui-icon mui-icon-location"></span></div>-->
+		<!--<div id="returnFirstPage"><span class="mui-icon mui-icon-undo"></span></div>-->
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/public.js"></script>
+		<script src="data/mapPoint.js"></script>
+		<script>
+			mui.init();
+			var first = null;
+			mui.back = function() {
+				//				mui.fire(plus.webview.getWebviewById("H5E72D2E4"), "backHome", {});
+				var w = plus.webview.getWebviewById("HBuilder");
+				if (!w) {
+					w = plus.webview.getWebviewById("H5E72D2E4");
+				}
+				mui.fire(w, "backHome", {});
+			};
+			document.getElementById("backFirsPage").addEventListener("tap", function() {
+				mui.back();
+			});
+			var initMap = function() {
+				var bmap = null;
+				var initPoint;
+				var farmMap = function creataMap() {
+					this.LocationMarker = null;
+					this.Location = false;
+					this.LocationInterval = null;
+					this.init();
+					this.createPoint();
+					this.initList("mapListContent", mapPointList);
+					// 添加监听
+					this.openLoaction();
+					this.returnInitPark();
+					this.mapSearch();
+				}
+				farmMap.prototype = {
+					init: function() {
+						// 初始化地图
+						var thisMap = this;
+						var tileLayer = new BMap.TileLayer();
+						initPoint = new BMap.Point(117.936414, 24.580618);
+						tileLayer.getTilesUrl = function(tileCoord, zoom) {
+							var x = tileCoord.x;
+							var y = tileCoord.y;
+							return 'tiles/' + zoom + '/tile' + x + '_' + y + '.png';
+						}
+						bmap = new BMap.Map('map', {
+							minZoom: 13,
+							maxZoom: 17
+						});
+						bmap.addTileLayer(tileLayer);
+						bmap.addControl(new BMap.NavigationControl());
+						bmap.centerAndZoom(initPoint, 16);
+					},
+					createPoint: function() {
+						// 添加点和信息窗口
+						// 同时渲染地图列表，绑定事件
+						function getWindow(point) {
+							var sContent =
+								"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + point.name + "</h4>" +
+								"<img style='float:right;margin:4px' id='imgDemo' src='http://img1.imgtn.bdimg.com/it/u=1626444431,2976024564&fm=21&gp=0.jpg' width='139' height='' title='天安门'/>" +
+								"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>大曦山休闲旅游公园集田园风光、生态自然、休闲体验为一体，位于国家4A及旅游景区天竺山脚下，涵盖西山、杨厝、后坑、西塘、赤土、刘营六个乡土风情保持良好的自然村</p>" +
+								"</div>";
+							return new BMap.InfoWindow(sContent);
+						};
+
+						function addClickHandler(point, marker) {
+							// 这个引用保存了point的值
+							var infoWindow = getWindow(point);
+							marker.addEventListener("click", function() {
+								this.openInfoWindow(infoWindow);
+								document.getElementById('imgDemo').onload = function() {
+									infoWindow.redraw();
+								}
+							});
+						};
+						for (var i = 0; i < mapPointList.length; i++) {
+							var _P = mapPointList[i];
+							var marker = new BMap.Marker(new BMap.Point(_P.point_lng, _P.point_lat));
+							bmap.addOverlay(marker);
+							addClickHandler(_P, marker);
+						}
+					},
+					initList: function(id, arrayList) {
+						var targetElem = document.getElementById(id);
+						while (targetElem.childNodes.length > 0) {
+							targetElem.removeChild(targetElem.firstChild);
+						}
+						var elemArray = document.createDocumentFragment();
+
+						function addClickHandler(point, elem) {
+							elem.addEventListener("tap", function() {
+								elem.style.backgroundColor = "#d3d3d3";
+								window.setTimeout(function() {
+									bmap.setCenter(new BMap.Point(point.point_lng, point.point_lat));
+									bmap.setZoom(17);
+									document.getElementById("mui-card-container").style.display = "none";
+									elem.style.backgroundColor = "transparent";
+								}, 300);
+							});
+						}
+						// 渲染列表
+						for (var i = 0; i < arrayList.length; i++) {
+							var _P = arrayList[i];
+							var newE = document.createElement("h4");
+							newE.innerText = _P.name;
+							addClickHandler(_P, newE);
+							elemArray.appendChild(newE);
+						}
+						targetElem.appendChild(elemArray);
+					},
+					mapSearch: function() {
+						// 处理搜索
+						var thisMap = this;
+						var btn = document.getElementById("searchBtn");
+						var inputText = document.getElementById("searchInput");
+						btn.addEventListener("tap", function() {
+							var val = inputText.value;
+							var newList = [];
+							if (val.length == 0) {
+								alert("请输入关键字搜索");
+							} else {
+								for (var i = 0; i < mapPointList.length; i++) {
+									var nPos = mapPointList[i].name.indexOf(val);
+									if (nPos >= 0) {
+										newList[newList.length] = mapPointList[i];
+									}
+								}
+								if (newList.length > 0) {
+									thisMap.initList("mapResultContent", newList);
+								} else {
+									document.getElementById("mapResultContent").innerHTML = '<p style="text-align: center;">没有找到数据</p>';
+								}
+							}
+						});
+					},
+					returnInitPark: function() {
+						// 回到地图初始页
+						document.getElementById("seeParkMap").addEventListener("tap", function() {
+							bmap.panTo(initPoint);
+						});
+					},
+					openLoaction: function() {
+						var thisMap = this;
+						document.getElementById("getLocation").addEventListener("tap", function(event) {
+							var elem = event.currentTarget.childNodes[0];
+							if (!thisMap.Location) {
+								// 未开启定位
+								if (mui.os.plus) {
+									console.log("开始定位");
+									plus.geolocation.getCurrentPosition(function(p) {
+										thisMap.LocationMarker = new BMap.Marker(new BMap.Point(p.coords.longitude, p.coords.latitude));
+										bmap.addOverlay(thisMap.LocationMarker);
+										bmap.setCenter(new BMap.Point(p.coords.longitude, p.coords.latitude));
+										thisMap.Location = true;
+										thisMap.startLocation();
+										elem.style.color = "rgb(81, 153, 218)";
+										mui.toast("已开启定位");
+									}, function(e) {
+										alert("网络状态不稳定，无法定位！");
+									}, {
+//										provider: 'baidu'
+									});
+								}
+							} else {
+								mui.toast("关闭定位");
+								elem.style.color = "rgb(84, 90, 96)";
+								thisMap.Location = false;
+								thisMap.clearLocation();
+								bmap.removeOverlay(thisMap.LocationMarker);
+							}
+						});
+					},
+					startLocation: function() {
+						var thisMap = this;
+						if (typeof this.LocationInterval == "number") {
+							thisMap.clearLocation();
+						}
+						thisMap.LocationInterval = window.setInterval(function() {
+							if (mui.os.plus) {
+								bmap.removeOverlay(thisMap.LocationMarker);
+								plus.geolocation.getCurrentPosition(function(p) {
+									thisMap.LocationMarker = new BMap.Marker(new BMap.Point(p.coords.longitude, p.coords.latitude));
+									bmap.addOverlay(thisMap.LocationMarker);
+									bmap.setCenter(new BMap.Point(p.coords.longitude, p.coords.latitude));
+								}, function(e) {
+									mui.toast("网络状态不稳定，无法定位！6秒后重试...");
+								}, {
+									provider: 'baidu'
+								});
+							}
+						}, 6000);
+					},
+					clearLocation: function() {
+						if (typeof this.LocationInterval == "number") {
+							window.clearInterval(this.LocationInterval);
+							//							this.Location = false;
+							//							bmap.removeOverlay(this.LocationMarker);
+							//							if (elem) {								
+							//								elem.style.color = "rgb(84, 90, 96)";
+							//							}
+						}
+					}
+				}
+				try {
+					new farmMap();
+					console.log("地图初始化");
+				} catch (e) {
+					console.log("地图初始化出错" + e.error);
+					var elem = document.getElementById("errorMap");
+					elem.style.display = "block";
+					elem.addEventListener("tap", function() {
+						if (mui.os.plus) {
+							var w = plus.webview.currentWebview();
+							w.reload(w.url);
+						}
+					});
+				}
+			};
+			var cardContainer = document.getElementById("mui-card-container");
+			document.getElementById("openList").addEventListener("tap", function(e) {
+				e.stopPropagation();
+				cardContainer.style.display = "block";
+			});
+			cardContainer.addEventListener("tap", function(e) {
+				var elem = document.querySelector(".mui-card");
+
+				function isSonOf(a, b) {
+					// b是否a的父元素
+					if (a.parentNode == b) {
+						return true;
+					}
+					if (a.parentNode == document.body) {
+						return false;
+					}
+					return isSonOf(a.parentNode, b);
+				}
+				if (elem != e.target && !isSonOf(e.target, elem)) {
+					e.currentTarget.style.display = "none";
+				}
+			});
+			document.querySelector(".outlineMap").addEventListener("tap", function() {
+				console.log("打开本地地图");
+				mui.openWindow({
+					url: "secondlv/outLineMap.html",
+					styles: fnSetSubpageStyle(0, 0),
+					show: {
+						aniShow: "pop-in",
+						duration: 400
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			window.addEventListener("initMap", function() {
+				initMap();
+			});
+			// 点选坐标
+			//			bmap.addEventListener("click", function(e) {
+			//				console.log(e.point.lng + "," + e.point.lat);
+			//				var marker = new BMap.Marker(new BMap.Point(e.point.lng, e.point.lat));
+			//				bmap.addOverlay(marker);
+			//			});
+		</script>
+	</body>
+
+</html>

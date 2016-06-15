@@ -14,9 +14,13 @@
 		<link href="css/style.css" rel="stylesheet" />
 		<title></title>
 		<style>
-			html,
+			/*html,
 			body {
 				height: 100%;
+			}*/
+			
+			.spinner {
+				margin: 50% auto;
 			}
 		</style>
 	</head>
@@ -94,10 +98,21 @@
 			window.addEventListener("initHeadTemplate", function(e) {
 				initHeadPage();
 			});
+			
+			window.addEventListener("back", function() {
+				mui.back();
+			});
+			
+			window.addEventListener("openMyOrder", function() {				
+				document.getElementById("webview-head-title").innerHTML = "我的订单";
+				document.getElementsByClassName("header-control-tab-fixed")[0].style.display = "block";
+				mui.trigger(document.querySelector(".header-control-tab-nav-active"), "tap");
+			});
+			
 			window.addEventListener("avatarCrop", function(e) {
 				document.getElementById("saveCrop").addEventListener("tap", function() {
-					this.innerText = "···";					
-					mui.fire(plus.webview.getWebviewById("../crop/crop.html"), "saveCropAtCrop", {});					
+					this.innerText = "···";
+					mui.fire(plus.webview.getWebviewById("../crop/crop.html"), "saveCropAtCrop", {});
 				});
 			});
 			window.addEventListener("avatarCropError", function(e) {
@@ -105,9 +120,9 @@
 					this.innerText = "保存";
 				});
 			});
-			window.addEventListener("setCity", function(e) {				
+			window.addEventListener("setCity", function(e) {
 				document.getElementById("saveCity").addEventListener("tap", function() {
-					mui.fire(plus.webview.getWebviewById("choiceAddress.html"), "saveCity", {});					
+					mui.fire(plus.webview.getWebviewById("choiceAddress.html"), "saveCity", {});
 				});
 			});
 			// 将模板页设为初始状态
@@ -155,10 +170,34 @@
 					thisBtn.classList.remove("header-control-tab-nav-lay");
 				}
 			};
-						
-			mui.plusReady(function() {		
+			mui.plusReady(function() {
 				//webview切换栏
-				mui(".header-control-tab").on("tap", ".header-control-tab-nav", function(e) {								
+				mui(".header-control-tab").on("tap", ".header-control-tab-nav", function(e) {
+					//					var thisBtn = this;
+					//					var sliderBar = document.getElementsByClassName("head-control-slider")[0];
+					//					var strValue = this.getAttribute("data-transform");
+					//					sliderBar.style.transform = strValue;
+					//					sliderBar.style.webkitTransform = strValue;
+					//					sliderBar.style.transitionDuration = "200ms";
+					//					sliderBar.style.webkitTransitionDuration = "200ms";
+					//					var webviewBodyURL = "secondlv/webview-my-order.html";
+					//					fnChangeTabStatus(thisBtn);
+					//					if (thisBtn.classList.contains("loading")) {
+					//						return;
+					//					}
+					//					thisBtn.classList.add("loading");
+					//					var webviewHead = plus.webview.getWebviewById("webview-header");
+					//					if (webviewHead.children().length > 0) {
+					//						webviewHead.children()[0].close();
+					//					}																			
+					//					var webviewBody = plus.webview.create(webviewBodyURL, webviewBodyURL, fnSetSubpageStyle(217, 0), {});					
+					//					webviewBody.onloaded = function() {
+					//						mui.fire(webviewBody, "getData", {status: thisBtn.getAttribute("data-status")});
+					//						thisBtn.classList.remove("loading");
+					//						setTimeout(function() {
+					//							webviewHead.append(webviewBody);
+					//						}, 100);
+					//					}
 					var thisBtn = this;
 					var sliderBar = document.getElementsByClassName("head-control-slider")[0];
 					var strValue = this.getAttribute("data-transform");
@@ -166,26 +205,45 @@
 					sliderBar.style.webkitTransform = strValue;
 					sliderBar.style.transitionDuration = "200ms";
 					sliderBar.style.webkitTransitionDuration = "200ms";
-					var webviewBodyURL = "secondlv/webview-my-order.html";
 					fnChangeTabStatus(thisBtn);
-					if (thisBtn.classList.contains("loading")) {
-						return;
-					}
-					thisBtn.classList.add("loading");
-					var webviewHead = plus.webview.getWebviewById("webview-header");
-					if (webviewHead.children().length > 0) {
-						webviewHead.children()[0].close();
-					}
-					console.log(e.target.innerText);
-//					if (e.target.innerText == )
-					var webviewBody = plus.webview.create(webviewBodyURL, webviewBodyURL, fnSetSubpageStyle(217, 0), {});					
-					webviewBody.onloaded = function() {
-						mui.fire(webviewBody, "getData", {status: thisBtn.getAttribute("data-status")});
-						thisBtn.classList.remove("loading");
-						setTimeout(function() {
-							webviewHead.append(webviewBody);
-						}, 100);
-					}
+					var status = thisBtn.getAttribute("data-status");
+					var _newView = mui.openWindow({
+						url: "secondlv/webview-my-order.html",
+						id: "secondlv/webview-my-order.html" + status,
+						styles: fnSetSubpageStyle(217, 0),
+						createNew: false,
+						extras: {
+							status: status
+						},
+						show: {
+							autoShow: true,
+							aniShow: "pop-in",
+							duration: 300
+						},
+						waiting: {
+							autoShow: true
+						}
+					});
+					plus.webview.currentWebview().append(_newView);
+//					var webviewBodyURL = "secondlv/webview-my-order.html";
+//					if (thisBtn.classList.contains("loading")) {
+//						return;
+//					}
+//					thisBtn.classList.add("loading");
+//					var webviewHead = plus.webview.getWebviewById("webview-header");
+//					for (var i in webviewHead.children()) {
+//						webviewHead.children()[i].hide();
+//					}
+//					var webviewBody = plus.webview.create(webviewBodyURL, webviewBodyURL, fnSetSubpageStyle(217, 0), {});
+//					webviewBody.onloaded = function() {
+//						mui.fire(webviewBody, "getData", {
+//							status: thisBtn.getAttribute("data-status")
+//						});
+//						thisBtn.classList.remove("loading");
+//						setTimeout(function() {
+//							webviewHead.append(webviewBody);
+//						}, 100);
+//					}
 				});
 				mui('.foot-control-bar').on('change', 'input', function() {
 					var webBody = plus.webview.getWebviewById("webview-body");
@@ -198,18 +256,15 @@
 				var oldBack = mui.back;
 				mui.back = function() {
 					// 用以关闭订单页
-					var w = plus.webview.getWebviewById("webview-trade-order.html");
-					if (w) {
-						w.hide("none");
-						w.close();
-						console.log(JSON.stringify(plus.webview.all()));
-					}
 					var webviewBody = plus.webview.currentWebview().children()[0];
-					if (!webviewBody) {
+					
+					
+					if (!webviewBody) {												
+						oldBack();		
 						initHeadPage();
-						oldBack();
-						return;
+						return;						
 					}
+					
 					webviewBody.canBack(function(e) {
 						var hasBack = e.canBack ? true : false;
 						if (hasBack) {

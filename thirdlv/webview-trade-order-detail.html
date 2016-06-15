@@ -44,7 +44,7 @@
 					<span class="black-nav-span"></span>
 				</div>
 				<div class="consignee-group-right">
-					<div class="consignee-name-phone-content"><span>收货人：{{address_data.name}}</span>联系方式：{{address_data.phone}}</div>
+					<div class="consignee-name-phone-content"><span>收货人：{{address_data.name}}</span><br>联系方式：{{address_data.phone}}</div>
 					<div class="consignee-address-content"><span>收货地址：</span>{{address_data.city_name}}&nbsp;{{address_data.address}}</div>
 				</div>
 				<div class="right-arrow-group">
@@ -64,7 +64,7 @@
 					</div>
 					<!--商品区域-->
 					<!--orderForm-detail-bottom-->
-					<div class="orderForm-detail {{$index == order_data.length - 1 ? 'orderForm-detail-bottom' : ''}}" v-for="item in order_data" v-cloak>
+					<div class="orderForm-detail {{$index == order_data.length - 1 ? 'orderForm-detail-bottom' : ''}}" v-for="item in order_data" v-cloak v-on:tap.stop="openDetail" data-id="{{item.id}}">
 						<div class="orderForm-detail-left">
 							<span class="orderForm-detail-img" style="background: url({{item.cover}}); background-size: cover; background-position: center;"></span>
 						</div>
@@ -92,8 +92,10 @@
 				<span class="totalPrice-above">&yen;{{pay_money}}&nbsp;+&nbsp;&yen;10.0运费</span><br /><span class="totalPrice-under">合计：&yen;{{(parseFloat(pay_money) + parseFloat(10)).toFixed(1)}}</span>
 			</div>
 			<div id="buttonGroup">
-				<button id="btnWeiXin" class="buttonGroup-pay">微信支付</button>
-				<button id="btnZhiFuBao" class="buttonGroup-pay">支付宝支付</button>
+				<!--<button id="btnWeiXin" class="buttonGroup-pay">微信支付</button>
+				<button id="btnZhiFuBao" class="buttonGroup-pay">支付宝支付</button>-->
+				<button id="btnWeiXin" class="buttonGroup-pay">货到付款</button>
+				<button id="btnZhiFuBao" class="buttonGroup-pay">当面交易</button>
 			</div>
 		</div>
 
@@ -106,12 +108,48 @@
 		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
+//			var oldBack = mui.back;
+//			mui.back = function () {
+//				var w = plus.webview.getWebviewById("webview-trade-order.html");
+//				if (w) {
+//					w.hide();	
+//					w.close();					
+//				}
+//				oldBack();
+//			}
 			var vueObj = null;
 
 			function initVue(orderData) {
 				vueObj = new Vue({
 					el: "#vueContainer",
-					data: orderData
+					data: orderData,
+					methods: {
+						openDetail: function(event) {
+							handleOpenDetail(event);
+						}
+					}
+				});
+			};
+			
+			function handleOpenDetail(event) {
+				var thisBtn = event.currentTarget;
+				var _id = thisBtn.getAttribute("data-id");
+				mui.openWindow({
+					url: "webview-trade-detail.html",
+					id: "webview-trade-detail.html",
+					styles: fnSetSubpageStyle(0, 0),
+					createNew: true,
+					extras: {
+						itemID: _id
+					},
+					show: {
+						autoShow: true,
+						aniShow: "pop-in",
+						duration: 300
+					},
+					waiting: {
+						autoShow: true
+					}
 				});
 			};
 
@@ -143,7 +181,7 @@
 				console.log("订单详情表单数据" + JSON.stringify(w.data));
 				//				initVue(w.data);
 				document.getElementById("webview-head-title").innerText = w.data.title;
-				getData(w.data.orderId);
+				getData(w.data.orderId);											
 			});
 		</script>
 	</body>

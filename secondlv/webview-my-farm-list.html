@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="content-security-policy">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script src="../js/flexible_css.debug.js"></script>
+		<script src="../js/flexible.debug.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<!--<link href="../css/style.css" rel="stylesheet" />-->
+		<link rel="stylesheet" href="../css/public.css" />
+		<link href="../css/imgView.css" rel="stylesheet" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-control header-control-fixed">
+			<div class="header-control-left-btn  mui-action-back">
+				<span class="white-arrow-big-span header-control-left-btn-span"></span>
+			</div>
+			<div>
+				<span id="webview-head-title">我的农场</span>
+			</div>
+			<div class="header-control-right-btn">
+				<span class="header-control-right-btn-span"></span>
+			</div>
+		</div>
+		<div id="head-holder"></div>
+		<ul class="mui-table-view" v-cloak>
+			<li class="mui-table-view-cell mui-media" v-for="item in data">
+				<a href="javascript:;" v-on:tap="openDetail" data-id="{{item.id}}">
+					<div class="mui-media-object mui-pull-left" style="width: 42px; background: url({{item.images[0]}}); background-position: center; background-size: cover;"></div>
+					<div class="mui-media-body">
+						{{item.item_title}}&nbsp;&nbsp;{{item.area}}
+						<p class='mui-ellipsis'>有效日期：{{item.start_time}}至{{item.end_time}}</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<div class="my-toast" id="myToast">
+			<span class="my-toast-content"></span>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/md5.min.js"></script>
+		<script src="../js/public.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script>
+			mui.init();
+			var initVue = function(rdata) {
+				new Vue({
+					el: ".mui-table-view",
+					data: rdata,
+					methods: {
+						openDetail: function(event) {
+							plus.storage.setItem("farmID", event.currentTarget.getAttribute("data-id"));
+							openFarmDetail(event);
+						}
+					}
+				});
+			};
+			var openFarmDetail = function(e) {
+				if (!userLoginStatus()) {
+					openLogin(this);
+					return;
+				}
+				fnLoadPage(e.currentTarget, {
+					url: "webview-my-farm.html",
+					top: 98,
+					bottom: 0
+				}, {
+					title: "认租详情"
+				});
+			}
+			mui.plusReady(function() {
+				var token = plus.storage.getItem("tokenValue");
+				console.log(plus.storage.getItem("userID"));
+				var URL = "http://farm.rrzuji.com/v1/my-rent/index?" + fnCreateSign() + "&access-token=" + token;
+				mui.ajax(URL, {
+					type: "GET",
+					dataType: "JSON",
+					success: function(res) {
+						console.log("认租列表" + res);
+						res = JSON.parse(res);
+						if (res.success) {
+							if (res.data.length > 0) {
+								initVue(res);
+							} else {
+								mui.toast("没有认租内容~")
+							}
+						}
+					},
+					error: function(xhr) {
+						ajaxError(xhr);
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

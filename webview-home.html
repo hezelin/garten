@@ -9,33 +9,39 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
 		<style>
-			[data-dpr="2"],
-			.mui-ios .mui-pull-caption {
+			[data-dpr="1"] .mui-ios .mui-pull-caption {
+				font-size: 14px;
+			}
+			
+			[data-dpr="1"] .mui-ios .mui.spinner {
+				font-size: 14px;
+			}
+			
+			[data-dpr="1"] .mui-ios .mui-icon-pulldown {
+				font-size: 14px;
+			}
+			
+			[data-dpr="2"] .mui-ios .mui-pull-caption {
 				font-size: 28px;
 			}
 			
-			[data-dpr="2"],
-			.mui-ios .mui.spinner {
+			[data-dpr="2"] .mui-ios .mui.spinner {
 				font-size: 28px;
 			}
 			
-			[data-dpr="2"],
-			.mui-ios .mui-icon-pulldown {
+			[data-dpr="2"] .mui-ios .mui-icon-pulldown {
 				font-size: 28px;
 			}
 			
-			[data-dpr="3"],
-			.mui-ios .mui-pull-caption {
+			[data-dpr="3"] .mui-ios .mui-pull-caption {
 				font-size: 42px;
 			}
 			
-			[data-dpr="3"],
-			.mui-ios .mui.spinner {
+			[data-dpr="3"] .mui-ios .mui.spinner {
 				font-size: 42px;
 			}
 			
-			[data-dpr="3"],
-			.mui-ios .mui-icon-pulldown {
+			[data-dpr="3"] .mui-ios .mui-icon-pulldown {
 				font-size: 42px;
 			}
 			
@@ -107,8 +113,8 @@
 						</div>
 					</div>
 					<div class="home-news-content">
-						<div class="home-news-content-item" >							
-							<div class="home-news-content-item-title">								
+						<div class="home-news-content-item">
+							<div class="home-news-content-item-title">
 								<label class="home-news-content-item-title-name">最新活动</label>
 							</div>
 							<div class="home-news-content-item-line"></div>
@@ -192,80 +198,75 @@
 			var vueObj = new Vue({
 				el: "#home-container-all",
 				//				data: {
+				//					"success": true,
 				//					"data": {
-				//						"new_data": [{}, {}, {}]
+				//						"images": [
+				//							"/images/app/1604/01/o/5mQEGTi56fe17c2d6bc6.png",
+				//							"/images/app/1604/01/o/PuGR3LC56fe17c6dd653.png",
+				//							"/images/app/1604/01/o/PEpveC956fe17cccdd87.png"
+				//						],
+				//						"new_title": "最新标题",
+				//						"new_data": [{
+				//							"id": "55",
+				//							"title": "童游专属福利】趣味亲子 “剑士团”，做优雅小…",
+				//							"cover": "/images/item/1605/07/m/vVEgNtj572dbaca9563a.jpg",
+				//							"price": "260.00",
+				//							"high_price": "26000",
+				//							"shop_id": "2",
+				//							"shop_name": "快活林烧烤店",
+				//							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+				//						}, {
+				//							"id": "56",
+				//							"title": "大曦山湿地公园开放…",
+				//							"cover": "/images/item/1605/07/m/WCdbHav572dbd6a083c9.jpg",
+				//							"price": "35.00",
+				//							"high_price": "3500",
+				//							"shop_id": "2",
+				//							"shop_name": "快活林烧烤店",
+				//							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+				//						}, {
+				//							"id": "57",
+				//							"title": "最好玩的滑行车课程",
+				//							"cover": "/images/item/1605/07/m/v9MhIl9572dbdd41cd10.jpg",
+				//							"price": "36.00",
+				//							"high_price": "3600",
+				//							"shop_id": "2",
+				//							"shop_name": "快活林烧烤店",
+				//							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+				//						}],
+				//						"item_title": "商品标题",
+				//						"item_data": [{
+				//							"id": "3",
+				//							"title": "宝苞农场 “现实版QQ农场”尊享私人定制套餐",
+				//							"cover": "/images/item/1601/21/m/4L0Tr5456a05a03241bc.jpg",
+				//							"price": "298.00",
+				//							"high_price": "96800",
+				//							"shop_id": "2",
+				//							"shop_name": "快活林烧烤店",
+				//							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+				//						}, {
+				//							"id": "5",
+				//							"title": "宝苞农场 标题3",
+				//							"cover": "/images/item/1601/21/m/4L0Tr5456a05a03241bc.jpg",
+				//							"price": "298.00",
+				//							"high_price": "96800",
+				//							"shop_id": "2",
+				//							"shop_name": "快活林烧烤店",
+				//							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+				//						}, {
+				//							"id": "11",
+				//							"title": "标题9，标题9",
+				//							"cover": "/images/item/1601/21/m/4L0Tr5456a05a03241bc.jpg",
+				//							"price": "298.00",
+				//							"high_price": "96800",
+				//							"shop_id": "2",
+				//							"shop_name": "快活林烧烤店",
+				//							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
+				//						}],
+				//						"baseImgUrl": "http://farm.rrzuji.com",
+				//						"charPrice": "￥"
 				//					}
 				//				},
-				data: {
-					"success": true,
-					"data": {
-						"images": [
-							"/images/app/1604/01/o/5mQEGTi56fe17c2d6bc6.png",
-							"/images/app/1604/01/o/PuGR3LC56fe17c6dd653.png",
-							"/images/app/1604/01/o/PEpveC956fe17cccdd87.png"
-						],
-						"new_title": "最新标题",
-						"new_data": [{
-							"id": "55",
-							"title": "童游专属福利】趣味亲子 “剑士团”，做优雅小…",
-							"cover": "/images/item/1605/07/m/vVEgNtj572dbaca9563a.jpg",
-							"price": "260.00",
-							"high_price": "26000",
-							"shop_id": "2",
-							"shop_name": "快活林烧烤店",
-							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
-						}, {
-							"id": "56",
-							"title": "大曦山湿地公园开放…",
-							"cover": "/images/item/1605/07/m/WCdbHav572dbd6a083c9.jpg",
-							"price": "35.00",
-							"high_price": "3500",
-							"shop_id": "2",
-							"shop_name": "快活林烧烤店",
-							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
-						}, {
-							"id": "57",
-							"title": "最好玩的滑行车课程",
-							"cover": "/images/item/1605/07/m/v9MhIl9572dbdd41cd10.jpg",
-							"price": "36.00",
-							"high_price": "3600",
-							"shop_id": "2",
-							"shop_name": "快活林烧烤店",
-							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
-						}],
-						"item_title": "商品标题",
-						"item_data": [{
-							"id": "3",
-							"title": "宝苞农场 “现实版QQ农场”尊享私人定制套餐",
-							"cover": "/images/item/1601/21/m/4L0Tr5456a05a03241bc.jpg",
-							"price": "298.00",
-							"high_price": "96800",
-							"shop_id": "2",
-							"shop_name": "快活林烧烤店",
-							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
-						}, {
-							"id": "5",
-							"title": "宝苞农场 标题3",
-							"cover": "/images/item/1601/21/m/4L0Tr5456a05a03241bc.jpg",
-							"price": "298.00",
-							"high_price": "96800",
-							"shop_id": "2",
-							"shop_name": "快活林烧烤店",
-							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
-						}, {
-							"id": "11",
-							"title": "标题9，标题9",
-							"cover": "/images/item/1601/21/m/4L0Tr5456a05a03241bc.jpg",
-							"price": "298.00",
-							"high_price": "96800",
-							"shop_id": "2",
-							"shop_name": "快活林烧烤店",
-							"shop_image": "/images/shop/1601/16/s/VYcaLux5699c6d37f52b.png"
-						}],
-						"baseImgUrl": "http://farm.rrzuji.com",
-						"charPrice": "￥"
-					}
-				},
 				methods: {
 					openDetail: function(event) {
 						var thisBtn = event.currentTarget;

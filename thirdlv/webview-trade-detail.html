@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<title>商品详情</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -33,6 +33,7 @@
 			.farm-display-none {
 				display: none;
 			}
+			/*商品介绍*/
 			
 			#scroll2 {
 				background-color: #FFFFFF;
@@ -112,7 +113,7 @@
 				</div>
 				<div class="home-rent-detail-shop" id="openShop" shop-id="{{shop_id}}" style="margin-bottom: 10px;">
 					<div class="home-rent-detail-shop-left">
-						
+
 						<span class="home-rent-detail-shop-logo" style="background: url({{shop_image}}); background-size: cover; background-position: center"></span>
 					</div>
 					<div class="home-rent-detail-shop-middle">
@@ -160,15 +161,15 @@
 		<!--下面是共用元素-->
 		<!--底部栏-->
 		<div class="trade-foot-control">
-			<div class="trade-foot-control-small-btn">
+			<div class="trade-foot-control-small-btn line-weight-half-top" id="contactSale">
 				<span class="trade-foot-control-small-btn-logo" style="background: url(../img/custom-service.png); background-size: cover;"></span>
 				<span class="trade-foot-control-small-btn-title">客服</span>
 			</div>
-			<div class="trade-foot-control-small-btn" id="openShop2">
+			<div class="trade-foot-control-small-btn line-weight-half-top" id="openShop2">
 				<span class="trade-foot-control-small-btn-logo" style="background: url(../img/shop.png); background-size: cover;"></span>
 				<span class="trade-foot-control-small-btn-title">店铺</span>
 			</div>
-			<div class="trade-foot-control-small-btn" id="addCollect" data-isCollect="false">
+			<div class="trade-foot-control-small-btn line-weight-half-top" id="addCollect" data-isCollect="false">
 				<span class="trade-foot-control-small-btn-logo" style="background: url(../img/collect.png); background-size: cover;"></span>
 				<span class="trade-foot-control-small-btn-title">收藏</span>
 			</div>
@@ -197,7 +198,7 @@
 					选择套餐
 				</label>
 				<div class="buyDiv-item-group">
-					<span class="buyDiv-items {{(item.repertory == '' || item.repertory == null) ? 'buyDiv-items-disabled' : ''}}" v-on:tap="setBuyMessage" v-for="item in standard_price_num" data-itemID="{{item.id}}" data-price="{{item.price}}" data-residue="{{item.repertory}}">{{item.label}}</span>
+					<span class="buyDiv-items {{(parseInt(item.repertory) <= 0) ? 'buyDiv-items-disabled' : ''}}" v-on:tap="setBuyMessage" v-for="item in standard_price_num" data-itemID="{{item.id}}" data-price="{{item.price}}" data-residue="{{item.repertory}}">{{item.label}}</span>
 				</div>
 			</div>
 			<div class="buyDiv-count">
@@ -235,7 +236,7 @@
 				deceleration: deceleration
 			});
 			// 商品id，页面打开时赋值
-			var item_id = "";		
+			var item_id = "";
 			// 商店名，获取数据时赋值
 			var shopName = "";
 			// 商店id,获取数据时赋值
@@ -260,14 +261,23 @@
 			var detailVue = new Vue({
 				el: "#detailScroll"
 			});
-			
-						
+
 			function initSwitchTab() {
 				mui('.trade-header-container').on('tap', '.trade-header-nav', function() {
 					// 获取数据
 					if (this.getAttribute("data-first") == "true") {
 						// 如果这个tab是第一点击，那么处理它
 						handle(this);
+					}
+					var _active = document.querySelector(".trade-header-nav-active").getAttribute("data-container"); // 当前活跃						
+					var _new = this.getAttribute("data-container"); // 目标
+					var _aw = plus.webview.getWebviewById(_active);
+					var _nw = plus.webview.getWebviewById(_new);
+					if (_aw) {
+						_aw.hide()
+					}
+					if (_nw) {
+						_nw.show();
 					}
 					// 更换滚动区域
 					var elem = document.querySelector(".scroll-active").classList.remove("scroll-active");
@@ -297,23 +307,26 @@
 							document.getElementById("buyDiv-message-choose").innerText = "已选：" + itemElem.innerText;
 							document.getElementById("buyDiv-message-choose").setAttribute("data-id", itemElem.getAttribute("data-itemID"));
 							document.getElementById("buyDiv-message-price").innerText = itemElem.getAttribute("data-price");
-							var residue = itemElem.getAttribute("data-residue"); 
-							if (residue == '' || residue == null) {								
-								document.getElementById("buyDiv-message-residue").innerText = "商品数量不足！";								
+							var residue = itemElem.getAttribute("data-residue");
+							if (residue == '') {
+								console.log("无限");
+							} else if (parseInt(residue) <= 0) {
+								document.getElementById("buyDiv-message-residue").innerText = "商品数量不足！";
 							} else {
 								document.getElementById("buyDiv-message-residue").innerText = "剩余：" + itemElem.getAttribute("data-residue");
 							}
-							
 						}
 					}
 				})
 				document.querySelector("#addToShopCar").addEventListener("tap", function() {
+					mui.trigger(document.getElementById("initScroll"), "tap");
 					var id = "#buyDiv";
 					document.getElementById("btnAdd").style.display = "inline-block";
 					document.getElementById("btnBuy").style.display = "none";
 					fnOpenTargetDiv(id);
 				});
 				document.querySelector("#buyNow").addEventListener("tap", function() {
+					mui.trigger(document.getElementById("initScroll"), "tap");
 					var id = "#buyDiv";
 					document.getElementById("btnAdd").style.display = "none";
 					document.getElementById("btnBuy").style.display = "inline-block";
@@ -321,7 +334,7 @@
 				});
 				document.querySelector("#buyDivClose").addEventListener("tap", function() {
 					var id = "#buyDiv";
-					fnCloseShade(id);									
+					fnCloseShade(id);
 				});
 				// 购买-动画end
 				// 数字选择器
@@ -405,6 +418,9 @@
 			}
 
 			function handleIntroduce(btn) {
+				if (NetWorkStatus()) {
+					return;
+				}
 				var containerID = btn.getAttribute("data-container");
 				var URL = "http://farm.rrzuji.com/v1/items/" + item_id + "?fields=introduce&" + fnCreateSign();
 				mui.ajax(URL, {
@@ -416,7 +432,9 @@
 						res = JSON.parse(res);
 						if (res.success) {
 							btn.setAttribute("data-first", "false");
-							document.querySelector("#introduceScroll").innerHTML = res.data.introduce;
+							//							document.querySelector("#introduceScroll").innerHTML = res.data.introduce;
+							var w = plus.webview.create("webview-trade-detail-introduce.html", containerID, fnSetSubpageStyle(99, 100), {htmlData: res.data.introduce});
+							plus.webview.currentWebview().append(w);
 						}
 					},
 					error: function(xhr, type, errorThrown) {
@@ -424,6 +442,25 @@
 						mui.toast("加载失败，请检查您的网络");
 					}
 				})
+				//				var containerID = btn.getAttribute("data-container");
+				//				var URL = "http://farm.rrzuji.com/v1/items/" + item_id + "?fields=introduce&" + fnCreateSign();
+				//				mui.ajax(URL, {
+				//					type: "GET",
+				//					dataType: "JSON",
+				//					timeout: 15000,
+				//					success: function(res) {
+				//						console.log("详情介绍" + res);
+				//						res = JSON.parse(res);
+				//						if (res.success) {
+				//							btn.setAttribute("data-first", "false");
+				//							document.querySelector("#introduceScroll").innerHTML = res.data.introduce;
+				//						}
+				//					},
+				//					error: function(xhr, type, errorThrown) {
+				//						ajaxError(xhr);
+				//						mui.toast("加载失败，请检查您的网络");
+				//					}
+				//				})
 			}
 
 			function handleComment(btn) {}
@@ -566,7 +603,7 @@
 					mui.toast("请选择套餐");
 					return;
 				}
-				if (elem.getAttribute("data-residue") == '' || elem.getAttribute("data-residue") == null) {
+				if (parseInt(elem.getAttribute("data-residue") <= 0)) {
 					return;
 				}
 				if (thisBtn.getAttribute("data-send")) {
@@ -625,7 +662,10 @@
 					mui.toast("请选择套餐");
 					return;
 				}
-				if (elem.getAttribute("data-residue") == '' || elem.getAttribute("data-residue") == null) {
+				//				if (elem.getAttribute("data-residue") == '' || elem.getAttribute("data-residue") == null) {
+				//					return;
+				//				}
+				if (parseInt(elem.getAttribute("data-residue") <= 0)) {
 					return;
 				}
 				var itemPrice = elem.getAttribute("data-price");
@@ -643,21 +683,17 @@
 							isShopCar: false,
 							allCount: itemNums * itemPrice,
 							allNum: itemNums,
-							shopItems: [
-								{
-									shopImg: shopImg,
-									shopName: shopName,									
-									items: [
-										{
-											itemImg: itemImg,
-											itemName: itemName,
-											standardName: standardName,
-											itemPrice: itemPrice,
-											itemNums: itemNums								
-										}
-									]								
-								}
-							],
+							shopItems: [{
+								shopImg: shopImg,
+								shopName: shopName,
+								items: [{
+									itemImg: itemImg,
+									itemName: itemName,
+									standardName: standardName,
+									itemPrice: itemPrice,
+									itemNums: itemNums
+								}]
+							}],
 							dataPost: {
 								shop_id: shopId,
 								shop_name: shopName,
@@ -677,14 +713,21 @@
 					}
 				});
 			});
-			
 			window.addEventListener("alertOrderMsg", function() {
 				fnCloseShade("#buyDiv");
 				mui.toast("提交订单成功!");
 			});
+			// 联系客服，打开电话界面
+			document.querySelector("#contactSale").addEventListener("tap", function() {
+				plus.nativeUI.confirm("客服电话：0592-6313811 \n", function(e) {
+					if (e.index == 0) {
+						plus.device.dial("05926313811");
+					}
+				}, "联系客服", ["拨打", "取消"]);
+			});
 			mui.plusReady(function() {
-				item_id = plus.webview.currentWebview().itemID				
-				// 添加tab切换监听
+				item_id = plus.webview.currentWebview().itemID
+					// 添加tab切换监听
 				initSwitchTab();
 				// 触发第一个tab 切换事件
 				mui.trigger(document.getElementById('initScroll'), "tap");

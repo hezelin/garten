@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<title>我的订单</title>
@@ -32,7 +31,6 @@
 		<div id="vueContainer">
 			<div id="searchDataNull" v-cloak class="{{data.length == 0 ? 'display-block' : 'display-none'}}" style="text-align: center; color: #000000;">订单列表为空</div>
 			<div class="my-trader-item" v-for="item in data" v-cloak v-if="item.item_num > 0" v-on:tap="openOrderDetail" data-orderId="{{item.id}}">
-
 				<div class="my-trader-title">
 					<div class="my-trader-title-logo">
 						<span class="shop-span"></span>
@@ -59,7 +57,7 @@
 				<!--尾部-->
 				<div class="my-order-total">
 					<div class="my-order-total-btn">
-						<button id="delete-my-order" v-on:tap="deleteOrder" data-id="{{item.id}}" data-index="{{$index}}">删除订单</button>
+						<button id="delete-my-order" v-on:tap.stop="deleteOrder" data-id="{{item.id}}" data-index="{{$index}}">删除订单</button>
 					</div>
 					<div class="my-order-total-detail">
 						<span>
@@ -79,6 +77,16 @@
 		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
+			
+			mui.back = function() {
+				mui.fire(plus.webview.getWebviewById("webview-header"), "back", {});	
+				var w = plus.webview.getWebviewById("webview-trade-order.html");
+				if (w) {
+					w.hide();	
+					w.close();					
+				}
+//				plus.webview.getWebviewById("webview-header").hide();
+			};
 			var vueObj = null;
 
 			function initVue(data) {
@@ -160,10 +168,12 @@
 				}
 				var token = plus.storage.getItem("tokenValue");
 				var str = "";
+				// 默认为全部订单  1为进行中  10为已结束
 				if (parseInt(status) == 1 || parseInt(status) == 10) {
 					str = "&status=" + status;
 				}
 				var URL = "http://farm.rrzuji.com/v1/order/index?" + fnCreateSign() + "&access-token=" + token + str;
+				console.log(URL);
 				mui.ajax(URL, {
 					type: "GET",
 					dataType: "JSON",
@@ -177,11 +187,15 @@
 					}
 				});
 			};
-			window.addEventListener("getData", function(e) {
-				initData(e.detail.status);
-			});
+//			window.addEventListener("getData", function(e) {
+//				initData(e.detail.status);
+//			});
 			mui.plusReady(function() {
-				initData();
+				var cw = plus.webview.currentWebview();
+				plus.webview.getWebviewById("webview-header").append(cw);
+				var status = cw.status;
+				console.log(status);
+				initData(status);
 			});
 		</script>
 	</body>

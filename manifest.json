@@ -3,8 +3,8 @@
 	"id": "H5E72D2E4",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "大曦山休闲旅游公园",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.0.0",/*应用版本名称*/
-		"code": "83"
+		"name": "1.1.3",/*应用版本名称*/
+		"code": "89"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -17,12 +17,8 @@
 		"url": "http://www.dcloud.io"
 	},
 	"permissions": {
-		"Accelerometer": {
-            "description": "访问加速度感应器"
-        },
-        "Audio": {
-            "description": "访问麦克风"
-        },
+		
+        
         "Cache": {
             "description": "管理应用缓存"
         },
@@ -73,9 +69,7 @@
         "Zip": {
             "description": "文件压缩与解压缩"
         },
-        "Barcode": {
-            "description": "管理二维码扫描插件"
-        },
+        
         
         
         "Webview":{
@@ -112,7 +106,7 @@
 				"keystore": "",/*Android应用打包使用的密钥库文件*/
 				"password": "",/*Android应用打包使用密钥库中证书的密码*/
 				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
-				"permissions": ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
+				"permissions": ["<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
 			},
 			"orientation": ["portrait-primary"],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
 			"icons": {
@@ -152,12 +146,12 @@
 			},
 			"splashscreen": {
 				"ios": {
-					"iphone": {"default":"/Users/mac/Downloads/有机农场/启动页尺寸/320x480.png","retina55":"/Users/mac/Downloads/有机农场/启动页尺寸/1242x2280.png","retina47":"/Users/mac/Downloads/有机农场/启动页尺寸/750x1334.png","retina40":"/Users/mac/Downloads/有机农场/启动页尺寸/640x1136.png","retina35":"/Users/mac/Downloads/有机农场/启动页尺寸/640x960.png"
+					"iphone": {"default":"/Users/mac/Downloads/有机农场 /启动页尺寸/320x480.png","retina55":"/Users/mac/Downloads/有机农场 /启动页尺寸/1242x2280.png","retina47":"/Users/mac/Downloads/有机农场 /启动页尺寸/750x1334.png","retina40":"/Users/mac/Downloads/有机农场 /启动页尺寸/640x1136.png","retina35":"/Users/mac/Downloads/有机农场 /启动页尺寸/640x960.png"
 						 /*iPhone3启动图片选，分辨率：320x480*/
 						/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
 						
 					},
-					"ipad": {"portrait":"/Users/mac/Downloads/有机农场/启动页尺寸/768x1004.png","portrait7":"/Users/mac/Downloads/有机农场/启动页尺寸/768x1024.png","portrait-retina":"/Users/mac/Downloads/有机农场/启动页尺寸/1536x2008.png","portrait-retina7":"/Users/mac/Downloads/有机农场/启动页尺寸/1536x2048.png"
+					"ipad": {"portrait":"/Users/mac/Downloads/有机农场 /启动页尺寸/768x1004.png","portrait7":"/Users/mac/Downloads/有机农场 /启动页尺寸/768x1024.png","portrait-retina":"/Users/mac/Downloads/有机农场 /启动页尺寸/1536x2008.png","portrait-retina7":"/Users/mac/Downloads/有机农场 /启动页尺寸/1536x2048.png"
 						 /*iPad竖屏启动图片，分辨率：768x1004*/
 						/*iPad高分屏竖屏图片，分辨率：1536x2008*/
 						 /*iPad横屏启动图片，分辨率：1024x748*/
@@ -168,7 +162,7 @@
 						
 					}
 				},
-				"android": {"hdpi":"/Users/mac/Downloads/有机农场/启动页尺寸/480x762.png","ldpi":"/Users/mac/Downloads/有机农场/启动页尺寸/320x442.png","mdpi":"/Users/mac/Downloads/有机农场/启动页尺寸/240x282.png","xhdpi":"/Users/mac/Downloads/有机农场/启动页尺寸/720x1242.png","xxhdpi":"/Users/mac/Downloads/有机农场/启动页尺寸/1080x1882.png"
+				"android": {"hdpi":"/Users/mac/Downloads/有机农场 /启动页尺寸/480x762.png","ldpi":"/Users/mac/Downloads/有机农场 /启动页尺寸/320x442.png","mdpi":"/Users/mac/Downloads/有机农场 /启动页尺寸/240x282.png","xhdpi":"/Users/mac/Downloads/有机农场 /启动页尺寸/720x1242.png","xxhdpi":"/Users/mac/Downloads/有机农场 /启动页尺寸/1080x1882.png"
 					 /*普通屏启动图片，分辨率：240x282*/
 					 /*大屏启动图片，分辨率：320x442*/
 					 /*高分屏启动图片，分辨率：480x762*/
@@ -287,7 +281,8 @@
 					"secondlv/webview-my-shopcar.html",
 					"login/login.html",
 					"secondlv/webview-my-comu.html",
-					"secondlv/webview-my-farm.html"
+					"secondlv/webview-my-farm.html",
+					"secondlv/webview-my-farm-list.html"
 				],
 				"priority": 0
 			},
@@ -339,7 +334,8 @@
 					"crop.html",
 					"secondlv/webview-comu-detail.html",
 					"secondlv/webview-search.html",
-					"thirdlv/webview-comu-promulgate.html"
+					"thirdlv/webview-comu-promulgate.html",
+					"thirdlv/webview-comu-knowledge-list.html"
 				],
 				"priority": 0
 			},
@@ -562,7 +558,8 @@
 					"crop/crop.html",
 					"thirdlv/choiceAddress.html",
 					"webview-body.html",
-					"secondlv/webview-my-farm.html"
+					"secondlv/webview-my-farm.html",
+					"secondlv/webview-my-farm-list.html"
 				],
 				"refer": [
 					"secondlv/webview-comu-knowledge-list.html"
@@ -869,7 +866,8 @@
 					"img/input-phone.png",
 					"img/input-pwd.png",
 					"login/register.html",
-					"img/img4.png"
+					"img/img4.png",
+					"img/login-bg.png"
 				],
 				"refer": [
 					"login/register2.html",
@@ -1209,7 +1207,8 @@
 					"img/head-left-black.png",
 					"css/mui.min.css",
 					"img/img2.png",
-					"img/isCollect.png"
+					"img/isCollect.png",
+					"thirdlv/webview-trade-detail-introduce.html"
 				],
 				"refer": [
 					"thirdlv/webview-shop.html",
@@ -1418,7 +1417,8 @@
 					"js/mui.previewimage.js",
 					"img/outLineMapMin.jpg",
 					"data/mapPoint.js",
-					null
+					null,
+					"tiles/17/tile25638_5479.png"
 				],
 				"refer": [
 					"secondlv/outLineMap.html"
@@ -1625,7 +1625,9 @@
 					"img/img.png",
 					"img/img2.png"
 				],
-				"refer": [],
+				"refer": [
+					"thirdlv/webview-trade-detail.html"
+				],
 				"priority": 0
 			},
 			"secondlv/webview-my-farm.html": {
@@ -1642,7 +1644,47 @@
 					"img/test/test-slider.png",
 					"img/test/test-slider3.png",
 					"img/my-farm-spread.png",
-					"img/my-farm-insect.png"
+					"img/my-farm-insect.png",
+					"js/mui.zoom.js",
+					"css/imgView.css",
+					"fonts/mui.ttf",
+					"js/mui.previewimage.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"secondlv/webview-my-farm-list.html": {
+				"resources": [
+					"img/test/test-slider2.png",
+					"img/test/test-slider.png",
+					"img/test/test-slider3.png",
+					"img/my-farm-spread.png",
+					"img/my-farm-insect.png",
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"css/imgView.css",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/mui.min.css",
+					"js/vue.min.js",
+					"js/flexible.debug.js",
+					"img/img.png",
+					"css/public.css"
+				],
+				"refer": [
+					"secondlv/webview-my-farm.html"
+				],
+				"priority": 0
+			},
+			"thirdlv/webview-trade-detail-introduce.html": {
+				"resources": [
+					"js/md5.min.js",
+					"js/flexible_css.debug.js",
+					"js/mui.min.js",
+					"js/public.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/flexible.debug.js"
 				],
 				"refer": [],
 				"priority": 0

@@ -67,17 +67,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="foot-control-bar">
+			<div class="foot-control-bar line-weight-half-top">
 				<div class="my-shop-car-check" id="checkAll">
 					<span class="radio-check-span set-middle" id="checkAllCheck"></span>
 					<label class="set-middle">&nbsp;全选</label>
 				</div>
-				<div class="my-shop-car-pay">
-					<span>
+				<div class="my-shop-car-pay" >
+					<span style="overflow: hidden;">
 					合计&nbsp;			
 					<em class="allCount-red">&yen;&nbsp;</em>
-					<em class="allCount-red" id="allCount">0</em>
-				</span>&nbsp;
+					<em class="allCount-red" id="allCount" style="overflow: hidden;">0</em>
+					</span>&nbsp;
 				</div>
 				<div class="my-shop-car-pay-button my-shop-car-pay">
 					<button id="createForm">结算</button>
@@ -496,6 +496,7 @@
 				// 获取购物车内容
 				var token = plus.storage.getItem("tokenValue");
 				var URL = "http://farm.rrzuji.com/v1/cart/index?" + fnCreateSign() + "&access-token=" + token;
+				console.log(URL);
 				mui.ajax(URL, {
 					type: "GET",
 					dataType: "JSON",
@@ -543,7 +544,7 @@
 					getData(refreshVue);
 				}
 			});
-			mui.plusReady(function() {
+			mui.plusReady(function() {				
 				getData(initVue);
 			});
 		</script>

@@ -252,12 +252,12 @@ body {
 
 #webview-head-title {
   display: inline-block;
-  font-size: 20px;
+  font-size: 18px;
   color: #FFFFFF; }
   [data-dpr="2"] #webview-head-title {
-    font-size: 40px; }
+    font-size: 36px; }
   [data-dpr="3"] #webview-head-title {
-    font-size: 60px; }
+    font-size: 54px; }
 
 #getAuthCode {
   width: 2.2rem;
@@ -383,12 +383,15 @@ body {
   height: 5.57333rem;
   display: block; }
 
-#searchDataNull, #farmNull {
+#searchDataNull,
+#farmNull {
   font-size: 12px;
   text-align: center; }
-  [data-dpr="2"] #searchDataNull, [data-dpr="2"] #farmNull {
+  [data-dpr="2"] #searchDataNull, [data-dpr="2"]
+  #farmNull {
     font-size: 24px; }
-  [data-dpr="3"] #searchDataNull, [data-dpr="3"] #farmNull {
+  [data-dpr="3"] #searchDataNull, [data-dpr="3"]
+  #farmNull {
     font-size: 36px; }
 
 #searchBigHover {
@@ -396,7 +399,7 @@ body {
   width: 1.6rem;
   height: 1.33333rem;
   top: -0.4rem;
-  left: 0px; }
+  left: 0; }
 
 .line-weight-half-bottom:before {
   content: "";
@@ -408,7 +411,9 @@ body {
   bottom: -100%;
   border-bottom: 1px solid #dfdfdf;
   transform: scale(0.5);
-  transform-origin: 0 0; }
+  transform-origin: 0 0;
+  -webkit-transform: scale(0.5);
+  -webkit-transform-origin: 0 0; }
 
 .line-weight-half-top:after {
   content: "";
@@ -419,6 +424,37 @@ body {
   right: -100%;
   border-bottom: 1px solid #dfdfdf;
   transform: scale(0.5);
-  transform-origin: 0 0; }
+  transform-origin: 0 0;
+  -webkit-transform: scale(0.5);
+  -webkit-transform-origin: 0 0; }
+
+@font-face {
+  font-family: "iconfont";
+  src: url("../fonts/iconfont.eot?t=1463970014");
+  /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  /* chrome, firefox */
+  /* IE6-IE8 */
+  /* IE9*/
+  src: url("../fonts/iconfont.eot?t=1463970014#iefix") format("embedded-opentype"), url("../fonts/iconfont.woff?t=1463970014") format("woff"), url("../fonts/iconfont.ttf?t=1463970014") format("truetype"), url("../fonts/iconfont.svg?t=1463970014#iconfont") format("svg");
+  /* iOS 4.1- */ }
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-sousuo:before {
+  content: "\e60b"; }
+
+.icon-ditu8:before {
+  content: "\f0018"; }
+
+.icon-dingwei:before {
+  content: "\e616"; }
+
+.icon-fanhui:before {
+  content: "\e7d5"; }
 
 /*# sourceMappingURL=public.css.map */

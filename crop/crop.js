@@ -223,6 +223,7 @@ function handleFiles(filePath) {
 
 	img.id = "imgShow";
 	img.style.position = "absolute";
+	
 	// 初始化滑动条
 	btnRange.value = 1;
 	img.src = filePath;

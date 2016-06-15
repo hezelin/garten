@@ -151,6 +151,7 @@
 				// 选项卡点击事件
 				var headElem = document.getElementsByClassName("header-control");
 				var comuFirstOpen = true;
+				var mapFirstOpen = true;
 				mui("#index-bar-tab").on("tap", ".index-tab-item", function(e) {
 					var targetTab = this.getAttribute("data-href");
 					if (targetTab == activeTab) {
@@ -169,6 +170,12 @@
 							mui.fire(plus.webview.getWebviewById(targetTab), "initPage", {});
 							console.log("初始化一次社区页");
 							comuFirstOpen = !comuFirstOpen;
+						}
+					}
+					if (targetTab == "webview-map.html") {
+						if (mapFirstOpen) {
+							mui.fire(plus.webview.getWebviewById(targetTab), "initMap", {});
+							mapFirstOpen = !mapFirstOpen;
 						}
 					}
 					plus.webview.hide(activeTab);

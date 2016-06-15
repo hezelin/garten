@@ -21,34 +21,39 @@
 			[v-cloak] {
 				display: none;
 			}
+			[data-dpr="1"] .mui-ios .mui-pull-caption {
+				font-size: 14px;
+			}
 			
-			[data-dpr="2"],
-			.mui-ios .mui-pull-caption {
+			[data-dpr="1"] .mui-ios .mui.spinner {
+				font-size: 14px;
+			}
+			
+			[data-dpr="1"] .mui-ios .mui-icon-pulldown {
+				font-size: 14px;
+			}
+			
+			[data-dpr="2"] .mui-ios .mui-pull-caption {
 				font-size: 28px;
 			}
 			
-			[data-dpr="2"],
-			.mui-ios .mui.spinner {
+			[data-dpr="2"] .mui-ios .mui.spinner {
 				font-size: 28px;
 			}
 			
-			[data-dpr="2"],
-			.mui-ios .mui-icon-pulldown {
+			[data-dpr="2"] .mui-ios .mui-icon-pulldown {
 				font-size: 28px;
 			}
 			
-			[data-dpr="3"],
-			.mui-ios .mui-pull-caption {
+			[data-dpr="3"] .mui-ios .mui-pull-caption {
 				font-size: 42px;
 			}
 			
-			[data-dpr="3"],
-			.mui-ios .mui.spinner {
+			[data-dpr="3"] .mui-ios .mui.spinner {
 				font-size: 42px;
 			}
 			
-			[data-dpr="3"],
-			.mui-ios .mui-icon-pulldown {
+			[data-dpr="3"] .mui-ios .mui-icon-pulldown {
 				font-size: 42px;
 			}
 			
@@ -59,22 +64,26 @@
 			.mui-android .mui-pull-top-pocket {
 				top: 50px;
 			}
+			
+			.home-rent-container {
+				background-color: #FFFFFF;
+			}
 		</style>
 	</head>
 
 	<body>
+		<div class="spinner" style="display: block;" id="spinnerDiv">
+			<div class="bounce1"></div>
+			<div class="bounce2"></div>
+			<div class="bounce3"></div>
+		</div>
 		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
 			<div class="mui-scroll">
-				<div class="spinner" style="display: block;" id="spinnerDiv">
-					<div class="bounce1"></div>
-					<div class="bounce2"></div>
-					<div class="bounce3"></div>
-				</div>
 				<!--<ul class="mui-table-view mui-table-view-chevron">-->
-				<div class="home-rent-container" id="trade-list" v-cloak>					
+				<div class="home-rent-container" id="trade-list" v-cloak>
 					<div class="home-rent-item" v-for="item in data.items" data-id="{{ item.id }}" data-shop-id="{{ item.shop_id }}" v-on:tap="openDetail">
 						<div class="home-rent-bg" style="background: url({{item.cover}}); background-position: center; background-size: cover;">
-							<div class="home-rent-bg-cover"></div>							
+							<div class="home-rent-bg-cover"></div>
 							<div class="home-rent-money-content">&nbsp;&yen;&nbsp;<em>{{ item.price}}</em></div>
 							<div class="home-rent-name">
 								{{ item.shop_name }}
@@ -227,7 +236,7 @@
 					return;
 				}
 				URL = URL + "&page=" + page + "&" + fnCreateSign();
-				console.log(title+"地址"+URL);
+				console.log(title + "地址" + URL);
 				mui.ajax(URL, {
 					type: "GET",
 					dataType: "JSON",
@@ -361,7 +370,6 @@
 					}
 				});
 			};
-			
 			mui.plusReady(function() {
 				categoryID = plus.webview.currentWebview().category;
 				setTimeout(function() {
